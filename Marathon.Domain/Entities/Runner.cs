@@ -19,6 +19,7 @@ namespace Marathon.Domain.Entities
         public long GenderId { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public long CountryId { get; set; }
+        public byte[] Photo { get; set; }
 
         public User User { get; set; }
         public Gender Gender { get; set; }
