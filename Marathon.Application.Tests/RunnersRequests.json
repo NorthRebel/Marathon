@@ -1,0 +1,34 @@
+{
+  "EmailMustBeUnique": [
+    [
+      {
+        "Id": 1,
+        "Email": "a.adkin@dayrep.net",
+        "Password": "jwZh2x@p",
+        "FirstName": "AHMAD",
+        "LastName": "ADKIN",
+        "RoleId": 3
+      }
+    ],
+    [
+      {
+        "Id": 2,
+        "Email": "a.aldrich@gmail.com",
+        "Password": "Hel#OOO",
+        "FirstName": "AAROND",
+        "LastName": "ALDRICH",
+        "RoleId": 3
+      }
+    ],
+    [
+      {
+        "Id": 3,
+        "Email": "a.allison@gmail.com",
+        "Password": "OPuDrw9O",
+        "FirstName": "ALPHONSO",
+        "LastName": "ALLISON",
+        "RoleId": 3
+      }
+    ]
+  ]
+}
