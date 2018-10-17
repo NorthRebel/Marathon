@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using Marathon.Desktop.ViewModel.Base;
+using Marathon.Core.ViewModel.Base;
 using Marathon.Desktop.Window;
 
 namespace Marathon.Desktop.ViewModel
 {
-
     /// <summary>
     /// The View Model for the custom flat window
     /// </summary>

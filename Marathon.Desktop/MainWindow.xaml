@@ -59,7 +59,7 @@
                                     <Grid Grid.Column="0" Panel.ZIndex="1">
 
                                         <Grid.ColumnDefinitions>
-                                            <!-- Icon -->
+                                            <!-- Menu button (circle) -->
                                             <ColumnDefinition Width="{Binding TitleHeightGridLength, FallbackValue=20}" />
                                             <!-- Title -->
                                             <ColumnDefinition Width="*" />
@@ -68,7 +68,7 @@
 
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- Icon -->
+                                        <!-- Menu button (circle) -->
                                         <Border Grid.Column="0"
                                                 Height="15"
                                                 Background="{StaticResource LightGrayBrush}"
@@ -126,7 +126,19 @@
     </WindowChrome.WindowChrome>
 
     <Border Background="{StaticResource WhiteBrush}">
+        <Grid>
 
+            <Grid.RowDefinitions>
+                <!--Title bar-->
+                <RowDefinition Height="Auto" />
+                <!--Page host-->
+                <RowDefinition Height="*" />
+                <!--Bottom bar-->
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+
+        </Grid>
     </Border>
 
 </Window>

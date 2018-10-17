@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Marathon.Desktop.ViewModel.Base
+namespace Marathon.Core.ViewModel.Base
 {
     /// <summary>
     /// A basic command that runs an Action
@@ -25,13 +25,9 @@ namespace Marathon.Desktop.ViewModel.Base
         #region Public Events
 
         /// <summary>
-        /// 
+        /// The event thats fired when the <see cref="CanExecute(object)"/> value has changed
         /// </summary>
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
-        }
+        public event EventHandler CanExecuteChanged = (sender, e) => { };
 
         #endregion
 
