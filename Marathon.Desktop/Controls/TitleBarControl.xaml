@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.TitleBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="600">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+
+            <ControlTemplate.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource CaptionButton}"/>
+            </ControlTemplate.Resources>
+
+            <!--Main background-->
+            <Border Background="{StaticResource DarkGrayBrush}">
+
+                <!--Content-->
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <!--Back button-->
+                        <ColumnDefinition Width="Auto"/>
+                        <!--Title-->
+                        <ColumnDefinition Width="*"/>
+                        <!--Logout button-->
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Back button-->
+                    <Button Grid.Column="0" 
+                            Content="Назад"/>
+
+                    <!--Title-->
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Text="MARATHON SKILLS 2016"
+                               Foreground="{StaticResource WhiteBrush}"
+                               FontSize="{StaticResource FontSizeLarge}"/>
+
+                    <!--Logout button-->
+                    <Button Grid.Column="2" 
+                            Content="Выход"/>
+
+                </Grid>
+
+            </Border>
+
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>

@@ -79,7 +79,7 @@
                                                 BorderBrush="{StaticResource BlackBrush}"
                                                 Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                                 CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-                                            
+
                                             <Border.InputBindings>
                                                 <MouseBinding MouseAction="LeftClick"
                                                               Command="{Binding MenuCommand}"/>
@@ -139,13 +139,21 @@
                 <!--Bottom bar-->
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            
+
+            <!--Title bar-->
+            <controls:TitleBarControl Grid.Row="0"
+                                      Height="50"/>
+
+            <!--Page host-->
             <controls:PageHost Grid.Row="1"
                                DataContext="{Binding ApplicationViewModel.CurrentPage,
                                Source={x:Static viewModels:ViewModelLocator.Instance}, 
                                Converter={converters:ApplicationPageValueConverter}}"
                                CurrentPage="{Binding}"/>
 
+            <!--Bottom bar-->
+            <controls:BottomBarControl Grid.Row="2"
+                                       Height="50"/>
         </Grid>
     </Border>
 
