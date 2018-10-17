@@ -60,7 +60,7 @@
 
                                         <Grid.ColumnDefinitions>
                                             <!-- Icon -->
-                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="{Binding TitleHeightGridLength, FallbackValue=20}" />
                                             <!-- Title -->
                                             <ColumnDefinition Width="*" />
                                             <!-- Windows Button -->
@@ -69,24 +69,31 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!-- Icon -->
-                                        <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
-                                            Icon
-                                        </Button>
+                                        <Border Grid.Column="0"
+                                                Height="15"
+                                                Background="{StaticResource YellowBrush}"
+                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+                                            
+                                            <Border.InputBindings>
+                                                <MouseBinding MouseAction="LeftClick"
+                                                              Command="{Binding MenuCommand}"/>
+                                            </Border.InputBindings>
+
+                                        </Border>
 
                                         <!-- Title -->
-                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
-                                            <StackPanel>
-                                                <TextBlock FontSize="{StaticResource FontSizeLarge}" Margin="0,0,0,-5">
-                                                    <Run Text="W" Foreground="{StaticResource WordOrangeBrush}" /><Run Text="O" Foreground="{StaticResource WordBlueBrush}" /><Run Text="R" Foreground="{StaticResource WordRedBrush}" /><Run Text="D" Foreground="{StaticResource WordGreenBrush}" />
-                                                </TextBlock>
-                                                <TextBlock Text="by fasetto" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center" />
-                                            </StackPanel>
-                                        </Viewbox>
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="5 0 0 0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{StaticResource WhiteBrush}"
+                                                   FontSize="{StaticResource FontSizeSmall}"
+                                                   Text="Marathon Skills 2016"/>
 
                                         <!-- Window Buttons -->
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
-                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
+                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="-" />
+                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[]" />
                                             <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
                                         </StackPanel>
 
@@ -117,7 +124,7 @@
     </WindowChrome.WindowChrome>
 
     <Border Background="{StaticResource WordBlueBrush}">
-       
+
     </Border>
 
 </Window>
