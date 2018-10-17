@@ -71,7 +71,9 @@
                                         <!-- Icon -->
                                         <Border Grid.Column="0"
                                                 Height="15"
-                                                Background="{StaticResource YellowBrush}"
+                                                Background="{StaticResource LightGrayBrush}"
+                                                BorderThickness="1"
+                                                BorderBrush="{StaticResource BlackBrush}"
                                                 Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                                 CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
                                             
@@ -123,7 +125,7 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Border Background="{StaticResource WordBlueBrush}">
+    <Border Background="{StaticResource WhiteBrush}">
 
     </Border>
 
