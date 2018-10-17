@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using Marathon.Core.Models;
+using Marathon.Desktop.Pages;
 
 namespace Marathon.Desktop.ValueConverters
 {
@@ -16,7 +17,8 @@ namespace Marathon.Desktop.ValueConverters
             // Find the appropriate page
             switch ((ApplicationPage)value)
             {
-                
+                case ApplicationPage.Main:
+                    return new MainPage();
 
                 default:
                     Debugger.Break();
