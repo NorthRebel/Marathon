@@ -140,6 +140,14 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
+            <!--Main Title bar-->
+            <controls:MainTitleBarControl 
+                Grid.Row="0"
+                Height="150"
+                Visibility="{Binding ApplicationViewModel.MainTitleBarVisible,               
+                               Source={x:Static viewModels:ViewModelLocator.Instance},
+                               Converter={converters:BooleanToVisiblityConverter}}"/>
+            
             <!--Title bar-->
             <controls:TitleBarControl Grid.Row="0"
                                       Height="50"/>

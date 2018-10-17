@@ -15,9 +15,9 @@ namespace Marathon.Core.ViewModel
         public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Main;
 
         /// <summary>
-        /// True if the title bar should be shown
+        /// True if the main title bar should be shown
         /// </summary>
-        public bool TitleBarVisible { get; set; } = true;
+        public bool MainTitleBarVisible { get; set; } = false;
 
         /// <summary>
         /// True if the bottom bar should be shown

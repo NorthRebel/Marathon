@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.MainTitleBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="600">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextAlignment" Value="Center"/>
+                    <Setter Property="Foreground" Value="{StaticResource GrayBrush}"/>
+                </Style>
+            </ControlTemplate.Resources>
+
+            <!--Main background-->
+            <Border Background="{StaticResource DarkGrayBrush}">
+
+                <!--Content-->
+                <StackPanel Margin="0 30 0 20">
+
+                    <TextBlock Text="MARATHON SKILLS 2016"
+                               FontSize="{StaticResource FontSizeXXLarge}"
+                               Foreground="{StaticResource WhiteBrush}"
+                               Margin="0 0 0 10"/>
+                    
+                    <TextBlock Text="Москва, Россия"
+                               FontStyle="Italic"
+                               FontSize="{StaticResource FontSizeLarge}"/>
+
+                    <TextBlock Text="среда 21 октября 2016"
+                               FontStyle="Italic"
+                               FontSize="{StaticResource FontSizeLarge}"/>
+
+                </StackPanel>
+
+            </Border>
+
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>
