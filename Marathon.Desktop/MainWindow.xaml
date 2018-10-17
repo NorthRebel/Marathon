@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Marathon.Desktop"
+        xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+        xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
+        xmlns:viewModels="clr-namespace:Marathon.Desktop.ViewModel"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -137,6 +140,11 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             
+            <controls:PageHost Grid.Row="1"
+                               DataContext="{Binding ApplicationViewModel.CurrentPage,
+                               Source={x:Static viewModels:ViewModelLocator.Instance}, 
+                               Converter={converters:ApplicationPageValueConverter}}"
+                               CurrentPage="{Binding}"/>
 
         </Grid>
     </Border>
