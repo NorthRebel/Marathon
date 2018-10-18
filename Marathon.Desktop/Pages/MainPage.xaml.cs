@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Marathon.Core.ViewModel;
 
 namespace Marathon.Desktop.Pages
 {
     /// <summary>
     /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class MainPage : BasePage
+    public partial class MainPage : BasePage<MainViewModel>
     {
         public MainPage()
         {

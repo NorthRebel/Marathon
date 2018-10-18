@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Controls"
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.MainTitleBar.Design;assembly=Marathon.Core"
+             xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="600">
+             d:DesignHeight="150" d:DesignWidth="600"
+             DataContext="{x:Static viewModels:MainTitleBarDesignModel.Instance}">
 
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
@@ -28,11 +31,11 @@
                                Foreground="{StaticResource WhiteBrush}"
                                Margin="0 0 0 10"/>
                     
-                    <TextBlock Text="Москва, Россия"
+                    <TextBlock Text="{Binding Location}"
                                FontStyle="Italic"
                                FontSize="{StaticResource FontSizeLarge}"/>
 
-                    <TextBlock Text="среда 21 октября 2016"
+                    <TextBlock Text="{Binding CurrentDate, Converter={converters:TimeToDisplayTimeConverter}}"
                                FontStyle="Italic"
                                FontSize="{StaticResource FontSizeLarge}"/>
 

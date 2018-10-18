@@ -17,7 +17,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// True if the main title bar should be shown
         /// </summary>
-        public bool MainTitleBarVisible { get; set; } = false;
+        public bool MainTitleBarVisible { get; set; } = true;
 
         /// <summary>
         /// True if the bottom bar should be shown
@@ -28,14 +28,13 @@ namespace Marathon.Core.ViewModel
         /// Navigates to the specified page
         /// </summary>
         /// <param name="page">The page to go to</param>
-        public void GoToPage(ApplicationPage page)
+        protected override void GoToPage(ApplicationPage page)
         {
             // Set the current page
             CurrentPage = page;
 
-            // Show side menu or not?
-            //SideMenuVisible = page == ApplicationPage.Chat;
-
+            // On main page visible main title bar
+            MainTitleBarVisible = CurrentPage == ApplicationPage.Main;
         }
     }
 }

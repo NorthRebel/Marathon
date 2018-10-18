@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Marathon.Core.Models;
 using PropertyChanged;
 
 namespace Marathon.Core.ViewModel.Base
@@ -16,5 +17,17 @@ namespace Marathon.Core.ViewModel.Base
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region Command Helpers
+
+        /// <summary>
+        /// Move to another page
+        /// </summary>
+        protected virtual void GoToPage(ApplicationPage page)
+        {
+            IoC.IoC.Get<ApplicationViewModel>().GoToPage(page);
+        }
+
+        #endregion
     }
 }
