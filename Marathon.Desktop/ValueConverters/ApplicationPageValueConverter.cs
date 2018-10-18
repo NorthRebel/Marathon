@@ -19,6 +19,8 @@ namespace Marathon.Desktop.ValueConverters
             {
                 case ApplicationPage.Main:
                     return new MainPage();
+                case ApplicationPage.CheckRunner:
+                    return new CheckRunnerPage();
 
                 default:
                     Debugger.Break();

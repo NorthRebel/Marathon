@@ -12,10 +12,7 @@ namespace Marathon.Core.ViewModel
     {
         #region Public Properties
 
-        /// <summary>
-        /// Shows current date
-        /// </summary>
-        public DateTimeOffset CurrentDate { get; set; }
+
 
         #endregion
 
@@ -47,8 +44,6 @@ namespace Marathon.Core.ViewModel
 
         public MainViewModel()
         {
-            CurrentDate = DateTimeOffset.UtcNow;
-
             WantToBecomeRunnerCommand = new RelayCommand(x => GoToPage(ApplicationPage.CheckRunner));
             WantToBecomeRunnerSponsorCommand = new RelayCommand(x => GoToPage(ApplicationPage.SponsorRunner));
             WantToKnowMoreAboutTheEventCommand = new RelayCommand(x => GoToPage(ApplicationPage.MarathonMenu));
