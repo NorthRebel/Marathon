@@ -22,5 +22,14 @@ namespace Marathon.Core.ViewModel
         public ICommand IamNewParticipantCommand { get; set; }
 
         #endregion
+
+        #region Constructor
+
+        public CheckRunnerViewModel()
+        {
+            ITookPartEarlierCommand = new RelayCommand(x => GoToPage(ApplicationPage.SignIn));
+        }
+
+        #endregion
     }
 }

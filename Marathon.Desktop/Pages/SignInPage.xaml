@@ -1,0 +1,109 @@
+﻿<local:BasePage x:Class="Marathon.Desktop.Pages.SignInPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Caption and description-->
+            <RowDefinition Height="Auto"/>
+            <!--Sign In form-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Caption and description-->
+        <StackPanel>
+            <TextBlock Text="Форма авторизации" 
+                       Margin="0 20"
+                       FontSize="{StaticResource FontSizeXLarge}" 
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль." 
+                       Margin="20 0" 
+                       FontSize="{StaticResource FontSizeLarge}"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"/>
+        </StackPanel>
+        
+        <Border Grid.Row="0"
+                Grid.RowSpan="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0 20 0 0">
+            
+            <Grid>
+                
+            <Grid.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+                </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource BaseStyle}">
+                    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"></Setter>
+                </Style>
+                <Style TargetType="Button" BasedOn="{StaticResource RoundedButton}">
+                    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+                </Style>
+            </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="Email:"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1"
+                         Grid.Row="0"
+                         Width="200"
+                         Margin="10 0 0 10"
+                         VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="Пароль:"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1"
+                         Grid.Row="1"
+                         Width="200"
+                         Margin="10 0 0 0"
+                         VerticalAlignment="Center"/>
+                
+                <Grid Grid.Column="0"
+                      Grid.Row="2"
+                      Grid.ColumnSpan="2"
+                      Margin="0 10 0 0">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Width="80"
+                            HorizontalAlignment="Right"
+                            Content="Отмена"/>
+
+                    <Button Grid.Column="1"
+                            Width="80"
+                            HorizontalAlignment="Left"
+                            Content="Вход"/>
+                  
+                </Grid>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+</local:BasePage>
