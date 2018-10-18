@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Marathon.Desktop.Styles">
+
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}">
+
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMedium}" />
+        <Setter Property="FontFamily" Value="Open Sans Light" />
+
+    </Style>
+
+</ResourceDictionary>
