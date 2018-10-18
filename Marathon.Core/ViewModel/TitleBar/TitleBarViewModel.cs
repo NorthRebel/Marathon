@@ -31,5 +31,26 @@ namespace Marathon.Core.ViewModel.TitleBar
         public ICommand LogoutCommand { get; set; }
 
         #endregion
+
+        #region Constructor
+
+        public TitleBarViewModel()
+        {
+            GoBackCommand = new RelayCommand(x => GoBack());
+        }
+
+        #endregion
+
+        #region Command Helpers
+
+        /// <summary>
+        /// Returns user to previous page
+        /// </summary>
+        private void GoBack()
+        {
+            IoC.IoC.Get<ApplicationViewModel>().GoToPreviousPage();
+        }
+
+        #endregion
     }
 }
