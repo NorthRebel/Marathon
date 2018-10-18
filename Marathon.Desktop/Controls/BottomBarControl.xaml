@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Controls"
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.BottomBar.Design;assembly=Marathon.Core"
+             xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="600">
+             d:DesignHeight="50" d:DesignWidth="600"
+             DataContext="{x:Static viewModels:BottomBarDesignModel.Instance}">
 
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
@@ -20,7 +23,7 @@
                 <!--Content-->
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Text="18 дней 8 часов и17 минут до старта марафона!"
+                           Text="{Binding TimeToBegin, Converter={converters:RemainingTimeConverter}}"
                            Foreground="{StaticResource WhiteBrush}"
                            FontSize="{StaticResource FontSizeMedium}"/>
 

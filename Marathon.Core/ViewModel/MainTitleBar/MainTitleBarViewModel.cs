@@ -1,11 +1,12 @@
 ﻿using System;
+using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel.MainTitleBar
 {
     /// <summary>
-    /// The view model for a main title bar
+    /// The view model for a main title bar control
     /// </summary>
-    public class MainTitleBarViewModel
+    public class MainTitleBarViewModel : BaseViewModel
     {
         #region Public Properties
 
