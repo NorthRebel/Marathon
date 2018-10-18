@@ -71,6 +71,9 @@ namespace Marathon.Desktop.Controls
             // Move the previous page into the old page frame
             oldPageFrame.Content = oldPageContent;
 
+            if (oldPageContent is BasePage oldPage)
+                oldPageFrame.Content = null;
+
             // Set the new page content
             newPageFrame.Content = e.NewValue;
         }
