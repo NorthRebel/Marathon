@@ -41,7 +41,7 @@
                     <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
                 </Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource BaseStyle}">
-                    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"></Setter>
+                    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
                 </Style>
                 <Style TargetType="Button" BasedOn="{StaticResource RoundedButton}">
                     <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>

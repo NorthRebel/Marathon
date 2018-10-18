@@ -23,7 +23,7 @@ namespace Marathon.Core.ViewModel.Base
         /// <summary>
         /// Move to another page
         /// </summary>
-        protected virtual void GoToPage(ApplicationPage page)
+        protected virtual void GoToPage(ApplicationPage page, bool goBack = false)
         {
             IoC.IoC.Get<ApplicationViewModel>().GoToPage(page);
         }

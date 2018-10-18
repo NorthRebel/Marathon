@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
 
@@ -17,7 +18,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// The previous page of the application
         /// </summary>
-        public ApplicationPage? PreviousPage { get; private set; }
+        public Stack<ApplicationPage> PreviousPages { get; private set; }
 
         /// <summary>
         /// True if the main title bar should be shown
@@ -29,14 +30,24 @@ namespace Marathon.Core.ViewModel
         /// </summary>
         public bool BottomBarVisible { get; set; } = true;
 
+        #region Constructor
+
+        public ApplicationViewModel()
+        {
+            PreviousPages = new Stack<ApplicationPage>();
+        }
+
+        #endregion
+
         /// <summary>
         /// Navigates to the specified page
         /// </summary>
         /// <param name="page">The page to go to</param>
-        protected override void GoToPage(ApplicationPage page)
+        /// <param name="goBack">Flag that indicates method doesn't push previous page to stack</param>
+        protected override void GoToPage(ApplicationPage page, bool goBack = false)
         {
-            if (CurrentPage != page)
-                PreviousPage = CurrentPage;
+            if (!PreviousPages.Contains(page) && !goBack)
+                PreviousPages.Push(CurrentPage);
 
             // Set the current page
             CurrentPage = page;
@@ -50,8 +61,8 @@ namespace Marathon.Core.ViewModel
         /// </summary>
         public void GoToPreviousPage()
         {
-            if (PreviousPage != null)
-                GoToPage(PreviousPage.Value);
+            if (PreviousPages.Count != default(int))
+                GoToPage(PreviousPages.Pop(), true);
         }
     }
 }
