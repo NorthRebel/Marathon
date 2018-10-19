@@ -28,6 +28,7 @@ namespace Marathon.Core.ViewModel
         public CheckRunnerViewModel()
         {
             ITookPartEarlierCommand = new RelayCommand(x => GoToPage(ApplicationPage.SignIn));
+            IamNewParticipantCommand = new RelayCommand(x => GoToPage(ApplicationPage.SignUpRunner));
         }
 
         #endregion

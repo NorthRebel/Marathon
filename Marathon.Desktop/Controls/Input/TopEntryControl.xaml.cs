@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Marathon.Core.ViewModel;
 
-namespace Marathon.Desktop.Pages
+namespace Marathon.Desktop.Controls.Input
 {
     /// <summary>
-    /// Логика взаимодействия для SignUpRunnerPage.xaml
+    /// Логика взаимодействия для TopEntryControl.xaml
     /// </summary>
-    public partial class SignUpRunnerPage : BasePage<SignUpRunnerViewModel>
+    public partial class TopEntryControl : UserControl
     {
-        public SignUpRunnerPage()
+        public TopEntryControl()
         {
             InitializeComponent();
         }

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.Input.LeftEntryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls.Input"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="250">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}"/>
+            </ControlTemplate.Resources>
+
+            <Grid Margin="0 10">
+
+                <Grid.ColumnDefinitions>
+                    <!--Label-->
+                    <ColumnDefinition Width="Auto"
+                                      Name="LabelColumnDefinition"/>
+                    <!--Content-->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Label-->
+                <TextBlock Text="{Binding Label, StringFormat='{}{0}:'}"
+                           Grid.Column="0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"/>
+
+                <!--Content-->
+                <ContentPresenter Grid.Column="1" 
+                                  VerticalAlignment="Center"
+                                  Margin="5 0"
+                                  Content="{TemplateBinding Content}"/>
+            </Grid>
+
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Marathon.Infrastructure\Marathon.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModel\Input\Design\" />
+  </ItemGroup>
+
 </Project>

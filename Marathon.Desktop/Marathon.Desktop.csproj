@@ -72,6 +72,12 @@
     <Compile Include="Controls\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Input\LeftEntryControl.xaml.cs">
+      <DependentUpon>LeftEntryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Input\TopEntryControl.xaml.cs">
+      <DependentUpon>TopEntryControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MainTitleBarControl.xaml.cs">
       <DependentUpon>MainTitleBarControl.xaml</DependentUpon>
     </Compile>
@@ -101,6 +107,7 @@
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisiblityConverter.cs" />
+    <Compile Include="ValueConverters\DivValueConverter.cs" />
     <Compile Include="ValueConverters\RemainingTimeConverter.cs" />
     <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -108,6 +115,14 @@
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\BottomBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Input\LeftEntryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Input\TopEntryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
