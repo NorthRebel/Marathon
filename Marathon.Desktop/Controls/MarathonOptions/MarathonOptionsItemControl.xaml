@@ -6,90 +6,39 @@
              xmlns:local="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.MarathonOptions.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="200">
+             d:DesignHeight="50" d:DesignWidth="200"
+             d:DataContext="{x:Static viewModels:MarathonOptionsItemDesignModel.Instance}">
 
-    <UserControl.Resources>
+    <!-- Content -->
+    <Grid>
 
-        <!--CheckBox-->
-        <Style x:Key="CheckBoxOptionItem" TargetType="{x:Type ContentControl}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ContentControl}">
+        <Grid.ColumnDefinitions>
+            <!--Check box or Radio button-->
+            <ColumnDefinition Width="Auto"/>
+            <!--Description-->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-                        <ControlTemplate.Resources>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}"/>
-                        </ControlTemplate.Resources>
+        <!--Check box control-->
+        <CheckBox Grid.Column="0"
+                  x:Name="CheckBoxControl"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  IsChecked="{Binding IsSelected}"/>
 
-                        <!-- Content -->
-                        <Grid>
+        <!--Radio button control-->
+        <RadioButton Grid.Column="0"
+                     x:Name="RadioButtonControl"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     IsChecked="{Binding IsSelected}"/>
 
-                            <Grid.ColumnDefinitions>
-                                <!--Check box or Radio button-->
-                                <ColumnDefinition Width="Auto"/>
-                                <!--Description-->
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!--Check box control-->
-                            <CheckBox Grid.Column="0"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Center"
-                                      IsChecked="{Binding IsSelected}"/>
-
-                            <!--Description-->
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"
-                                       Margin="10 0 0 0"
-                                       Text="{Binding Description}"/>
-                        </Grid>
-
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!--RadioButton-->
-        <Style x:Key="RadioButtonOptionItem" TargetType="{x:Type ContentControl}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ContentControl}">
-
-                        <ControlTemplate.Resources>
-                            <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}"/>
-                        </ControlTemplate.Resources>
-
-                        <!-- Content -->
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <!--Check box or Radio button-->
-                                <ColumnDefinition Width="Auto"/>
-                                <!--Description-->
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!--Radio button control-->
-                            <RadioButton Grid.Column="0"
-                                         VerticalAlignment="Center"
-                                         HorizontalAlignment="Center"
-                                         IsChecked="{Binding IsSelected}"/>
-
-                            <!--Description-->
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"
-                                       Margin="10 0 0 0"
-                                       Text="{Binding Description}"/>
-                        </Grid>
-
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-
-    <ContentControl Style="{StaticResource CheckBoxOptionItem}"
-                    d:DataContext="{x:Static viewModels:MarathonOptionsItemDesignModel.Instance}"/>
+        <!--Description-->
+        <TextBlock Grid.Column="1"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Margin="10 0 0 0"
+                   Text="{Binding Description}"/>
+    </Grid>
 
 </UserControl>
