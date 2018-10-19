@@ -139,7 +139,7 @@
                     Width="80"
                     HorizontalAlignment="Left"
                     Content="Регистрация"
-                    Command="{Binding SignInCommand}"
+                    Command="{Binding SignUpCommand}"
                     CommandParameter="{Binding ElementName=Page}"/>
 
         </Grid>

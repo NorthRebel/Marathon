@@ -25,6 +25,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new SignInPage();
                 case ApplicationPage.SignUpRunner:
                     return new SignUpRunnerPage();
+                case ApplicationPage.SignUpToMarathon:
+                    return new SignUpToMarathonPage();
                 default:
                     Debugger.Break();
                     return null;

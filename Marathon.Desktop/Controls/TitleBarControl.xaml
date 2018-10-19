@@ -8,7 +8,7 @@
              xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="600"
-             DataContext="{x:Static viewModels:TitleBarDesignModel.Instance}">
+             d:DataContext="{x:Static viewModels:TitleBarDesignModel.Instance}">
 
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Marathon.Core.IoC;
 
 namespace Marathon.Desktop.Controls
 {
@@ -23,6 +24,9 @@ namespace Marathon.Desktop.Controls
         public TitleBarControl()
         {
             InitializeComponent();
+
+            // Set data context to Title Bar view model
+            DataContext = IoC.TitleBar;
         }
     }
 }

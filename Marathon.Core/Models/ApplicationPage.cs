@@ -33,7 +33,7 @@
         /// They must sign in to system before.
         /// This page provides runner to sign up to take part in competitions. 
         /// </summary>
-        RegisterToMarathon,
+        SignUpToMarathon,
 
         /// <summary>
         /// This page provides user to sponsor runner, which sign up to competition.
@@ -51,7 +51,7 @@
         /// This page provides runner to confirm, what he was signed up.
         /// He gives message that contains: "Coordinators will call him".
         /// </summary>
-        RegisterRunnerConfirm,
+        SignUpRunnerConfirm,
 
         /// <summary>
         /// Runners could show this page, when they signed in.

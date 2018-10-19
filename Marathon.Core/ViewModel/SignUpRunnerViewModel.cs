@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
@@ -125,7 +126,8 @@ namespace Marathon.Core.ViewModel
         /// </summary>
         private async Task SignUpAsync(object password)
         {
-            throw new System.NotImplementedException();
+            await Task.Delay(1);
+            GoToPage(ApplicationPage.SignUpToMarathon);
         }
 
         #endregion

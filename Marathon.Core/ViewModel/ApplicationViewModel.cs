@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
 
@@ -23,12 +22,12 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// True if the main title bar should be shown
         /// </summary>
-        public bool MainTitleBarVisible { get; set; } = true;
+        public bool MainTitleBarVisible { get; private set; } = true;
 
         /// <summary>
         /// True if the bottom bar should be shown
         /// </summary>
-        public bool BottomBarVisible { get; set; } = true;
+        public bool BottomBarVisible { get; private set; } = true;
 
         #region Constructor
 
@@ -62,7 +61,11 @@ namespace Marathon.Core.ViewModel
         public void GoToPreviousPage()
         {
             if (PreviousPages.Count != default(int))
+            {
+                if (IoC.IoC.TitleBar.LogoutButtonVisible)
+                    IoC.IoC.TitleBar.LogoutButtonVisible = false;
                 GoToPage(PreviousPages.Pop(), true);
+            }
         }
     }
 }
