@@ -81,6 +81,9 @@
     <Compile Include="Controls\MainTitleBarControl.xaml.cs">
       <DependentUpon>MainTitleBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MarathonOptionsControl.xaml.cs">
+      <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PageCaptionControl.xaml.cs">
       <DependentUpon>PageCaptionControl.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainTitleBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MarathonOptionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
