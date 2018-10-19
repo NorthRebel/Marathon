@@ -21,7 +21,8 @@
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
-                            SnapsToDevicePixels="True">
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
 
@@ -33,6 +34,7 @@
                                    Padding="{TemplateBinding Padding}"
                                    Foreground="{StaticResource GrayBrush}"
                                    FontStyle="Italic"
+                                   Margin="3 0 0 0"
                                    Visibility="{TemplateBinding Props:HasTextProperty.Value, Converter={Converters:BooleanToVisiblityConverter}, ConverterParameter=True}"
                                    VerticalAlignment="Center"/>
                     </Grid>
@@ -56,7 +58,8 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True">
+                                SnapsToDevicePixels="True"
+                                CornerRadius="5">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
 
@@ -68,6 +71,7 @@
                                    Padding="{TemplateBinding Padding}"
                                    Foreground="{StaticResource GrayBrush}"
                                    FontStyle="Italic"
+                                   Margin="3 0 0 0"
                                    VerticalAlignment="Center">
 
                             <TextBlock.Style>
