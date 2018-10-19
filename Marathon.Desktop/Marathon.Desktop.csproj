@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="Controls\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
