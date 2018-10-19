@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Pages"
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+             xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon;assembly=Marathon.Core"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
@@ -44,7 +45,7 @@
                 Grid.Column="0"
                 Grid.Row="0">
                 
-                
+                <MarathonOptions:MarathonOptionsListControl/>
 
             </controls:MarathonOptionsControl>
 

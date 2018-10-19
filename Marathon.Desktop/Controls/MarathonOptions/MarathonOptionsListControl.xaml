@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.MarathonOptions.MarathonOptionsListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.MarathonOptions.Design;assembly=Marathon.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200">
+
+    <Grid d:DataContext="{x:Static viewModels:MarathonOptionsDesignModel.Instance}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:MarathonOptionsItemControl/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

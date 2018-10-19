@@ -84,6 +84,12 @@
     <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
       <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MarathonOptions\MarathonOptionsItemControl.xaml.cs">
+      <DependentUpon>MarathonOptionsItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MarathonOptions\MarathonOptionsListControl.xaml.cs">
+      <DependentUpon>MarathonOptionsListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PageCaptionControl.xaml.cs">
       <DependentUpon>PageCaptionControl.xaml</DependentUpon>
     </Compile>
@@ -137,6 +143,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MarathonOptions\MarathonOptionsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MarathonOptions\MarathonOptionsItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MarathonOptions\MarathonOptionsListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

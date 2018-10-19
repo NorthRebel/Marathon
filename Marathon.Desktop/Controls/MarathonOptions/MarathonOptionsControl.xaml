@@ -34,9 +34,7 @@
                            Text="Marathon type"/>
 
                 <!--Content-->
-                <ScrollContentPresenter Grid.Row="1"
-                                        CanHorizontallyScroll="False"
-                                        CanVerticallyScroll="True"/>
+                <ContentPresenter Grid.Row="1"/>
 
             </Grid>
 
