@@ -24,5 +24,39 @@
             Grid.Row="0"
             DataContext="{Binding PageCaption}"/>
 
+        <Grid Grid.Row="1"
+              Margin="0 20 0 0">
+            
+            <Grid.RowDefinitions>
+                <!--Items to select-->
+                <RowDefinition Height="1.5*"/>
+                <!--Sponsorship details-->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Marathon type-->
+            <controls:MarathonOptionsControl
+                Grid.Column="0"
+                Grid.Row="0">
+                
+                
+
+            </controls:MarathonOptionsControl>
+
+            <!--Types of race kit-->
+            <controls:MarathonOptionsControl
+                Grid.Column="1"
+                Grid.Row="0">
+                
+                
+
+            </controls:MarathonOptionsControl>
+        </Grid>
+
     </Grid>
 </local:BasePage>

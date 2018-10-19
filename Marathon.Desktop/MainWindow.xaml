@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
         xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
         xmlns:viewModels="clr-namespace:Marathon.Desktop.ViewModel"
+        xmlns:bars="clr-namespace:Marathon.Desktop.Controls.Bars"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -141,7 +142,7 @@
             </Grid.RowDefinitions>
 
             <!--Title bar-->
-            <controls:TitleBarControl 
+            <bars:TitleBarControl 
                 Grid.Row="0"
                 Height="50"
                 Visibility="{Binding ApplicationViewModel.MainTitleBarVisible,               
@@ -149,7 +150,7 @@
                                Converter={converters:BooleanToVisiblityConverter}, ConverterParameter=True}"/>
 
             <!--Main Title bar-->
-            <controls:MainTitleBarControl 
+            <bars:MainTitleBarControl 
                 Grid.Row="0"
                 Height="150"
                 Visibility="{Binding ApplicationViewModel.MainTitleBarVisible,               
@@ -164,7 +165,7 @@
                                CurrentPage="{Binding}"/>
 
             <!--Bottom bar-->
-            <controls:BottomBarControl Grid.Row="2"
+            <bars:BottomBarControl Grid.Row="2"
                                        Height="50"/>
         </Grid>
     </Border>

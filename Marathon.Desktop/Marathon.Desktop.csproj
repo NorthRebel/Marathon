@@ -69,7 +69,7 @@
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
-    <Compile Include="Controls\BottomBarControl.xaml.cs">
+    <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Input\LeftEntryControl.xaml.cs">
@@ -78,10 +78,10 @@
     <Compile Include="Controls\Input\TopEntryControl.xaml.cs">
       <DependentUpon>TopEntryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainTitleBarControl.xaml.cs">
+    <Compile Include="Controls\Bars\MainTitleBarControl.xaml.cs">
       <DependentUpon>MainTitleBarControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MarathonOptionsControl.xaml.cs">
+    <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
       <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PageCaptionControl.xaml.cs">
@@ -90,7 +90,7 @@
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TitleBarControl.xaml.cs">
+    <Compile Include="Controls\Bars\TitleBarControl.xaml.cs">
       <DependentUpon>TitleBarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
@@ -120,7 +120,7 @@
     <Compile Include="Window\WindowDockPosition.cs" />
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
-    <Page Include="Controls\BottomBarControl.xaml">
+    <Page Include="Controls\Bars\BottomBarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,11 +132,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainTitleBarControl.xaml">
+    <Page Include="Controls\Bars\MainTitleBarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MarathonOptionsControl.xaml">
+    <Page Include="Controls\MarathonOptions\MarathonOptionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TitleBarControl.xaml">
+    <Page Include="Controls\Bars\TitleBarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
