@@ -9,6 +9,11 @@ namespace Marathon.Core.ViewModel.MarathonOptions
     public class MarathonOptionsViewModel : BaseViewModel
     {
         /// <summary>
+        /// Title of the options list
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
         /// Items of list
         /// </summary>
         public IEnumerable<MarathonOptionsItemViewModel> Items { get; set; }

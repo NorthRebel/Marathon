@@ -43,18 +43,22 @@
             <!--Marathon type-->
             <controls:MarathonOptionsControl
                 Grid.Column="0"
-                Grid.Row="0">
+                Grid.Row="0"
+                DataContext="{Binding MarathonTypes}">
                 
-                <MarathonOptions:MarathonOptionsListControl/>
+                <MarathonOptions:MarathonOptionsListControl
+                    SelectionType="CheckBox"/>
 
             </controls:MarathonOptionsControl>
 
             <!--Types of race kit-->
             <controls:MarathonOptionsControl
                 Grid.Column="1"
-                Grid.Row="0">
-                
-                
+                Grid.Row="0"
+                DataContext="{Binding RaceKits}">
+
+                <MarathonOptions:MarathonOptionsListControl
+                    SelectionType="RadioButton"/>
 
             </controls:MarathonOptionsControl>
         </Grid>

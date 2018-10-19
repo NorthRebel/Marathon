@@ -29,7 +29,11 @@ namespace Marathon.Desktop.Controls.MarathonOptions
         #endregion
 
         #region Dependency Properties
-        
+
+        /// <summary>
+        /// Selection type for a <see cref="MarathonOptionsItemControl"/>
+        /// </summary>
+
         public OptionSelectionType SelectionType    
         {
             get => (OptionSelectionType)GetValue(SelectionTypeProperty);
