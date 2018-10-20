@@ -8,15 +8,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
 
-    <Grid d:DataContext="{x:Static viewModels:MarathonOptionsDesignModel.Instance}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Items}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:MarathonOptionsItemControl/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+    <UserControl.Resources>
+        <DataTemplate x:Key="ItemContentTempalte">
+            <local:MarathonOptionsItemControl/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      d:DataContext="{x:Static viewModels:MarathonOptionsDesignModel.Instance}">
+        <ItemsControl ItemsSource="{Binding Items}">
+            <ItemsControl.ItemTemplate>
+                <DynamicResource ResourceKey="ItemContentTempalte"/>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>
