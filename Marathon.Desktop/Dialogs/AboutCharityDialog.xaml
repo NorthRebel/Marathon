@@ -13,8 +13,10 @@
         <!--Name-->
         <TextBlock Text="{Binding Name}"
                    DockPanel.Dock="Top"
+                   TextWrapping="Wrap"
                    HorizontalAlignment="Center"
-                   FontSize="{StaticResource FontSizeLarge}"/>
+                   FontSize="{StaticResource FontSizeLarge}"
+                   Margin="0 0 0 10"/>
 
         <!--Logo-->
         <Border
@@ -33,7 +35,7 @@
         <!--Description-->
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Hidden"
-                      Margin="0 20"
+                      Margin="0 20 0 0"
                       Height="65"
                       Width="350">
             
