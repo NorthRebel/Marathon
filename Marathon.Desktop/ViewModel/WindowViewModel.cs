@@ -16,22 +16,22 @@ namespace Marathon.Desktop.ViewModel
         /// <summary>
         /// The window this view model controls
         /// </summary>
-        private System.Windows.Window mWindow;
+        private System.Windows.Window _window;
 
         /// <summary>
         /// The margin around the window to allow for a drop shadow
         /// </summary>
-        private int mOuterMarginSize = 10;
+        private int _outerMarginSize = 10;
 
         /// <summary>
         /// The radius of the edges of the window
         /// </summary>
-        private int mWindowRadius = 10;
+        private int _windowRadius = 10;
 
         /// <summary>
         /// The last known dock position
         /// </summary>
-        private WindowDockPosition mDockPosition = WindowDockPosition.Undocked;
+        private WindowDockPosition _dockPosition = WindowDockPosition.Undocked;
 
         #endregion
 
@@ -50,7 +50,7 @@ namespace Marathon.Desktop.ViewModel
         /// <summary>
         /// True if the window should be borderless because it is docked or maximized
         /// </summary>
-        public bool Borderless => (mWindow.WindowState == WindowState.Maximized || mDockPosition != WindowDockPosition.Undocked);
+        public bool Borderless => (_window.WindowState == WindowState.Maximized || _dockPosition != WindowDockPosition.Undocked);
 
         /// <summary>
         /// The size of the resize border around the window
@@ -73,9 +73,9 @@ namespace Marathon.Desktop.ViewModel
         public int OuterMarginSize
         {
             // If it is maximized or docked, no border
-            get => Borderless ? 0 : mOuterMarginSize;
+            get => Borderless ? 0 : _outerMarginSize;
 
-            set => mOuterMarginSize = value;
+            set => _outerMarginSize = value;
         }
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Marathon.Desktop.ViewModel
         public int WindowRadius
         {
             // If it is maximized or docked, no border
-            get => Borderless ? 0 : mWindowRadius;
-            set => mWindowRadius = value;
+            get => Borderless ? 0 : _windowRadius;
+            set => _windowRadius = value;
         }
 
         /// <summary>
@@ -141,29 +141,29 @@ namespace Marathon.Desktop.ViewModel
         /// </summary>
         public WindowViewModel(System.Windows.Window window)
         {
-            mWindow = window;
+            _window = window;
 
             // Listen out for the window resizing
-            mWindow.StateChanged += (sender, e) =>
+            _window.StateChanged += (sender, e) =>
             {
                 // Fire off events for all properties that are affected by a resize
                 WindowResized();
             };
 
             // Create commands
-            MinimizeCommand = new RelayCommand(x =>mWindow.WindowState = WindowState.Minimized);
-            MaximizeCommand = new RelayCommand(x => mWindow.WindowState ^= WindowState.Maximized);
-            CloseCommand = new RelayCommand(x => mWindow.Close());
-            MenuCommand = new RelayCommand(x => SystemCommands.ShowSystemMenu(mWindow, GetMousePosition()));
+            MinimizeCommand = new RelayCommand(x =>_window.WindowState = WindowState.Minimized);
+            MaximizeCommand = new RelayCommand(x => _window.WindowState ^= WindowState.Maximized);
+            CloseCommand = new RelayCommand(x => _window.Close());
+            MenuCommand = new RelayCommand(x => SystemCommands.ShowSystemMenu(_window, GetMousePosition()));
 
             // Fix window resize issue
-            var resizer = new WindowResizer(mWindow);
+            var resizer = new WindowResizer(_window);
 
             // Listen out for dock changes
             resizer.WindowDockChanged += (dock) =>
             {
                 // Store last position
-                mDockPosition = dock;
+                _dockPosition = dock;
 
                 // Fire off resize events
                 WindowResized();
@@ -181,10 +181,10 @@ namespace Marathon.Desktop.ViewModel
         private Point GetMousePosition()
         {
             // Position of the mouse relative to the window
-            var position = Mouse.GetPosition(mWindow);
+            var position = Mouse.GetPosition(_window);
 
             // Add the window position so its a "ToScreen"
-            return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);
+            return new Point(position.X + _window.Left, position.Y + _window.Top);
         }
 
         /// <summary>

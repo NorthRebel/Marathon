@@ -71,9 +71,10 @@
                                         <TextBlock Grid.Column="0"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
+                                                   Margin="20 0"
                                                    Foreground="{StaticResource DarkGrayBrush}"
-                                                   FontSize="{StaticResource FontSizeSmall}"
-                                                   Text="Marathon Skills 2016"/>
+                                                   FontSize="{StaticResource FontSizeMedium}"
+                                                   Text="{Binding Title}"/>
 
                                         <!-- Window Close Button -->
                                         <Button Grid.Column="1" 
