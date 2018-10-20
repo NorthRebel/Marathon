@@ -33,7 +33,7 @@ namespace Marathon.Desktop.Controls
 
         public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
             DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(MarathonOptionsControl),
-                new PropertyMetadata(HorizontalAlignment.Center, HorizontalAlignmentPropertyChanged));
+                new PropertyMetadata(HorizontalAlignment.Left, HorizontalAlignmentPropertyChanged));
 
         #endregion
 

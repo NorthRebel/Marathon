@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Pages"
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+             xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
              xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
              xmlns:Props="clr-namespace:Marathon.Desktop.AttachedProperties"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon;assembly=Marathon.Core"
@@ -28,14 +29,14 @@
 
         <Grid Grid.Row="1"
               Margin="0 20 0 0">
-            
+
             <Grid.RowDefinitions>
                 <!--Items to select-->
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
                 <!--Sponsorship details-->
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -47,7 +48,7 @@
                 Grid.Row="0"
                 DataContext="{Binding MarathonTypes}"
                 ContentHorizontalAlignment="Center">
-                
+
                 <MarathonOptions:MarathonOptionsListControl
                     Props:OptionSelectionTypeAttachedProperty.Value="CheckBox"/>
 
@@ -58,10 +59,93 @@
                 Grid.Column="1"
                 Grid.Row="0"
                 DataContext="{Binding RaceKits}"
-                ContentHorizontalAlignment="Right">
+                ContentHorizontalAlignment="Center">
 
                 <MarathonOptions:MarathonOptionsListControl
                     Props:OptionSelectionTypeAttachedProperty.Value="RadioButton"/>
+
+            </controls:MarathonOptionsControl>
+
+            <!--Sponsorship details-->
+            <controls:MarathonOptionsControl
+                Grid.Column="0"
+                Grid.Row="1"
+                DataContext="{Binding SponsorshipDetails}"
+                ContentHorizontalAlignment="Stretch">
+
+                <StackPanel DataContext="{Binding}">
+
+                    <!--List of charity for sponsorship-->
+                    <input:LeftEntryControl DataContext="{Binding CharityDetail}">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--List of charity-->
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Value}"/>
+
+                            <!--Show info about charity-->
+                            <Button Grid.Column="1"
+                                    Content="i"/>
+
+                        </Grid>
+
+                    </input:LeftEntryControl>
+
+                    <!--Sponsorship amount for charity organization-->
+                    <input:LeftEntryControl DataContext="{Binding SponsorshipAmount}">
+                        <TextBox Text="{Binding Value, StringFormat='{}${0}'}"
+                                 Foreground="{StaticResource GrayBrush}"
+                                 FontStyle="Italic"/>
+                    </input:LeftEntryControl>
+
+                    <!--Sign up commands-->
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <!--Cancel-->
+                            <ColumnDefinition Width="*"/>
+                            <!--Sign up to marathon-->
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Cancel-->
+                        <Button Grid.Column="0"
+                                Width="100"
+                                HorizontalAlignment="Right"
+                                Content="Отмена"
+                                Command="{Binding CancelCommand}"/>
+
+                        <!--Sign up to marathon-->
+                        <Button Grid.Column="1"
+                                Width="100"
+                                HorizontalAlignment="Left"
+                                Content="Регистрация"
+                                Command="{Binding SignInCommand}"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </controls:MarathonOptionsControl>
+
+            <!--Payment of sign up to marathon-->
+            <controls:MarathonOptionsControl
+                Grid.Column="1"
+                Grid.Row="1"
+                DataContext="{Binding PaymentDetail}"
+                ContentHorizontalAlignment="Center">
+
+                <TextBlock Text="{Binding Payment, StringFormat='{}${0}'}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="{StaticResource GrayBrush}"
+                           FontSize="{StaticResource FontSizeUltraGigant}"/>
 
             </controls:MarathonOptionsControl>
         </Grid>

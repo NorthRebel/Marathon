@@ -26,6 +26,16 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// </summary>
         public MarathonOptionsViewModel RaceKits { get; set; }
 
+        /// <summary>
+        /// Details which means payment amount for charity organization 
+        /// </summary>
+        public SponsorshipDetailsViewModel SponsorshipDetails { get; set; }
+
+        /// <summary>
+        /// Indicates sum of price of selected RaceKits and MarathonType
+        /// </summary>
+        public PaymentSignInMarathonViewModel PaymentDetail { get; set; }
+
         #endregion
 
         #region Constructor
@@ -88,6 +98,14 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
                     }
                 }
             };
+
+            PaymentDetail = new PaymentSignInMarathonViewModel
+            {
+                Title = "Регистрационный взнос",
+                Payment = 660
+            };
+
+            SponsorshipDetails = new SponsorshipDetailsViewModel();
 
             #endregion
         }
