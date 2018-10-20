@@ -86,10 +86,12 @@
 
                             <!--List of charity-->
                             <ComboBox Grid.Column="0"
-                                      ItemsSource="{Binding Value}"/>
+                                      ItemsSource="{Binding Value}"
+                                      ComboBox.Name="CharityList"/>
 
                             <!--Show info about charity-->
                             <Button Grid.Column="1"
+                                    Button.Name="InfoAboutCharityButton"
                                     Content="i"
                                     Command="{Binding AboutSelectedCharityCommand}"/>
 
