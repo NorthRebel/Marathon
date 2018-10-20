@@ -110,7 +110,8 @@
 
     <Border Background="{StaticResource WhiteBrush}">
 
-        <ContentControl Content="{Binding Content}" />
+        <ContentControl Content="{Binding Content}" 
+                        Margin="20"/>
 
     </Border>
 
