@@ -1,18 +1,12 @@
 ﻿using System.Collections.Generic;
-using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel.MarathonOptions
 {
     /// <summary>
     /// The view model for a marathon options items list
     /// </summary>
-    public class MarathonOptionsViewModel : BaseViewModel
+    public class MarathonOptionsViewModel : OptionsViewModel
     {
-        /// <summary>
-        /// Title of the options list
-        /// </summary>
-        public string Title { get; set; }
-
         /// <summary>
         /// Items of list
         /// </summary>
