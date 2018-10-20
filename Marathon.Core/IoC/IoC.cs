@@ -1,4 +1,5 @@
-﻿using Marathon.Core.ViewModel;
+﻿using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.TitleBar;
 using Ninject;
 
@@ -15,6 +16,11 @@ namespace Marathon.Core.IoC
         /// The kernel for IoC container
         /// </summary>
         public static IKernel Kernel { get; private set; } = new StandardKernel();
+
+        /// <summary>
+        /// A shortcut to access the <see cref="IUIManager"/>
+        /// </summary>
+        public static IUIManager UI => IoC.Get<IUIManager>();
 
         /// <summary>
         /// A shortcut to access the <see cref="TitleBarViewModel"/>

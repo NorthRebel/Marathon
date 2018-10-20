@@ -110,6 +110,7 @@
     <Compile Include="DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IoC\UIManager.cs" />
     <Compile Include="Models\OptionSelectionType.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CheckRunnerPage.xaml.cs">

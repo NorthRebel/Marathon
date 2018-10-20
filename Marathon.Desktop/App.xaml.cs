@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using Marathon.Core.IoC;
+using Marathon.Core.IoC.Interfaces;
+using Marathon.Desktop.IoC;
+using Kernel = Marathon.Core.IoC.IoC;
 
 namespace Marathon.Desktop
 {
@@ -17,12 +20,24 @@ namespace Marathon.Desktop
             // Let the base application do what it needs
             base.OnStartup(e);
 
-            // Setup IoC
-            IoC.Setup();
+            // Setup the main application 
+            ApplicationSetup();
 
             // Show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
+        }
+
+        /// <summary>
+        /// Configures our application ready for use
+        /// </summary>
+        private void ApplicationSetup()
+        {
+            // Setup IoC
+            Kernel.Setup();
+
+            // Bind a UI Manager
+            Kernel.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
         }
     }
 }
