@@ -20,9 +20,35 @@ namespace Marathon.Desktop.Controls
     /// </summary>
     public partial class MarathonOptionsControl : UserControl
     {
+        #region Dependency Properties
+
+        public HorizontalAlignment ContentHorizontalAlignment
+        {
+            get => (HorizontalAlignment)GetValue(ContentHorizontalAlignmentProperty);
+            set => SetValue(ContentHorizontalAlignmentProperty, value);
+        }
+
+        public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
+            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(MarathonOptionsControl), 
+                new PropertyMetadata(HorizontalAlignment.Center, HorizontalAlignmentPropertyChanged));
+
+        #endregion
+
         public MarathonOptionsControl()
         {
             InitializeComponent();
         }
+
+        #region Dependency Helpers
+
+        private static void HorizontalAlignmentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var optionsControl = d as MarathonOptionsControl;
+
+            // Update horizontal alignment of content presenter
+            optionsControl.OptionsContent.HorizontalAlignment = (HorizontalAlignment) e.NewValue;
+        }
+
+        #endregion
     }
 }
