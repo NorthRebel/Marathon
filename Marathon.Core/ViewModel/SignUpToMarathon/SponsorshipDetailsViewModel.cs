@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
+﻿using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.MarathonOptions;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
+
     /// <summary>
     /// The view model for a sponsorship details part of SignUpToMarathon page
     /// </summary>
@@ -15,7 +14,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// <summary>
         /// List of charity for sponsorship
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> CharityDetail { get; set; }
+        public CharityDetailViewModel CharityDetail { get; set; }
 
         /// <summary>
         /// Sponsorship amount for charity organization
@@ -34,7 +33,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 
             #region Fill dummy data to viewModel
 
-            CharityDetail = new EntryViewModel<IEnumerable<string>>("Взнос")
+            CharityDetail = new CharityDetailViewModel("Взнос")
             {
                 Value = new string[]
                 {

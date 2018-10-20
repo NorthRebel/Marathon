@@ -1,5 +1,6 @@
 ﻿using Marathon.Core.IoC;
 using Marathon.Core.ViewModel;
+using Kernel = Marathon.Core.IoC.IoC;
 
 namespace Marathon.Desktop.ViewModel
 {
@@ -18,7 +19,7 @@ namespace Marathon.Desktop.ViewModel
         /// <summary>
         /// The application view model
         /// </summary>
-        public static ApplicationViewModel ApplicationViewModel => IoC.Get<ApplicationViewModel>();
+        public static ApplicationViewModel ApplicationViewModel => Kernel.Get<ApplicationViewModel>();
 
         #endregion
     }

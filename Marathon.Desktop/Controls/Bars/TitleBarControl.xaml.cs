@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using Marathon.Core.IoC;
+using Kernel = Marathon.Core.IoC.IoC;
 
 namespace Marathon.Desktop.Controls.Bars
 {
@@ -13,7 +13,7 @@ namespace Marathon.Desktop.Controls.Bars
             InitializeComponent();
 
             // Set data context to Title Bar view model
-            DataContext = IoC.TitleBar;
+            DataContext = Kernel.TitleBar;
         }
     }
 }

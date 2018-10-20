@@ -5,6 +5,7 @@ using Marathon.Core.IoC;
 using Marathon.Core.ViewModel;
 using Marathon.Desktop.Pages;
 using Marathon.Desktop.ValueConverters;
+using Kernel = Marathon.Core.IoC.IoC;
 
 namespace Marathon.Desktop.Controls
 {
@@ -44,7 +45,7 @@ namespace Marathon.Desktop.Controls
             // If we are in DesignMode, show the current page
             // as the dependency property does not fire
             if (DesignerProperties.GetIsInDesignMode(this))
-                NewPage.Content = (BasePage)new ApplicationPageValueConverter().Convert(IoC.Get<ApplicationViewModel>().CurrentPage);
+                NewPage.Content = (BasePage)new ApplicationPageValueConverter().Convert(Kernel.Get<ApplicationViewModel>().CurrentPage);
         }
 
         #endregion

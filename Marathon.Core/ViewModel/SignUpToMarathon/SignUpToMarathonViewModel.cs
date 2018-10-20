@@ -1,4 +1,7 @@
-﻿using Marathon.Core.ViewModel.Base;
+﻿using System.Windows.Input;
+using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.Dialogs;
+using Marathon.Core.ViewModel.Dialogs.Design;
 using Marathon.Core.ViewModel.MarathonOptions;
 using Marathon.Core.ViewModel.PageCaption;
 
@@ -35,6 +38,12 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// Indicates sum of price of selected RaceKits and MarathonType
         /// </summary>
         public PaymentSignInMarathonViewModel PaymentDetail { get; set; }
+
+        #endregion
+
+        #region Commands
+
+
 
         #endregion
 
@@ -110,6 +119,12 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
             #endregion
         }
 
+        #endregion
+
+        #region Command Helpers
+        
+        
+        
         #endregion
     }
 }

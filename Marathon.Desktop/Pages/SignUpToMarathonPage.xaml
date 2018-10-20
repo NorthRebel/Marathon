@@ -12,8 +12,7 @@
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon;assembly=Marathon.Core"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800"
-             d:DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <!--Caption and description-->
@@ -91,7 +90,8 @@
 
                             <!--Show info about charity-->
                             <Button Grid.Column="1"
-                                    Content="i"/>
+                                    Content="i"
+                                    Command="{Binding AboutSelectedCharityCommand}"/>
 
                         </Grid>
 
