@@ -70,6 +70,18 @@
 
     </Style>
 
+    <!-- Window Close Button -->
+    <Style TargetType="{x:Type Button}" x:Key="DialogCloseButton" BasedOn="{StaticResource WindowControlButton}">
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="DarkOrange" />
+                <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
     <!--Default template of button-->
     <Style TargetType="Button" x:Key="RoundedButton">
         <Setter Property="FontFamily" Value="Open Sans Light" />
