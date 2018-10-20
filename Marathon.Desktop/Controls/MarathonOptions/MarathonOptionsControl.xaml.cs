@@ -22,6 +22,9 @@ namespace Marathon.Desktop.Controls
     {
         #region Dependency Properties
 
+        /// <summary>
+        /// Horizontally aligns inner content of control
+        /// </summary>
         public HorizontalAlignment ContentHorizontalAlignment
         {
             get => (HorizontalAlignment)GetValue(ContentHorizontalAlignmentProperty);
@@ -29,7 +32,7 @@ namespace Marathon.Desktop.Controls
         }
 
         public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
-            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(MarathonOptionsControl), 
+            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(MarathonOptionsControl),
                 new PropertyMetadata(HorizontalAlignment.Center, HorizontalAlignmentPropertyChanged));
 
         #endregion
@@ -45,8 +48,11 @@ namespace Marathon.Desktop.Controls
         {
             var optionsControl = d as MarathonOptionsControl;
 
-            // Update horizontal alignment of content presenter
-            optionsControl.OptionsContent.HorizontalAlignment = (HorizontalAlignment) e.NewValue;
+            if (optionsControl.ApplyTemplate())
+            {
+                var contentPresenter = optionsControl.Template.FindName("OptionsContent", optionsControl) as ContentPresenter;
+                contentPresenter.HorizontalAlignment = (HorizontalAlignment) e.NewValue;
+            }
         }
 
         #endregion

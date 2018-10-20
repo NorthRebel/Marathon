@@ -7,29 +7,38 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
 
-    <Grid>
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
 
-        <Grid.RowDefinitions>
-            <!--Title-->
-            <RowDefinition Height="Auto"/>
-            <!--Content-->
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}"/>
+            </ControlTemplate.Resources>
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Content-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
 
-        <!--Title-->
-        <TextBlock Grid.Row="0"
-                   FontSize="{StaticResource FontSizeMedium}"
-                   Foreground="{StaticResource GrayBrush}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="0 0 0 10"
-                   Text="{Binding Title}"/>
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           Foreground="{StaticResource GrayBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="{Binding Title}"/>
 
-        <!--Content-->
-        <ContentPresenter Grid.Row="1"
-                          x:Name="OptionsContent"/>
+                <!--Content-->
+                <ContentPresenter Grid.Row="1"
+                                  x:Name="OptionsContent"/>
 
-    </Grid>
+            </Grid>
 
+        </ControlTemplate>
+    </UserControl.Template>
 </UserControl>
