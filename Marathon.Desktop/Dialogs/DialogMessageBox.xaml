@@ -11,6 +11,7 @@
         
         <!--Message-->
         <TextBlock Text="{Binding Message}"
+                   FontSize="{StaticResource FontSizeMedium}"
                    Margin="20"/>
         
         <!--OK button-->
