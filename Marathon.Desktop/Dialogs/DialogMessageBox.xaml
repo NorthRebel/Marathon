@@ -1,0 +1,29 @@
+﻿<local:BaseDialogUserControl x:Class="Marathon.Desktop.Dialogs.DialogMessageBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Dialogs"
+             xmlns:deisgnModels="clr-namespace:Marathon.Core.ViewModel.Dialogs.Design;assembly=Marathon.Core"
+             mc:Ignorable="d">
+
+    <StackPanel d:DataContext="{x:Static deisgnModels:MessageBoxDialogDesignModel.Instance}">
+        
+        <!--Message-->
+        <TextBlock Text="{Binding Message}"
+                   Margin="20"/>
+        
+        <!--OK button-->
+        <Button Content="{Binding OkText}"
+                IsDefault="True"
+                IsCancel="True"
+                Width="100"
+                HorizontalAlignment="Center"
+                FontSize="{StaticResource FontSizeMedium}"
+                Command="{Binding CloseCommand, 
+                                  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:BaseDialogUserControl}}}"/>
+
+
+    </StackPanel>
+
+</local:BaseDialogUserControl>
