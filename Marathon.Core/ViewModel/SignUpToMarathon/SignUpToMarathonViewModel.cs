@@ -36,12 +36,6 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 
         #endregion
 
-        #region Commands
-
-
-
-        #endregion
-
         #region Constructor
 
         public SignUpToMarathonViewModel()
@@ -52,74 +46,8 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
                 Description = "Пожалуйста, заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2016 проводимом в Москве. Россия. " +
                               "С вами свяжутся после регистрации, для уточнения оплаты и другой информации."
             };
-
-            // TODO: Remove dummy data
-
-            #region Fill dummy data to viewModel
-            
-            MarathonTypes = new MarathonOptionsViewModel
-            {
-                Title = "Вид марафона",
-                Items = new[]
-                {
-                    new MarathonOptionsItemViewModel
-                    {
-                        IsSelected = true,
-                        Description = "42km Полный марафон($145)"
-                    },
-                    new MarathonOptionsItemViewModel
-                    {
-                        IsSelected = false,
-                        Description = "21km Полумарафон ($75)"
-                    },
-                    new MarathonOptionsItemViewModel
-                    {
-                        IsSelected = true,
-                        Description = "5km Малая дистанция ($20)"
-                    }
-                }
-            };
-
-            RaceKits = new MarathonOptionsViewModel
-            {
-                Title = "Варианты комплектов",
-                Items = new []
-                {
-                    new MarathonOptionsItemViewModel
-                    {
-                        IsSelected = false,
-                        Description = "Вариант A ($0): Номер бегуна + RFID браслет."
-                    },
-                    new MarathonOptionsItemViewModel
-                    {
-                        IsSelected = true,
-                        Description = "Вариант B ($20): вариант A + бейсболка + бутылка воды."
-                    },
-                    new MarathonOptionsItemViewModel
-                    {
-                        IsSelected = false,
-                        Description = "Вариант C ($45): Вариант B + футболка + сувенирный буклет."
-                    }
-                }
-            };
-
-            PaymentDetail = new PaymentSignInMarathonViewModel
-            {
-                Title = "Регистрационный взнос",
-                Payment = 660
-            };
-
-            SponsorshipDetails = new SponsorshipDetailsViewModel();
-
-            #endregion
         }
 
-        #endregion
-
-        #region Command Helpers
-        
-        
-        
         #endregion
     }
 }

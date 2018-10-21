@@ -27,28 +27,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 
         public SponsorshipDetailsViewModel()
         {
-            Title = "Детали спонсорства";
 
-            // TODO: Remove dummy data
-
-            #region Fill dummy data to viewModel
-
-            CharityDetail = new CharityDetailViewModel("Взнос")
-            {
-                Value = new string[]
-                {
-                    "Фонд А",
-                    "Фонд Б",
-                    "Фонд В",
-                }
-            };
-
-            SponsorshipAmount = new EntryViewModel<decimal>("Сумма взноса")
-            {
-                Value = 500
-            };
-
-            #endregion
         }
 
         #endregion
