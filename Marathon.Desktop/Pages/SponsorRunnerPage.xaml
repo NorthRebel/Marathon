@@ -70,12 +70,12 @@
                         <StackPanel Orientation="Horizontal">
 
                             <!--Month-->
-                            <TextBox Text="{Binding Value.Month}" 
+                            <TextBox Text="" 
                                      Tag="XX"
                                      Width="35"/>
 
                             <!--Year-->
-                            <TextBox Text="{Binding Value.Year}"
+                            <TextBox Text=""
                                      Tag="XXXX"
                                      Width="60"
                                      Margin="10 0 0 0"/>
@@ -87,7 +87,9 @@
                     <!--Card CVC code-->
                     <input:LeftEntryControl DataContext="{Binding CardCVCCode}">
                         <TextBox Tag="XXX"
-                                 Text="{Binding Value}"/>
+                                 Text="{Binding Value}"
+                                 Width="45"
+                                 HorizontalAlignment="Left"/>
                     </input:LeftEntryControl>
 
                 </StackPanel>
@@ -114,6 +116,7 @@
                         <!--Сharity name-->
                         <TextBlock Grid.Column="0"
                                    Text="{Binding CharityName}"
+                                   VerticalAlignment="Center"
                                    HorizontalAlignment="Stretch"/>
 
                         <!--Show info about charity-->
@@ -134,7 +137,7 @@
 
                         <Grid.RowDefinitions>
                             <!--Amount label-->
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                             <!--Sub Field Add-->
                             <RowDefinition Height="Auto"/>
                             <!--Cancel and confirm buttons-->
@@ -171,6 +174,9 @@
                             <!--Field to enter amount-->
                             <TextBox Grid.Column="1"
                                      Text="{Binding Ammount}"
+                                     TextAlignment="Center"
+                                     Foreground="{StaticResource GrayBrush}"
+                                     FontStyle="Italic"
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Stretch"/>
 
