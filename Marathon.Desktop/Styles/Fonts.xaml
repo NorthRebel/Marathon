@@ -12,6 +12,7 @@
     <system:Double x:Key="FontSizeLarge">20</system:Double>
     <system:Double x:Key="FontSizeXLarge">24</system:Double>
     <system:Double x:Key="FontSizeXXLarge">30</system:Double>
+    <system:Double x:Key="FontSizeGigant">48</system:Double>
     <system:Double x:Key="FontSizeUltraGigant">60</system:Double>
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">

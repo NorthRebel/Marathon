@@ -1,0 +1,219 @@
+﻿<local:BasePage x:TypeArguments="viewModels:SponsorRunnerViewModel" 
+             x:Class="Marathon.Desktop.Pages.SponsorRunnerPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Pages"
+             xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+             xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
+             xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
+             xmlns:Props="clr-namespace:Marathon.Desktop.AttachedProperties"
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SponsorRunner;assembly=Marathon.Core"
+             xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SponsorRunner.Design;assembly=Marathon.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             d:DataContext="{x:Static designModels:SponsorRunnerDesignModel.Instance}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Caption and description-->
+            <RowDefinition Height="Auto"/>
+            <!--Content-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Caption and description-->
+        <controls:PageCaptionControl 
+            Grid.Row="0"
+            DataContext="{Binding PageCaption}"/>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <!--Sponsor information-->
+                <ColumnDefinition Width="*"/>
+                <!--Runner charity and amount-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Sponsor information-->
+            <controls:MarathonOptionsControl
+                Grid.Column="0"
+                ContentHorizontalAlignment="Stretch"
+                DataContext="{Binding SponsorInfo}">
+
+                <StackPanel HorizontalAlignment="Stretch">
+
+                    <!--Name-->
+                    <input:LeftEntryControl DataContext="{Binding Name}">
+                        <TextBox Tag="Ваше имя"/>
+                    </input:LeftEntryControl>
+
+                    <!--Runner-->
+                    <input:LeftEntryControl DataContext="{Binding Runner}">
+                        <ComboBox ItemsSource="{Binding Value}"/>
+                    </input:LeftEntryControl>
+
+                    <!--Card holder-->
+                    <input:LeftEntryControl DataContext="{Binding CardHolder}">
+                        <TextBox Tag="Владелец карты"/>
+                    </input:LeftEntryControl>
+
+                    <!--Card number-->
+                    <input:LeftEntryControl DataContext="{Binding CardNumber}">
+                        <TextBox Tag="XXXX XXXX XXXX XXXX"/>
+                    </input:LeftEntryControl>
+
+                    <!--Card validity-->
+                    <input:LeftEntryControl DataContext="{Binding CardValidity}">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <!--Month-->
+                            <TextBox Text="{Binding Value.Month}" 
+                                     Tag="XX"
+                                     Width="35"/>
+
+                            <!--Year-->
+                            <TextBox Text="{Binding Value.Year}"
+                                     Tag="XXXX"
+                                     Width="60"
+                                     Margin="10 0 0 0"/>
+
+                        </StackPanel>
+
+                    </input:LeftEntryControl>
+
+                    <!--Card CVC code-->
+                    <input:LeftEntryControl DataContext="{Binding CardCVCCode}">
+                        <TextBox Tag="XXX"
+                                 Text="{Binding Value}"/>
+                    </input:LeftEntryControl>
+
+                </StackPanel>
+
+
+            </controls:MarathonOptionsControl>
+
+            <!--Runner charity and amount-->
+            <DockPanel Grid.Column="1">
+
+                <!--Runner charity-->
+                <controls:MarathonOptionsControl
+                    DockPanel.Dock="Top"
+                    ContentHorizontalAlignment="Center"
+                    DataContext="{Binding RunnerCharity}">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Сharity name-->
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding CharityName}"
+                                   HorizontalAlignment="Stretch"/>
+
+                        <!--Show info about charity-->
+                        <Button Grid.Column="1"
+                                Content="i"
+                                Command="{Binding AboutSelectedCharityCommand}"/>
+
+                    </Grid>
+
+                </controls:MarathonOptionsControl>
+
+                <!--Amount-->
+                <controls:MarathonOptionsControl
+                    ContentHorizontalAlignment="Center"
+                    DataContext="{Binding SponsorshipAmount}">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <!--Amount label-->
+                            <RowDefinition Height="*"/>
+                            <!--Sub Field Add-->
+                            <RowDefinition Height="Auto"/>
+                            <!--Cancel and confirm buttons-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Amount label-->
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding Ammount, StringFormat='{}${0}'}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource GrayBrush}"
+                                   FontSize="{StaticResource FontSizeGigant}"/>
+
+                        <!--Dec Field Inc-->
+                        <Grid Grid.Row="1">
+
+                            <Grid.ColumnDefinitions>
+                                <!--Dec button-->
+                                <ColumnDefinition Width="Auto"/>
+                                <!--Field to enter amount-->
+                                <ColumnDefinition Width="*"/>
+                                <!--Inc button-->
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Dec button-->
+                            <Button Grid.Column="0"
+                                    Width="20"
+                                    Content="-"
+                                    FontWeight="Bold"
+                                    Command="{Binding DecreaseAmountCommand}"/>
+
+                            <!--Field to enter amount-->
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding Ammount}"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Stretch"/>
+
+                            <!--Inc button-->
+                            <Button Grid.Column="2"
+                                    Width="20"
+                                    Content="+"
+                                    FontWeight="Bold"
+                                    Command="{Binding IncreaseAmountCommand}"/>
+
+                        </Grid>
+
+                        <!--Cancel and confirm buttons-->
+                        <Grid Grid.Row="2">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0"
+                                    Width="80"
+                                    Content="Отмена"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Command="{Binding CancelCommand}"/>
+
+                            <Button Grid.Column="1"
+                                    Width="80"
+                                    Content="Заплатить"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Bottom"
+                                    Command="{Binding ConfirmCommand}"
+                                    CommandParameter="{Binding ElementName=Page}"/>
+
+                        </Grid>
+
+                    </Grid>
+
+                </controls:MarathonOptionsControl>
+
+            </DockPanel>
+        </Grid>
+
+    </Grid>
+</local:BasePage>

@@ -1,24 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Dialogs.Design;
-using Marathon.Core.ViewModel.Input;
+using Marathon.Core.ViewModel.MarathonOptions;
 
-namespace Marathon.Core.ViewModel.SignUpToMarathon
+namespace Marathon.Core.ViewModel.SponsorRunner
 {
-    public class CharityDetailViewModel : EntryViewModel<IEnumerable<string>>
+    /// <summary>
+    /// The view model for a selected runner charity of SponsorRunner page
+    /// </summary>
+    public class RunnerCharityViewModel : OptionsViewModel
     {
+        #region Public Properties
+
+        /// <summary>
+        /// Name of runner charity organization
+        /// </summary>
+        public string CharityName { get; set; }
+
+        #endregion
+
         #region Commands
 
+        /// <summary>
+        /// Show dialog message about runner's charity
+        /// </summary>
         public ICommand AboutSelectedCharityCommand { get; set; }
 
         #endregion
 
-        public CharityDetailViewModel(string label) : base(label)
+        #region Constructor
+
+        public RunnerCharityViewModel()
         {
             AboutSelectedCharityCommand = new RelayCommand(ShowCharityInfo);
         }
+
+        #endregion
 
         #region Command Helpers
 
