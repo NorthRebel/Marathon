@@ -28,9 +28,9 @@
               Margin="40 0 40 40">
 
             <Grid.Resources>
-                <!--Customize button style-->
-                <Style TargetType="Button" BasedOn="{StaticResource RoundedButton}">
-                    <Setter Property="FontSize" Value="{StaticResource FontSizeXLarge}"/>
+                <!--Customize text block style-->
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
                     <Setter Property="FontStyle" Value="Italic"/>
                 </Style>
             </Grid.Resources>
@@ -48,33 +48,49 @@
 
             <!--Sign up to marathon-->
             <Button Grid.Row="0" 
-                    Grid.Column="0" 
-                    Content="Регистрация на марафон" 
-                    Command="{Binding SignUpToMarathonCommand}"/>
+                    Grid.Column="0"
+                    Command="{Binding SignUpToMarathonCommand}">
+
+                <TextBlock Text="Регистрация на марафон"/>
+
+            </Button>
 
             <!--Previous results-->
             <Button Grid.Row="0" 
-                    Grid.Column="1" 
-                    Content="Мои результаты" 
-                    Command="{Binding PreviousResultsCommand}"/>
+                    Grid.Column="1"
+                    Command="{Binding PreviousResultsCommand}">
+
+                <TextBlock Text="Мои результаты"/>
+
+            </Button>
 
             <!--Edit profile-->
             <Button Grid.Row="1" 
-                    Grid.Column="0"
-                    Content="Редактирование профиля" 
-                    Command="{Binding EditProfileCommand}"/>
+                    Grid.Column="0" 
+                    Command="{Binding EditProfileCommand}">
+
+                <TextBlock Text="Редактирование профиля"/>
+            
+            </Button>
 
             <!--My sponsorship-->
             <Button Grid.Row="1"
-                    Grid.Column="1" 
-                    Content="Мой спонсор" 
-                    Command="{Binding MySponsorshipCommand}"/>
+                    Grid.Column="1"
+                    Command="{Binding MySponsorshipCommand}">
+
+                <TextBlock Text="Мой спонсор"/>
+
+            </Button>
 
             <!--Contacts-->
             <Button Grid.Row="2" 
-                    Grid.Column="0" 
-                    Content="Контакты" 
-                    Command="{Binding ShowContactsCommand}"/>
+                    Grid.Column="0"
+                    Command="{Binding ShowContactsCommand}">
+
+                <TextBlock Text="Контакты"/>
+
+            </Button>
+
         </Grid>
 
     </Grid>
