@@ -35,6 +35,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new SignUpRunnerConfirmPage();
                 case ApplicationPage.RunnerMenu:
                     return new RunnerMenuPage();
+                case ApplicationPage.MarathonMenu:
+                    return new MarathonMenuPage();
                 default:
                     Debugger.Break();
                     return null;

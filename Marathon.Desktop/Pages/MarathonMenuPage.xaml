@@ -1,5 +1,5 @@
-﻿<local:BasePage x:TypeArguments="viewModels:RunnerMenuViewModel" 
-      x:Class="Marathon.Desktop.Pages.RunnerMenuPage"
+﻿<local:BasePage x:TypeArguments="viewModels:MarathonMenuViewModel" 
+      x:Class="Marathon.Desktop.Pages.MarathonMenuPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -48,48 +48,57 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <!--Sign up to marathon-->
+            <!--About marathon-->
             <Button Grid.Row="0" 
                     Grid.Column="0"
-                    Command="{Binding SignUpToMarathonCommand}">
+                    Command="{Binding AboutMarathonCommand}">
 
-                <TextBlock Text="Регистрация на марафон"/>
+                <TextBlock Text="Marathon Skills 2016"/>
 
             </Button>
 
-            <!--Previous results-->
+            <!--How long marathon-->
             <Button Grid.Row="0" 
                     Grid.Column="1"
-                    Command="{Binding PreviousResultsCommand}">
+                    Command="{Binding HowLongMarathonCommand}">
 
-                <TextBlock Text="Мои результаты"/>
+                <TextBlock Text="Насколько долгий марафон"/>
 
             </Button>
 
-            <!--Edit profile-->
+            <!--Marathon results-->
             <Button Grid.Row="1" 
                     Grid.Column="0" 
-                    Command="{Binding EditProfileCommand}">
+                    Command="{Binding MarathonResultsCommand}">
 
-                <TextBlock Text="Редактирование профиля"/>
-            
+                <TextBlock Text="Предыдущие результаты"/>
+
             </Button>
 
-            <!--My sponsorship-->
+            <!--Charity list-->
             <Button Grid.Row="1"
                     Grid.Column="1"
-                    Command="{Binding MySponsorshipCommand}">
+                    Command="{Binding CharityListCommand}">
 
-                <TextBlock Text="Мой спонсор"/>
+                <TextBlock Text="Список благотворительных организаций"/>
 
             </Button>
 
-            <!--Contacts-->
+            <!--BMI calculator-->
             <Button Grid.Row="2" 
                     Grid.Column="0"
-                    Command="{Binding ShowContactsCommand}">
+                    Command="{Binding BmiCalculatorCommand}">
 
-                <TextBlock Text="Контакты"/>
+                <TextBlock Text="BMI калькулятор"/>
+
+            </Button>
+
+            <!--BMR Calculator-->
+            <Button Grid.Row="2" 
+                    Grid.Column="1"
+                    Command="{Binding BmrCalculatorCommand}">
+
+                <TextBlock Text="BMR калькулятор"/>
 
             </Button>
 
