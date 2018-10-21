@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.Dialogs.Design;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel
@@ -59,9 +60,10 @@ namespace Marathon.Core.ViewModel
 
         #region Command Helpers
 
-        private void ShowCoordinatorsContacts(object obj)
+        private async void ShowCoordinatorsContacts(object obj)
         {
-            throw new System.NotImplementedException();
+            // TODO: Remove dummy data
+            await IoC.IoC.UI.ShowCoordinatorsContacts(new CoordinatorsContactsDialogDesignModel());
         }
 
         private void ShowMySponsorshipOfCurenntMarathon(object obj)
