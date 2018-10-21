@@ -122,6 +122,9 @@
     <Compile Include="Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SignUpRunnerConfirmPage.xaml.cs">
+      <DependentUpon>SignUpRunnerConfirmPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SignUpRunnerPage.xaml.cs">
       <DependentUpon>SignUpRunnerPage.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SignInPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SignUpRunnerConfirmPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
