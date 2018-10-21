@@ -31,6 +31,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new SponsorRunnerPage();
                 case ApplicationPage.SponsorshipConfirm:
                     return new SponsorshipConfirmPage();
+                case ApplicationPage.SignUpRunnerConfirm:
+                    return new SignUpRunnerConfirmPage();
                 default:
                     Debugger.Break();
                     return null;

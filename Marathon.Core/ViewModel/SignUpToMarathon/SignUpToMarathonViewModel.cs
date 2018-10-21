@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Dialogs.Design;
@@ -36,16 +37,47 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 
         #endregion
 
+        #region Commands
+
+        /// <summary>
+        /// Cancellation of sign up
+        /// </summary>
+        public ICommand CancelCommand { get; set; }
+
+        /// <summary>
+        /// Confirmation of sign up
+        /// </summary>
+        public ICommand SignInCommand { get; set; }
+
+        #endregion
+
         #region Constructor
 
         public SignUpToMarathonViewModel()
         {
+            SignInCommand = new RelayCommand(ConfirmSignUp);
+            CancelCommand = new RelayCommand(CancelSignUp);
+
             PageCaption = new PageCaptionViewModel
             {
                 Caption = "Регистрация на марафон",
                 Description = "Пожалуйста, заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2016 проводимом в Москве. Россия. " +
                               "С вами свяжутся после регистрации, для уточнения оплаты и другой информации."
             };
+        }
+
+        #endregion
+
+        #region Command Helpers
+
+        private void CancelSignUp(object obj)
+        {
+            GoToPage(ApplicationPage.RunnerMenu);
+        }
+
+        private void ConfirmSignUp(object obj)
+        {
+            GoToPage(ApplicationPage.SignUpRunnerConfirm);
         }
 
         #endregion

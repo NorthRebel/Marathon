@@ -13,7 +13,7 @@
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800"
-             d:DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
+             DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
     <Grid>
         <Grid.RowDefinitions>
             <!--Caption and description-->
@@ -35,6 +35,8 @@
                 <RowDefinition Height="0.5*"/>
                 <!--Sponsorship details-->
                 <RowDefinition Height="*"/>
+                <!--Confirm buttons-->
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -107,40 +109,43 @@
                                  FontStyle="Italic"/>
                     </input:LeftEntryControl>
 
-                    <!--Sign up commands-->
-                    <Grid>
-
-                        <Grid.ColumnDefinitions>
-                            <!--Cancel-->
-                            <ColumnDefinition Width="*"/>
-                            <!--Sign up to marathon-->
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!--Cancel-->
-                        <Button Grid.Column="0"
-                                Width="100"
-                                HorizontalAlignment="Right"
-                                Content="Отмена"
-                                Command="{Binding CancelCommand}"/>
-
-                        <!--Sign up to marathon-->
-                        <Button Grid.Column="1"
-                                Width="100"
-                                HorizontalAlignment="Left"
-                                Content="Регистрация"
-                                Command="{Binding SignInCommand}"/>
-
-                    </Grid>
-
                 </StackPanel>
 
             </controls:MarathonOptionsControl>
 
+            <!--Confirm buttons-->
+            <Grid Grid.Column="0"
+                  Grid.Row="2">
+
+                <Grid.ColumnDefinitions>
+                    <!--Cancel-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Sign up to marathon-->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Cancel-->
+                <Button Grid.Column="0"
+                        Width="100"
+                        HorizontalAlignment="Right"
+                        Content="Отмена"
+                        Command="{Binding CancelCommand}"/>
+
+                <!--Sign up to marathon-->
+                <Button Grid.Column="1"
+                        Width="100"
+                        HorizontalAlignment="Left"
+                        Content="Регистрация"
+                        Command="{Binding SignInCommand}"/>
+
+            </Grid>
+
+
             <!--Payment of sign up to marathon-->
             <controls:MarathonOptionsControl
-                Grid.Column="1"
                 Grid.Row="1"
+                Grid.Column="1"
+                Grid.RowSpan="2"
                 DataContext="{Binding PaymentDetail}"
                 ContentHorizontalAlignment="Center">
 
