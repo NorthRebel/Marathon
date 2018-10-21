@@ -3,7 +3,7 @@
     /// <summary>
     /// View model for a pages, which user is signed up
     /// </summary>
-    public abstract class SignedInViewModel : BaseViewModel
+    public abstract class SignedInViewModel : PageViewModel
     {
         /// <summary>
         /// Enables logout button on title bar

@@ -8,14 +8,9 @@ namespace Marathon.Core.ViewModel.SponsorshipConfirm
     /// <summary>
     /// The view model for a Sponsorship confirm page
     /// </summary>
-    public class SponsorshipConfirmViewModel : BaseViewModel
+    public class SponsorshipConfirmViewModel : PageViewModel
     {
         #region Public Properties
-
-        /// <summary>
-        /// Caption and description info about current page
-        /// </summary>
-        public PageCaptionViewModel PageCaption { get; set; }
 
         /// <summary>
         /// Sponsored runner

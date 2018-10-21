@@ -11,7 +11,7 @@ namespace Marathon.Core.ViewModel
     /// <summary>
     /// The view model for a SignUpRunner page
     /// </summary>
-    public class SignUpRunnerViewModel : BaseViewModel
+    public class SignUpRunnerViewModel : PageViewModel
     {
         #region Public Properties
 
@@ -59,11 +59,6 @@ namespace Marathon.Core.ViewModel
         /// Country name of the user
         /// </summary>
         public EntryViewModel<string> Country { get; set; }
-
-        /// <summary>
-        /// Caption and description info about current page
-        /// </summary>
-        public PageCaptionViewModel PageCaption { get; set; }
 
         #endregion
 

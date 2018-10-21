@@ -8,7 +8,7 @@ namespace Marathon.Core.ViewModel
     /// <summary>
     /// The view model for a SignIn page
     /// </summary>
-    public class SignInViewModel : BaseViewModel
+    public class SignInViewModel : PageViewModel
     {
         #region Public Properties
 
@@ -16,11 +16,6 @@ namespace Marathon.Core.ViewModel
         /// The email of the user
         /// </summary>
         public string Email { get; set; }
-
-        /// <summary>
-        /// Caption and description info about current page
-        /// </summary>
-        public PageCaptionViewModel PageCaption { get; set; }
 
         #endregion
 

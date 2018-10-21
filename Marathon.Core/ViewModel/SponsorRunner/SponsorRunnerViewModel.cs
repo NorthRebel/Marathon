@@ -6,14 +6,9 @@ namespace Marathon.Core.ViewModel.SponsorRunner
     /// <summary>
     /// The view model for a SponsorRunner page
     /// </summary>
-    public class SponsorRunnerViewModel : BaseViewModel
+    public class SponsorRunnerViewModel : PageViewModel
     {
         #region Public Properties
-
-        /// <summary>
-        /// Caption and description info about current page
-        /// </summary>
-        public PageCaptionViewModel PageCaption { get; set; }
 
         /// <summary>
         /// Credentials of sponsor

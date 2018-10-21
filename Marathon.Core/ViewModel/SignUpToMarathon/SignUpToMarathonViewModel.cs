@@ -15,11 +15,6 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         #region Public Properties
 
         /// <summary>
-        /// Caption and description info about current page
-        /// </summary>
-        public PageCaptionViewModel PageCaption { get; set; }
-
-        /// <summary>
         /// Types of marathon for take part them
         /// </summary>
         public MarathonOptionsViewModel MarathonTypes { get; set; }
