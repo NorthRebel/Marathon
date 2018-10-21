@@ -13,7 +13,7 @@
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SponsorRunner.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800"
-             d:DataContext="{x:Static designModels:SponsorRunnerDesignModel.Instance}">
+             DataContext="{x:Static designModels:SponsorRunnerDesignModel.Instance}">
     <Grid>
         <Grid.RowDefinitions>
             <!--Caption and description-->
@@ -89,7 +89,7 @@
                         <TextBox Tag="XXX"
                                  Text="{Binding Value}"
                                  Width="45"
-                                 HorizontalAlignment=""/>
+                                 HorizontalAlignment="Left"/>
                     </input:LeftEntryControl>
 
                 </StackPanel>
