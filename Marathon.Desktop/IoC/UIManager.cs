@@ -13,8 +13,6 @@ namespace Marathon.Desktop.IoC
         /// <summary>
         /// Displays a single message box to the user
         /// </summary>
-        /// <param name="viewModel">The view model</param>
-        /// <returns></returns>
         public Task ShowMessage(MessageBoxDialogViewModel viewModel)
         {
             return new DialogMessageBox().ShowDialog(viewModel);
@@ -23,11 +21,17 @@ namespace Marathon.Desktop.IoC
         /// <summary>
         /// Displays a dialog message about selected charity  
         /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
         public Task ShowAboutCharityInforamtion(AboutCharityDialogViewModel viewModel)
         {
             return new AboutCharityDialog().ShowDialog(viewModel);
+        }
+
+        /// <summary>
+        /// Displays a dialog message about coordinators contacts
+        /// </summary>
+        public Task ShowCoordinatorsContacts(CoordinatorsContactsDialogViewModel viewModel)
+        {
+            return new CoordinatorsContactsDialog().ShowDialog(viewModel);
         }
     }
 }

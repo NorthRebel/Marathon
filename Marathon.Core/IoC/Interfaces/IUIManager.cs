@@ -19,5 +19,10 @@ namespace Marathon.Core.IoC.Interfaces
         /// Displays a dialog message about selected charity
         /// </summary>
         Task ShowAboutCharityInforamtion(AboutCharityDialogViewModel viewModel);
+
+        /// <summary>
+        /// Displays a dialog message about coordinators contacts
+        /// </summary>
+        Task ShowCoordinatorsContacts(CoordinatorsContactsDialogViewModel viewModel);
     }
 }
