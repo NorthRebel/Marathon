@@ -37,6 +37,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new RunnerMenuPage();
                 case ApplicationPage.MarathonMenu:
                     return new MarathonMenuPage();
+                case ApplicationPage.AboutMarathon:
+                    return new AboutMarathonPage();
                 default:
                     Debugger.Break();
                     return null;
