@@ -4,7 +4,7 @@ using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs.Design;
 using Marathon.Core.ViewModel.PageCaption;
 
-namespace Marathon.Core.ViewModel
+namespace Marathon.Core.ViewModel.Menus
 {
     /// <summary>
     /// The view model for a runner page

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
 
-namespace Marathon.Core.ViewModel
+namespace Marathon.Core.ViewModel.Menus
 {
     /// <summary>
     /// The view model for a main page

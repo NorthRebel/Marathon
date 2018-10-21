@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Marathon.Core.ViewModel;
+using Marathon.Core.ViewModel.Menus;
 
 namespace Marathon.Desktop.Pages
 {
