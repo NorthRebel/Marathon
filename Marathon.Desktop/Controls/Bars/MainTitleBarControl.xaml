@@ -28,6 +28,7 @@
 
                     <TextBlock Text="MARATHON SKILLS 2016"
                                FontSize="{StaticResource FontSizeXXLarge}"
+                               FontFamily="{StaticResource TitleFont}"
                                Foreground="{StaticResource WhiteBrush}"
                                Margin="0 0 0 10"/>
                     

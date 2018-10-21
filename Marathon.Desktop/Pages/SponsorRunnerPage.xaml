@@ -89,7 +89,7 @@
                         <TextBox Tag="XXX"
                                  Text="{Binding Value}"
                                  Width="45"
-                                 HorizontalAlignment="Left"/>
+                                 HorizontalAlignment=""/>
                     </input:LeftEntryControl>
 
                 </StackPanel>

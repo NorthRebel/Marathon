@@ -8,6 +8,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         MinWidth="{Binding WindowMinimumWidth}"

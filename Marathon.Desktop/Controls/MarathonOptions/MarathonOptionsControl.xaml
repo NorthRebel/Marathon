@@ -27,6 +27,7 @@
                 <!--Title-->
                 <TextBlock Grid.Row="0"
                            FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
                            Foreground="{StaticResource GrayBrush}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"

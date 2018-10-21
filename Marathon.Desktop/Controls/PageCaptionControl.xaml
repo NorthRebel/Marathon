@@ -20,7 +20,8 @@
             <StackPanel>
                 <TextBlock Text="{Binding Caption}" 
                            Margin="0 20"
-                           FontSize="{StaticResource FontSizeXLarge}" 
+                           FontSize="{StaticResource FontSizeXLarge}"
+                           FontFamily="{StaticResource TitleFont}"
                            HorizontalAlignment="Center"/>
                 <TextBlock Text="{Binding Description}" 
                            Margin="20 0" 
