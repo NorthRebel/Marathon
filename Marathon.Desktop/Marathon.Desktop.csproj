@@ -73,6 +73,12 @@
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CharityList\CharityListControl.xaml.cs">
+      <DependentUpon>CharityListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CharityList\CharityListItemControl.xaml.cs">
+      <DependentUpon>CharityListItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Input\LeftEntryControl.xaml.cs">
       <DependentUpon>LeftEntryControl.xaml</DependentUpon>
     </Compile>
@@ -166,6 +172,14 @@
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Bars\BottomBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CharityList\CharityListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CharityList\CharityListItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

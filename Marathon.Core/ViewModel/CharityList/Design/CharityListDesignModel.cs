@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Marathon.Core.ViewModel.CharityList.Design
+﻿namespace Marathon.Core.ViewModel.CharityList.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="CharityListViewModel"/>
@@ -23,7 +21,17 @@ namespace Marathon.Core.ViewModel.CharityList.Design
         /// </summary>
         public CharityListDesignModel()
         {
-
+            Items = new[]
+            {
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+                new CharityListItemDesignModel(),
+            };
         }
 
         #endregion

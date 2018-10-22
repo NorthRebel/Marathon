@@ -1,4 +1,5 @@
-﻿using Marathon.Core.ViewModel.Base;
+﻿using System.Collections.Generic;
+using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.CharityList
@@ -11,9 +12,9 @@ namespace Marathon.Core.ViewModel.CharityList
         #region Public Properties
 
         /// <summary>
-        /// The email of the user
+        /// Items of list
         /// </summary>
-        public string Email { get; set; }
+        public IEnumerable<CharityListItemViewModel> Items { get; set; }
 
         #endregion
 
