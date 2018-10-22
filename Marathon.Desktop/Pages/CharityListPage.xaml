@@ -6,11 +6,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Marathon.Desktop.Pages"
       xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+      xmlns:charityControls="clr-namespace:Marathon.Desktop.Controls.CharityList"
       xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.CharityList;assembly=Marathon.Core"
       xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.CharityList.Design;assembly=Marathon.Core"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      d:DataContext="{x:Static designModels:CharityListDesignModel.Instance}">
+      DataContext="{x:Static designModels:CharityListDesignModel.Instance}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,7 +25,12 @@
         <controls:PageCaptionControl 
             Grid.Row="0"
             DataContext="{Binding PageCaption}"/>
-        
+
+        <!--Content-->
+        <charityControls:CharityListControl
+            Grid.Row="1"
+            Margin="30"/>
+
     </Grid>
 
 </local:BasePage>
