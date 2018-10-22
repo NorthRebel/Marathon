@@ -119,6 +119,9 @@
       <DependentUpon>AboutMarathonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\CharityListPage.xaml.cs">
+      <DependentUpon>CharityListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CheckRunnerPage.xaml.cs">
       <DependentUpon>CheckRunnerPage.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AboutMarathonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CharityListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
