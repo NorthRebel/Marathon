@@ -20,15 +20,16 @@
 
         <!--Logo-->
         <Border
+            MaxWidth="80"
+            MaxHeight="80"
             DockPanel.Dock="Top"
             BorderThickness="1"
             BorderBrush="{StaticResource YellowBrush}"
             Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
             CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-            
+
             <Image Source="{Binding Logo, Converter={converters:BytesToImageConverter}}"
-                   Width="80"
-                   Height="80"/>
+                   Stretch="Fill"/>
 
         </Border>
         
