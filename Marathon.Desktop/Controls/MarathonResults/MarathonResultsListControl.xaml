@@ -11,14 +11,7 @@
              d:DesignHeight="400" d:DesignWidth="600"
              d:DataContext="{x:Static designModels:MarathonResultsListDesignModel.Instance}">
     
-    <DataGrid ItemsSource="{Binding Items}"
-              AutoGenerateColumns="False"
-              IsReadOnly="True"
-              SelectionMode="Single"
-              CanUserAddRows="False"
-              CanUserDeleteRows="False"
-              HeadersVisibility="Column"
-              SelectionUnit="FullRow">
+    <DataGrid ItemsSource="{Binding Items}">
         
         <DataGrid.Columns>
 
