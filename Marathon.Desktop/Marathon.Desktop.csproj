@@ -137,6 +137,9 @@
     <Compile Include="Pages\MarathonMenuPage.xaml.cs">
       <DependentUpon>MarathonMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MarathonResultsPage.xaml.cs">
+      <DependentUpon>MarathonResultsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RunnerMenuPage.xaml.cs">
       <DependentUpon>RunnerMenuPage.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,7 @@
     <Compile Include="ValueConverters\BooleanToVisiblityConverter.cs" />
     <Compile Include="ValueConverters\BytesToImageConverter.cs" />
     <Compile Include="ValueConverters\DivValueConverter.cs" />
+    <Compile Include="ValueConverters\MarathonResultTimeConverter.cs" />
     <Compile Include="ValueConverters\RemainingTimeConverter.cs" />
     <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
     <Compile Include="ViewModel\DialogWindowViewModel.cs" />
@@ -264,6 +268,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MarathonMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MarathonResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
