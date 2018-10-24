@@ -43,6 +43,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new CharityListPage();
                 case ApplicationPage.MarathonResults:
                     return new MarathonResultsPage();
+                case ApplicationPage.HowLongMarathon:
+                    return new HowLongMarathonPage();
                 default:
                     Debugger.Break();
                     return null;

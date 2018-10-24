@@ -32,7 +32,7 @@ namespace Marathon.Core.ViewModel.HowLongMarathon
         /// Items to compare how long is marathon regard self
         /// </summary>
         public IEnumerable<HowLongMarathonItemsListViewModel> ItemsToCompare { get; set; }
-        
+
         /// <inheritdoc cref="_selectedItem"/>
         public HowLongMarathonItemViewModel SelectedItem
         {
@@ -61,7 +61,7 @@ namespace Marathon.Core.ViewModel.HowLongMarathon
         #region Constructor
 
         /// <summary>
-        /// Default constructor
+        /// Set <see cref="IMarathonDistance"/>
         /// </summary>
         /// <param name="marathonDistance">
         /// <inheritdoc cref="IMarathonDistance"/>
@@ -73,6 +73,13 @@ namespace Marathon.Core.ViewModel.HowLongMarathon
             {
                 Caption = "Насколько долгий марафон?"
             };
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public HowLongMarathonViewModel() : this(new MarathonDistance(42))
+        {
         }
 
         #endregion

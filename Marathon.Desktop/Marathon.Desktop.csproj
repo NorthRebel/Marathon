@@ -79,6 +79,12 @@
     <Compile Include="Controls\CharityList\CharityListItemControl.xaml.cs">
       <DependentUpon>CharityListItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\HowLongMarathon\HowLongMarathonItemControl.xaml.cs">
+      <DependentUpon>HowLongMarathonItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HowLongMarathon\HowLongMarathonItemsListControl.xaml.cs">
+      <DependentUpon>HowLongMarathonItemsListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Input\LeftEntryControl.xaml.cs">
       <DependentUpon>LeftEntryControl.xaml</DependentUpon>
     </Compile>
@@ -134,6 +140,9 @@
     <Compile Include="Pages\CheckRunnerPage.xaml.cs">
       <DependentUpon>CheckRunnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HowLongMarathonPage.xaml.cs">
+      <DependentUpon>HowLongMarathonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +196,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CharityList\CharityListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HowLongMarathon\HowLongMarathonItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HowLongMarathon\HowLongMarathonItemsListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CheckRunnerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HowLongMarathonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
