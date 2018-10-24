@@ -45,10 +45,10 @@ namespace Marathon.Core.ViewModel.HowLongMarathon
                 switch (value.Type)
                 {
                     case HowLongItemType.Speed:
-                        _selectedItem = new SpeedItemViewModel(_selectedItem, _marathonDistance);
+                        _selectedItem = new SpeedItemViewModel(value, _marathonDistance);
                         break;
                     case HowLongItemType.Distance:
-                        _selectedItem = new DistanceItemViewModel(_selectedItem, _marathonDistance);
+                        _selectedItem = new DistanceItemViewModel(value, _marathonDistance);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
