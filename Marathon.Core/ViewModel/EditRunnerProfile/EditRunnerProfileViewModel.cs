@@ -7,12 +7,12 @@ using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.PageCaption;
 
-namespace Marathon.Core.ViewModel
+namespace Marathon.Core.ViewModel.EditRunnerProfile
 {
     /// <summary>
-    /// The view model for a SignUpRunner page
+    /// The view model for a edit runner profile page
     /// </summary>
-    public class SignUpRunnerViewModel : PageViewModel, IRunnerProfile
+    public class EditRunnerProfileViewModel : PageViewModel, IRunnerProfile
     {
         #region Public Properties
 
@@ -66,12 +66,12 @@ namespace Marathon.Core.ViewModel
         #region Commands
 
         /// <summary>
-        /// Try to sign up user
+        /// Try to save edited changes of current runner profile
         /// </summary>
-        public ICommand SignUpCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
 
         /// <summary>
-        /// Cancel sign in of user
+        /// Discard edited changes
         /// </summary>
         public ICommand CancelCommand { get; set; }
 
@@ -84,12 +84,11 @@ namespace Marathon.Core.ViewModel
 
         #region Constructor
 
-        public SignUpRunnerViewModel()
+        public EditRunnerProfileViewModel()
         {
             PageCaption = new PageCaptionViewModel
             {
-                Caption = "Регистрация бегуна",
-                Description = "Пожалуйста заполните всю информацию, чтобы зарегистрироваться в качестве бегуна"
+                Caption = "Редактирование профиля"
             };
 
             #region Initialize entries
@@ -106,13 +105,13 @@ namespace Marathon.Core.ViewModel
 
             #endregion
 
-            SignUpCommand = new RelayCommand(async (password) => await SignUpAsync(password));
             CancelCommand = new RelayCommand(x => Cancel());
+            SaveCommand = new RelayCommand(async (password) => await SaveProfileChangesAsync(password));
         }
 
         #endregion
 
-        #region Commands Helpers
+        #region Command Helpers
 
         /// <summary>
         /// Go to previous page
@@ -123,12 +122,12 @@ namespace Marathon.Core.ViewModel
         }
 
         /// <summary>
-        /// Attempts to log the user in
+        /// Save edited attributes of a runner profile
         /// </summary>
-        private async Task SignUpAsync(object password)
+        private async Task SaveProfileChangesAsync(object password)
         {
             await Task.Delay(1);
-            GoToPage(ApplicationPage.SignUpToMarathon);
+            GoToPage(ApplicationPage.RunnerMenu);
         }
 
         #endregion
