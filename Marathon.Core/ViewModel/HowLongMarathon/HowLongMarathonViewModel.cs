@@ -60,8 +60,15 @@ namespace Marathon.Core.ViewModel.HowLongMarathon
 
         #region Constructor
 
-        public HowLongMarathonViewModel()
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="marathonDistance">
+        /// <inheritdoc cref="IMarathonDistance"/>
+        /// </param>
+        public HowLongMarathonViewModel(IMarathonDistance marathonDistance)
         {
+            _marathonDistance = marathonDistance;
             PageCaption = new PageCaptionViewModel
             {
                 Caption = "Насколько долгий марафон?"
