@@ -8,7 +8,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content.Text}"
-                               TextWrapping="Wrap"/>
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -56,6 +57,31 @@
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="RowBackground" Value="{StaticResource LightGrayBrush}"/>
         <Setter Property="AlternatingRowBackground" Value="{StaticResource GrayBrush}"/>
+    </Style>
+
+    <Style x:Key="TransperentGridHeader" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource BaseDataGridColumnHeaderStyle}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource GrayBrush}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style x:Key="TransperentGridCellStyle" TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource BaseDataGridCellStyle}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+
+    <Style x:Key="TrasperentGrid" TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+
+        <Style.Resources>
+            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource TransperentGridCellStyle}"/>
+            <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource TransperentGridHeader}"/>
+        </Style.Resources>
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="RowBackground" Value="Transparent"/>
+        <Setter Property="AlternatingRowBackground" Value="Transparent"/>
+
     </Style>
 
 </ResourceDictionary>
