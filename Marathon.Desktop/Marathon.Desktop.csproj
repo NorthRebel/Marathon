@@ -146,6 +146,9 @@
     <Compile Include="Pages\CheckRunnerPage.xaml.cs">
       <DependentUpon>CheckRunnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CoordinatorMenuPage.xaml.cs">
+      <DependentUpon>CoordinatorMenuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditRunnerProfilePage.xaml.cs">
       <DependentUpon>EditRunnerProfilePage.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CheckRunnerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CoordinatorMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
