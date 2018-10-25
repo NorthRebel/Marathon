@@ -9,7 +9,7 @@
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.MarathonResults.ResultsList.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600"
-             d:DataContext="{x:Static designModels:MarathonResultsListDesignModel.Instance}">
+             DataContext="{x:Static designModels:MarathonResultsListDesignModel.Instance}">
     
     <DataGrid ItemsSource="{Binding Items}">
         

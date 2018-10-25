@@ -23,7 +23,7 @@ namespace Marathon.Core.ViewModel.RunnerResults.Design
         /// </summary>
         public RunnerResultsDesignModel()
         {
-            Gender = "Мужской";
+            Gender.Value = "Мужской";
             Results = new RunnerResultsListDesignModel();
         }
 

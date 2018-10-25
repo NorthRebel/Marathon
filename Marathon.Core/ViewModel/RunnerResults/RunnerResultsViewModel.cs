@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.RunnerResults.ResultsList;
 
@@ -16,7 +17,7 @@ namespace Marathon.Core.ViewModel.RunnerResults
         /// <summary>
         /// Gender of current runner
         /// </summary>
-        public string Gender { get; set; }
+        public EntryViewModel<string> Gender { get; set; }
 
         /// <inheritdoc cref="RunnerResultsListViewModel"/>
         public RunnerResultsListViewModel Results { get; set; }
@@ -44,6 +45,8 @@ namespace Marathon.Core.ViewModel.RunnerResults
                               "Общее место сравнивает всех бегунов. " +
                               "Место по категории сравнивает бегунов с одинаковым полом и возрастной категорией."
             };
+
+            Gender = new EntryViewModel<string>("Пол");
 
             // TODO: Fix signed in button in marathon results page
             ShowAllResultsCommand = new RelayCommand(x => GoToPage(ApplicationPage.MarathonResults));

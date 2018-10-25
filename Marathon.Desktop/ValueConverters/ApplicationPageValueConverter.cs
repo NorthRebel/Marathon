@@ -47,6 +47,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new HowLongMarathonPage();
                 case ApplicationPage.EditRunnerProfile:
                     return new EditRunnerProfilePage();
+                case ApplicationPage.RunnerResults:
+                    return new RunnerResultsPage();
                 default:
                     Debugger.Break();
                     return null;
