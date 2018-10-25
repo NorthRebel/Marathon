@@ -105,7 +105,7 @@
         /// <summary>
         /// This page shows to runner his sponsorship, if he is signed up to current marathon.
         /// </summary>
-        MySponsorship,
+        RunnerSponsorship,
 
         /// <summary>
         /// Coordinators could show this page, when they signed in.
