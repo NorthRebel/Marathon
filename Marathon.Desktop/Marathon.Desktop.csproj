@@ -139,6 +139,9 @@
     <Compile Include="Pages\AboutMarathonPage.xaml.cs">
       <DependentUpon>AboutMarathonPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdministratorMenuPage.xaml.cs">
+      <DependentUpon>AdministratorMenuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CharityListPage.xaml.cs">
       <DependentUpon>CharityListPage.xaml</DependentUpon>
@@ -302,6 +305,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AboutMarathonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdministratorMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
