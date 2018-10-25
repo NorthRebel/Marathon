@@ -15,6 +15,6 @@ namespace Marathon.Core.ViewModel.RunnerSponsorship.SponsorshipList
         /// <summary>
         /// Amount from sponsor
         /// </summary>
-        public decimal Ammount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

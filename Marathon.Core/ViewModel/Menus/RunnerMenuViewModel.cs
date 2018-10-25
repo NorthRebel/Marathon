@@ -68,7 +68,7 @@ namespace Marathon.Core.ViewModel.Menus
 
         private void ShowMySponsorshipOfCurenntMarathon(object obj)
         {
-            GoToPage(ApplicationPage.MySponsorship);
+            GoToPage(ApplicationPage.RunnerSponsorship);
         }
         
         private void ShowPreviousCompetitonsResults(object obj)

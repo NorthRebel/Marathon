@@ -22,7 +22,7 @@
         public SponsorshipListItemDesignModel()
         {
             Name = "Dave Jonson";
-            Ammount = 720m;
+            Amount = 720m;
         }
 
         #endregion

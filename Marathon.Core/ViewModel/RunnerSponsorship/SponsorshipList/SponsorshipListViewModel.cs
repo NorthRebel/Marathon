@@ -9,5 +9,10 @@ namespace Marathon.Core.ViewModel.RunnerSponsorship.SponsorshipList
     public class SponsorshipListViewModel : BaseViewModel
     {
         public IEnumerable<SponsorshipListItemViewModel> Items { get; set; }
+
+        /// <summary>
+        /// Total given amount from sponsors
+        /// </summary>
+        public decimal TotalAmount { get; set; }
     }
 }

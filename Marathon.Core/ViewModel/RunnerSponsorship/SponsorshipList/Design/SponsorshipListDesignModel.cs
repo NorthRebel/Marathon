@@ -1,4 +1,6 @@
-﻿namespace Marathon.Core.ViewModel.RunnerSponsorship.SponsorshipList.Design
+﻿using System.Linq;
+
+namespace Marathon.Core.ViewModel.RunnerSponsorship.SponsorshipList.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="SponsorshipListViewModel"/>
@@ -27,34 +29,36 @@
                 new SponsorshipListItemViewModel
                 {
                     Name = "Anna Owen",
-                    Ammount = 240
+                    Amount = 240
                 },
                 new SponsorshipListItemViewModel
                 {
                     Name = "Dylan Smith",
-                    Ammount = 1250
+                    Amount = 1250
                 },
                 new SponsorshipListItemViewModel
                 {
                     Name = "Eric Plymouth",
-                    Ammount = 999
+                    Amount = 999
                 },
                 new SponsorshipListItemViewModel
                 {
                     Name = "Elsa Vogue",
-                    Ammount = 815
+                    Amount = 815
                 },
                 new SponsorshipListItemViewModel
                 {
                     Name = "Julie Robertson",
-                    Ammount = 1689
+                    Amount = 1689
                 },
                 new SponsorshipListItemViewModel
                 {
                     Name = "James Diamond",
-                    Ammount = 240
+                    Amount = 240
                 },
             };
+
+            TotalAmount = Items.Sum(x => x.Amount);
         }
 
         #endregion
