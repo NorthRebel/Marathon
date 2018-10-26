@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <Folder Include="ViewModel\Input\Design\" />
+    <Folder Include="ViewModel\RunnersListToManage\Models\" />
+    <Folder Include="ViewModel\RunnersListToManage\Design\" />
   </ItemGroup>
 
   <ItemGroup>
