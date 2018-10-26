@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.RunnersListToManage.RunnersListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls.RunnersListToManage"
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.RunnersListToManage.RunnersList;assembly=Marathon.Core"
+             xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.RunnersListToManage.RunnersList.Design;assembly=Marathon.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600"
+             d:DataContext="{x:Static designModels:RunnersListDesignModel.Instance}">
+
+    <DockPanel>
+
+        <!--Items count-->
+        <TextBlock DockPanel.Dock="Top"
+                   Margin="10"
+                   HorizontalAlignment="Center"
+                   FontFamily="{StaticResource TitleFont}"
+                   Text="{Binding ItemsCount, StringFormat='{}Всего бегунов: {0}'}"/>
+
+        <!--Runners list-->
+        <DataGrid ItemsSource="{Binding Items}">
+
+            <DataGrid.Columns>
+
+                <!--FirstName-->
+                <DataGridTextColumn 
+                    Header="Имя"
+                    Width="*"
+                    Binding="{Binding FirstName}"/>
+
+                <!--LastName-->
+                <DataGridTextColumn 
+                    Header="Фамилия"
+                    Width="*"
+                    Binding="{Binding LastName}"/>
+
+                <!--Email-->
+                <DataGridTextColumn 
+                    Header="Email"
+                    Width="*"
+                    Binding="{Binding Email}"/>
+
+                <!--Status-->
+                <DataGridTextColumn 
+                    Header="Статус"
+                    Width="*"
+                    Binding="{Binding Status}"/>
+
+                <!--Edit runner button-->
+                <DataGridTemplateColumn Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:RunnersListViewModel}">
+                            <Button Content="Edit"
+                                    Command="{Binding EditRunnerCommand}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </DockPanel>
+
+</UserControl>

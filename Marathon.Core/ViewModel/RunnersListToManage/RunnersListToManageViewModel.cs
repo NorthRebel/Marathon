@@ -56,6 +56,16 @@ namespace Marathon.Core.ViewModel.RunnersListToManage
         /// </summary>
         public ICommand ClearCommand { get; set; }
 
+        /// <summary>
+        /// Exports detailed info about signed up runners
+        /// </summary>
+        public ICommand ExportDetailedInfoCommand { get; set; }
+
+        /// <summary>
+        /// Exports list of runners email
+        /// </summary>
+        public ICommand ExportEmailCommand { get; set; }
+
         #endregion
 
         #region Constructor

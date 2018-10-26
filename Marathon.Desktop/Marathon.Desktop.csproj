@@ -118,6 +118,9 @@
     <Compile Include="Controls\RunnerResults\RunnerResultsListControl.xaml.cs">
       <DependentUpon>RunnerResultsListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RunnersListToManage\RunnersListControl.xaml.cs">
+      <DependentUpon>RunnersListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RunnerSponsorship\RunnerSponsorshipListControl.xaml.cs">
       <DependentUpon>RunnerSponsorshipListControl.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,9 @@
     </Compile>
     <Compile Include="Pages\RunnerResultsPage.xaml.cs">
       <DependentUpon>RunnerResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RunnersListToManagePage.xaml.cs">
+      <DependentUpon>RunnersListToManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RunnerSponsorshipPage.xaml.cs">
       <DependentUpon>RunnerSponsorshipPage.xaml</DependentUpon>
@@ -278,6 +284,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RunnersListToManage\RunnersListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RunnerSponsorship\RunnerSponsorshipListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -359,6 +369,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RunnerResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnersListToManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

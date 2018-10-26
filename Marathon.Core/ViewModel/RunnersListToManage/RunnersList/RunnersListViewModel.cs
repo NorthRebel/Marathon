@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
 using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel.RunnersListToManage.RunnersList
@@ -17,5 +18,10 @@ namespace Marathon.Core.ViewModel.RunnersListToManage.RunnersList
         /// Count of <see cref="Items"/>
         /// </summary>
         public long ItemsCount { get; set; }
+
+        /// <summary>
+        /// Edit selected runner from <see cref="Items"/>
+        /// </summary>
+        public ICommand EditRunnerCommand { get; set; }
     }
 }
