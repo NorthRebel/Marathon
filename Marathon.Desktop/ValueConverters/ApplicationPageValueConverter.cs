@@ -55,6 +55,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new CoordinatorMenuPage();
                 case ApplicationPage.AdministratorMenu:
                     return new AdministratorMenuPage();
+                case ApplicationPage.SponsorsReview:
+                    return new SponsorsReviewPage();
                 default:
                     Debugger.Break();
                     return null;

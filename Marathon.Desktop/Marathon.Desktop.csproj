@@ -121,6 +121,9 @@
     <Compile Include="Controls\RunnerSponsorship\RunnerSponsorshipListControl.xaml.cs">
       <DependentUpon>RunnerSponsorshipListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SponsorsReview\CharityListControl.xaml.cs">
+      <DependentUpon>CharityListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AboutCharityDialog.xaml.cs">
       <DependentUpon>AboutCharityDialog.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,9 @@
     </Compile>
     <Compile Include="Pages\SponsorshipConfirmPage.xaml.cs">
       <DependentUpon>SponsorshipConfirmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SponsorsReviewPage.xaml.cs">
+      <DependentUpon>SponsorsReviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
@@ -273,6 +279,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\RunnerSponsorship\RunnerSponsorshipListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SponsorsReview\CharityListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SponsorshipConfirmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SponsorsReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
