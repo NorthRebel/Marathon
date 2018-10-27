@@ -124,6 +124,12 @@
     <Compile Include="Controls\RunnerSponsorship\RunnerSponsorshipListControl.xaml.cs">
       <DependentUpon>RunnerSponsorshipListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SignUpStatus\SignUpStatusListControl.xaml.cs">
+      <DependentUpon>SignUpStatusListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SignUpStatus\SignUpStatusListItemControl.xaml.cs">
+      <DependentUpon>SignUpStatusListItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SponsorsReview\CharityListControl.xaml.cs">
       <DependentUpon>CharityListControl.xaml</DependentUpon>
     </Compile>
@@ -173,6 +179,9 @@
     <Compile Include="Pages\MarathonResultsPage.xaml.cs">
       <DependentUpon>MarathonResultsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RunnerInfoToManagePage.xaml.cs">
+      <DependentUpon>RunnerInfoToManagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RunnerMenuPage.xaml.cs">
       <DependentUpon>RunnerMenuPage.xaml</DependentUpon>
     </Compile>
@@ -209,6 +218,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToStatusIconConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisiblityConverter.cs" />
     <Compile Include="ValueConverters\BytesToImageConverter.cs" />
     <Compile Include="ValueConverters\DivValueConverter.cs" />
@@ -292,6 +302,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\SignUpStatus\SignUpStatusListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SignUpStatus\SignUpStatusListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SponsorsReview\CharityListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -361,6 +379,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MarathonResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RunnerInfoToManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -458,9 +480,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
@@ -469,6 +489,10 @@
       <Project>{2b471c20-ab1e-491a-b180-2bfb20ac4e7d}</Project>
       <Name>Marathon.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\StatusIcons\cross-icon.png" />
+    <Resource Include="Images\StatusIcons\tick-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.2.9\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.9\build\Fody.targets')" />
