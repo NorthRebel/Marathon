@@ -173,6 +173,9 @@
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ManageRunnerProfilePage.xaml.cs">
+      <DependentUpon>ManageRunnerProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MarathonMenuPage.xaml.cs">
       <DependentUpon>MarathonMenuPage.xaml</DependentUpon>
     </Compile>
@@ -371,6 +374,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ManageRunnerProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

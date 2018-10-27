@@ -12,7 +12,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// The current page of the application
         /// </summary>
-        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.EditRunnerProfile;
+        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.ManageRunnerProfile;
 
         /// <summary>
         /// The previous page of the application

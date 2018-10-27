@@ -61,6 +61,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new RunnersListToManagePage();
                 case ApplicationPage.RunnerInfoManage:
                     return new RunnerInfoToManagePage();
+                case ApplicationPage.ManageRunnerProfile:
+                    return new ManageRunnerProfilePage();
                 default:
                     Debugger.Break();
                     return null;
