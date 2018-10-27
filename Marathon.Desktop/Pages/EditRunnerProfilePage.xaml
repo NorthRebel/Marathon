@@ -150,7 +150,7 @@
 
                         <!--Confirm password-->
                         <input:LeftEntryControl DataContext="{Binding ConfirmPassword}">
-                            <TextBox Tag="Повторите пароль"/>
+                            <PasswordBox Tag="Повторите пароль"/>
                         </input:LeftEntryControl>
 
                     </StackPanel>

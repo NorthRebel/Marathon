@@ -54,7 +54,7 @@
 
                 <!--First name-->
                 <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Tag="Имя"/>
+                    <PasswordBox Tag="Имя"/>
                 </input:LeftEntryControl>
 
                 <!--Last name-->
