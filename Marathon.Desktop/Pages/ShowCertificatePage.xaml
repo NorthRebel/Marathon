@@ -1,0 +1,57 @@
+﻿<local:BasePage x:TypeArguments="viewModels:ShowCertificateViewModel" 
+      x:Class="Marathon.Desktop.Pages.ShowCertificatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Desktop.Pages"
+      xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
+      xmlns:showCertificateCtrls="clr-namespace:Marathon.Desktop.Controls.ShowCertificate"
+      xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.ShowCertificate;assembly=Marathon.Core"
+      xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.ShowCertificate.Design;assembly=Marathon.Core"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      DataContext="{x:Static designModels:ShowCertificateDesignModel.Instance}">
+
+    <DockPanel>
+
+        <!--Marathons and distances-->
+        <Grid DockPanel.Dock="Top"
+              Background="{StaticResource GrayBrush}">
+
+            <Grid.ColumnDefinitions>
+                <!--Marathons-->
+                <ColumnDefinition Width="*"/>
+                <!--Distances-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Marathons-->
+            <input:LeftEntryControl
+                Grid.Column="0"
+                Margin="10"
+                DataContext="{Binding Marathons}">
+
+                <ComboBox ItemsSource="{Binding Value}"/>
+
+            </input:LeftEntryControl>
+
+            <!--Distances-->
+            <input:LeftEntryControl
+                Grid.Column="1"
+                Margin="10"
+                DataContext="{Binding Distances}">
+
+                <ComboBox ItemsSource="{Binding Value}"/>
+
+            </input:LeftEntryControl>
+
+        </Grid>
+
+        <!--Certificate-->
+        <showCertificateCtrls:ShowCertificateControl
+            DataContext="{Binding Certificate}"/>
+
+    </DockPanel>
+
+</local:BasePage>

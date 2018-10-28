@@ -12,7 +12,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// The current page of the application
         /// </summary>
-        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.ManageRunnerProfile;
+        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Main;
 
         /// <summary>
         /// The previous page of the application
@@ -53,6 +53,9 @@ namespace Marathon.Core.ViewModel
 
             // On main page visible main title bar
             MainTitleBarVisible = CurrentPage == ApplicationPage.Main;
+
+            // Hide bottom bar on ShowCertificate page
+            BottomBarVisible = CurrentPage != ApplicationPage.ShowCertificate;
         }
 
         /// <summary>

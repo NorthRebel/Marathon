@@ -117,7 +117,7 @@ namespace Marathon.Core.ViewModel.RunnerInfoManage
             SelectedRaceKit = new EntryViewModel<string>("Выбранный пакет");
             SelectedDistance = new EntryViewModel<string>("Дистанция");
 
-            ShowCertificateCommand = new RelayCommand(x => GoToPage(ApplicationPage.ShowSertificate));
+            ShowCertificateCommand = new RelayCommand(x => GoToPage(ApplicationPage.ShowCertificate));
             PrintBadgeCommand = new RelayCommand(PrintBadge);
             ManageRunnerCommand = new RelayCommand(x => GoToPage(ApplicationPage.ManageRunnerProfile));
         }

@@ -124,6 +124,9 @@
     <Compile Include="Controls\RunnerSponsorship\RunnerSponsorshipListControl.xaml.cs">
       <DependentUpon>RunnerSponsorshipListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ShowCertificate\ShowCertificateControl.xaml.cs">
+      <DependentUpon>ShowCertificateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SignUpStatus\SignUpStatusListControl.xaml.cs">
       <DependentUpon>SignUpStatusListControl.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,9 @@
     </Compile>
     <Compile Include="Pages\RunnerSponsorshipPage.xaml.cs">
       <DependentUpon>RunnerSponsorshipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShowCertificatePage.xaml.cs">
+      <DependentUpon>ShowCertificatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
@@ -305,6 +311,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ShowCertificate\ShowCertificateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SignUpStatus\SignUpStatusListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -409,6 +419,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ShowCertificatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SignInPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -487,7 +501,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Certificate\Seal.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
