@@ -65,6 +65,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new ManageRunnerProfilePage();
                 case ApplicationPage.ShowCertificate:
                     return new ShowCertificatePage();
+                case ApplicationPage.CharitiesListToManage:
+                    return new CharitiesListToManagePage();
                 default:
                     Debugger.Break();
                     return null;

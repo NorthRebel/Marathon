@@ -73,6 +73,9 @@
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CharitiesListToManage\CharitiesListControl.xaml.cs">
+      <DependentUpon>CharitiesListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CharityList\CharityListControl.xaml.cs">
       <DependentUpon>CharityListControl.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,9 @@
       <DependentUpon>AdministratorMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\CharitiesListToManagePage.xaml.cs">
+      <DependentUpon>CharitiesListToManagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CharityListPage.xaml.cs">
       <DependentUpon>CharityListPage.xaml</DependentUpon>
     </Compile>
@@ -240,6 +246,10 @@
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Bars\BottomBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CharitiesListToManage\CharitiesListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -360,6 +370,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AdministratorMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CharitiesListToManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
