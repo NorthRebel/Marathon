@@ -144,7 +144,7 @@
         /// <summary>
         /// This page shows runner certificate preview. 
         /// </summary>
-        ShowSertificate,
+        ShowCertificate,
 
         /// <summary>
         /// This page provides administrator to edit list of charity organizations.
