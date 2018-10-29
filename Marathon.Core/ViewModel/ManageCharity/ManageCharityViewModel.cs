@@ -40,12 +40,12 @@ namespace Marathon.Core.ViewModel.ManageCharity
         /// <summary>
         /// Discard edited changes
         /// </summary>
-        ICommand CancelCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         /// <summary>
         /// Change <see cref="Logo"/> of a charity organization
         /// </summary>
-        ICommand ChangeLogoCommand { get; set; }
+        public ICommand ChangeLogoCommand { get; set; }
 
         /// <summary>
         /// Adds new charity or save edited changes if exists
