@@ -71,6 +71,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new ManageCharityPage();
                 case ApplicationPage.EditCharity:
                     return new ManageCharityPage();
+                case ApplicationPage.VolunteersListToManage:
+                    return new VolunteersListToManagePage();
                 default:
                     Debugger.Break();
                     return null;
