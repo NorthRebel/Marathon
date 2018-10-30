@@ -33,8 +33,8 @@
 
                 <!--Content-->
                 <ContentPresenter Grid.Row="1" 
-                                  VerticalAlignment="Center"
                                   Margin="0 5"
+                                  x:Name="InputContent"
                                   Content="{TemplateBinding Content}"/>
             </Grid>
 

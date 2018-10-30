@@ -52,7 +52,8 @@
 
                 <!--Description-->
                 <input:TopEntryControl
-                    DataContext="{Binding Description}">
+                    DataContext="{Binding Description}"
+                    InnerContentVerticalAlignment="Stretch">
 
                     <TextBox Text="{Binding Value}"
                              VerticalScrollBarVisibility="Auto"
