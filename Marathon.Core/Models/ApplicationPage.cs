@@ -168,9 +168,9 @@
         VolunteersListToManage,
 
         /// <summary>
-        /// This page uses by Administrator for load volunteers from third-party source.
+        /// This page uses by Administrator for import volunteers from third-party source.
         /// </summary>
-        LoadVolunteers,
+        ImportVolunteers,
 
         /// <summary>
         /// This page shows list of all users.
