@@ -30,6 +30,10 @@ namespace Marathon.Core.ViewModel.ImportVolunteers.Design
                 attributesRequirements.Add(new EntryViewModel<string>($"Поле {i}") {Value = "Описание поля"});
 
             RequiredFields = attributesRequirements;
+
+            ImportProgress.MaxValue = 98;
+            ImportProgress.CurrentValue = 63;
+            ImportProgress.CalculatePercentage();
         }
 
         #endregion

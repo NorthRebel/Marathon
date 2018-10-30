@@ -23,6 +23,11 @@ namespace Marathon.Core.ViewModel.ImportVolunteers
         /// </summary>
         public IEnumerable<EntryViewModel<string>> RequiredFields { get; set; }
 
+        /// <summary>
+        /// Shows process of importing from <see cref="FileToImport"/>
+        /// </summary>
+        public ProgressViewModel ImportProgress { get; set; }
+
         #endregion
 
         #region Commands
@@ -54,6 +59,7 @@ namespace Marathon.Core.ViewModel.ImportVolunteers
             };
 
             FileToImport = new EntryViewModel<string>("CSV файл волонтеров");
+            ImportProgress = new ProgressViewModel();
 
             SelectFileCommand = new RelayCommand(SelectFileToImport);
             ImportCommand = new RelayCommand(ImportVolunteersFromFile);
