@@ -31,6 +31,7 @@ namespace Marathon.Core.ViewModel.ImportVolunteers.Design
 
             RequiredFields = attributesRequirements;
 
+            ImportProgress.IsBusy = true;
             ImportProgress.MaxValue = 98;
             ImportProgress.CurrentValue = 63;
             ImportProgress.CalculatePercentage();

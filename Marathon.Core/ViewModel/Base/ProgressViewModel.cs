@@ -25,6 +25,11 @@
         /// </summary>
         public double Percentage { get; set; }
 
+        /// <summary>
+        /// Flag that indicates is current operation executing now
+        /// </summary>
+        public bool IsBusy { get; set; }
+
         public void CalculatePercentage()
         {
             Percentage = (CurrentValue / MaxValue) * 100;
