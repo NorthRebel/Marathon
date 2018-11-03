@@ -139,6 +139,9 @@
     <Compile Include="Controls\SponsorsReview\CharityListControl.xaml.cs">
       <DependentUpon>CharityListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UsersListToManage\UsersListControl.xaml.cs">
+      <DependentUpon>UsersListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VolunteersListToManage\VolunteersListControl.xaml.cs">
       <DependentUpon>VolunteersListControl.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,9 @@
     </Compile>
     <Compile Include="Pages\SponsorsReviewPage.xaml.cs">
       <DependentUpon>SponsorsReviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UsersListToManagePage.xaml.cs">
+      <DependentUpon>UsersListToManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VolunteersListToManagePage.xaml.cs">
       <DependentUpon>VolunteersListToManagePage.xaml</DependentUpon>
@@ -347,6 +353,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SponsorsReview\CharityListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UsersListToManage\UsersListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -487,6 +497,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SponsorsReviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UsersListToManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

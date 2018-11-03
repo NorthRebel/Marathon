@@ -75,6 +75,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new VolunteersListToManagePage();
                 case ApplicationPage.ImportVolunteers:
                     return new ImportVolunteersPage();
+                case ApplicationPage.UsersListToManage:
+                    return new UsersListToManagePage();
                 default:
                     Debugger.Break();
                     return null;

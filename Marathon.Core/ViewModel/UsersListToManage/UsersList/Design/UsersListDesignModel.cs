@@ -1,4 +1,6 @@
-﻿namespace Marathon.Core.ViewModel.UsersListToManage.UsersList.Design
+﻿using System.Linq;
+
+namespace Marathon.Core.ViewModel.UsersListToManage.UsersList.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="UsersListViewModel"/>
@@ -35,6 +37,8 @@
                 new UsersListItemDesignModel(),
                 new UsersListItemDesignModel(),
             };
+
+            ItemsCount = Items.Count();
         }
 
         #endregion
