@@ -197,6 +197,9 @@
     <Compile Include="Pages\ManageRunnerProfilePage.xaml.cs">
       <DependentUpon>ManageRunnerProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ManageUserPage.xaml.cs">
+      <DependentUpon>ManageUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MarathonMenuPage.xaml.cs">
       <DependentUpon>MarathonMenuPage.xaml</DependentUpon>
     </Compile>
@@ -259,6 +262,7 @@
     <Compile Include="ValueConverters\MarathonResultTimeConverter.cs" />
     <Compile Include="ValueConverters\RemainingTimeConverter.cs" />
     <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
+    <Compile Include="ValueConverters\UserManagementTypeToVisiblityConverter.cs" />
     <Compile Include="ViewModel\DialogWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Window\WindowDockPosition.cs" />
@@ -437,6 +441,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ManageRunnerProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ManageUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
