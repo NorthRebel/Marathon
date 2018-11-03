@@ -48,7 +48,7 @@
                     <Button Grid.Column="2" 
                             Content="Выход"
                             Command="{Binding LogoutCommand}"
-                            Visibility="{Binding LogoutButtonVisible, Converter={converters:BooleanToVisiblityConverter}}"/>
+                            Visibility="{Binding LogoutButtonVisible, Converter={converters:BooleanToVisibilityConverter}}"/>
 
                 </Grid>
 

@@ -68,7 +68,7 @@
 
                 <!--Import progress-->
                 <StackPanel DataContext="{Binding ImportProgress}"
-                            Visibility="{Binding IsBusy, Converter={converters:BooleanToVisiblityConverter}}">
+                            Visibility="{Binding IsBusy, Converter={converters:BooleanToVisibilityConverter}}">
 
                     <ProgressBar Height="30" 
                                  Value="{Binding Percentage}"/>

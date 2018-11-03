@@ -35,7 +35,7 @@
 								   Foreground="{StaticResource GrayBrush}"
 								   FontStyle="Italic"
 								   Margin="3 0 0 0"
-								   Visibility="{TemplateBinding Props:HasTextProperty.Value, Converter={Converters:BooleanToVisiblityConverter}, ConverterParameter=True}"
+								   Visibility="{TemplateBinding Props:HasTextProperty.Value, Converter={Converters:BooleanToVisibilityConverter}, ConverterParameter=True}"
 								   VerticalAlignment="Center"/>
 					</Grid>
 				</ControlTemplate>

@@ -147,7 +147,7 @@
                 Height="50"
                 Visibility="{Binding ApplicationViewModel.MainTitleBarVisible,               
                                Source={x:Static viewModels:ViewModelLocator.Instance},
-                               Converter={converters:BooleanToVisiblityConverter}, ConverterParameter=True}"/>
+                               Converter={converters:BooleanToVisibilityConverter}, ConverterParameter=True}"/>
 
             <!--Main Title bar-->
             <bars:MainTitleBarControl 
@@ -155,7 +155,7 @@
                 Height="150"
                 Visibility="{Binding ApplicationViewModel.MainTitleBarVisible,               
                                Source={x:Static viewModels:ViewModelLocator.Instance},
-                               Converter={converters:BooleanToVisiblityConverter}}"/>
+                               Converter={converters:BooleanToVisibilityConverter}}"/>
 
             <!--Page host-->
             <controls:PageHost Grid.Row="1"

@@ -7,7 +7,7 @@ namespace Marathon.Desktop.ValueConverters
     /// <summary>
     /// A converter that takes in a boolean and returns a <see cref="Visibility"/>
     /// </summary>
-    public class BooleanToVisiblityConverter : BaseValueConverter<BooleanToVisiblityConverter>
+    public class BooleanToVisibilityConverter : BaseValueConverter<BooleanToVisibilityConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
