@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.BMICalculator.BMIResult.Scale.PointerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls.BMICalculator.BMIResult.Scale"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="50">
+    
+    <StackPanel>
+
+        <!--Value-->
+        <TextBlock x:Name="PointerValueText"
+                   HorizontalAlignment="Center"
+                   FontSize="{StaticResource FontSizeLarge}"/>
+
+        <!--Pointer-->
+        <Path Data="M 0,0 L 10,20 L 20,0 L 0,0"  
+              Fill="{StaticResource GrayBrush}"
+              StrokeThickness="1"
+              HorizontalAlignment="Center"
+              Stroke="{StaticResource DarkGrayBrush}"/>
+
+    </StackPanel>
+
+</UserControl>

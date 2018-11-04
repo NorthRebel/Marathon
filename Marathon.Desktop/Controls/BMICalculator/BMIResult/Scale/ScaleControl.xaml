@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.BMICalculator.BMIResult.Scale.ScaleControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls.BMICalculator.BMIResult.Scale"
+             xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator.Design;assembly=Marathon.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="400"
+             d:DataContext="{x:Static designModels:BMIResultDesignModel.Instance}">
+
+    <DockPanel>
+
+        <local:PointerControl
+            DockPanel.Dock="Top"
+            Margin="0 0 0 10"
+            Value="{Binding Value}"/>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <!--Underweight-->
+                <ColumnDefinition Width="*"/>
+                <!--Healthy-->
+                <ColumnDefinition Width="*"/>
+                <!--Overweight-->
+                <ColumnDefinition Width="*"/>
+                <!--Obese-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Underweight-->
+            <local:ScaleSegmentControl
+                Grid.Column="0"
+                SegmentColor="{StaticResource YellowBrush}"
+                Description="Недостаточный"/>
+
+            <!--Healthy-->
+            <local:ScaleSegmentControl
+                Grid.Column="1"
+                SegmentColor="{StaticResource GreenBrush}"
+                Description="Здоровый"/>
+
+            <!--Overweight-->
+            <local:ScaleSegmentControl
+                Grid.Column="2"
+                SegmentColor="{StaticResource YellowBrush}"
+                Description="Избыточный"/>
+
+            <!--Obese-->
+            <local:ScaleSegmentControl
+                Grid.Column="3"
+                SegmentColor="Red"
+                Description="Ожирение"/>
+
+        </Grid>
+
+    </DockPanel>
+</UserControl>

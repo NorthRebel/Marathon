@@ -73,6 +73,18 @@
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BMICalculator\BMIResult\BMIResultControl.xaml.cs">
+      <DependentUpon>BMIResultControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BMICalculator\BMIResult\Scale\PointerControl.xaml.cs">
+      <DependentUpon>PointerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BMICalculator\BMIResult\Scale\ScaleControl.xaml.cs">
+      <DependentUpon>ScaleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BMICalculator\BMIResult\Scale\ScaleSegmentControl.xaml.cs">
+      <DependentUpon>ScaleSegmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BMICalculator\EntryControl.xaml.cs">
       <DependentUpon>EntryControl.xaml</DependentUpon>
     </Compile>
@@ -278,6 +290,22 @@
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Bars\BottomBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMICalculator\BMIResult\BMIResultControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMICalculator\BMIResult\Scale\PointerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMICalculator\BMIResult\Scale\ScaleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMICalculator\BMIResult\Scale\ScaleSegmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

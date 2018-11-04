@@ -8,6 +8,7 @@
       xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
       xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
       xmlns:bmiControls="clr-namespace:Marathon.Desktop.Controls.BMICalculator"
+      xmlns:bmiResult="clr-namespace:Marathon.Desktop.Controls.BMICalculator.BMIResult"
       xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator;assembly=Marathon.Core"
       xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator.Design;assembly=Marathon.Core"
       mc:Ignorable="d" 
@@ -106,6 +107,11 @@
                         Command="{Binding CalculateCommand}"/>
 
             </Grid>
+
+            <bmiResult:BMIResultControl
+                Grid.Column="1"
+                DataContext="{Binding Result}"></bmiResult:BMIResultControl>
+
         </Grid>
 
     </Grid>
