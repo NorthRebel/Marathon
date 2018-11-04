@@ -73,6 +73,12 @@
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BMICalculator\EntryControl.xaml.cs">
+      <DependentUpon>EntryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BMICalculator\ImageCaptionControl.xaml.cs">
+      <DependentUpon>ImageCaptionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CharitiesListToManage\CharitiesListControl.xaml.cs">
       <DependentUpon>CharitiesListControl.xaml</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
       <DependentUpon>AdministratorMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\BMICalculatorPage.xaml.cs">
+      <DependentUpon>BMICalculatorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CharitiesListToManagePage.xaml.cs">
       <DependentUpon>CharitiesListToManagePage.xaml</DependentUpon>
     </Compile>
@@ -269,6 +278,14 @@
     <Compile Include="ViewModel\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Bars\BottomBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMICalculator\EntryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMICalculator\ImageCaptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -401,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AdministratorMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BMICalculatorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -581,6 +602,16 @@
   <ItemGroup>
     <Resource Include="Images\StatusIcons\cross-icon.png" />
     <Resource Include="Images\StatusIcons\tick-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BMICalculator\Gender\female-icon.png" />
+    <Resource Include="Images\BMICalculator\Gender\male-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BMICalculator\Result\bmi-healthy-icon.png" />
+    <Resource Include="Images\BMICalculator\Result\bmi-obese-icon.png" />
+    <Resource Include="Images\BMICalculator\Result\bmi-overweight-icon.png" />
+    <Resource Include="Images\BMICalculator\Result\bmi-underweight-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.2.9\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.9\build\Fody.targets')" />

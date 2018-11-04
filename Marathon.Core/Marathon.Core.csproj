@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\BMICalculator\Design\" />
     <Folder Include="ViewModel\Input\Design\" />
   </ItemGroup>
 
