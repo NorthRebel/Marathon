@@ -7,18 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
 
-    <DockPanel>
+    <StackPanel>
+
+        <!--Segment-->
+        <Rectangle x:Name="SegmentRect"
+                   MinHeight="15"/>
 
         <!--Description-->
-        <TextBlock DockPanel.Dock="Bottom"
+        <TextBlock MinHeight="25"
                    HorizontalAlignment="Center"
                    FontSize="{StaticResource FontSizeSmall}"
                    Foreground="{StaticResource GrayBrush}"
                    x:Name="DescriptionText"/>
 
-        <!--Segment-->
-        <Rectangle x:Name="SegmentRect"/>
 
-    </DockPanel>
+    </StackPanel>
 
 </UserControl>

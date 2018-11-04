@@ -1,4 +1,6 @@
-﻿using Marathon.Core.ViewModel.Base;
+﻿using System.Collections.Generic;
+using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.BMICalculator.Models;
 
 namespace Marathon.Core.ViewModel.BMICalculator
 {
@@ -23,6 +25,11 @@ namespace Marathon.Core.ViewModel.BMICalculator
         /// Description about user body state
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Segments of result scale
+        /// </summary>
+        public IEnumerable<ScaleSegment> Segments { get; set; }
 
         #endregion
     }

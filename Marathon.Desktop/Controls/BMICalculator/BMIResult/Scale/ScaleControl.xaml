@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Marathon.Desktop.Controls.BMICalculator.BMIResult.Scale"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="400"
+             MinHeight="90"
+             d:DesignHeight="100" d:DesignWidth="400"
              d:DataContext="{x:Static designModels:BMIResultDesignModel.Instance}">
 
     <DockPanel>
@@ -14,46 +15,10 @@
         <local:PointerControl
             DockPanel.Dock="Top"
             Margin="0 0 0 10"
-            Value="{Binding Value}"/>
+            Value="{Binding Value}"
+            x:Name="PointerControl"/>
 
-        <Grid>
-
-            <Grid.ColumnDefinitions>
-                <!--Underweight-->
-                <ColumnDefinition Width="*"/>
-                <!--Healthy-->
-                <ColumnDefinition Width="*"/>
-                <!--Overweight-->
-                <ColumnDefinition Width="*"/>
-                <!--Obese-->
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!--Underweight-->
-            <local:ScaleSegmentControl
-                Grid.Column="0"
-                SegmentColor="{StaticResource YellowBrush}"
-                Description="Недостаточный"/>
-
-            <!--Healthy-->
-            <local:ScaleSegmentControl
-                Grid.Column="1"
-                SegmentColor="{StaticResource GreenBrush}"
-                Description="Здоровый"/>
-
-            <!--Overweight-->
-            <local:ScaleSegmentControl
-                Grid.Column="2"
-                SegmentColor="{StaticResource YellowBrush}"
-                Description="Избыточный"/>
-
-            <!--Obese-->
-            <local:ScaleSegmentControl
-                Grid.Column="3"
-                SegmentColor="Red"
-                Description="Ожирение"/>
-
-        </Grid>
+        <Grid x:Name="ScaleSegments"/>
 
     </DockPanel>
 </UserControl>

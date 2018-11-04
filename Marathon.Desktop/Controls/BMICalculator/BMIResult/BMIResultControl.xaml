@@ -19,7 +19,7 @@
             <!--Description-->
             <RowDefinition Height="*"/>
             <!--Scale-->
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
 
         <!--Description-->
@@ -38,8 +38,10 @@
         </Border>
 
         <!--Scale-->
-        <scale:ScaleControl Grid.Row="1"
-                            DataContext="{Binding}"/>
+        <scale:ScaleControl 
+            Grid.Row="1"
+            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, 
+                AncestorType={x:Type UserControl}}, Path=DataContext}"/>
 
     </Grid>
 
