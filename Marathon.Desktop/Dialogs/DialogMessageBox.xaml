@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Dialogs"
-             xmlns:deisgnModels="clr-namespace:Marathon.Core.ViewModel.Dialogs.Design;assembly=Marathon.Core"
+             xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.Dialogs.Design;assembly=Marathon.Core"
              mc:Ignorable="d">
 
-    <StackPanel d:DataContext="{x:Static deisgnModels:MessageBoxDialogDesignModel.Instance}">
+    <StackPanel d:DataContext="{x:Static designModels:MessageBoxDialogDesignModel.Instance}">
         
         <!--Message-->
         <TextBlock Text="{Binding Message}"

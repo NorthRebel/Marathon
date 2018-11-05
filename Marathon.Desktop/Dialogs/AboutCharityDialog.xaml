@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Dialogs"
              xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
-             xmlns:deisgnModels="clr-namespace:Marathon.Core.ViewModel.Dialogs.Design;assembly=Marathon.Core"
+             xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.Dialogs.Design;assembly=Marathon.Core"
              mc:Ignorable="d">
     
-    <DockPanel d:DataContext="{x:Static deisgnModels:AboutCharityDialogDesignModel.Instance}">
+    <DockPanel d:DataContext="{x:Static designModels:AboutCharityDialogDesignModel.Instance}">
         
         <!--Name-->
         <TextBlock Text="{Binding Name}"

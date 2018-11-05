@@ -56,7 +56,7 @@ namespace Marathon.Core.ViewModel.SponsorRunner
             }
 
 
-            await IoC.IoC.UI.ShowAboutCharityInforamtion(new AboutCharityDialogDesignModel());
+            await IoC.IoC.UI.ShowAboutCharityInformation(new AboutCharityDialogDesignModel());
         }
 
         #endregion

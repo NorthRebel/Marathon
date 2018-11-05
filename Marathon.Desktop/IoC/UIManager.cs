@@ -21,7 +21,7 @@ namespace Marathon.Desktop.IoC
         /// <summary>
         /// Displays a dialog message about selected charity  
         /// </summary>
-        public Task ShowAboutCharityInforamtion(AboutCharityDialogViewModel viewModel)
+        public Task ShowAboutCharityInformation(AboutCharityDialogViewModel viewModel)
         {
             return new AboutCharityDialog().ShowDialog(viewModel);
         }
