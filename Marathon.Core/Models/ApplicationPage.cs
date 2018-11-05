@@ -206,6 +206,6 @@
         /// <summary>
         /// This page provides to registration of receipt inventory items to stock 
         /// </summary>
-        InventoryArrive
+        InventoryReceipt
     }
 }

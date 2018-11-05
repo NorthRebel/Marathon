@@ -45,7 +45,7 @@ namespace Marathon.Core.ViewModel.Inventory
             InventoryItems = new InventoryListViewModel();
 
             ReportCommand = new RelayCommand(ShowPrintPreviewReport);
-            ReceiptCommand = new RelayCommand(x => GoToPage(ApplicationPage.InventoryArrive));
+            ReceiptCommand = new RelayCommand(x => GoToPage(ApplicationPage.InventoryReceipt));
         }
 
 
