@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Marathon.Desktop.Controls.Inventory.InventoryGridCellControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Marathon.Desktop.Controls.Inventory"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="80">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="UserControl">
+
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}"/>
+
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <!--Show image if content is null-->
+                        <DataTrigger Binding="{Binding Content, ElementName=CellContent}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ControlTemplate.Resources>
+
+            <Grid>
+
+                <!--Null flag-->
+                <Image Source="pack://application:,,,/Images/StatusIcons/cross-icon.png"
+                       Visibility="Collapsed"
+                       Height="40"
+                       Width="40"/>
+
+                <!--Content-->
+                <ContentPresenter Content="{TemplateBinding Content}"
+                                  x:Name="CellContent"/>
+
+            </Grid>
+
+        </ControlTemplate>
+    </UserControl.Template>
+
+</UserControl>

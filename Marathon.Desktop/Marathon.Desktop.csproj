@@ -118,6 +118,12 @@
     <Compile Include="Controls\Bars\MainTitleBarControl.xaml.cs">
       <DependentUpon>MainTitleBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Inventory\InventoryGridCellControl.xaml.cs">
+      <DependentUpon>InventoryGridCellControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Inventory\InventoryListControl.xaml.cs">
+      <DependentUpon>InventoryListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
       <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
     </Compile>
@@ -218,6 +224,9 @@
     <Compile Include="Pages\ImportVolunteersPage.xaml.cs">
       <DependentUpon>ImportVolunteersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -291,6 +300,7 @@
     <Compile Include="ValueConverters\InverseBooleanConverter.cs" />
     <Compile Include="ValueConverters\MarathonResultTimeConverter.cs" />
     <Compile Include="ValueConverters\RemainingTimeConverter.cs" />
+    <Compile Include="ValueConverters\SingleObjectToCollectionConverter.cs" />
     <Compile Include="ValueConverters\StringRGBToBrushConverter.cs" />
     <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
     <Compile Include="ValueConverters\UserManagementTypeToVisibilityConverter.cs" />
@@ -360,6 +370,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Bars\MainTitleBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Inventory\InventoryGridCellControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Inventory\InventoryListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -500,6 +518,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ImportVolunteersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InventoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

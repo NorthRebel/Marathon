@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Windows;
+using System.Linq;
 
 namespace Marathon.Desktop.ValueConverters
 {
     /// <summary>
-    /// A converter that takes in a boolean and returns a <see cref="Visibility"/>
+    /// A converter that takes in a single object and returns <see cref="IEnumerable<object>"/> with single element for DataGrid 
     /// </summary>
-    public class BooleanToVisibilityConverter : BaseValueConverter<BooleanToVisibilityConverter>
+    public class SingleObjectToCollectionConverter : BaseValueConverter<SingleObjectToCollectionConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (parameter == null)
-                return (bool)value ? Visibility.Visible : Visibility.Collapsed;
-            else
-                return (bool)value ? Visibility.Collapsed : Visibility.Visible;
+            if (value == null)
+                throw new NullReferenceException();
+
+            return Enumerable.Repeat(value, 1);
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
