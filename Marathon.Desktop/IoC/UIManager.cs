@@ -48,7 +48,7 @@ namespace Marathon.Desktop.IoC
         /// </summary>
         public Task ShowInventoryReport(InventoryReportDialogViewModel viewModel)
         {
-            throw new System.NotImplementedException();
+            return new InventoryReportDialog().ShowDialog(viewModel);
         }
     }
 }

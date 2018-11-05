@@ -124,6 +124,9 @@
     <Compile Include="Controls\Inventory\InventoryListControl.xaml.cs">
       <DependentUpon>InventoryListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Inventory\Report\ReportListControl.xaml.cs">
+      <DependentUpon>ReportListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
       <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,9 @@
     </Compile>
     <Compile Include="Dialogs\DialogMessageBox.xaml.cs">
       <DependentUpon>DialogMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InventoryReportDialog.xaml.cs">
+      <DependentUpon>InventoryReportDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
@@ -381,6 +387,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Inventory\Report\ReportListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MarathonOptions\MarathonOptionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -458,6 +468,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\DialogMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InventoryReportDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
