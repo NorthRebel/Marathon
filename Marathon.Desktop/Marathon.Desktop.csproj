@@ -91,6 +91,9 @@
     <Compile Include="Controls\BMICalculator\ImageCaptionControl.xaml.cs">
       <DependentUpon>ImageCaptionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BMRCalculator\BMRResultControl.xaml.cs">
+      <DependentUpon>BMRResultControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CharitiesListToManage\CharitiesListControl.xaml.cs">
       <DependentUpon>CharitiesListControl.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,9 @@
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\BMICalculatorPage.xaml.cs">
       <DependentUpon>BMICalculatorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BMRCalculatorPage.xaml.cs">
+      <DependentUpon>BMRCalculatorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CharitiesListToManagePage.xaml.cs">
       <DependentUpon>CharitiesListToManagePage.xaml</DependentUpon>
@@ -315,6 +321,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BMICalculator\ImageCaptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BMRCalculator\BMRResultControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -451,6 +461,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\BMICalculatorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BMRCalculatorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,7 +23,10 @@
             DataContext="{Binding RelativeSource={RelativeSource FindAncestor, 
                 AncestorType={x:Type UserControl}}, Path=DataContext}">
 
-            <TextBox Text="{Binding Value}"/>
+            <TextBox Text="{Binding Value}"
+                     TextAlignment="Center"
+                     FontStyle="Italic"
+                     Foreground="{StaticResource GrayBrush}"/>
 
         </input:LeftEntryControl>
 

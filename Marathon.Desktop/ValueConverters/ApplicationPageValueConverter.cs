@@ -83,6 +83,8 @@ namespace Marathon.Desktop.ValueConverters
                     return new ManageUserPage();
                 case ApplicationPage.BMICalculator:
                     return new BMICalculatorPage();
+                case ApplicationPage.BMRCalculator:
+                    return new BMRCalculatorPage();
                 default:
                     Debugger.Break();
                     return null;

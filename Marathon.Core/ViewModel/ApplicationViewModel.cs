@@ -12,7 +12,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// The current page of the application
         /// </summary>
-        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Main;
+        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.BMRCalculator;
 
         /// <summary>
         /// The previous page of the application
