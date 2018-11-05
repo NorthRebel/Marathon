@@ -68,10 +68,7 @@ namespace Marathon.Core.ViewModel.UsersListToManage
 
         public UsersListToManageViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Управление пользователями"
-            };
+            PageCaption = new PageCaptionViewModel("Управление пользователями");
 
             UserTypes = new EntryViewModel<IEnumerable<string>>("Фильтр по ролям");
             AttributesToSort = new EntryViewModel<IEnumerable<string>>("Сортировать по");

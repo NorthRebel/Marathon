@@ -31,10 +31,7 @@ namespace Marathon.Core.ViewModel.CharitiesListToManage
 
         public CharitiesListToManageViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Управление благотворительными организациями",
-            };
+            PageCaption = new PageCaptionViewModel("Управление благотворительными организациями");
 
             Charities = new CharitiesListViewModel();
 

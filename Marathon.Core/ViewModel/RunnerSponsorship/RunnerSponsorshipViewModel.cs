@@ -28,11 +28,7 @@ namespace Marathon.Core.ViewModel.RunnerSponsorship
 
         public RunnerSponsorshipViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Мои спонсоры",
-                Description = "Здесь показаны все ваши спонсоры в Marathon Skills 2016."
-            };
+            PageCaption = new PageCaptionViewModel("Мои спонсоры", "Здесь показаны все ваши спонсоры в Marathon Skills 2016.");
         }
 
         #endregion

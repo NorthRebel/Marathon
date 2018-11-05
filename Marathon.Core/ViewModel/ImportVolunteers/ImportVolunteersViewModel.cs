@@ -53,10 +53,7 @@ namespace Marathon.Core.ViewModel.ImportVolunteers
 
         public ImportVolunteersViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Загрузка волонтеров",
-            };
+            PageCaption = new PageCaptionViewModel("Загрузка волонтеров");
 
             FileToImport = new EntryViewModel<string>("CSV файл волонтеров");
             ImportProgress = new ProgressViewModel();

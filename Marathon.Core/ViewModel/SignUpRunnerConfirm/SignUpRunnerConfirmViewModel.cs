@@ -34,12 +34,9 @@ namespace Marathon.Core.ViewModel.SignUpRunnerConfirm
         {
             OkCommand = new RelayCommand(x => GoBack());
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Спасибо за вашу регистрацию в качестве бегуна!",
-                Description = "Спасибо за вашу регистрацию в качестве бегуна в Marathon Skills 2016!\n" +
-                              "С вами свяжутся по поводу оплаты."
-            };
+            PageCaption = new PageCaptionViewModel("Спасибо за вашу регистрацию в качестве бегуна!",
+                "Спасибо за вашу регистрацию в качестве бегуна в Marathon Skills 2016!\n" +
+                "С вами свяжутся по поводу оплаты.");
         }
 
         #endregion

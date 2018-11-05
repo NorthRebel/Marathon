@@ -38,13 +38,10 @@ namespace Marathon.Core.ViewModel.RunnerResults
 
         public RunnerResultsViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Мои результаты",
-                Description = "Это - список всех ваших прошлых результатов гонки для Marathon Skills. " +
-                              "Общее место сравнивает всех бегунов. " +
-                              "Место по категории сравнивает бегунов с одинаковым полом и возрастной категорией."
-            };
+            PageCaption = new PageCaptionViewModel("Мои результаты",
+                "Это - список всех ваших прошлых результатов гонки для Marathon Skills. " +
+                "Общее место сравнивает всех бегунов. " +
+                "Место по категории сравнивает бегунов с одинаковым полом и возрастной категорией.");
 
             Gender = new EntryViewModel<string>("Пол");
 

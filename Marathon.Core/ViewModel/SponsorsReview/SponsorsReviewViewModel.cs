@@ -37,10 +37,7 @@ namespace Marathon.Core.ViewModel.SponsorsReview
 
         public SponsorsReviewViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Просмотр спонсоров"
-            };
+            PageCaption = new PageCaptionViewModel("Просмотр спонсоров");
         }
 
         #endregion

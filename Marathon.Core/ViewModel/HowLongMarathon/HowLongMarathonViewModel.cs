@@ -69,10 +69,7 @@ namespace Marathon.Core.ViewModel.HowLongMarathon
         public HowLongMarathonViewModel(IMarathonDistance marathonDistance)
         {
             _marathonDistance = marathonDistance;
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Насколько долгий марафон?"
-            };
+            PageCaption = new PageCaptionViewModel("Насколько долгий марафон?");
         }
 
         /// <summary>

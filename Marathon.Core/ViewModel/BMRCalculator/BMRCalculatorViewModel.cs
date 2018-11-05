@@ -69,10 +69,7 @@ namespace Marathon.Core.ViewModel.BMRCalculator
 
         public BMRCalculatorViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "BMR калькулятор"
-            };
+            PageCaption = new PageCaptionViewModel("BMR калькулятор");
 
             Growth = new EntryViewModel<double?>("Рост");
             Weight = new EntryViewModel<double?>("Вес");

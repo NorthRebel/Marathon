@@ -19,10 +19,9 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public PageCaptionDesignModel()
+        public PageCaptionDesignModel() : base("Заголовок страницы", "Краткое описание страницы")
         {
-            Caption = "Заголовок страницы";
-            Description = "Краткое описание страницы";
+
         }
 
         #endregion

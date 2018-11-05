@@ -72,10 +72,7 @@ namespace Marathon.Core.ViewModel.ManageUser
             // TODO: Replace to ctor parameter
             ManagementType = UserManagementType.Edit;
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = GetCaptionByManagementType(ManagementType)
-            };
+            PageCaption = new PageCaptionViewModel(GetCaptionByManagementType(ManagementType));
 
             Email = new EntryViewModel<string>(nameof(Email));
             FirstName = new EntryViewModel<string>("Имя");

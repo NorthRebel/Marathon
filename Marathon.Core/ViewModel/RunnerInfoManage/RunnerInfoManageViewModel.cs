@@ -101,10 +101,7 @@ namespace Marathon.Core.ViewModel.RunnerInfoManage
 
         public RunnerInfoManageViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption= "Управление бегуном"
-            };
+            PageCaption = new PageCaptionViewModel("Управление бегуном");
 
             Email = new EntryViewModel<string>(nameof(Email));
             FirstName = new EntryViewModel<string>("Имя");

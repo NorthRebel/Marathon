@@ -86,10 +86,7 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
 
         public EditRunnerProfileViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Редактирование профиля"
-            };
+            PageCaption = new PageCaptionViewModel("Редактирование профиля");
 
             #region Initialize entries
 

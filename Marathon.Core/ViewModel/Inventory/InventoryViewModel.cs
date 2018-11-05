@@ -37,10 +37,7 @@ namespace Marathon.Core.ViewModel.Inventory
 
         public InventoryViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Инвентарь"
-            };
+            PageCaption = new PageCaptionViewModel("Инвентарь");
 
             InventoryItems = new InventoryListViewModel();
 

@@ -68,10 +68,7 @@ namespace Marathon.Core.ViewModel.VolunteersListToManage
 
         public VolunteersListToManageViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Управление волонтерами",
-            };
+            PageCaption = new PageCaptionViewModel("Управление волонтерами");
 
             Countries = new EntryViewModel<IEnumerable<string>>("Страна");
             Genders = new EntryViewModel<IEnumerable<string>>("Пол");

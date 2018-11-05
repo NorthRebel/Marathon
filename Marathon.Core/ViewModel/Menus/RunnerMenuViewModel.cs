@@ -50,10 +50,7 @@ namespace Marathon.Core.ViewModel.Menus
             MySponsorshipCommand = new RelayCommand(ShowMySponsorshipOfCurenntMarathon);
             ShowContactsCommand = new RelayCommand(ShowCoordinatorsContacts);
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Меню бегуна"
-            };
+            PageCaption = new PageCaptionViewModel("Меню бегуна");
         }
 
         #endregion

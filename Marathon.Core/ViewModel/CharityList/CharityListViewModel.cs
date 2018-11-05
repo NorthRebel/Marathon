@@ -22,12 +22,9 @@ namespace Marathon.Core.ViewModel.CharityList
 
         public CharityListViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Список благотворительных организаций",
-                Description = "Это - список всех благотворительных учреждений, которые поддерживаются в Marathon Skills 2016. " +
-                              "Спасибо за помощь вы поддерживаете их, спонсируя бегунов!"
-            };
+            PageCaption = new PageCaptionViewModel("Список благотворительных организаций",
+                "Это - список всех благотворительных учреждений, которые поддерживаются в Marathon Skills 2016. " +
+                "Спасибо за помощь вы поддерживаете их, спонсируя бегунов!");
         }
 
         #endregion

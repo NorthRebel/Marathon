@@ -77,10 +77,7 @@ namespace Marathon.Core.ViewModel.MarathonResults
 
         public MarathonResultsViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Результаты предыдущих гонок"
-            };
+            PageCaption = new PageCaptionViewModel("Результаты предыдущих гонок");
 
             Marathons = new EntryViewModel<IEnumerable<string>>("Марафон");
             Distances = new EntryViewModel<IEnumerable<string>>("Дистанция");

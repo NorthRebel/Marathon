@@ -37,11 +37,8 @@ namespace Marathon.Core.ViewModel
 
         public SignInViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Форма авторизации",
-                Description = "Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль"
-            };
+            PageCaption = new PageCaptionViewModel("Форма авторизации",
+                "Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль");
 
             SignInCommand = new RelayCommand(async (password) => await SignInAsync(password));
             CancelCommand = new RelayCommand(x => Cancel());

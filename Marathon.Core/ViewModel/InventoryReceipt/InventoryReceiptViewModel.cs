@@ -33,10 +33,7 @@ namespace Marathon.Core.ViewModel.InventoryReceipt
 
         public InventoryReceiptViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Поступление инвентаря"
-            };
+            PageCaption = new PageCaptionViewModel("Поступление инвентаря");
 
             SaveCommand = new RelayCommand(RegisterInventoryReceipt);
         }

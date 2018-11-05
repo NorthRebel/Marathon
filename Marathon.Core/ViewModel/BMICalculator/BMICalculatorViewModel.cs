@@ -45,10 +45,7 @@ namespace Marathon.Core.ViewModel.BMICalculator
 
         public BMICalculatorViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "BMI калькулятор"
-            };
+            PageCaption = new PageCaptionViewModel("BMI калькулятор");
 
             Growth = new EntryViewModel<double?>("Рост");
             Weight = new EntryViewModel<double?>("Вес");

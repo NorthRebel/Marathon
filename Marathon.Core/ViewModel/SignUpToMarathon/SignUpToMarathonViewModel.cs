@@ -58,12 +58,9 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
             SignInCommand = new RelayCommand(ConfirmSignUp);
             CancelCommand = new RelayCommand(CancelSignUp);
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Регистрация на марафон",
-                Description = "Пожалуйста, заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2016 проводимом в Москве. Россия. " +
-                              "С вами свяжутся после регистрации, для уточнения оплаты и другой информации."
-            };
+            PageCaption = new PageCaptionViewModel("Регистрация на марафон",
+                "Пожалуйста, заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2016 проводимом в Москве. Россия. " +
+                "С вами свяжутся после регистрации, для уточнения оплаты и другой информации.");
         }
 
         #endregion

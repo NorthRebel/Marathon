@@ -86,11 +86,8 @@ namespace Marathon.Core.ViewModel
 
         public SignUpRunnerViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Регистрация бегуна",
-                Description = "Пожалуйста заполните всю информацию, чтобы зарегистрироваться в качестве бегуна"
-            };
+            PageCaption = new PageCaptionViewModel("Регистрация бегуна",
+                "Пожалуйста заполните всю информацию, чтобы зарегистрироваться в качестве бегуна");
 
             #region Initialize entries
 

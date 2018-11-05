@@ -31,12 +31,9 @@ namespace Marathon.Core.ViewModel.SponsorRunner
 
         public SponsorRunnerViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Спонсор бегуна",
-                Description = "Пожалуйста выберите бегуна, которого вы отели бы спонсировать и сумму, которую вы хотели бы спонсировать. " +
-                              "Спасибо за вашу поддержку бегунов и их благотворительных учреждений."
-            };
+            PageCaption = new PageCaptionViewModel("Спонсор бегуна",
+                "Пожалуйста выберите бегуна, которого вы отели бы спонсировать и сумму, которую вы хотели бы спонсировать. " +
+                "Спасибо за вашу поддержку бегунов и их благотворительных учреждений.");
         }
 
         #endregion

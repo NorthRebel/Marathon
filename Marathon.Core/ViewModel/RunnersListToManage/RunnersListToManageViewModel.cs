@@ -72,10 +72,7 @@ namespace Marathon.Core.ViewModel.RunnersListToManage
 
         public RunnersListToManageViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Управление бегунами",
-            };
+            PageCaption = new PageCaptionViewModel("Управление бегунами");
 
             Statuses = new EntryViewModel<IEnumerable<string>>("Статус");
             Distances = new EntryViewModel<IEnumerable<string>>("Дистанция");

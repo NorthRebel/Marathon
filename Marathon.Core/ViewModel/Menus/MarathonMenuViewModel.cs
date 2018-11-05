@@ -56,10 +56,7 @@ namespace Marathon.Core.ViewModel.Menus
             BmiCalculatorCommand = new RelayCommand(x => GoToPage(ApplicationPage.BMICalculator));
             BmrCalculatorCommand = new RelayCommand(x => GoToPage(ApplicationPage.BMRCalculator));
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Подробная информация"
-            };
+            PageCaption = new PageCaptionViewModel("Подробная информация");
         }
 
         #endregion

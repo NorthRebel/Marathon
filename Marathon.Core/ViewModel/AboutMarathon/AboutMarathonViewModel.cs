@@ -52,10 +52,7 @@ namespace Marathon.Core.ViewModel.AboutMarathon
         {
             OpenInteractiveMapCommand = new RelayCommand(x => GoToPage(ApplicationPage.InteractiveMap));
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Информация о Marathon Skills 2016"
-            };
+            PageCaption = new PageCaptionViewModel("Информация о Marathon Skills 2016");
         }
 
         #endregion

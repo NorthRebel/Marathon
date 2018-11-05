@@ -38,10 +38,7 @@ namespace Marathon.Core.ViewModel.Menus
 
         public AdministratorMenuViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Меню администратора"
-            };
+            PageCaption = new PageCaptionViewModel("Меню администратора");
 
             ManageInventoryCommand = new RelayCommand(x => GoToPage(ApplicationPage.Inventory));
             ManageUsersCommand = new RelayCommand(x => GoToPage(ApplicationPage.UsersListToManage));

@@ -28,10 +28,7 @@ namespace Marathon.Core.ViewModel.Menus
 
         public CoordinatorMenuViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Меню координатора"
-            };
+            PageCaption = new PageCaptionViewModel("Меню координатора");
 
             ManageRunnersCommand = new RelayCommand(x => GoToPage(ApplicationPage.RunnersListToManage));
             SponsorsReviewCommand = new RelayCommand(x => GoToPage(ApplicationPage.SponsorsReview));

@@ -58,11 +58,8 @@ namespace Marathon.Core.ViewModel.ManageCharity
 
         public ManageCharityViewModel()
         {
-            PageCaption = new PageCaptionViewModel
-            {
-                // TODO: Add manage type selection
-                Caption = "Добавление/Редактирование благотворительных организаций",
-            };
+            // TODO: Add manage type selection
+            PageCaption = new PageCaptionViewModel("Добавление/Редактирование благотворительных организаций");
 
             Name = new EntryViewModel<string>("Наименование");
             Logo = new EntryViewModel<byte[]>("Текущий логотип");

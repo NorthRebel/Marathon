@@ -44,12 +44,9 @@ namespace Marathon.Core.ViewModel.SponsorshipConfirm
         {
             GoBackCommand = new RelayCommand(x => GoBack());
 
-            PageCaption = new PageCaptionViewModel
-            {
-                Caption = "Спасибо за вашу спонсорскую поддержку!",
-                Description = "Спасибо за поддержку бегуна в Marathon Skills 2016! " +
-                              "Ваше пожертвование пойдет в его благотворительную организацию."
-            };
+            PageCaption = new PageCaptionViewModel("Спасибо за вашу спонсорскую поддержку!",
+                "Спасибо за поддержку бегуна в Marathon Skills 2016! " +
+                "Ваше пожертвование пойдет в его благотворительную организацию.");
         }
 
         #endregion
