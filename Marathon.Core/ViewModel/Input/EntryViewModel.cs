@@ -18,7 +18,7 @@ namespace Marathon.Core.ViewModel.Input
         /// <summary>
         /// Value of input content
         /// </summary>
-        public T Value { get; set; }
+        public virtual T Value { get; set; }
 
         #endregion
 
