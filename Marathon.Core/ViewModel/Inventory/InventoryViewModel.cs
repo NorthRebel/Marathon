@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.Inventory.Dialogs.Design;
 using Marathon.Core.ViewModel.Inventory.InventoryList;
 using Marathon.Core.ViewModel.PageCaption;
 
@@ -52,9 +53,10 @@ namespace Marathon.Core.ViewModel.Inventory
 
         #region Command Helpers
 
-        private void ShowPrintPreviewReport(object obj)
+        private async void ShowPrintPreviewReport(object obj)
         {
-            throw new System.NotImplementedException();
+            // TODO: Replace dummy data
+            await IoC.IoC.UI.ShowInventoryReport(new InventoryReportDialogDesignModel());
         }
         
 

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Marathon.Core.ViewModel.Dialogs;
+using Marathon.Core.ViewModel.Inventory.Dialogs;
 
 namespace Marathon.Core.IoC.Interfaces
 {
@@ -29,5 +30,10 @@ namespace Marathon.Core.IoC.Interfaces
         /// Displays a dialog message about activity levels
         /// </summary>
         Task ShowAboutActivityLevels(AboutActivityLevelsDialogViewModel viewModel);
+
+        /// <summary>
+        /// Displays a dialog message of report about inventory state
+        /// </summary>
+        Task ShowInventoryReport(InventoryReportDialogViewModel viewModel);
     }
 }

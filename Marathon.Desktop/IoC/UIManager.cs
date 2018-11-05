@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Marathon.Core.IoC.Interfaces;
 using Marathon.Core.ViewModel.Dialogs;
+using Marathon.Core.ViewModel.Inventory.Dialogs;
 using Marathon.Desktop.Dialogs;
 
 namespace Marathon.Desktop.IoC
@@ -40,6 +41,14 @@ namespace Marathon.Desktop.IoC
         public Task ShowAboutActivityLevels(AboutActivityLevelsDialogViewModel viewModel)
         {
             return new AboutActivityLevelsDialog().ShowDialog(viewModel);
+        }
+
+        /// <summary>
+        /// Displays a dialog message of report about inventory state
+        /// </summary>
+        public Task ShowInventoryReport(InventoryReportDialogViewModel viewModel)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
