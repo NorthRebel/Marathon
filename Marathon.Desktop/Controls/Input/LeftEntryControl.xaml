@@ -28,7 +28,8 @@
                 <TextBlock Text="{Binding Label, StringFormat='{}{0}:'}"
                            Grid.Column="0"
                            HorizontalAlignment="Right"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center"
+                           x:Name="EntryLabel"/>
 
                 <!--Content-->
                 <ContentPresenter Grid.Column="1" 

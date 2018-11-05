@@ -20,9 +20,39 @@ namespace Marathon.Desktop.Controls.Input
     /// </summary>
     public partial class LeftEntryControl : UserControl
     {
+        #region Dependency Properties
+
+        public FontWeight LabelWeight
+        {
+            get => (FontWeight)GetValue(LabelWeightProperty);
+            set => SetValue(LabelWeightProperty, value);
+        }
+
+        public static readonly DependencyProperty LabelWeightProperty =
+            DependencyProperty.Register(nameof(LabelWeight), typeof(FontWeight), typeof(LeftEntryControl),
+                new PropertyMetadata(default(FontWeight), LabelWeightPropertyChanged));
+       
+        #endregion
+
         public LeftEntryControl()
         {
             InitializeComponent();
         }
+
+        #region Dependency Helpers
+
+        private static void LabelWeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is LeftEntryControl entryControl)
+            {
+                if (entryControl.ApplyTemplate())
+                {
+                    var entryLabel = entryControl.Template.FindName("EntryLabel", entryControl) as TextBlock;
+                    entryLabel.FontWeight = (FontWeight) e.NewValue;
+                }
+            }
+        }
+
+        #endregion
     }
 }
