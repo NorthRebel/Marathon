@@ -166,6 +166,9 @@
     <Compile Include="Controls\VolunteersListToManage\VolunteersListControl.xaml.cs">
       <DependentUpon>VolunteersListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AboutActivityLevelsDialog.xaml.cs">
+      <DependentUpon>AboutActivityLevelsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AboutCharityDialog.xaml.cs">
       <DependentUpon>AboutCharityDialog.xaml</DependentUpon>
     </Compile>
@@ -421,6 +424,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\VolunteersListToManage\VolunteersListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\AboutActivityLevelsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

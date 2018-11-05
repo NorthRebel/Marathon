@@ -33,5 +33,13 @@ namespace Marathon.Desktop.IoC
         {
             return new CoordinatorsContactsDialog().ShowDialog(viewModel);
         }
+
+        /// <summary>
+        /// Displays a dialog message about activity levels
+        /// </summary>
+        public Task ShowAboutActivityLevels(AboutActivityLevelsDialogViewModel viewModel)
+        {
+            return new AboutActivityLevelsDialog().ShowDialog(viewModel);
+        }
     }
 }

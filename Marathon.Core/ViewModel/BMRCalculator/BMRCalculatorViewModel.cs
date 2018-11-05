@@ -3,6 +3,7 @@ using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.BMRCalculator.Models;
+using Marathon.Core.ViewModel.Dialogs;
 
 namespace Marathon.Core.ViewModel.BMRCalculator
 {
@@ -90,9 +91,19 @@ namespace Marathon.Core.ViewModel.BMRCalculator
         #region Command Helpers
 
         /// <inheritdoc cref="AboutActivityLevelsCommand"/>
-        private void ShowActivityLevels(object obj)
+        private async void ShowActivityLevels(object obj)
         {
-            throw new System.NotImplementedException();
+            await IoC.IoC.UI.ShowAboutActivityLevels(new AboutActivityLevelsDialogViewModel
+            {
+                ActivityLevels = new []
+                {
+                    new EntryViewModel<string>("Сидячий образ") {Value = "Нет работы или работа за столом"}, 
+                    new EntryViewModel<string>("Маленькая активность") {Value = "Мало физических работы или занятия спортом 1-3 раза в неделю"}, 
+                    new EntryViewModel<string>("Средняя активность") {Value = "Умеренная физическая работа или занятия спортом 3 - 5 дней в неделю"}, 
+                    new EntryViewModel<string>("Сильная активность") {Value = "Сильные физическая нагрузка или занятия спортом 6 - 7 дней в неделю"}, 
+                    new EntryViewModel<string>("Максимальная активность") {Value = "Сильная ежедневная физическая нагрузка или спорт и физическая работа"}, 
+                }
+            });
         }
         
         /// <summary>

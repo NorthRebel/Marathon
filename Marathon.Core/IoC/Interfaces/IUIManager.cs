@@ -24,5 +24,10 @@ namespace Marathon.Core.IoC.Interfaces
         /// Displays a dialog message about coordinators contacts
         /// </summary>
         Task ShowCoordinatorsContacts(CoordinatorsContactsDialogViewModel viewModel);
+
+        /// <summary>
+        /// Displays a dialog message about activity levels
+        /// </summary>
+        Task ShowAboutActivityLevels(AboutActivityLevelsDialogViewModel viewModel);
     }
 }
