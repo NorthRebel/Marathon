@@ -24,6 +24,7 @@
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
         <Setter Property="FontFamily" Value="{StaticResource MainFont}" />
+        <Setter Property="Foreground" Value="{StaticResource DarkGrayBrush}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
     </Style>
     
