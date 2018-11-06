@@ -670,6 +670,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-Bold.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-BoldItalic.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-ExtraBold.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-ExtraBoldItalic.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-Italic.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-Light.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-LightItalic.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-Regular.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-Semibold.ttf" />
+    <Resource Include="Fonts\open-sans\OpenSans-SemiboldItalic.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -705,6 +715,9 @@
     <Resource Include="Images\BMICalculator\Result\bmi-obese-icon.png" />
     <Resource Include="Images\BMICalculator\Result\bmi-overweight-icon.png" />
     <Resource Include="Images\BMICalculator\Result\bmi-underweight-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\open-sans\Apache License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.2.9\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.9\build\Fody.targets')" />

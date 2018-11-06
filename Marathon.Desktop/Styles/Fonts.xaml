@@ -4,7 +4,6 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:local="clr-namespace:Marathon.Desktop">
 
-    <FontFamily x:Key="FontAwesome">pack://appliction;,,,/Fonts/#FontAwesome</FontFamily>
 
     <!--Font sizes-->
     <system:Double x:Key="FontSizeSmaller">10</system:Double>
@@ -18,8 +17,9 @@
     <system:Double x:Key="FontSizeUltraGigant">60</system:Double>
 
     <!--Font families-->
-    <media:FontFamily x:Key="MainFont">Open Sans Light</media:FontFamily>
-    <media:FontFamily x:Key="TitleFont">Open Sans Semibold</media:FontFamily>
+    <FontFamily x:Key="MainFont">pack://appliction;,,,/Fonts/open-sans/#OpenSans-Light</FontFamily>
+    <FontFamily x:Key="TitleFont">pack://appliction;,,,/Fonts/open-sans/#OpenSans-Semibold</FontFamily>
+    <FontFamily x:Key="FontAwesome">pack://appliction;,,,/Fonts/#FontAwesome</FontFamily>
     <media:FontFamily x:Key="AlternateFont">Arial</media:FontFamily>
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
