@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Marathon.Application.Repositories;
 using Marathon.Application.Tests.Extensions;
-using Marathon.Application.Users.Commands.Login;
+using Marathon.Application.Users.Commands.SignIn;
 using Marathon.Domain.Entities;
 using Moq;
 using Xunit;
@@ -13,17 +13,17 @@ using Xunit;
 namespace Marathon.Application.Tests.Users.Commands
 {
     /// <summary>
-    /// Unit test module for <see cref="LoginUserCommand"/>
+    /// Unit test module for <see cref="SignInCommand"/>
     /// </summary>
-    public sealed class LoginUserCommandTests
+    public sealed class SignInCommandTests
     {
-        private readonly LoginUserCommandHandler _commandHandler;
+        private readonly SignInCommandHandler _commandHandler;
         private readonly List<User> _users;
 
         private readonly Mock<IReadOnlyRepository<User>> _userReadRepository;
         private readonly CancellationToken _cancellationToken;
 
-        public LoginUserCommandTests()
+        public SignInCommandTests()
         {
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             _cancellationToken = cancelTokenSource.Token;
@@ -31,12 +31,12 @@ namespace Marathon.Application.Tests.Users.Commands
             _users = new List<User>();
             _userReadRepository = new Mock<IReadOnlyRepository<User>>();
 
-            _commandHandler = new LoginUserCommandHandler(_userReadRepository.Object);
+            _commandHandler = new SignInCommandHandler(_userReadRepository.Object);
         }
 
         [Theory]
         [JsonFileData("UserData.json", "LoginData")]
-        public async Task ReturnsUserById(LoginUserCommand request, User expected)
+        public async Task ReturnsUserById(SignInCommand request, User expected)
         {
             // Arrange
             User user = null;

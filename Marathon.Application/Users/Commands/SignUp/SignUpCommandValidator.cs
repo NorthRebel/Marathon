@@ -1,18 +1,17 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using FluentValidation;
 
-namespace Marathon.Application.Users.Commands.Register
+namespace Marathon.Application.Users.Commands.SignUp
 {
     /// <summary>
-    /// Rules for arguments of <see cref="RegisterRunnerCommand"/> to right complete them
+    /// Rules for arguments of <see cref="SignUpCommand"/> to right complete them
     /// </summary>
-    public sealed class RegisterRunnerCommandValidator : AbstractValidator<RegisterRunnerCommand>
+    public sealed class SignUpCommandValidator : AbstractValidator<SignUpCommand>
     {
         private readonly Regex _upperLetterRegex = new Regex("[A-Z]+");
         private readonly Regex _specialSymbolRegex = new Regex("[!@#$%^]");
 
-        public RegisterRunnerCommandValidator()
+        public SignUpCommandValidator()
         {
             RuleFor(x => x.Email)
                 .NotEmpty()

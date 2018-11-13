@@ -7,7 +7,7 @@ using Marathon.Application.Exceptions;
 using Marathon.Application.Repositories;
 using Marathon.Application.Tests.Extensions;
 using Marathon.Application.Tests.Infrastructure;
-using Marathon.Application.Users.Commands.Register;
+using Marathon.Application.Users.Commands.SignUp;
 using Marathon.Application.Users.Queries;
 using Marathon.Domain.Entities;
 using Moq;
@@ -16,11 +16,11 @@ using Xunit;
 namespace Marathon.Application.Tests.Users.Commands
 {
     /// <summary>
-    /// Unit test module for <see cref="RegisterRunnerCommand"/>
+    /// Unit test module for <see cref="SignUpCommand"/>
     /// </summary>
-    public sealed class RegisterRunnerCommandTests
+    public sealed class SignUpCommandTests
     {
-        private readonly RegisterRunnerCommandHandler _registerRunnerCommand;
+        private readonly SignUpCommandHandler _registerRunnerCommand;
         private readonly CheckUserQueryHandler _checkUserQuery;
 
         private Mock<IRepository<Runner>> _runnerRepository;
@@ -32,7 +32,7 @@ namespace Marathon.Application.Tests.Users.Commands
         public IEnumerable<Runner> Runners { get; }
         public IEnumerable<User> Users { get; }
 
-        public RegisterRunnerCommandTests()
+        public SignUpCommandTests()
         {
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             _cancellationToken = cancelTokenSource.Token;
@@ -56,7 +56,7 @@ namespace Marathon.Application.Tests.Users.Commands
 
             _checkUserQuery = new CheckUserQueryHandler(_userReadRepository.Object);
             _registerRunnerCommand =
-                new RegisterRunnerCommandHandler(_runnerRepository.Object, _userWriteRepository.Object, _checkUserQuery);
+                new SignUpCommandHandler(_runnerRepository.Object, _userWriteRepository.Object, _checkUserQuery);
 
         }
 
@@ -78,7 +78,7 @@ namespace Marathon.Application.Tests.Users.Commands
 
         [Theory]
         [JsonFileData("RunnersRequests.json", "EmailMustBeUnique")]
-        public async Task EmailMustBeUnique(RegisterRunnerCommand request)
+        public async Task EmailMustBeUnique(SignUpCommand request)
         {
             // Arrange
             _userReadRepository

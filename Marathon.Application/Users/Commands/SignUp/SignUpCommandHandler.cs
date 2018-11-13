@@ -6,18 +6,18 @@ using Marathon.Application.Users.Queries;
 using Marathon.Domain.Entities;
 using MediatR;
 
-namespace Marathon.Application.Users.Commands.Register
+namespace Marathon.Application.Users.Commands.SignUp
 {
     /// <summary>
-    /// Handles <see cref="RegisterRunnerCommand"/>
+    /// Handles <see cref="SignUpCommand"/>
     /// </summary>
-    public sealed class RegisterRunnerCommandHandler : IRequestHandler<RegisterRunnerCommand, Unit>
+    public sealed class SignUpCommandHandler : IRequestHandler<SignUpCommand, Unit>
     {
         private readonly IRepository<Runner> _runnerRepository;
         private readonly IRepository<User> _userRepository;
         private readonly IRequestHandler<CheckUserQuery, bool> _userChecker;
 
-        public RegisterRunnerCommandHandler(IRepository<Runner> runnerRepository, 
+        public SignUpCommandHandler(IRepository<Runner> runnerRepository, 
             IRepository<User> userRepository,
             IRequestHandler<CheckUserQuery, bool> userChecker)
         {
@@ -26,7 +26,7 @@ namespace Marathon.Application.Users.Commands.Register
             _userChecker = userChecker;
         }
 
-        public async Task<Unit> Handle(RegisterRunnerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
             if (await _userChecker.Handle(new CheckUserQuery { Email = request.Email}, cancellationToken))
                 throw new UserAlreadyExistsException(request.Email);

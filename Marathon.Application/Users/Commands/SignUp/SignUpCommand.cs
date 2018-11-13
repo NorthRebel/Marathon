@@ -2,12 +2,12 @@
 using Marathon.Domain.Entities;
 using MediatR;
 
-namespace Marathon.Application.Users.Commands.Register
+namespace Marathon.Application.Users.Commands.SignUp
 {
     /// <summary>
     /// Command requirements to register <see cref="Runner"/>
     /// </summary>
-    public sealed class RegisterRunnerCommand : IRequest
+    public sealed class SignUpCommand : IRequest
     {
         public string Email { get; set; }
         public string Password { get; set; }
