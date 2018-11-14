@@ -28,10 +28,29 @@ namespace Marathon.Application.Users.Commands.SignUp
 
         public async Task<Unit> Handle(SignUpCommand request, CancellationToken cancellationToken)
         {
-            if (await _userChecker.Handle(new CheckUserQuery { Email = request.Email}, cancellationToken))
-                throw new UserAlreadyExistsException(request.Email);
+            await CheckExistUser(request.Email, cancellationToken);
 
-            var user = new User
+            long userId = await CreateNewUser(request, cancellationToken);
+            
+            await CreateNewRunner(request, userId, cancellationToken);
+            
+            return Unit.Value;
+        }
+
+        #region Command handler helpers
+
+        private async Task CheckExistUser(string email, CancellationToken cancellationToken)
+        {
+            if (await _userChecker.Handle(new CheckUserQuery { Email = email }, cancellationToken))
+                throw new UserAlreadyExistsException(email);
+        }
+
+        /// <summary>
+        /// Converts <see cref="SignUpCommand"/> DTO to <see cref="User"/> entity
+        /// </summary>
+        private User UserProjection(SignUpCommand request)
+        {
+            return new User
             {
                 Email = request.Email,
                 Password = request.Password,
@@ -40,23 +59,51 @@ namespace Marathon.Application.Users.Commands.SignUp
                 // TODO: How to get user type?
                 //UserType = 
             };
+        }
 
-            _userRepository.Add(user);
-            await _userRepository.SaveChangesAsync(cancellationToken);
-
-            var runner = new Runner
+        /// <summary>
+        /// Converts <see cref="SignUpCommand"/> DTO to <see cref="Runner"/> entity
+        /// </summary>
+        private Runner RunnerProjection(SignUpCommand request, long userId)
+        {
+            return new Runner
             {
-                UserId = user.Id,
+                UserId = userId,
                 Photo = request.Photo,
                 CountryId = request.CountryId,
                 DateOfBirth = request.DateOfBirth,
                 GenderId = request.GenderId
             };
+        }
+
+        /// <summary>
+        /// Converts <see cref="SignUpCommand"/> DTO to <see cref="User"/> entity and save it to user repository
+        /// </summary>
+        /// <param name="request">Command's request DTO</param> 
+        /// <returns>ID of new user</returns>
+        private async Task<long> CreateNewUser(SignUpCommand request, CancellationToken cancellationToken)
+        {
+            var user = UserProjection(request);
+
+            _userRepository.Add(user);
+            await _userRepository.SaveChangesAsync(cancellationToken);
+
+            return user.Id;
+        }
+
+        /// <summary>
+        /// Converts <see cref="SignUpCommand"/> DTO to <see cref="Runner"/> entity and save it to runner repository
+        /// </summary>
+        /// <param name="request">Command's request DTO</param>
+        /// <param name="userId">ID of new user</param>
+        private async Task CreateNewRunner(SignUpCommand request, long userId, CancellationToken cancellationToken)
+        {
+            var runner = RunnerProjection(request, userId);
 
             _runnerRepository.Add(runner);
             await _runnerRepository.SaveChangesAsync(cancellationToken);
-
-            return Unit.Value;
         }
+
+        #endregion
     }
 }
