@@ -30,5 +30,43 @@
         "RoleId": 3
       }
     ]
+  ],
+  "RunnerMustGetIdAfterSignUp": [
+    [
+      {
+        "Email": "ilene.reese@yahoo.com",
+        "Password": "x7x0x0#5",
+        "FirstName": "ILENE",
+        "LastName": "REESE",
+        "RoleId": 3
+      }
+    ],
+    [
+      {
+        "Email": "ima.champion@hotmail.com",
+        "Password": "rYOWHVsA",
+        "FirstName": "IMA",
+        "LastName": "CHAMPION",
+        "RoleId": 3
+      }
+    ],
+    [
+      {
+        "Email": "ima@ew.net",
+        "Password": "nVZ#6p14",
+        "FirstName": "IMA",
+        "LastName": "MARION",
+        "RoleId": 3
+      }
+    ],
+    [
+      {
+        "Email": "imatson478@gmail.com",
+        "Password": "3xusJWLA",
+        "FirstName": "IRENE",
+        "LastName": "MATSON",
+        "RoleId": 3
+      }
+    ]
   ]
 }

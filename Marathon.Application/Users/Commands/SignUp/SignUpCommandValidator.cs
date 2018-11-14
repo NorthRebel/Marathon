@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using FluentValidation;
 
 namespace Marathon.Application.Users.Commands.SignUp
@@ -20,15 +22,11 @@ namespace Marathon.Application.Users.Commands.SignUp
                 .NotEmpty()
                 .MinimumLength(6)
                 .Matches(_upperLetterRegex)
-                // TODO: Match to one digit!
+                // TODO: Add one digit check (now it's very strange bug)
+                //.Must(x => x.Any(char.IsDigit))
                 .Matches(_specialSymbolRegex);
             RuleFor(x => x.DateOfBirth)
-                // TODO: Add age check
-                .NotEmpty();
-            RuleFor(x => x.CountryId)
-                .NotEmpty();
-            RuleFor(x => x.GenderId)
-                .NotEmpty();
+                .Must(x => AgeMustBeGreaterThan(x, 10));
             RuleFor(x => x.FirstName)
                 .NotEmpty();
             RuleFor(x => x.LastName)
@@ -36,5 +34,19 @@ namespace Marathon.Application.Users.Commands.SignUp
             RuleFor(x => x.Photo)
                 .NotEmpty();
         }
+
+        #region Validator Helpers
+        
+        /// <summary>
+        /// Entered date of birth must me greater than...
+        /// </summary>
+        private bool AgeMustBeGreaterThan(DateTime dateOfBirth, int ageToCompare)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - dateOfBirth.Year;
+            return age >= ageToCompare;
+        }
+        
+        #endregion
     }
 }
