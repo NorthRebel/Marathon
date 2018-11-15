@@ -5,7 +5,7 @@ using MediatR;
 namespace Marathon.Application.Users.Commands.SignUp
 {
     /// <summary>
-    /// Command requirements to register <see cref="Runner"/>
+    /// Command requirements to sign up <see cref="Runner"/> to marathon
     /// </summary>
     public sealed class SignUpCommand : IRequest
     {

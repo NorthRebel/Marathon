@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Application.Event.Queries.GetEventsByTypes;
-using Marathon.Application.Exceptions;
-using Marathon.Application.Marathon.Queries;
-using Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption;
-using Marathon.Application.Repositories;
 using Marathon.Domain.Entities;
-using MediatR;
+using Marathon.Application.Exceptions;
+using Marathon.Application.Repositories;
+using Marathon.Application.Marathon.Queries;
+using Marathon.Application.Event.Queries.GetEventsByTypes;
+using Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption;
 
 namespace Marathon.Application.Marathon.Commands
 {
@@ -18,20 +18,20 @@ namespace Marathon.Application.Marathon.Commands
     /// </summary>
     public sealed class SignUpToMarathonCommandHandler : IRequestHandler<SignUpToMarathonCommand, Unit>
     {
-        private readonly IRepository<Registration> _registrationRepository;
-        private readonly IRepository<RegistrationEvent> _registrationEventRepository;
+        private readonly IRepository<MarathonSignUp> _signUpRepository;
+        private readonly IRepository<SignUpMarathonEvent> _signUpEventRepository;
         private readonly IRequestHandler<SignUpStatusQuery, long> _marathonSignUpStatusFinder;
         private readonly IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> _eventsOfSelectedTypes;
         private readonly IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> _raceKitOptionCostHandler;
 
-        public SignUpToMarathonCommandHandler(IRepository<Registration> registrationRepository,
-            IRepository<RegistrationEvent> registrationEventRepository,
+        public SignUpToMarathonCommandHandler(IRepository<MarathonSignUp> signUpRepository,
+            IRepository<SignUpMarathonEvent> signUpEventRepository,
             IRequestHandler<SignUpStatusQuery, long> marathonSignUpStatusFinder,
             IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> eventsOfSelectedTypes,
             IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> raceKitOptionCostHandler)
         {
-            _registrationRepository = registrationRepository;
-            _registrationEventRepository = registrationEventRepository;
+            _signUpRepository = signUpRepository;
+            _signUpEventRepository = signUpEventRepository;
             _marathonSignUpStatusFinder = marathonSignUpStatusFinder;
             _eventsOfSelectedTypes = eventsOfSelectedTypes;
             _raceKitOptionCostHandler = raceKitOptionCostHandler;
@@ -41,9 +41,9 @@ namespace Marathon.Application.Marathon.Commands
         {
             EventsListViewModel eventsListViewModel = await GetEventsOfSelectedTypes(request.EventTypeIds, cancellationToken);
 
-            long registrationId = await SignUpRunnerToMarathon(request, GetEventsTotalCost(eventsListViewModel), cancellationToken);
+            long signUpId = await SignUpRunnerToMarathon(request, GetEventsTotalCost(eventsListViewModel), cancellationToken);
 
-            await AssignEventsOfRegistration(eventsListViewModel, registrationId, cancellationToken);
+            await AssignEventsOfSignUp(eventsListViewModel, signUpId, cancellationToken);
 
             return Unit.Value;
         }
@@ -63,56 +63,56 @@ namespace Marathon.Application.Marathon.Commands
         }
 
         /// <summary>
-        /// Converts <see cref="EventsListViewModel"/> to <see cref="RegistrationEvent"/> entities of current registration and save it to registrationEvent repository
+        /// Converts <see cref="EventsListViewModel"/> to <see cref="SignUpMarathonEvent"/> entities of current marathon sign up and save it to signUpEvent repository
         /// </summary>
-        private async Task AssignEventsOfRegistration(EventsListViewModel eventsListViewModel, long registrationId, CancellationToken cancellationToken)
+        private async Task AssignEventsOfSignUp(EventsListViewModel eventsListViewModel, long signUpId, CancellationToken cancellationToken)
         {
-            IEnumerable<RegistrationEvent> registrationEvents = RegistrationEventsProjection(eventsListViewModel, registrationId);
+            IEnumerable<SignUpMarathonEvent> signUpEvents = SignUpMarathonEventsProjection(eventsListViewModel, signUpId);
 
-            foreach (RegistrationEvent registrationEvent in registrationEvents)
-                _registrationEventRepository.Add(registrationEvent);
+            foreach (SignUpMarathonEvent signUpEvent in signUpEvents)
+                _signUpEventRepository.Add(signUpEvent);
 
-            await _registrationEventRepository.SaveChangesAsync(cancellationToken);
+            await _signUpEventRepository.SaveChangesAsync(cancellationToken);
         }
 
         /// <summary>
-        /// Converts <see cref="EventsListViewModel"/> to <see cref="RegistrationEvent"/> entities of current registration
+        /// Converts <see cref="EventsListViewModel"/> to <see cref="SignUpMarathonEvent"/> entities of current marathon sign up
         /// </summary>
-        private IEnumerable<RegistrationEvent> RegistrationEventsProjection(EventsListViewModel eventsListViewModel, long registrationId)
+        private IEnumerable<SignUpMarathonEvent> SignUpMarathonEventsProjection(EventsListViewModel eventsListViewModel, long signUpId)
         {
-            return eventsListViewModel.Events.Select(e => new RegistrationEvent
+            return eventsListViewModel.Events.Select(e => new SignUpMarathonEvent
             {
                 EventId = e.Id,
-                RegistrationId = registrationId
+                SignUpId = signUpId
             });
         }
 
         /// <summary>
-        /// Converts <see cref="SignUpToMarathonCommand"/> DTO to <see cref="Registration"/> entity and save it to registration repository
+        /// Converts <see cref="SignUpToMarathonCommand"/> DTO to <see cref="MarathonSignUp"/> entity and save it to sign up repository
         /// </summary>
         private async Task<long> SignUpRunnerToMarathon(SignUpToMarathonCommand request, decimal eventsTotalCost, CancellationToken cancellationToken)
         {
-            Registration runnerRegistration = await RegistrationProjection(request, eventsTotalCost, cancellationToken);
+            MarathonSignUp marathonSignUp = await SignUpProjection(request, eventsTotalCost, cancellationToken);
 
-            _registrationRepository.Add(runnerRegistration);
-            await _registrationRepository.SaveChangesAsync(cancellationToken);
+            _signUpRepository.Add(marathonSignUp);
+            await _signUpRepository.SaveChangesAsync(cancellationToken);
 
-            return runnerRegistration.Id;
+            return marathonSignUp.Id;
         }
 
         /// <summary>
-        /// Converts <see cref="SignUpToMarathonCommand"/> DTO to <see cref="Registration"/> entity
+        /// Converts <see cref="SignUpToMarathonCommand"/> DTO to <see cref="MarathonSignUp"/> entity
         /// </summary>
-        private async Task<Registration> RegistrationProjection(SignUpToMarathonCommand request, decimal eventsTotalCost, CancellationToken cancellationToken)
+        private async Task<MarathonSignUp> SignUpProjection(SignUpToMarathonCommand request, decimal eventsTotalCost, CancellationToken cancellationToken)
         {
-            return new Registration
+            return new MarathonSignUp
             {
-                RegisterDate = DateTime.UtcNow,
+                SignUpDate = DateTime.UtcNow,
                 SponsorshipTarget = request.SponsorshipTarget,
                 RunnerId = request.RunnerId,
                 CharityId = request.CharityId,
                 RaceKitOptionId = request.RaceKitOptionId,
-                RegistrationStatusId = await  GetInitialMarathonSignUpStatus(cancellationToken),
+                SignUpStatusId = await  GetInitialMarathonSignUpStatus(cancellationToken),
                 Cost = await GetCostOfSelectedRaceKitOption(request.RaceKitOptionId, cancellationToken) + eventsTotalCost
             };
         }
@@ -130,8 +130,7 @@ namespace Marathon.Application.Marathon.Commands
 
         private async Task<long> GetInitialMarathonSignUpStatus(CancellationToken cancellationToken)
         {
-            // TODO: Create enum for sign up status in domain layer
-            return await _marathonSignUpStatusFinder.Handle(new SignUpStatusQuery("Registered"), cancellationToken);
+            return await _marathonSignUpStatusFinder.Handle(new SignUpStatusQuery(Domain.Enumerations.SignUpStatus.SignedUp.ToString()), cancellationToken);
         }
 
         #endregion

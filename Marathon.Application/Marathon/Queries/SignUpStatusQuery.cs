@@ -23,22 +23,22 @@ namespace Marathon.Application.Marathon.Queries
 
     public sealed class SignUpStatusQueryHandler : IRequestHandler<SignUpStatusQuery, long>
     {
-        private readonly IReadOnlyRepository<RegistrationStatus> _registrationStatusRepository;
+        private readonly IReadOnlyRepository<SignUpStatus> _signUpStatusRepository;
 
-        public SignUpStatusQueryHandler(IReadOnlyRepository<RegistrationStatus> registrationStatusRepository)
+        public SignUpStatusQueryHandler(IReadOnlyRepository<SignUpStatus> signUpStatusRepository)
         {
-            _registrationStatusRepository = registrationStatusRepository;
+            _signUpStatusRepository = signUpStatusRepository;
         }
 
         public async Task<long> Handle(SignUpStatusQuery request, CancellationToken cancellationToken)
         {
-            RegistrationStatus regStatus = await _registrationStatusRepository.GetAsync(status => status.SingleOrDefault(s => s.Name == request.Name),
+            SignUpStatus signUpStatus = await _signUpStatusRepository.GetAsync(status => status.SingleOrDefault(s => s.Name == request.Name),
                 cancellationToken);
 
-            if (regStatus == null)
+            if (signUpStatus == null)
                 throw new SignUpStatusNotExistsException(request.Name);
 
-            return regStatus.Id;
+            return signUpStatus.Id;
         }
     }
 }

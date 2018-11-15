@@ -11,7 +11,7 @@ namespace Marathon.Domain.Entities
     {
         public Runner()
         {
-            Registrations = new HashSet<Registration>();
+            SignUps = new HashSet<MarathonSignUp>();
         }
 
         public long Id { get; set; }
@@ -24,6 +24,6 @@ namespace Marathon.Domain.Entities
         public User User { get; set; }
         public Gender Gender { get; set; }
         public Country Country { get; set; }
-        public ICollection<Registration> Registrations { get; set; }
+        public ICollection<MarathonSignUp> SignUps { get; set; }
     }
 }

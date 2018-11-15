@@ -10,7 +10,7 @@ namespace Marathon.Domain.Entities
     {
         public Charity()
         {
-            Registrations = new HashSet<Registration>();
+            SignUps = new HashSet<MarathonSignUp>();
         }
 
         public long Id { get; set; }
@@ -18,6 +18,6 @@ namespace Marathon.Domain.Entities
         public string Description { get; set; }
         public byte[] Logo { get; set; }
 
-        public ICollection<Registration> Registrations { get; set; }
+        public ICollection<MarathonSignUp> SignUps { get; set; }
     }
 }

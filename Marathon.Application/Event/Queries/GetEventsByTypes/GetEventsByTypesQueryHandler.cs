@@ -43,8 +43,7 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
                     Id = vm.Id,
                     StartDate = vm.StartDate,
                     Cost = vm.Cost,
-                    // TODO: Remove nullable from domain model
-                    MaxParticipants = vm.MaxParticipants.Value
+                    MaxParticipants = vm.MaxParticipants
                 }),
                 cancellationToken);
         }
