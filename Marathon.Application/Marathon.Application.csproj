@@ -13,4 +13,9 @@
     <PackageReference Include="MediatR" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Event\Commands\" />
+    <Folder Include="RaceKitOption\Commands\" />
+  </ItemGroup>
+
 </Project>
