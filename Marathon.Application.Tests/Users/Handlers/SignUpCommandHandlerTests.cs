@@ -6,12 +6,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
-using Marathon.Application.Exceptions;
 using Marathon.Application.Repositories;
 using Marathon.Application.Users.Queries;
 using Marathon.Application.Tests.Extensions;
 using Marathon.Application.Tests.Infrastructure;
 using Marathon.Application.Users.Commands.SignUp;
+using Marathon.Application.Users.Exceptions;
 using UserTypeEnum = Marathon.Domain.Enumerations.UserType;
 
 namespace Marathon.Application.Tests.Users.Handlers

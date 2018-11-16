@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Marathon.Domain.Entities;
-using Marathon.Application.Exceptions;
 using Marathon.Application.Repositories;
+using Marathon.Application.Users.Exceptions;
 
 namespace Marathon.Application.Marathon.Queries
 {

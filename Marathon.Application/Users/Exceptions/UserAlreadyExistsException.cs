@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Marathon.Application.Exceptions
+namespace Marathon.Application.Users.Exceptions
 {
     /// <summary>
     /// Exception that throws if user (by email) already exists 

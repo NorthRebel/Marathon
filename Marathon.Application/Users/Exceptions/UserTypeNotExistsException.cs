@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Marathon.Application.Exceptions
+namespace Marathon.Application.Users.Exceptions
 {
     /// <summary>
     /// Exception that throws when can't find user type code by entered name

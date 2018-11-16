@@ -3,7 +3,7 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Application.Exceptions;
+using Marathon.Application.RaceKitOption.Exceptions;
 
 namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Marathon.Application.Exceptions
+namespace Marathon.Application.Event.Exceptions
 {
     /// <summary>
     /// Exception that throws when can't find marathon events by selected event types

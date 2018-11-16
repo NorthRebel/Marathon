@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Marathon.Application.Exceptions
+namespace Marathon.Application.RaceKitOption.Exceptions
 {
     /// <summary>
     /// Exception that throws when not all items in stock of selected race kit item

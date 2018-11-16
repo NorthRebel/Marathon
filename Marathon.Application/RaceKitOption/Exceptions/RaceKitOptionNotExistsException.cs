@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Marathon.Application.Exceptions
+namespace Marathon.Application.RaceKitOption.Exceptions
 {
     /// <summary>
     /// Exception that throws when can't find race kit option by entered id
