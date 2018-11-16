@@ -7,8 +7,7 @@ namespace Marathon.Domain.Entities
     {
         public RaceKitItem()
         {
-            OptionItems = new HashSet<OptionItem>();
-            RaceKitOptions = new HashSet<RaceKitOption>();
+            OptionItems = new HashSet<RaceKitOptionItem>();
         }
 
         public long Id { get; set; }
@@ -16,7 +15,6 @@ namespace Marathon.Domain.Entities
         public long Count { get; set; }
 
 
-        public ICollection<OptionItem> OptionItems { get; set; }
-        public ICollection<RaceKitOption> RaceKitOptions { get; set; }
+        public ICollection<RaceKitOptionItem> OptionItems { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Marathon.Application.Repositories
     /// Source: https://blogs.msdn.microsoft.com/mrtechnocal/2014/03/16/asynchronous-repositories/
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T> : IReadOnlyRepository<T> where T: IEntity
+    public interface IRepository<T> : IReadOnlyRepository<T> where T: IBaseEntity
     {
         bool HasPendingChanges { get; }
         void Add(T item);
