@@ -57,8 +57,6 @@ namespace Marathon.Application.Marathon.Commands
             if (!events.Events.Any())
                 throw new NoEventsOfSelectedTypesException();
 
-            // TODO: Add check max participants!!!
-
             return events;
         }
 
