@@ -1,10 +1,10 @@
-﻿using System.Threading;
+﻿using MediatR;
+using System.Threading;
 using System.Threading.Tasks;
+using Marathon.Domain.Entities;
 using Marathon.Application.Exceptions;
 using Marathon.Application.Repositories;
 using Marathon.Application.Users.Queries;
-using Marathon.Domain.Entities;
-using MediatR;
 
 namespace Marathon.Application.Users.Commands.SignUp
 {
@@ -16,14 +16,17 @@ namespace Marathon.Application.Users.Commands.SignUp
         private readonly IRepository<Runner> _runnerRepository;
         private readonly IRepository<User> _userRepository;
         private readonly IRequestHandler<CheckUserQuery, bool> _userChecker;
+        private readonly IRequestHandler<UserTypeQuery, long> _userTypeFinder;
 
         public SignUpCommandHandler(IRepository<Runner> runnerRepository, 
             IRepository<User> userRepository,
-            IRequestHandler<CheckUserQuery, bool> userChecker)
+            IRequestHandler<CheckUserQuery, bool> userChecker, 
+            IRequestHandler<UserTypeQuery, long> userTypeFinder)
         {
             _runnerRepository = runnerRepository;
             _userRepository = userRepository;
             _userChecker = userChecker;
+            _userTypeFinder = userTypeFinder;
         }
 
         public async Task<Unit> Handle(SignUpCommand request, CancellationToken cancellationToken)
@@ -48,7 +51,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         /// <summary>
         /// Converts <see cref="SignUpCommand"/> DTO to <see cref="User"/> entity
         /// </summary>
-        private User UserProjection(SignUpCommand request)
+        private async Task<User> UserProjection(SignUpCommand request, CancellationToken cancellationToken)
         {
             return new User
             {
@@ -56,9 +59,14 @@ namespace Marathon.Application.Users.Commands.SignUp
                 Password = request.Password,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                // TODO: How to get user type?
-                //UserType = 
+                UserTypeId = await GetRunnerUserType(cancellationToken)
             };
+        }
+
+        private async Task<long> GetRunnerUserType(CancellationToken cancellationToken)
+        {
+            return await _userTypeFinder.Handle(new UserTypeQuery(Domain.Enumerations.UserType.Runner.ToString()),
+                cancellationToken);
         }
 
         /// <summary>
@@ -83,7 +91,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         /// <returns>ID of new user</returns>
         private async Task<long> CreateNewUser(SignUpCommand request, CancellationToken cancellationToken)
         {
-            var user = UserProjection(request);
+            var user = await UserProjection(request, cancellationToken);
 
             _userRepository.Add(user);
             await _userRepository.SaveChangesAsync(cancellationToken);
