@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Application.Event.Exceptions;
 using Marathon.Domain.Entities;
+using System.Collections.Generic;
 using Marathon.Application.Repositories;
+using Marathon.Application.Event.Exceptions;
 using Marathon.Application.Marathon.Queries;
 using Marathon.Application.Event.Queries.GetEventsByTypes;
+using Marathon.Application.Marathon.Queries.GetSignUpStatus;
 using Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption;
 
-namespace Marathon.Application.Marathon.Commands
+namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
 {
     /// <summary>
     /// Handles <see cref="SignUpToMarathonCommand"/>
@@ -20,13 +21,13 @@ namespace Marathon.Application.Marathon.Commands
     {
         private readonly IRepository<MarathonSignUp> _signUpRepository;
         private readonly IRepository<SignUpMarathonEvent> _signUpEventRepository;
-        private readonly IRequestHandler<SignUpStatusQuery, long> _marathonSignUpStatusFinder;
+        private readonly IRequestHandler<GetSignUpStatusQuery, long> _marathonSignUpStatusFinder;
         private readonly IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> _eventsOfSelectedTypes;
         private readonly IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> _raceKitOptionCostHandler;
 
         public SignUpToMarathonCommandHandler(IRepository<MarathonSignUp> signUpRepository,
             IRepository<SignUpMarathonEvent> signUpEventRepository,
-            IRequestHandler<SignUpStatusQuery, long> marathonSignUpStatusFinder,
+            IRequestHandler<GetSignUpStatusQuery, long> marathonSignUpStatusFinder,
             IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> eventsOfSelectedTypes,
             IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> raceKitOptionCostHandler)
         {
@@ -128,7 +129,7 @@ namespace Marathon.Application.Marathon.Commands
 
         private async Task<long> GetInitialMarathonSignUpStatus(CancellationToken cancellationToken)
         {
-            return await _marathonSignUpStatusFinder.Handle(new SignUpStatusQuery(Domain.Enumerations.SignUpStatus.SignedUp.ToString()), cancellationToken);
+            return await _marathonSignUpStatusFinder.Handle(new GetSignUpStatusQuery(Domain.Enumerations.SignUpStatus.SignedUp.ToString()), cancellationToken);
         }
 
         #endregion

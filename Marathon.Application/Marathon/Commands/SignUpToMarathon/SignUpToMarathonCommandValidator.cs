@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using FluentValidation;
 
-namespace Marathon.Application.Marathon.Commands
+namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
 {
     /// <summary>
     /// Rules for arguments of <see cref="SignUpToMarathonCommand"/> to right complete them

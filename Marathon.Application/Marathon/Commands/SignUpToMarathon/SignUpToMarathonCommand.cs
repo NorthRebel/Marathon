@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using MediatR;
+﻿using MediatR;
+using System.Collections.Generic;
 
-namespace Marathon.Application.Marathon.Commands
+namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
 {
     /// <summary>
     /// Command requirements for sign up runner to marathon event

@@ -12,6 +12,8 @@ using Marathon.Application.Tests.Extensions;
 using Marathon.Application.Tests.Infrastructure;
 using Marathon.Application.Users.Commands.SignUp;
 using Marathon.Application.Users.Exceptions;
+using Marathon.Application.Users.Queries.GetUserType;
+using Marathon.Application.Users.Queries.IsUserExists;
 using UserTypeEnum = Marathon.Domain.Enumerations.UserType;
 
 namespace Marathon.Application.Tests.Users.Handlers
@@ -22,8 +24,8 @@ namespace Marathon.Application.Tests.Users.Handlers
     public class SignUpCommandHandlerTests
     {
         private readonly SignUpCommandHandler _signUpCommandHandler;
-        private readonly CheckUserQueryHandler _checkUserQueryHandler;
-        private readonly UserTypeQueryHandler _userTypeQueryHandler;
+        private readonly IsUserExistsQueryHandler _isUserExistsQueryHandler;
+        private readonly GetUserTypeQueryHandler _getUserTypeQueryHandler;
 
         private readonly Mock<IRepository<Runner>> _runnerRepository;
         private readonly Mock<IRepository<User>> _userWriteRepository;
@@ -100,15 +102,15 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             #region Setup handlers
 
-            _checkUserQueryHandler = new CheckUserQueryHandler(_userReadRepository.Object);
+            _isUserExistsQueryHandler = new IsUserExistsQueryHandler(_userReadRepository.Object);
 
-            _userTypeQueryHandler = new UserTypeQueryHandler(_userTypeRepository.Object);
+            _getUserTypeQueryHandler = new GetUserTypeQueryHandler(_userTypeRepository.Object);
 
             _signUpCommandHandler =
                 new SignUpCommandHandler(_runnerRepository.Object,
                                          _userWriteRepository.Object,
-                                         _checkUserQueryHandler,
-                                         _userTypeQueryHandler);
+                                         _isUserExistsQueryHandler,
+                                         _getUserTypeQueryHandler);
             #endregion
         }
 

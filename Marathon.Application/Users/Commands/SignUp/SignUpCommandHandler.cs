@@ -5,6 +5,8 @@ using Marathon.Domain.Entities;
 using Marathon.Application.Repositories;
 using Marathon.Application.Users.Exceptions;
 using Marathon.Application.Users.Queries;
+using Marathon.Application.Users.Queries.GetUserType;
+using Marathon.Application.Users.Queries.IsUserExists;
 
 namespace Marathon.Application.Users.Commands.SignUp
 {
@@ -15,13 +17,13 @@ namespace Marathon.Application.Users.Commands.SignUp
     {
         private readonly IRepository<Runner> _runnerRepository;
         private readonly IRepository<User> _userRepository;
-        private readonly IRequestHandler<CheckUserQuery, bool> _userChecker;
-        private readonly IRequestHandler<UserTypeQuery, long> _userTypeFinder;
+        private readonly IRequestHandler<IsUserExistsQuery, bool> _userChecker;
+        private readonly IRequestHandler<GetUserTypeQuery, long> _userTypeFinder;
 
         public SignUpCommandHandler(IRepository<Runner> runnerRepository, 
             IRepository<User> userRepository,
-            IRequestHandler<CheckUserQuery, bool> userChecker, 
-            IRequestHandler<UserTypeQuery, long> userTypeFinder)
+            IRequestHandler<IsUserExistsQuery, bool> userChecker, 
+            IRequestHandler<GetUserTypeQuery, long> userTypeFinder)
         {
             _runnerRepository = runnerRepository;
             _userRepository = userRepository;
@@ -44,7 +46,7 @@ namespace Marathon.Application.Users.Commands.SignUp
 
         private async Task CheckExistUser(string email, CancellationToken cancellationToken)
         {
-            if (await _userChecker.Handle(new CheckUserQuery { Email = email }, cancellationToken))
+            if (await _userChecker.Handle(new IsUserExistsQuery { Email = email }, cancellationToken))
                 throw new UserAlreadyExistsException(email);
         }
 
@@ -65,7 +67,7 @@ namespace Marathon.Application.Users.Commands.SignUp
 
         private async Task<long> GetRunnerUserType(CancellationToken cancellationToken)
         {
-            return await _userTypeFinder.Handle(new UserTypeQuery(Domain.Enumerations.UserType.Runner.ToString()),
+            return await _userTypeFinder.Handle(new GetUserTypeQuery(Domain.Enumerations.UserType.Runner.ToString()),
                 cancellationToken);
         }
 

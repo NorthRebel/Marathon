@@ -1,15 +1,15 @@
 ﻿using MediatR;
 
-namespace Marathon.Application.Marathon.Queries
+namespace Marathon.Application.Marathon.Queries.GetSignUpStatus
 {
     /// <summary>
     /// Gets runner's marathon sign up status code by name
     /// </summary>
-    public sealed class SignUpStatusQuery : IRequest<long>
+    public sealed class GetSignUpStatusQuery : IRequest<long>
     {
         public string Name { get; set; }
 
-        public SignUpStatusQuery(string name)
+        public GetSignUpStatusQuery(string name)
         {
             Name = name;
         }

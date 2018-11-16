@@ -6,21 +6,21 @@ using Marathon.Domain.Entities;
 using Marathon.Application.Repositories;
 using Marathon.Application.Users.Exceptions;
 
-namespace Marathon.Application.Marathon.Queries
+namespace Marathon.Application.Marathon.Queries.GetSignUpStatus
 {
     /// <summary>
-    /// Handles <see cref="SignUpStatusQuery"/>
+    /// Handles <see cref="GetSignUpStatusQuery"/>
     /// </summary>
-    public sealed class SignUpStatusQueryHandler : IRequestHandler<SignUpStatusQuery, long>
+    public sealed class GetSignUpStatusQueryHandler : IRequestHandler<GetSignUpStatusQuery, long>
     {
         private readonly IReadOnlyRepository<SignUpStatus> _signUpStatusRepository;
 
-        public SignUpStatusQueryHandler(IReadOnlyRepository<SignUpStatus> signUpStatusRepository)
+        public GetSignUpStatusQueryHandler(IReadOnlyRepository<SignUpStatus> signUpStatusRepository)
         {
             _signUpStatusRepository = signUpStatusRepository;
         }
 
-        public async Task<long> Handle(SignUpStatusQuery request, CancellationToken cancellationToken)
+        public async Task<long> Handle(GetSignUpStatusQuery request, CancellationToken cancellationToken)
         {
             SignUpStatus signUpStatus = await _signUpStatusRepository.GetAsync(status => status.SingleOrDefault(s => s.Name == request.Name),
                 cancellationToken);

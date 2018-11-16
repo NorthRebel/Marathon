@@ -6,21 +6,21 @@ using Marathon.Domain.Entities;
 using Marathon.Application.Repositories;
 using Marathon.Application.Users.Exceptions;
 
-namespace Marathon.Application.Users.Queries
+namespace Marathon.Application.Users.Queries.GetUserType
 {
     /// <summary>
-    /// Handles <see cref="UserTypeQuery"/>
+    /// Handles <see cref="GetUserTypeQuery"/>
     /// </summary>
-    public sealed class UserTypeQueryHandler : IRequestHandler<UserTypeQuery, long>
+    public sealed class GetUserTypeQueryHandler : IRequestHandler<GetUserTypeQuery, long>
     {
         private readonly IReadOnlyRepository<UserType> _userTypeRepository;
 
-        public UserTypeQueryHandler(IReadOnlyRepository<UserType> userTypeRepository)
+        public GetUserTypeQueryHandler(IReadOnlyRepository<UserType> userTypeRepository)
         {
             _userTypeRepository = userTypeRepository;
         }
 
-        public async Task<long> Handle(UserTypeQuery request, CancellationToken cancellationToken)
+        public async Task<long> Handle(GetUserTypeQuery request, CancellationToken cancellationToken)
         {
             UserType userType = await _userTypeRepository.GetAsync(ut => ut.SingleOrDefault(u => u.Name == request.Name), cancellationToken);
 
