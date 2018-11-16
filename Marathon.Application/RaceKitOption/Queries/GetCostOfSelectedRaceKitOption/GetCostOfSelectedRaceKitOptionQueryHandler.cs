@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Linq;
 using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Application.Repositories;
+using Marathon.Application.Exceptions;
 
 namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption
 {
+    using Repositories;
     using Domain.Entities;
+    using IsRaceKitOptionAvailable;
 
     /// <summary>
     /// Handles <see cref="GetCostOfSelectedRaceKitOptionQuery"/>
@@ -15,28 +17,39 @@ namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOpt
     public sealed class GetCostOfSelectedRaceKitOptionQueryHandler : IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal>
     {
         private readonly IReadOnlyRepository<RaceKitOption> _raceKitOptionRepository;
+        private readonly IRequestHandler<IsRaceKitOptionAvailableQuery, bool> _itemsStockChecker;
 
-        public GetCostOfSelectedRaceKitOptionQueryHandler(IReadOnlyRepository<Domain.Entities.RaceKitOption> raceKitOptionRepository)
+        public GetCostOfSelectedRaceKitOptionQueryHandler(IReadOnlyRepository<RaceKitOption> raceKitOptionRepository,
+            IRequestHandler<IsRaceKitOptionAvailableQuery, bool> itemsStockChecker)
         {
             _raceKitOptionRepository = raceKitOptionRepository;
+            _itemsStockChecker = itemsStockChecker;
         }
 
         public async Task<decimal> Handle(GetCostOfSelectedRaceKitOptionQuery request, CancellationToken cancellationToken)
         {
-            RaceKitOption option = await _raceKitOptionRepository.GetAsync(r => r.SingleOrDefault(x => x.Id == request.RaceKitOptionId), cancellationToken);
+            RaceKitOption option = await GetRaceKitOptionById(request.RaceKitOptionId, cancellationToken);
 
             if (option == null)
-                // TODO: Create custom exception
-                throw new NullReferenceException("Can't find race kit option by entered id");
+                throw new RaceKitOptionNotExistsException(request.RaceKitOptionId);
 
-            // TODO: Create check for items count in stock
+            if (await CheckRaceKitItemStockState(option.Id, cancellationToken))
+                throw new NotAllItemsInStockOfRaceKitOption(request.RaceKitOptionId);
 
             return option.Cost;
         }
 
         #region Command handler helpers
 
+        private async Task<RaceKitOption> GetRaceKitOptionById(long raceKitOptionId, CancellationToken cancellationToken)
+        {
+            return await _raceKitOptionRepository.GetAsync(r => r.SingleOrDefault(x => x.Id == raceKitOptionId), cancellationToken);
+        }
 
+        private async Task<bool> CheckRaceKitItemStockState(long raceKitOptionId, CancellationToken cancellationToken)
+        {
+            return await _itemsStockChecker.Handle(new IsRaceKitOptionAvailableQuery(raceKitOptionId), cancellationToken);
+        }
 
         #endregion
     }
