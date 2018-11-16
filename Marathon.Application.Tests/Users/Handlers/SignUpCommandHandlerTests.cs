@@ -6,15 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
-using Marathon.Application.Repositories;
-using Marathon.Application.Users.Queries;
 using Marathon.Application.Tests.Extensions;
-using Marathon.Application.Tests.Infrastructure;
-using Marathon.Application.Users.Commands.SignUp;
 using Marathon.Application.Users.Exceptions;
+using Marathon.Application.Users.Commands.SignUp;
 using Marathon.Application.Users.Queries.GetUserType;
 using Marathon.Application.Users.Queries.IsUserExists;
 using UserTypeEnum = Marathon.Domain.Enumerations.UserType;
+using Marathon.Application.Tests.Infrastructure.Repositories;
 
 namespace Marathon.Application.Tests.Users.Handlers
 {
@@ -27,76 +25,30 @@ namespace Marathon.Application.Tests.Users.Handlers
         private readonly IsUserExistsQueryHandler _isUserExistsQueryHandler;
         private readonly GetUserTypeQueryHandler _getUserTypeQueryHandler;
 
-        private readonly Mock<IRepository<Runner>> _runnerRepository;
-        private readonly Mock<IRepository<User>> _userWriteRepository;
-        private readonly Mock<IReadOnlyRepository<User>> _userReadRepository;
-        private readonly Mock<IReadOnlyRepository<UserType>> _userTypeRepository;
+        private readonly RepositoryMock<Runner> _runnerRepository;
+        private readonly RepositoryMock<User> _userWriteRepository;
+        private readonly ReadOnlyRepositoryMock<User> _userReadRepository;
+        private readonly ReadOnlyRepositoryMock<UserType> _userTypeRepository;
 
         private readonly CancellationToken _cancellationToken;
-
-        public List<Runner> Runners { get; }
-        public List<User> Users { get; }
-        public List<UserType> UserTypes { get; }
 
         public SignUpCommandHandlerTests()
         {
             CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
             _cancellationToken = cancelTokenSource.Token;
 
-            #region Initialize collections
-
-            Users = new StorageFactory<User>()
-                .FromJson(@"Users\RunnerUsers.json")
-                .Create();
-
-            Runners = new StorageFactory<Runner>()
-                .FromCollection(CreateRunnersOfUsers(Users))
-                .Create();
-
-            UserTypes = new StorageFactory<UserType>()
-                .FromCollection(CreateUserTypes())
-                .Create();
-
-            #endregion
-
             #region Mock repositories
 
-            _runnerRepository = new Mock<IRepository<Runner>>();
-            _userWriteRepository = new Mock<IRepository<User>>();
-            _userReadRepository = new Mock<IReadOnlyRepository<User>>();
-            _userTypeRepository = new Mock<IReadOnlyRepository<UserType>>();
+            _userReadRepository = (ReadOnlyRepositoryMock<User>)new ReadOnlyRepositoryMock<User>()
+                .FromJson(@"Users\RunnerUsers.json");
 
-            #endregion
+            _runnerRepository = (RepositoryMock<Runner>)new RepositoryMock<Runner>()
+                .FromCollection(CreateRunnersOfUsers(_userReadRepository.Items));
 
-            #region Setup mocks
+            _userWriteRepository = new RepositoryMock<User>();
 
-            // Add id for new runner
-            _userWriteRepository.Setup(u => u.Add(It.IsAny<User>()))
-                .Callback((User newUser) =>
-                {
-                    newUser.Id = Users.Max(u => u.Id) + 1;
-                    Users.Add(newUser);
-                });
-
-            // Add id for new runner
-            _runnerRepository.Setup(r => r.Add(It.IsAny<Runner>()))
-                .Callback((Runner newRunner) =>
-                {
-                    newRunner.Id = newRunner.UserId;
-                    Runners.Add(newRunner);
-                });
-
-            // Check user for exists
-            _userReadRepository.Setup(u =>
-                    u.GetAsync(It.IsAny<Func<IQueryable<User>, User>>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Func<IQueryable<User>, User> users, CancellationToken cancellationToken) =>
-                    users.Invoke(Users.AsQueryable()));
-
-            // User types
-            _userTypeRepository.Setup(u =>
-                    u.GetAsync(It.IsAny<Func<IQueryable<UserType>, UserType>>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync((Func<IQueryable<UserType>, UserType> userTypes, CancellationToken cancellationToken) =>
-                    userTypes.Invoke(UserTypes.AsQueryable()));
+            _userTypeRepository = (ReadOnlyRepositoryMock<UserType>)new ReadOnlyRepositoryMock<UserType>()
+                .FromCollection(CreateUserTypes());
 
             #endregion
 
@@ -114,6 +66,9 @@ namespace Marathon.Application.Tests.Users.Handlers
             #endregion
         }
 
+        /// <summary>
+        /// Signs up users as runners to complete some tests
+        /// </summary>
         private IEnumerable<Runner> CreateRunnersOfUsers(IEnumerable<User> users)
         {
             var runners = new List<Runner>();
@@ -130,6 +85,10 @@ namespace Marathon.Application.Tests.Users.Handlers
             return runners;
         }
 
+        /// <summary>
+        /// Converts <see cref="Domain.Enumerations.UserType"/> linked enumeration to <see cref="IEnumerable{UserType}"/>
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<UserType> CreateUserTypes()
         {
             foreach (var userType in UserTypeEnum.GetAll<UserTypeEnum>())
@@ -176,7 +135,7 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             // Assert
 
-            long userTypeId = Users.Find(u => u.Email == request.Email).UserTypeId;
+            long userTypeId = _userWriteRepository.Items.Find(u => u.Email == request.Email).UserTypeId;
             Assert.Equal(UserTypeEnum.Runner.Id, userTypeId);
         }
 
@@ -190,7 +149,7 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             // Assert
 
-            long id = Users.Find(u => u.Email == request.Email).Id;
+            long id = _userWriteRepository.Items.Find(u => u.Email == request.Email).Id;
             Assert.NotEqual(default(long), id);
         }
 
