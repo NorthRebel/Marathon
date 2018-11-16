@@ -46,6 +46,8 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
 
             await AssignEventsOfSignUp(eventsListViewModel, signUpId, cancellationToken);
 
+            // TODO: Add race kit items decrease functionality after confirm payment of runner
+
             return Unit.Value;
         }
 
