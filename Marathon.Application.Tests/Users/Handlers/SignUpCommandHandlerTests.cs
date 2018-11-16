@@ -46,7 +46,7 @@ namespace Marathon.Application.Tests.Users.Handlers
             #region Initialize collections
 
             Users = new StorageFactory<User>()
-                .FromJson("RunnerUsers.json")
+                .FromJson(@"Users\RunnerUsers.json")
                 .Create();
 
             Runners = new StorageFactory<Runner>()
@@ -181,7 +181,7 @@ namespace Marathon.Application.Tests.Users.Handlers
         }
 
         [Theory]
-        [JsonFileData("RunnersRequests.json", "RunnerMustGetIdAfterSignUp")]
+        [JsonFileData(@"Users\RunnersRequests.json", "RunnerMustGetIdAfterSignUp")]
         public async Task RunnerMustGetIdAfterSignUp(SignUpCommand request)
         {
             // Act
@@ -195,7 +195,7 @@ namespace Marathon.Application.Tests.Users.Handlers
         }
 
         [Theory]
-        [JsonFileData("RunnersRequests.json", "EmailMustBeUnique")]
+        [JsonFileData(@"Users\RunnersRequests.json", "EmailMustBeUnique")]
         public async Task EmailMustBeUnique(SignUpCommand request)
         {
             // Act-Assert
