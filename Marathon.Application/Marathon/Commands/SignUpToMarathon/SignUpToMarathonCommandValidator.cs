@@ -14,11 +14,11 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
                 .NotEmpty();
             RuleFor(x => x.RaceKitOptionId)
                 .NotEmpty();
+            RuleFor(x => x.CharityId)
+                .NotEmpty();
             RuleFor(x => x.EventTypeIds)
                 .NotEmpty()
                 .Must(x => x.Any());
-            RuleFor(x => x.CharityId)
-                .NotEmpty();
             RuleFor(x => x.SponsorshipTarget)
                 .NotEmpty()
                 .GreaterThan(default(decimal));
