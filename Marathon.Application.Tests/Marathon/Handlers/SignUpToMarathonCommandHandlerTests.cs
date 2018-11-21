@@ -136,40 +136,8 @@ namespace Marathon.Application.Tests.Marathon.Handlers
                 };
             }
         }
-
-        [Fact]
-        public async Task HandlerMustCallRepositories()
-        {
-            // Arrange
-
-            var request = new SignUpToMarathonCommand
-            {
-                RunnerId = 242,
-                RaceKitOptionId = 2,
-                CharityId = 12,
-                SponsorshipTarget = 500m,
-                EventTypeIds = _eventRepository.Items.Select(e => e.EventTypeId).Distinct()
-            };
-
-            // Act
-
-            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
-
-            // Assert
-
-            _eventRepository.Verify(e => e.GetAsync(It.IsAny<Func<IQueryable<EventModel>, EventModel>>(), _cancellationToken), Times.AtLeastOnce);
-            _signUpMarathonEventReadRepository.Verify(s => s.GetAsync(It.IsAny<Func<IQueryable<SignUpMarathonEvent>, SignUpMarathonEvent>>(), _cancellationToken), Times.AtLeastOnce);
-
-            _signUpStatusRepository.Verify(s => s.GetAsync(It.IsAny<Func<IQueryable<SignUpStatus>, SignUpStatus>>(), _cancellationToken), Times.Once);
-
-            _raceKitOptionRepository.Verify(r => r.GetAsync(It.IsAny<Func<IQueryable<RaceKitOption>, RaceKitOption>>(), _cancellationToken), Times.Once);
-
-            _raceKitItemRepository.Verify(r => r.GetAsync(It.IsAny<Func<IQueryable<RaceKitItem>, RaceKitItem>>(), _cancellationToken), Times.Once);
-            _optionItemRepository.Verify(oi => oi.GetAsync(It.IsAny<Func<IQueryable<RaceKitOptionItem>, RaceKitOptionItem>>(), _cancellationToken), Times.Once);
-
-            _signUpMarathonEventWriteRepository.Verify(s => s.Add(It.IsAny<SignUpMarathonEvent>()), Times.AtLeastOnce);
-            _signUpMarathonEventWriteRepository.Verify(s => s.SaveChangesAsync(_cancellationToken), Times.Once);
-        }
+        
+        // TODO: Add repositories verification test
 
         [Fact]
         public async Task RunnerGetExceptionIfNoEventsOfSelectedTypes()
@@ -217,6 +185,67 @@ namespace Marathon.Application.Tests.Marathon.Handlers
             // Act-Assert
 
             await Assert.ThrowsAsync<RaceKitOptionNotExistsException>(async () => await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken));
+        }
+
+        [Theory]
+        [JsonFileData(@"Marathon\Data\SignUpRequests.json", "Requests")]
+        public async Task MarathonSignUpDateEqualsCurrent(SignUpToMarathonCommand request)
+        {
+            // Act
+
+            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+
+            // Assert
+
+            DateTime signUpDate = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).SignUpDate;
+            Assert.Equal(DateTime.UtcNow.Date, signUpDate.Date);
+        }
+
+        [Theory]
+        [JsonFileData(@"Marathon\Data\SignUpRequests.json", "Requests")]
+        public async Task BibNumberMustBeNull(SignUpToMarathonCommand request)
+        {
+            // Act
+
+            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+
+            // Assert
+
+            long signUpId = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).Id;
+            short? bibNumber = _signUpMarathonEventWriteRepository.Items.Find(s => s.SignUpId == signUpId).BibNumber;
+
+            Assert.Null(bibNumber);
+        }
+
+        [Theory]
+        [JsonFileData(@"Marathon\Data\SignUpRequests.json", "Requests")]
+        public async Task RaceTimeMustBeNull(SignUpToMarathonCommand request)
+        {
+            // Act
+
+            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+
+            // Assert
+
+            long signUpId = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).Id;
+            long? raceTime = _signUpMarathonEventWriteRepository.Items.Find(s => s.SignUpId == signUpId).RaceTime;
+
+            Assert.Null(raceTime);
+        }
+
+        [Theory]
+        [JsonFileData(@"Marathon\Data\SignUpRequests.json", "Requests")]
+        public async Task SignUpStatusEqualSignedUp(SignUpToMarathonCommand request)
+        {
+            // Act
+
+            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+
+            // Assert
+
+            long signUpStatusId = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).SignUpStatusId;
+
+            Assert.Equal(Domain.Enumerations.SignUpStatus.SignedUp.Id, signUpStatusId);
         }
     }
 }
