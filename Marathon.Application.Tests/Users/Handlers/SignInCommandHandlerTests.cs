@@ -51,7 +51,7 @@ namespace Marathon.Application.Tests.Users.Handlers
         }
 
         [Theory]
-        [JsonFileData(@"Users\UserData.json", "LoginData")]
+        [JsonFileData(@"Users\Data\UserData.json", "LoginData")]
         public async Task ReturnsUserById(SignInCommand request, User expected)
         {
             // Arrange

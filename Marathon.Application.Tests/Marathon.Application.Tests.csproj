@@ -23,13 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Users\RunnersRequests.json">
+    <None Update="Users\Data\RunnersRequests.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Users\RunnerUsers.json">
+    <None Update="Users\Data\RunnerUsers.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Users\UserData.json">
+    <None Update="Users\Data\UserData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

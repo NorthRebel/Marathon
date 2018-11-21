@@ -40,7 +40,7 @@ namespace Marathon.Application.Tests.Users.Handlers
             #region Mock repositories
 
             _userReadRepository = (ReadOnlyRepositoryMock<User>)new ReadOnlyRepositoryMock<User>()
-                .FromJson(@"Users\RunnerUsers.json");
+                .FromJson(@"Users\Data\RunnerUsers.json");
 
             _runnerRepository = (RepositoryMock<Runner>)new RepositoryMock<Runner>()
                 .FromCollection(CreateRunnersOfUsers(_userReadRepository.Items));
@@ -140,7 +140,7 @@ namespace Marathon.Application.Tests.Users.Handlers
         }
 
         [Theory]
-        [JsonFileData(@"Users\RunnersRequests.json", "RunnerMustGetIdAfterSignUp")]
+        [JsonFileData(@"Users\Data\RunnersRequests.json", "RunnerMustGetIdAfterSignUp")]
         public async Task RunnerMustGetIdAfterSignUp(SignUpCommand request)
         {
             // Act
@@ -154,7 +154,7 @@ namespace Marathon.Application.Tests.Users.Handlers
         }
 
         [Theory]
-        [JsonFileData(@"Users\RunnersRequests.json", "EmailMustBeUnique")]
+        [JsonFileData(@"Users\Data\RunnersRequests.json", "EmailMustBeUnique")]
         public async Task EmailMustBeUnique(SignUpCommand request)
         {
             // Act-Assert
