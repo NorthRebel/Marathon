@@ -1,0 +1,88 @@
+{
+  "Requests": [
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 500,
+        "EventTypeIds": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 50,
+        "EventTypeIds": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 40,
+        "EventTypeIds": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 50,
+        "EventTypeIds": [
+          1
+        ]
+      }
+    ],
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 100,
+        "EventTypeIds": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 220,
+        "EventTypeIds": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    [
+      {
+        "RunnerId": 242,
+        "RaceKitOptionId": 2,
+        "CharityId": 12,
+        "SponsorshipTarget": 35,
+        "EventTypeIds": [
+          1
+        ]
+      }
+    ]
+  ]
+}

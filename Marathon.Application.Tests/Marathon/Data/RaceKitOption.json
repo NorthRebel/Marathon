@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1,
+    "Name": "Runner's bib + RFID bracelet",
+    "Cost": 0.00
+  },
+  {
+    "Id": 2,
+    "Name": "Option A + hat + water bottle",
+    "Cost": 20.00
+  },
+  {
+    "Id": 3,
+    "Name": "Option B + T-shirt + souvenir booklet",
+    "Cost": 45.00
+  }
+]

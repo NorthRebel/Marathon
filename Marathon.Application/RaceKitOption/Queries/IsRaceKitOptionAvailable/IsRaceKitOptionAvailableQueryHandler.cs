@@ -34,10 +34,9 @@ namespace Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable
 
         private async Task<IEnumerable<long>> FindItemsOfRaceKitOption(long raceKitOptionId, CancellationToken cancellationToken)
         {
-            return await _optionItemRepository.GetAsync(
-                oi => oi.Where(o => o.OptionId == raceKitOptionId)
-                    .Select(o => o.ItemId), 
-                cancellationToken);
+            IEnumerable<RaceKitOptionItem> raceKitOptionItems = await _optionItemRepository.GetAsync(oi => oi.Where(o => o.OptionId == raceKitOptionId), cancellationToken);
+
+            return raceKitOptionItems.Select(o => o.ItemId);
         }
 
         private async Task<IEnumerable<RaceKitItem>> GetItemsOfRaceKitOptionByIds(IEnumerable<long> itemsIds, CancellationToken cancellationToken)

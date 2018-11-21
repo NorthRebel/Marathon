@@ -33,7 +33,7 @@ namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOpt
             if (option == null)
                 throw new RaceKitOptionNotExistsException(request.RaceKitOptionId);
 
-            if (await CheckRaceKitItemStockState(option.Id, cancellationToken))
+            if (!await CheckRaceKitItemStockState(option.Id, cancellationToken))
                 throw new NotAllItemsInStockOfRaceKitOptionException(request.RaceKitOptionId);
 
             return option.Cost;

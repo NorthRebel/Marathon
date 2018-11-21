@@ -30,8 +30,10 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
             IEnumerable<EventLookupModel> events = await GetEventsByTypeIds(request.EventTypeIds, cancellationToken);
             var enumeratedEvents = events.ToList();
 
-            Dictionary<long, int> eventsParticipants = await GetParticipantsCountByEventIds(enumeratedEvents.Select(ev => ev.Id), cancellationToken);
+            if (!enumeratedEvents.Any())
+                return EventsListViewModelProjection(new EventLookupModel[0]);
 
+            Dictionary<long, int> eventsParticipants = await GetParticipantsCountByEventIds(enumeratedEvents.Select(ev => ev.Id), cancellationToken);
             return EventsListViewModelProjection(GetEventsByTypeIds(enumeratedEvents, eventsParticipants));
         }
 
@@ -68,16 +70,15 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// <returns>Key value pair where Key is event id; Value is count of participants</returns>
         private async Task<Dictionary<long, int>> GetParticipantsCountByEventIds(IEnumerable<long> eventIds, CancellationToken cancellationToken)
         {
-            return await _signUpEventRepository.GetAsync(
-                e => e.Where(ev => eventIds.Contains(ev.EventId))
-                    .GroupBy(x => x.EventId)
+            IEnumerable<SignUpMarathonEvent> signUpMarathonEvents = await _signUpEventRepository.GetAsync(e => e.Where(ev => eventIds.Contains(ev.EventId)), cancellationToken);
+
+            return signUpMarathonEvents.GroupBy(x => x.EventId)
                     .Select(x => new
                     {
                         Key = x.Key,
                         Value = x.Count()
                     })
-                    .ToDictionary(x => x.Key, x => x.Value),
-                cancellationToken);
+                    .ToDictionary(x => x.Key, x => x.Value);
         }
 
         /// <summary>
@@ -88,15 +89,15 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// </remarks>
         private async Task<IEnumerable<EventLookupModel>> GetEventsByTypeIds(IEnumerable<long> eventTypeIds, CancellationToken cancellationToken)
         {
-            return await _eventRepository.GetAsync(e => e.Where(ev => eventTypeIds.Contains(ev.Id) && ev.StartDate >= DateTime.UtcNow)
-                    .Select(vm => new EventLookupModel
-                    {
-                        Id = vm.Id,
-                        StartDate = vm.StartDate,
-                        Cost = vm.Cost,
-                        MaxParticipants = vm.MaxParticipants
-                    }),
-                cancellationToken);
+            IEnumerable<EventModel> events = await _eventRepository.GetAsync(e => e.Where(ev => eventTypeIds.Contains(ev.EventTypeId) && ev.StartDate >= DateTime.UtcNow), cancellationToken);
+
+            return events.Select(vm => new EventLookupModel
+            {
+                Id = vm.Id,
+                StartDate = vm.StartDate,
+                Cost = vm.Cost,
+                MaxParticipants = vm.MaxParticipants
+            });
         }
 
         #endregion
