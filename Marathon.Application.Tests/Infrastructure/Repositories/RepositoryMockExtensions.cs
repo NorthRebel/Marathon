@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Marathon.Domain.Common;
 using System.Collections.Generic;
 using Marathon.Application.Repositories;
+using Marathon.Application.Tests.Extensions;
 
 namespace Marathon.Application.Tests.Infrastructure.Repositories
 {
@@ -24,18 +24,8 @@ namespace Marathon.Application.Tests.Infrastructure.Repositories
         public static IRepositoryMock<TRepository, TEntity> FromJson<TRepository, TEntity>(this IRepositoryMock<TRepository, TEntity> repositoryMock, string filePath) where TRepository : class,
             IReadOnlyRepository<TEntity> where TEntity : IEntity
         {
-            // Get the absolute path to the JSON file
-            var path = Path.IsPathRooted(filePath)
-                ? filePath
-                : Path.GetRelativePath(Directory.GetCurrentDirectory(), filePath);
-
-            if (!File.Exists(path))
-            {
-                throw new ArgumentException($"Could not find file at path: {path}");
-            }
-
             // Load the file
-            var fileData = File.ReadAllText(filePath);
+            var fileData = File.ReadAllText(PathExtensions.GetAbsolutePath(filePath));
 
             if (!repositoryMock.Items.Any())
                 repositoryMock.Items = JsonConvert.DeserializeObject<List<TEntity>>(fileData);

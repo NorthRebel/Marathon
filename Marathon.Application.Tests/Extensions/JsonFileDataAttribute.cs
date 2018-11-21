@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using Xunit.Sdk;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Newtonsoft.Json;
+using System.Reflection;
 using Newtonsoft.Json.Linq;
-using Xunit.Sdk;
+using System.Collections.Generic;
 
 namespace Marathon.Application.Tests.Extensions
 {
@@ -35,26 +35,15 @@ namespace Marathon.Application.Tests.Extensions
         /// <inheritDoc />
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
         {
-            if (testMethod == null) { throw new ArgumentNullException(nameof(testMethod)); }
-
-            // Get the absolute path to the JSON file
-            var path = Path.IsPathRooted(_filePath)
-                ? _filePath
-                : Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
-
-            if (!File.Exists(path))
-            {
-                throw new ArgumentException($"Could not find file at path: {path}");
-            }
+            if (testMethod == null)
+                throw new ArgumentNullException(nameof(testMethod));
 
             // Load the file
-            var fileData = File.ReadAllText(_filePath);
+            var fileData = File.ReadAllText(PathExtensions.GetAbsolutePath(_filePath));
 
             if (string.IsNullOrEmpty(_propertyName))
-            {
                 //whole file is the data
                 return JsonConvert.DeserializeObject<IEnumerable<object[]>>(fileData);
-            }
 
             // Only use the specified property as the data
             var allData = JObject.Parse(fileData);
