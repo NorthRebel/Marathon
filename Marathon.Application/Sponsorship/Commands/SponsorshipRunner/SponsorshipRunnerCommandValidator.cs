@@ -16,16 +16,9 @@ namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
             RuleFor(x => x.Amount)
                 .NotEmpty()
                 .GreaterThan(default(decimal));
-            RuleFor(x => x.CardCredentials.Number)
-                .NotEmpty();
-            RuleFor(x => x.CardCredentials.CVC)
-                .NotEmpty();
-            RuleFor(x => x.CardCredentials.Holder)
-                .NotEmpty();
-            RuleFor(x => x.CardCredentials.MonthValidity)
-                .NotEmpty();
-            RuleFor(x => x.CardCredentials.YearValidity)
-                .NotEmpty();
+            RuleFor(x => x.CardCredentials)
+                .NotNull()
+                .SetValidator(new CardCredentialsValidator());
         }
     }
 }
