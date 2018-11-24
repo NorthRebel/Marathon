@@ -1,13 +1,13 @@
-﻿namespace Marathon.BAL.Repositories
-{
-    using System;
-    using System.Linq;
-    using Domain.Common;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Linq.Expressions;
-    using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using Marathon.Domain.Common;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
+using System.Collections.Generic;
 
+namespace Marathon.DAL.Repositories
+{
     /// <summary>
     /// Provides extension methods for the <see cref="IReadOnlyRepository{T}"/> and <see cref="IRepository{T}"/> interfaces.
     /// </summary>

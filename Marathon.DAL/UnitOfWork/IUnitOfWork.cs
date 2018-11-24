@@ -1,8 +1,8 @@
-﻿namespace Marathon.BAL.UnitOfWork
-{
-    using Repositories;
-    using Domain.Entities;
+﻿using Marathon.Domain.Entities;
+using Marathon.DAL.Repositories;
 
+namespace Marathon.DAL.UnitOfWork
+{
     /// <summary>
     /// Contains all repositories of domain layer
     /// Source: https://medium.com/@utterbbq/c-unitofwork-and-repository-pattern-305cd8ecfa7a
@@ -58,6 +58,6 @@
         IReadOnlyRepository<EventType> EventTypes { get; }
         
         /// <inheritdoc cref="Marathon"/>
-        IRepository<Marathon> Marathons { get; }
+        IRepository<Domain.Entities.Marathon> Marathons { get; }
     }
 }

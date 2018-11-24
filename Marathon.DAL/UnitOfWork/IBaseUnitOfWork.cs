@@ -1,9 +1,9 @@
-﻿namespace Marathon.BAL.UnitOfWork
-{
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
+namespace Marathon.DAL.UnitOfWork
+{
     /// <summary>
     /// Defines the behavior for a unit of work.
     /// Source: https://blogs.msdn.microsoft.com/mrtechnocal/2014/04/18/unit-of-work-expanded/

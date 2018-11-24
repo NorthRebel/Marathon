@@ -1,12 +1,12 @@
-﻿namespace Marathon.BAL.Repositories
-{
-    using System;
-    using System.Linq;
-    using Domain.Common;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Marathon.Domain.Common;
+using System.Collections.Generic;
 
+namespace Marathon.DAL.Repositories
+{
     /// <summary>
     /// Source: https://blogs.msdn.microsoft.com/mrtechnocal/2014/03/16/asynchronous-repositories/
     /// </summary>
