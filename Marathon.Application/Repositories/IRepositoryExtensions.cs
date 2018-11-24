@@ -14,6 +14,35 @@ namespace Marathon.Application.Repositories
     public static class IRepositoryExtensions
     {
         /// <summary>
+        /// Retrieves all items in the repository satisfied by the specified query asynchronously.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Type">type</see> of item in the repository which implements <see cref="IBaseEntity"/>.</typeparam>
+        /// <param name="repository">The extended <see cref="IReadOnlyRepository{T}">repository</see>.</param>
+        /// <param name="queryShaper">The <see cref="Func{T,TResult}">function</see> that shapes the <see cref="IQueryable{T}">query</see> to execute.</param>
+        /// <returns>
+        /// A <see cref="Task{T}">task</see> containing the retrieved <see cref="IEnumerable{T}">sequence</see> of <typeparamref name="T">items</typeparamref>.
+        /// </returns>
+        public static Task<IEnumerable<T>> GetAsync<T>(this IReadOnlyRepository<T> repository, Func<IQueryable<T>, IQueryable<T>> queryShaper) where T : IBaseEntity
+        {
+            return repository.GetAsync(queryShaper, CancellationToken.None);
+        }
+
+        /// <summary>
+        /// Retrieves a query result asynchronously.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Type">type</see> of item in the repository which implements <see cref="IBaseEntity"/>.</typeparam>
+        /// <typeparam name="TResult">The <see cref="Type">type</see> of result to retrieve.</typeparam>
+        /// <param name="repository">The extended <see cref="IReadOnlyRepository{T}">repository</see>.</param>
+        /// <param name="queryShaper">The <see cref="Func{T,TResult}">function</see> that shapes the <see cref="IQueryable{T}">query</see> to execute.</param>
+        /// <returns>
+        /// A <see cref="Task{T}">task</see> containing the <typeparamref name="TResult">result</typeparamref> of the operation.
+        /// </returns>
+        public static Task<TResult> GetAsync<T, TResult>(this IReadOnlyRepository<T> repository, Func<IQueryable<T>, TResult> queryShaper) where T : IBaseEntity
+        {
+            return repository.GetAsync(queryShaper, CancellationToken.None);
+        }
+
+        /// <summary>
         /// Retrieves all items in the repository asynchronously.
         /// </summary>
         /// <typeparam name="T">The <see cref="Type">type</see> of item in the repository which implements <see cref="IBaseEntity"/>.</typeparam>
