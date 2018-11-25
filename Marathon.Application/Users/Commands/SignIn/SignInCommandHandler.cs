@@ -1,27 +1,33 @@
-﻿using System.Linq;
+﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Application.Repositories;
+using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
-using MediatR;
+using Marathon.DAL.Repositories;
+using Marathon.Application.Users.Exceptions;
 
 namespace Marathon.Application.Users.Commands.SignIn
 {
     public sealed class SignInCommandHandler : IRequestHandler<SignInCommand, User>
     {
-        private readonly IReadOnlyRepository<User> _userRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public SignInCommandHandler(IReadOnlyRepository<User> userRepository)
+        public SignInCommandHandler(IUnitOfWorkFactory uowFactory)
         {
-            _userRepository = userRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<User> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetAsync(users =>
-                users.SingleOrDefault(u => u.Email == request.Email && u.Password == request.Password), cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+            {
+                var user = await context.Users.GetSingleAsync(u => u.Email == request.Email && u.Password == request.Password, cancellationToken);
 
-            return user;
+                if (user == null)
+                    throw new InvalidUserCredentialsException();
+
+                return user;
+            }
         }
     }
 }

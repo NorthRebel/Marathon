@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Domain.Entities;
-using Marathon.Application.Repositories;
+using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Repositories;
 using Marathon.Application.Users.Exceptions;
 
 namespace Marathon.Application.Users.Queries.GetUserType
@@ -13,21 +12,24 @@ namespace Marathon.Application.Users.Queries.GetUserType
     /// </summary>
     public sealed class GetUserTypeQueryHandler : IRequestHandler<GetUserTypeQuery, long>
     {
-        private readonly IReadOnlyRepository<UserType> _userTypeRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public GetUserTypeQueryHandler(IReadOnlyRepository<UserType> userTypeRepository)
+        public GetUserTypeQueryHandler(IUnitOfWorkFactory uowFactory)
         {
-            _userTypeRepository = userTypeRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<long> Handle(GetUserTypeQuery request, CancellationToken cancellationToken)
         {
-            UserType userType = await _userTypeRepository.GetAsync(ut => ut.SingleOrDefault(u => u.Name == request.Name), cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+            {
+                var userType = await context.UserTypes.GetSingleAsync(ut => ut.Name == request.Name, cancellationToken);
 
-            if (userType == null)
-                throw new UserTypeNotExistsException(request.Name);
+                if (userType == null)
+                    throw new UserTypeNotExistsException(request.Name);
 
-            return userType.Id;
+                return userType.Id;
+            }
         }
     }
 }

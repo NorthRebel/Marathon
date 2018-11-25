@@ -3,9 +3,8 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Domain.Entities;
+using Marathon.DAL.UnitOfWork;
 using System.Collections.Generic;
-using Marathon.Application.Repositories;
 using EventModel = Marathon.Domain.Entities.Event;
 
 namespace Marathon.Application.Event.Queries.GetEventsByTypes
@@ -15,14 +14,11 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
     /// </summary>
     public sealed class GetEventsByTypesQueryHandler : IRequestHandler<GetEventsByTypesQuery, EventsListViewModel>
     {
-        private readonly IReadOnlyRepository<EventModel> _eventRepository;
-        private readonly IReadOnlyRepository<SignUpMarathonEvent> _signUpEventRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public GetEventsByTypesQueryHandler(IReadOnlyRepository<EventModel> eventRepository,
-            IReadOnlyRepository<SignUpMarathonEvent> signUpEventRepository)
+        public GetEventsByTypesQueryHandler(IUnitOfWorkFactory uowFactory)
         {
-            _eventRepository = eventRepository;
-            _signUpEventRepository = signUpEventRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<EventsListViewModel> Handle(GetEventsByTypesQuery request, CancellationToken cancellationToken)
@@ -68,17 +64,19 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// Get count of signed up runners by event
         /// </summary>
         /// <returns>Key value pair where Key is event id; Value is count of participants</returns>
-        private async Task<Dictionary<long, int>> GetParticipantsCountByEventIds(IEnumerable<long> eventIds, CancellationToken cancellationToken)
+        private Task<Dictionary<long, int>> GetParticipantsCountByEventIds(IEnumerable<long> eventIds, CancellationToken cancellationToken)
         {
-            IEnumerable<SignUpMarathonEvent> signUpMarathonEvents = await _signUpEventRepository.GetAsync(e => e.Where(ev => eventIds.Contains(ev.EventId)), cancellationToken);
-
-            return signUpMarathonEvents.GroupBy(x => x.EventId)
+            using (IUnitOfWork context = _uowFactory.Create())
+            {
+                return context.SignUpMarathonEvents.GetAsync(e => e.Where(ev => eventIds.Contains(ev.EventId))
+                    .GroupBy(x => x.EventId)
                     .Select(x => new
                     {
                         Key = x.Key,
                         Value = x.Count()
                     })
-                    .ToDictionary(x => x.Key, x => x.Value);
+                    .ToDictionary(x => x.Key, x => x.Value), cancellationToken);
+            }
         }
 
         /// <summary>
@@ -89,15 +87,18 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// </remarks>
         private async Task<IEnumerable<EventLookupModel>> GetEventsByTypeIds(IEnumerable<long> eventTypeIds, CancellationToken cancellationToken)
         {
-            IEnumerable<EventModel> events = await _eventRepository.GetAsync(e => e.Where(ev => eventTypeIds.Contains(ev.EventTypeId) && ev.StartDate >= DateTime.UtcNow), cancellationToken);
-
-            return events.Select(vm => new EventLookupModel
+            using (IUnitOfWork context = _uowFactory.Create())
             {
-                Id = vm.Id,
-                StartDate = vm.StartDate,
-                Cost = vm.Cost,
-                MaxParticipants = vm.MaxParticipants
-            });
+                IEnumerable<EventModel> events = await context.Events.GetAsync(e => e.Where(ev => eventTypeIds.Contains(ev.EventTypeId) && ev.StartDate >= DateTime.UtcNow), cancellationToken);
+
+                return events.Select(vm => new EventLookupModel
+                {
+                    Id = vm.Id,
+                    StartDate = vm.StartDate,
+                    Cost = vm.Cost,
+                    MaxParticipants = vm.MaxParticipants
+                });
+            }
         }
 
         #endregion

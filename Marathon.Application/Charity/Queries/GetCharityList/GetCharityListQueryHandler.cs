@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Repositories;
 using System.Collections.Generic;
-using Marathon.Application.Repositories;
 using Marathon.Application.Charity.Models;
 
 namespace Marathon.Application.Charity.Queries.GetCharityList
@@ -15,11 +16,11 @@ namespace Marathon.Application.Charity.Queries.GetCharityList
     /// </summary>
     public sealed class GetCharityListQueryHandler : IRequestHandler<GetCharityListQuery, IEnumerable<CharityPreviewDto>>
     {
-        private readonly IReadOnlyRepository<Charity> _charityRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public GetCharityListQueryHandler(IReadOnlyRepository<Charity> charityRepository)
+        public GetCharityListQueryHandler(IUnitOfWorkFactory uowFactory)
         {
-            _charityRepository = charityRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<IEnumerable<CharityPreviewDto>> Handle(GetCharityListQuery request, CancellationToken cancellationToken)
@@ -49,7 +50,8 @@ namespace Marathon.Application.Charity.Queries.GetCharityList
         /// </summary>
         private Task<IEnumerable<Charity>> GetCharities(CancellationToken cancellationToken)
         {
-            return _charityRepository.GetAsync(charity => charity, cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+                return context.Charities.GetAllAsync(cancellationToken);
         }
 
         #endregion

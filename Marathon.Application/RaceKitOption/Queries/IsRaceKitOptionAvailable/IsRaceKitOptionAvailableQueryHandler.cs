@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
+using Marathon.DAL.Repositories;
 using System.Collections.Generic;
-using Marathon.Application.Repositories;
 
 namespace Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable
 {
@@ -13,14 +14,11 @@ namespace Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable
     /// </summary>
     public sealed class IsRaceKitOptionAvailableQueryHandler : IRequestHandler<IsRaceKitOptionAvailableQuery, bool>
     {
-        private readonly IReadOnlyRepository<RaceKitItem> _raceKitItemRepository;
-        private readonly IReadOnlyRepository<RaceKitOptionItem> _optionItemRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public IsRaceKitOptionAvailableQueryHandler(IReadOnlyRepository<RaceKitItem> raceKitItemRepository, 
-            IReadOnlyRepository<RaceKitOptionItem> optionItemRepository)
+        public IsRaceKitOptionAvailableQueryHandler(IUnitOfWorkFactory uowFactory)
         {
-            _raceKitItemRepository = raceKitItemRepository;
-            _optionItemRepository = optionItemRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<bool> Handle(IsRaceKitOptionAvailableQuery request, CancellationToken cancellationToken)
@@ -32,18 +30,17 @@ namespace Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable
 
         #region Command handler helpers
 
-        private async Task<IEnumerable<long>> FindItemsOfRaceKitOption(long raceKitOptionId, CancellationToken cancellationToken)
+        private Task<IEnumerable<long>> FindItemsOfRaceKitOption(long raceKitOptionId, CancellationToken cancellationToken)
         {
-            IEnumerable<RaceKitOptionItem> raceKitOptionItems = await _optionItemRepository.GetAsync(oi => oi.Where(o => o.OptionId == raceKitOptionId), cancellationToken);
-
-            return raceKitOptionItems.Select(o => o.ItemId);
+            using (IUnitOfWork context = _uowFactory.Create())
+                return context.RaceKitOptionItems.GetAsync<IEnumerable<long>>(
+                    oi => oi.Where(o => o.OptionId == raceKitOptionId).Select(o => o.ItemId), cancellationToken);
         }
 
-        private async Task<IEnumerable<RaceKitItem>> GetItemsOfRaceKitOptionByIds(IEnumerable<long> itemsIds, CancellationToken cancellationToken)
+        private Task<IEnumerable<RaceKitItem>> GetItemsOfRaceKitOptionByIds(IEnumerable<long> itemsIds, CancellationToken cancellationToken)
         {
-            return await _raceKitItemRepository.GetAsync(
-                ki => ki.Where(i => itemsIds.Contains(i.Id)),
-                cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+                return context.RaceKitItems.FindByAsync(ki => itemsIds.Contains(ki.Id), cancellationToken);
         }
 
         private bool CheckRaceKitItemStockState(IEnumerable<RaceKitItem> items)

@@ -3,11 +3,10 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
-using Marathon.Application.Repositories;
 using Marathon.Application.Event.Exceptions;
-using Marathon.Application.Marathon.Queries;
 using Marathon.Application.Event.Queries.GetEventsByTypes;
 using Marathon.Application.Marathon.Queries.GetSignUpStatus;
 using Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption;
@@ -19,20 +18,19 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
     /// </summary>
     public sealed class SignUpToMarathonCommandHandler : IRequestHandler<SignUpToMarathonCommand, Unit>
     {
-        private readonly IRepository<MarathonSignUp> _signUpRepository;
-        private readonly IRepository<SignUpMarathonEvent> _signUpEventRepository;
+        private readonly IUnitOfWork _dbContext;
+
         private readonly IRequestHandler<GetSignUpStatusQuery, long> _marathonSignUpStatusFinder;
         private readonly IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> _eventsOfSelectedTypes;
         private readonly IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> _raceKitOptionCostHandler;
 
-        public SignUpToMarathonCommandHandler(IRepository<MarathonSignUp> signUpRepository,
-            IRepository<SignUpMarathonEvent> signUpEventRepository,
+        public SignUpToMarathonCommandHandler(IUnitOfWorkFactory uowFactory,
             IRequestHandler<GetSignUpStatusQuery, long> marathonSignUpStatusFinder,
             IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> eventsOfSelectedTypes,
             IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> raceKitOptionCostHandler)
         {
-            _signUpRepository = signUpRepository;
-            _signUpEventRepository = signUpEventRepository;
+            _dbContext = uowFactory.Create();
+
             _marathonSignUpStatusFinder = marathonSignUpStatusFinder;
             _eventsOfSelectedTypes = eventsOfSelectedTypes;
             _raceKitOptionCostHandler = raceKitOptionCostHandler;
@@ -44,9 +42,11 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
 
             long signUpId = await SignUpRunnerToMarathon(request, GetEventsTotalCost(eventsListViewModel), cancellationToken);
 
-            await AssignEventsOfSignUp(eventsListViewModel, signUpId, cancellationToken);
+            AssignEventsOfSignUp(eventsListViewModel, signUpId);
 
             // TODO: Add race kit items decrease functionality after confirm payment of runner
+
+            await _dbContext.CommitAsync(cancellationToken);
 
             return Unit.Value;
         }
@@ -66,14 +66,12 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
         /// <summary>
         /// Converts <see cref="EventsListViewModel"/> to <see cref="SignUpMarathonEvent"/> entities of current marathon sign up and save it to signUpEvent repository
         /// </summary>
-        private async Task AssignEventsOfSignUp(EventsListViewModel eventsListViewModel, long signUpId, CancellationToken cancellationToken)
+        private void AssignEventsOfSignUp(EventsListViewModel eventsListViewModel, long signUpId)
         {
             IEnumerable<SignUpMarathonEvent> signUpEvents = SignUpMarathonEventsProjection(eventsListViewModel, signUpId);
 
             foreach (SignUpMarathonEvent signUpEvent in signUpEvents)
-                _signUpEventRepository.Add(signUpEvent);
-
-            await _signUpEventRepository.SaveChangesAsync(cancellationToken);
+                _dbContext.SignUpMarathonEvents.Add(signUpEvent);
         }
 
         /// <summary>
@@ -95,8 +93,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
         {
             MarathonSignUp marathonSignUp = await SignUpProjection(request, eventsTotalCost, cancellationToken);
 
-            _signUpRepository.Add(marathonSignUp);
-            await _signUpRepository.SaveChangesAsync(cancellationToken);
+            _dbContext.MarathonSignUps.Add(marathonSignUp);
 
             return marathonSignUp.Id;
         }

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Application.Repositories;
+using Marathon.DAL.UnitOfWork;
 
 namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
 {
@@ -13,11 +13,11 @@ namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
     /// </summary>
     public sealed class SponsorshipRunnerCommandHandler : IRequestHandler<SponsorshipRunnerCommand, Unit>
     {
-        private readonly IRepository<Sponsorship> _sponsorshipRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public SponsorshipRunnerCommandHandler(IRepository<Sponsorship> sponsorshipRepository)
+        public SponsorshipRunnerCommandHandler(IUnitOfWorkFactory uowFactory)
         {
-            _sponsorshipRepository = sponsorshipRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<Unit> Handle(SponsorshipRunnerCommand request, CancellationToken cancellationToken)
@@ -42,8 +42,11 @@ namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
         {
             Sponsorship runnerSponsorship = SponsorshipProjection(request);
 
-            _sponsorshipRepository.Add(runnerSponsorship);
-            await _sponsorshipRepository.SaveChangesAsync(cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+            {
+                context.Sponsorships.Add(runnerSponsorship);
+                await context.CommitAsync(cancellationToken);
+            }
 
             return runnerSponsorship.Id;
         }

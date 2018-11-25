@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.Domain.Entities;
-using Marathon.Application.Repositories;
+using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Repositories;
 
 namespace Marathon.Application.Users.Queries.IsUserExists
 {
@@ -12,19 +11,21 @@ namespace Marathon.Application.Users.Queries.IsUserExists
     /// </summary>
     public sealed class IsUserExistsQueryHandler : IRequestHandler<IsUserExistsQuery, bool>
     {
-        private readonly IReadOnlyRepository<User> _userRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
-        public IsUserExistsQueryHandler(IReadOnlyRepository<User> userRepository)
+        public IsUserExistsQueryHandler(IUnitOfWorkFactory uowFactory)
         {
-            _userRepository = userRepository;
+            _uowFactory = uowFactory;
         }
 
         public async Task<bool> Handle(IsUserExistsQuery request, CancellationToken cancellationToken)
         {
-            var userExists =
-                await _userRepository.GetAsync(users => users.SingleOrDefault(u => u.Email == request.Email), cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+            {
+                var userExists = await context.Users.GetSingleAsync(u => u.Email == request.Email, cancellationToken);
 
-            return userExists != null;
+                return userExists != null;
+            }
         }
     }
 }

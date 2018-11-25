@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Marathon.DAL\Marathon.DAL.csproj" />
     <ProjectReference Include="..\Marathon.Domain\Marathon.Domain.csproj" />
   </ItemGroup>
 

@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
-using Marathon.Application.Repositories;
 using Marathon.Application.Users.Exceptions;
-using Marathon.Application.Users.Queries;
 using Marathon.Application.Users.Queries.GetUserType;
 using Marathon.Application.Users.Queries.IsUserExists;
 
@@ -15,18 +14,17 @@ namespace Marathon.Application.Users.Commands.SignUp
     /// </summary>
     public sealed class SignUpCommandHandler : IRequestHandler<SignUpCommand, Unit>
     {
-        private readonly IRepository<Runner> _runnerRepository;
-        private readonly IRepository<User> _userRepository;
+        private readonly IUnitOfWork _dbContext;
+
         private readonly IRequestHandler<IsUserExistsQuery, bool> _userChecker;
         private readonly IRequestHandler<GetUserTypeQuery, long> _userTypeFinder;
 
-        public SignUpCommandHandler(IRepository<Runner> runnerRepository, 
-            IRepository<User> userRepository,
+        public SignUpCommandHandler(IUnitOfWorkFactory uowFactory,
             IRequestHandler<IsUserExistsQuery, bool> userChecker, 
             IRequestHandler<GetUserTypeQuery, long> userTypeFinder)
         {
-            _runnerRepository = runnerRepository;
-            _userRepository = userRepository;
+            _dbContext = uowFactory.Create();
+
             _userChecker = userChecker;
             _userTypeFinder = userTypeFinder;
         }
@@ -37,7 +35,9 @@ namespace Marathon.Application.Users.Commands.SignUp
 
             long userId = await CreateNewUser(request, cancellationToken);
             
-            await CreateNewRunner(request, userId, cancellationToken);
+            CreateNewRunner(request, userId);
+
+            await _dbContext.CommitAsync(cancellationToken);
             
             return Unit.Value;
         }
@@ -95,8 +95,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         {
             var user = await UserProjection(request, cancellationToken);
 
-            _userRepository.Add(user);
-            await _userRepository.SaveChangesAsync(cancellationToken);
+            _dbContext.Users.Add(user);
 
             return user.Id;
         }
@@ -106,12 +105,11 @@ namespace Marathon.Application.Users.Commands.SignUp
         /// </summary>
         /// <param name="request">Command's request DTO</param>
         /// <param name="userId">ID of new user</param>
-        private async Task CreateNewRunner(SignUpCommand request, long userId, CancellationToken cancellationToken)
+        private void CreateNewRunner(SignUpCommand request, long userId)
         {
             var runner = RunnerProjection(request, userId);
 
-            _runnerRepository.Add(runner);
-            await _runnerRepository.SaveChangesAsync(cancellationToken);
+            _dbContext.Runners.Add(runner);
         }
 
         #endregion

@@ -1,13 +1,12 @@
-﻿using System;
-using MediatR;
-using System.Linq;
+﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Repositories;
 using Marathon.Application.RaceKitOption.Exceptions;
 
 namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption
 {
-    using Repositories;
     using Domain.Entities;
     using IsRaceKitOptionAvailable;
 
@@ -16,13 +15,13 @@ namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOpt
     /// </summary>
     public sealed class GetCostOfSelectedRaceKitOptionQueryHandler : IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal>
     {
-        private readonly IReadOnlyRepository<RaceKitOption> _raceKitOptionRepository;
+        private readonly IUnitOfWorkFactory _uowFactory;
         private readonly IRequestHandler<IsRaceKitOptionAvailableQuery, bool> _itemsStockChecker;
 
-        public GetCostOfSelectedRaceKitOptionQueryHandler(IReadOnlyRepository<RaceKitOption> raceKitOptionRepository,
+        public GetCostOfSelectedRaceKitOptionQueryHandler(IUnitOfWorkFactory uowFactory,
             IRequestHandler<IsRaceKitOptionAvailableQuery, bool> itemsStockChecker)
         {
-            _raceKitOptionRepository = raceKitOptionRepository;
+            _uowFactory = uowFactory;
             _itemsStockChecker = itemsStockChecker;
         }
 
@@ -41,9 +40,10 @@ namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOpt
 
         #region Command handler helpers
 
-        private async Task<RaceKitOption> GetRaceKitOptionById(long raceKitOptionId, CancellationToken cancellationToken)
+        private Task<RaceKitOption> GetRaceKitOptionById(long raceKitOptionId, CancellationToken cancellationToken)
         {
-            return await _raceKitOptionRepository.GetAsync(r => r.SingleOrDefault(x => x.Id == raceKitOptionId), cancellationToken);
+            using (IUnitOfWork context = _uowFactory.Create())
+                return context.RaceKitOptions.GetSingleAsync(r => r.Id == raceKitOptionId, cancellationToken);
         }
 
         private async Task<bool> CheckRaceKitItemStockState(long raceKitOptionId, CancellationToken cancellationToken)
