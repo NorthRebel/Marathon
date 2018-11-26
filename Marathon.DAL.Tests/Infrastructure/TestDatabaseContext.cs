@@ -59,7 +59,6 @@ namespace Marathon.DAL.Tests.Infrastructure
         /// <param name="options">Options for db context</param>
         public TestDatabaseContext(DbContextOptions<TestDatabaseContext> options) : base(options)
         {
-            
         }
     }
 }
