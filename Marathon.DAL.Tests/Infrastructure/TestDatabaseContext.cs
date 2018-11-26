@@ -9,7 +9,7 @@ namespace Marathon.DAL.Tests.Infrastructure
     public sealed class TestDatabaseContext : DbContext
     {
         #region Entities
-        
+
         DbSet<UserType> UserTypes { get; set; }
 
         DbSet<User> Users { get; set; }
@@ -43,7 +43,7 @@ namespace Marathon.DAL.Tests.Infrastructure
         DbSet<EventType> EventTypes { get; set; }
 
         DbSet<Domain.Entities.Marathon> Marathons { get; set; }
-        
+
         #endregion
 
         /// <summary>
@@ -59,6 +59,12 @@ namespace Marathon.DAL.Tests.Infrastructure
         /// <param name="options">Options for db context</param>
         public TestDatabaseContext(DbContextOptions<TestDatabaseContext> options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RaceKitOptionItem>()
+                .HasKey(oi => new { oi.ItemId, oi.OptionId });
         }
     }
 }
