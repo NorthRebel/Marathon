@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Marathon.Domain.Common;
+﻿using Marathon.Domain.Common;
 
 namespace Marathon.DAL.Repositories
 {
@@ -10,11 +8,8 @@ namespace Marathon.DAL.Repositories
     /// <typeparam name="T"></typeparam>
     public interface IRepository<T> : IReadOnlyRepository<T> where T : IBaseEntity
     {
-        bool HasPendingChanges { get; }
         void Add(T item);
         void Remove(T item);
         void Update(T item);
-        void DiscardChanges();
-        Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
