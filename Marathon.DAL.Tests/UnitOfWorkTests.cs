@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Xunit;
+﻿using Xunit;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.DAL.Repositories;
 using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using Marathon.DAL.Repositories;
+using System.Collections.Generic;
 using Marathon.DAL.Tests.Infrastructure;
 
 namespace Marathon.DAL.Tests
@@ -20,20 +18,7 @@ namespace Marathon.DAL.Tests
 
         public UnitOfWorkTests()
         {
-            _uowFactory=  new UnitOfWorkFactory(InitializeDatabase());
-        }
-
-        /// <summary>
-        /// Default in-memory database initializer for all instances
-        /// </summary>
-        private DbContextOptions<TestDatabaseContext> InitializeDatabase()
-        {
-            // The database name allows the scope of the in-memory database
-            // to be controlled independently of the context. The in-memory database is shared
-            // anywhere the same name is used.
-            return new DbContextOptionsBuilder<TestDatabaseContext>()
-                .UseInMemoryDatabase(databaseName: "Test")
-                .Options;
+            _uowFactory=  new UnitOfWorkFactory();
         }
 
         [Fact]

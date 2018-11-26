@@ -9,22 +9,28 @@ namespace Marathon.DAL.Tests.Infrastructure
     /// </summary>
     public class UnitOfWorkFactory : IUnitOfWorkFactory
     {
-        private readonly DbContextOptions<TestDatabaseContext> _options;
-
-        public UnitOfWorkFactory(DbContextOptions<TestDatabaseContext> options)
-        {
-            _options = options;
-        }
-
         // TODO: Implement set transaction isolation level method for db context
         public IUnitOfWork Create(IsolationLevel isolationLevel)
         {
-            return new UnitOfWork(new TestDatabaseContext(_options));
+            return new UnitOfWork(new TestDatabaseContext(InitializeDatabase()));
         }
 
         public IUnitOfWork Create()
         {
-            return new UnitOfWork(new TestDatabaseContext(_options));
+            return new UnitOfWork(new TestDatabaseContext(InitializeDatabase()));
+        }
+
+        /// <summary>
+        /// Default in-memory database initializer for all instances
+        /// </summary>
+        private DbContextOptions<TestDatabaseContext> InitializeDatabase()
+        {
+            // The database name allows the scope of the in-memory database
+            // to be controlled independently of the context. The in-memory database is shared
+            // anywhere the same name is used.
+            return new DbContextOptionsBuilder<TestDatabaseContext>()
+                .UseInMemoryDatabase(databaseName: "Test")
+                .Options;
         }
     }
 }
