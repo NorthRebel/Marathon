@@ -1,7 +1,7 @@
 ﻿using Marathon.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Marathon.DAL.Tests.Infrastructure
+namespace Marathon.Tests.DAL
 {
     /// <summary>
     /// Entity framework context 

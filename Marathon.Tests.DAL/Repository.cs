@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using Marathon.Domain.Common;
 using System.Threading.Tasks;
+using Marathon.Domain.Common;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Marathon.DAL.Tests.Infrastructure
+namespace Marathon.Tests.DAL
 {
     /// <summary>
     /// Implementation of generic read-write repository

@@ -1,14 +1,14 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
+using System;
 using System.Linq;
 using System.Threading;
+using Marathon.Tests.DAL;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Marathon.DAL.Tests.Infrastructure;
 
 namespace Marathon.DAL.Tests
 {
@@ -21,7 +21,7 @@ namespace Marathon.DAL.Tests
 
         public UnitOfWorkTests()
         {
-            _uowFactory = new UnitOfWorkFactory();
+            _uowFactory = new UnitOfWorkFactory(nameof(UnitOfWorkTests));
         }
 
         [Fact]

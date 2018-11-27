@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.Repositories;
 using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
-using Marathon.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Marathon.DAL.Tests.Infrastructure
+namespace Marathon.Tests.DAL
 {
     /// <summary>
     /// UoW implementation for EF Core
