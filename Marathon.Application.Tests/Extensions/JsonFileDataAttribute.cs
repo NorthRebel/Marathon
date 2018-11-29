@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using Marathon.Tests.DAL.Extensions;
 
 namespace Marathon.Application.Tests.Extensions
 {

@@ -4,12 +4,12 @@ using Marathon.Domain.Common;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
 
-namespace Marathon.Application.Tests.Extensions
+namespace Marathon.Tests.DAL.Extensions
 {
     /// <summary>
     /// Import from external sources extensions for <see cref="IRepository{T}"/>
     /// </summary>
-    internal static class RepositoryExtensions
+    public static class RepositoryExtensions
     {
         /// <summary>
         /// Imports repository items from external JSON file

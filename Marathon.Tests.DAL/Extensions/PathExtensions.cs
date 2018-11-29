@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Marathon.Application.Tests.Extensions
+namespace Marathon.Tests.DAL.Extensions
 {
     /// <summary>
     /// Extensions for <see cref="Path"/>
