@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Marathon.DAL.Repositories;
-using Marathon.Application.Tests.Infrastructure;
+using Marathon.Tests.DAL.Infrastructure;
 using Marathon.Application.Sponsorship.Commands.SponsorshipRunner;
 
 namespace Marathon.Application.Tests.Sponsorship.Handlers

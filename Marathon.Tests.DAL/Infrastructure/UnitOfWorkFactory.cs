@@ -2,7 +2,7 @@
 using Marathon.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
-namespace Marathon.Tests.DAL
+namespace Marathon.Tests.DAL.Infrastructure
 {
     /// <summary>
     /// Example implementation of <see cref="IUnitOfWorkFactory"/>
@@ -23,12 +23,18 @@ namespace Marathon.Tests.DAL
         // TODO: Implement set transaction isolation level method for db context
         public IUnitOfWork Create(IsolationLevel isolationLevel)
         {
-            return new Marathon.Tests.DAL.UnitOfWork(new TestDatabaseContext(InitializeDatabase()));
+            var context = new TestDatabaseContext(InitializeDatabase());
+            context.Database.EnsureCreated();
+
+            return new UnitOfWork(context);
         }
 
         public IUnitOfWork Create()
         {
-            return new Marathon.Tests.DAL.UnitOfWork(new TestDatabaseContext(InitializeDatabase()));
+            var context = new TestDatabaseContext(InitializeDatabase());
+            context.Database.EnsureCreated();
+
+            return new UnitOfWork(context);
         }
 
         /// <summary>
@@ -42,6 +48,14 @@ namespace Marathon.Tests.DAL
             return new DbContextOptionsBuilder<TestDatabaseContext>()
                 .UseInMemoryDatabase(databaseName: _databaseName)
                 .Options;
+        }
+
+        public static void Destroy(IUnitOfWork unitOfWork)
+        {
+            var dbContext = unitOfWork as DbContext;
+            dbContext?.Database.EnsureDeleted();
+
+            unitOfWork.Dispose();
         }
     }
 }

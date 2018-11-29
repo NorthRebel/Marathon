@@ -1,8 +1,7 @@
 ﻿using System;
-using Marathon.Tests.DAL;
 using Marathon.DAL.UnitOfWork;
 
-namespace Marathon.Application.Tests.Infrastructure
+namespace Marathon.Tests.DAL.Infrastructure
 {
     /// <summary>
     /// Shared context among all the tests in the unit test module
@@ -23,7 +22,7 @@ namespace Marathon.Application.Tests.Infrastructure
 
         public void Dispose()
         {
-            Context?.Dispose();
+            UnitOfWorkFactory.Destroy(Context);
         }
     }
 }

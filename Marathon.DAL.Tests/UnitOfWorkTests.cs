@@ -2,26 +2,26 @@
 using System;
 using System.Linq;
 using System.Threading;
-using Marathon.Tests.DAL;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
+using Marathon.Tests.DAL.Infrastructure;
 
 namespace Marathon.DAL.Tests
 {
     /// <summary>
     /// Unit test module for in-memory EF Core example implementation of <see cref="IUnitOfWork"/>
     /// </summary>
-    public class UnitOfWorkTests
+    public class UnitOfWorkTests : IClassFixture<UnitOfWorkFixture>
     {
-        private readonly IUnitOfWorkFactory _uowFactory;
+        private readonly IUnitOfWork _context;
 
-        public UnitOfWorkTests()
+        public UnitOfWorkTests(UnitOfWorkFixture unitOfWorkFixture)
         {
-            _uowFactory = new UnitOfWorkFactory(nameof(UnitOfWorkTests));
+            _context = unitOfWorkFixture.Context;
         }
 
         [Fact]
@@ -31,31 +31,24 @@ namespace Marathon.DAL.Tests
 
             const string userEmail = "a.beaulieu@hotmail.com";
 
-            using (IUnitOfWork context = _uowFactory.Create())
+            var user = new User
             {
-                var user = new User
-                {
-                    Email = userEmail,
-                    Password = "qWOvG6TJ",
-                    FirstName = "ANTON",
-                    LastName = "BEAULIEU",
-                    UserTypeId = 3
-                };
+                Email = userEmail,
+                Password = "qWOvG6TJ",
+                FirstName = "ANTON",
+                LastName = "BEAULIEU",
+                UserTypeId = 3
+            };
 
-                context.Users.Add(user);
-                await context.CommitAsync(CancellationToken.None);
-            }
+            _context.Users.Add(user);
+            await _context.CommitAsync(CancellationToken.None);
 
             // Act-assert
-            // New context with the data as the database name is the same
-            using (IUnitOfWork context = _uowFactory.Create())
-            {
-                IEnumerable<User> users = await context.Users.GetAllAsync();
-                Assert.Single(users);
+            IEnumerable<User> users = await _context.Users.GetAllAsync();
+            Assert.Single(users);
 
-                var createdUser = context.Users.GetSingleAsync(u => u.Email == userEmail);
-                Assert.NotNull(createdUser);
-            }
+            var createdUser = _context.Users.GetSingleAsync(u => u.Email == userEmail);
+            Assert.NotNull(createdUser);
         }
 
         ///<remarks>
@@ -66,18 +59,14 @@ namespace Marathon.DAL.Tests
         {
             // Arrange
             IEnumerable<Event> events;
-            IUnitOfWork context = _uowFactory.Create();
 
             // Act
-            context.Events.Add(new Event());
-            await context.CommitAsync(CancellationToken.None);
-            events = await context.Events.GetAllAsync();
+            _context.Events.Add(new Event());
+            await _context.CommitAsync(CancellationToken.None);
+            events = await _context.Events.GetAllAsync();
 
             // Assert
             Assert.True(events.Any());
-
-            // Cleanup
-            context.Dispose();
         }
 
         [Fact]
@@ -85,17 +74,13 @@ namespace Marathon.DAL.Tests
         {
             // Arrange
             IEnumerable<Volunteer> volunteers;
-            IUnitOfWork context = _uowFactory.Create();
 
             // Act
-            context.Volunteers.Add(new Volunteer());
-            volunteers = await context.Volunteers.GetAllAsync();
+            _context.Volunteers.Add(new Volunteer());
+            volunteers = await _context.Volunteers.GetAllAsync();
 
             // Assert
             Assert.False(volunteers.Any());
-
-            // Cleanup
-            context.Dispose();
         }
 
         [Fact]
@@ -107,19 +92,17 @@ namespace Marathon.DAL.Tests
             const string emailAfterUpdate = "testUpdate@hotmail.com";
 
             // Act
-            using (IUnitOfWork context = _uowFactory.Create())
-            {
-                context.Users.Add(new User { Email = emailBeforeUpdate });
-                await context.CommitAsync(CancellationToken.None);
 
-                User addedUser = await context.Users.GetSingleAsync(u => u.Email == emailBeforeUpdate);
-                addedUser.Email = emailAfterUpdate;
+            _context.Users.Add(new User { Email = emailBeforeUpdate });
+            await _context.CommitAsync(CancellationToken.None);
 
-                context.Users.Update(addedUser);
-                await context.CommitAsync(CancellationToken.None);
+            User addedUser = await _context.Users.GetSingleAsync(u => u.Email == emailBeforeUpdate);
+            addedUser.Email = emailAfterUpdate;
 
-                findByUpdated = await context.Users.GetSingleAsync(u => u.Email == emailAfterUpdate);
-            }
+            _context.Users.Update(addedUser);
+            await _context.CommitAsync(CancellationToken.None);
+
+            findByUpdated = await _context.Users.GetSingleAsync(u => u.Email == emailAfterUpdate);
 
             // Assert
             Assert.NotNull(findByUpdated);
@@ -134,16 +117,14 @@ namespace Marathon.DAL.Tests
             Volunteer volunteer = new Volunteer { LastName = lastName };
 
             // Act
-            using (IUnitOfWork context = _uowFactory.Create())
-            {
-                context.Volunteers.Add(volunteer);
-                await context.CommitAsync(CancellationToken.None);
 
-                context.Volunteers.Remove(volunteer);
-                await context.CommitAsync(CancellationToken.None);
+            _context.Volunteers.Add(volunteer);
+            await _context.CommitAsync(CancellationToken.None);
 
-                volunteer = await context.Volunteers.GetSingleAsync(v => v.LastName == lastName);
-            }
+            _context.Volunteers.Remove(volunteer);
+            await _context.CommitAsync(CancellationToken.None);
+
+            volunteer = await _context.Volunteers.GetSingleAsync(v => v.LastName == lastName);
 
             // Assert
             Assert.Null(volunteer);
@@ -157,15 +138,13 @@ namespace Marathon.DAL.Tests
             Sponsorship sponsorship = new Sponsorship { Name = sponsorName };
 
             // Act
-            using (IUnitOfWork context = _uowFactory.Create())
-            {
-                context.Sponsorships.Add(sponsorship);
-                await context.CommitAsync(CancellationToken.None);
 
-                sponsorship.Name = "Frank Martin";
+            _context.Sponsorships.Add(sponsorship);
+            await _context.CommitAsync(CancellationToken.None);
 
-                context.Rollback();
-            }
+            sponsorship.Name = "Frank Martin";
+
+            _context.Rollback();
 
             // Assert
             Assert.Equal(sponsorName, sponsorship.Name);
@@ -182,30 +161,22 @@ namespace Marathon.DAL.Tests
             IEnumerable<User> users = Enumerable.Range(1, 100).Select(u => new User());
 
             // Act
-            using (IUnitOfWork context = _uowFactory.Create())
-            {
-                foreach (User user in users)
-                    context.Users.Add(user);
-                await context.CommitAsync(CancellationToken.None);
 
-                stopwatch.Start();
-                // Non async!
-#pragma warning disable 4014
-                context.Users.GetAllAsync();
-#pragma warning restore 4014
-                stopwatch.Stop();
-                beforeCache = stopwatch.Elapsed;
+            foreach (User user in users)
+                _context.Users.Add(user);
+            await _context.CommitAsync(CancellationToken.None);
 
-                stopwatch.Reset();
+            stopwatch.Start();
+            await _context.Users.GetAllAsync();
+            stopwatch.Stop();
+            beforeCache = stopwatch.Elapsed;
 
-                stopwatch.Start();
-                // Non async!
-#pragma warning disable 4014
-                context.Users.GetAllAsync();
-#pragma warning restore 4014
-                stopwatch.Stop();
-                afterCache = stopwatch.Elapsed;
-            }
+            stopwatch.Reset();
+
+            stopwatch.Start();
+            await _context.Users.GetAllAsync();
+            stopwatch.Stop();
+            afterCache = stopwatch.Elapsed;
 
             Console.WriteLine($"Test name: {nameof(ContextCachesLastReceivedResults)}; Before cache: {beforeCache.Milliseconds} ms.");
             Console.WriteLine($"Test name: {nameof(ContextCachesLastReceivedResults)}; After cache: {afterCache.Milliseconds} ms.");

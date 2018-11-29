@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Marathon.Domain.Entities;
+using Marathon.Tests.DAL.Infrastructure;
 using Marathon.Application.Tests.Extensions;
-using Marathon.Application.Tests.Infrastructure;
 using Marathon.Application.Users.Commands.SignIn;
 
 namespace Marathon.Application.Tests.Users.Handlers
