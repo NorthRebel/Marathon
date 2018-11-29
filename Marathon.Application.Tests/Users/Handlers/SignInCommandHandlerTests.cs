@@ -1,7 +1,6 @@
 ﻿using Xunit;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
 using Marathon.Application.Tests.Extensions;
 using Marathon.Application.Tests.Infrastructure;
@@ -12,18 +11,15 @@ namespace Marathon.Application.Tests.Users.Handlers
     /// <summary>
     /// Unit test module for <see cref="SignInCommandHandler"/>
     /// </summary>
-    public class SignInCommandHandlerTests : IClassFixture<DbContextFixture>
+    public class SignInCommandHandlerTests : IClassFixture<UnitOfWorkFixture>
     {
+        private readonly UnitOfWorkFixture _unitOfWork;
         private readonly SignInCommandHandler _commandHandler;
 
-        private readonly IUnitOfWork _uow;
-
-        public SignInCommandHandlerTests(DbContextFixture contextFixture)
+        public SignInCommandHandlerTests(UnitOfWorkFixture unitOfWorkFixture)
         {
-            IUnitOfWorkFactory uowFactory = new FixtureUoWFactory(contextFixture);
-            _commandHandler = new SignInCommandHandler(uowFactory);
-
-            _uow = uowFactory.Create();
+            _unitOfWork = unitOfWorkFixture;
+            _commandHandler = new SignInCommandHandler(_unitOfWork.ContextFactory);
         }
 
         [Theory]
@@ -35,8 +31,8 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             // Act
 
-            _uow.Users.Add(expected);
-            await _uow.CommitAsync(CancellationToken.None);
+            _unitOfWork.Context.Users.Add(expected);
+            await _unitOfWork.Context.CommitAsync(CancellationToken.None);
 
             user = await _commandHandler.Handle(request, CancellationToken.None);
 

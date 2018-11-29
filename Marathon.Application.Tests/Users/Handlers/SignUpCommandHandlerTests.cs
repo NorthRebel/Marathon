@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marathon.DAL.UnitOfWork;
 using Marathon.Domain.Entities;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
@@ -20,20 +19,16 @@ namespace Marathon.Application.Tests.Users.Handlers
     /// <summary>
     /// Unit test module for <see cref="SignUpCommandHandler"/>
     /// </summary>
-    [Collection("Database collection")]
-    public class SignUpCommandHandlerTests
+    public class SignUpCommandHandlerTests : IClassFixture<UnitOfWorkFixture>
     {
+        private readonly UnitOfWorkFixture _unitOfWork;
         private readonly SignUpCommandHandler _signUpCommandHandler;
 
-        private readonly IUnitOfWork _uow;
-
-        public SignUpCommandHandlerTests(DbContextFixture contextFixture)
+        public SignUpCommandHandlerTests(UnitOfWorkFixture unitOfWorkFixture)
         {
-            IUnitOfWorkFactory uowFactory = new FixtureUoWFactory(contextFixture);
+            _unitOfWork = unitOfWorkFixture;
 
-            _uow = uowFactory.Create();
-
-            _uow.Initialize(async uow =>
+            _unitOfWork.Context.Initialize(async uow =>
             {
                 ((IRepository<UserType>)uow.UserTypes).ImportFromCollection(CreateUserTypes());
 
@@ -48,27 +43,14 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             #region Setup handlers
 
-            var isUserExistsQueryHandler = new IsUserExistsQueryHandler(uowFactory);
+            var isUserExistsQueryHandler = new IsUserExistsQueryHandler(_unitOfWork.ContextFactory);
 
-            var getUserTypeQueryHandler = new GetUserTypeQueryHandler(uowFactory);
+            var getUserTypeQueryHandler = new GetUserTypeQueryHandler(_unitOfWork.ContextFactory);
 
-            _signUpCommandHandler = new SignUpCommandHandler(uowFactory, isUserExistsQueryHandler, getUserTypeQueryHandler);
+            _signUpCommandHandler = new SignUpCommandHandler(_unitOfWork.ContextFactory, isUserExistsQueryHandler, getUserTypeQueryHandler);
 
             #endregion
         }
-
-        //private async Task SeedData()
-        //{
-        //    ((IRepository<UserType>)_context.UserTypes).ImportFromCollection(CreateUserTypes());
-
-        //    _context.Users.ImportFromJson(@"Users\Data\RunnerUsers.json");
-        //    await _context.CommitAsync(CancellationToken.None);
-
-        //    IEnumerable<User> users = await _context.Users.GetAllAsync();
-
-        //    _context.Runners.ImportFromCollection(users.Select(u => new Runner { UserId = u.Id }));
-        //    await _context.CommitAsync(CancellationToken.None);
-        //}
 
         /// <summary>
         /// Converts <see cref="Domain.Enumerations.UserType"/> linked enumeration to <see cref="IEnumerable{UserType}"/>
@@ -97,7 +79,7 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             await _signUpCommandHandler.Handle(request, CancellationToken.None);
 
-            User createdUser = await _uow.Users.GetSingleAsync(u => u.Email == request.Email);
+            User createdUser = await _unitOfWork.Context.Users.GetSingleAsync(u => u.Email == request.Email);
             long userTypeId = createdUser.UserTypeId;
 
             // Assert
@@ -112,8 +94,8 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             await _signUpCommandHandler.Handle(request, CancellationToken.None);
 
-            User createdUser = await _uow.Users.GetSingleAsync(u => u.Email == request.Email);
-            Runner createdRunner = await _uow.Runners.GetSingleAsync(r => r.UserId == createdUser.Id);
+            User createdUser = await _unitOfWork.Context.Users.GetSingleAsync(u => u.Email == request.Email);
+            Runner createdRunner = await _unitOfWork.Context.Runners.GetSingleAsync(r => r.UserId == createdUser.Id);
 
             // Assert
 

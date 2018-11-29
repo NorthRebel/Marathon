@@ -1,9 +1,8 @@
 ﻿using Xunit;
 using System.Threading;
-using Marathon.Tests.DAL;
 using System.Threading.Tasks;
-using Marathon.DAL.UnitOfWork;
 using Marathon.DAL.Repositories;
+using Marathon.Application.Tests.Infrastructure;
 using Marathon.Application.Sponsorship.Commands.SponsorshipRunner;
 
 namespace Marathon.Application.Tests.Sponsorship.Handlers
@@ -13,17 +12,15 @@ namespace Marathon.Application.Tests.Sponsorship.Handlers
     /// <summary>
     /// Unit test module for <see cref="SponsorshipRunnerCommandHandler"/>
     /// </summary>
-    public class SponsorshipRunnerCommandHandlerTests
+    public class SponsorshipRunnerCommandHandlerTests : IClassFixture<UnitOfWorkFixture>
     {
+        private readonly UnitOfWorkFixture _unitOfWork;
         private readonly SponsorshipRunnerCommandHandler _sponsorshipRunnerCommandHandler;
 
-        private readonly IUnitOfWorkFactory _uowFactory;
-
-        public SponsorshipRunnerCommandHandlerTests()
+        public SponsorshipRunnerCommandHandlerTests(UnitOfWorkFixture unitOfWorkFixture)
         {
-            _uowFactory = new UnitOfWorkFactory(nameof(SponsorshipRunnerCommandHandlerTests));
-
-            _sponsorshipRunnerCommandHandler = new SponsorshipRunnerCommandHandler(_uowFactory);
+            _unitOfWork = unitOfWorkFixture;
+            _sponsorshipRunnerCommandHandler = new SponsorshipRunnerCommandHandler(_unitOfWork.ContextFactory);
         }
 
         [Fact]
@@ -42,16 +39,11 @@ namespace Marathon.Application.Tests.Sponsorship.Handlers
 
             await _sponsorshipRunnerCommandHandler.Handle(request, CancellationToken.None);
 
-            IUnitOfWork context = _uowFactory.Create();
-
-            Sponsorship sponsorship = await context.Sponsorships.GetSingleAsync(s => s.Name == request.SponsorName);
+            Sponsorship sponsorship = await _unitOfWork.Context.Sponsorships.GetSingleAsync(s => s.Name == request.SponsorName);
 
             // Assert
 
             Assert.NotEqual(default(long), sponsorship.Id);
-
-            // Cleanup
-            context.Dispose();
         }
     }
 }
