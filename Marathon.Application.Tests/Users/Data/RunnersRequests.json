@@ -2,32 +2,29 @@
   "EmailMustBeUnique": [
     [
       {
-        "Id": 1,
         "Email": "a.adkin@dayrep.net",
         "Password": "jwZh2x@p",
         "FirstName": "AHMAD",
         "LastName": "ADKIN",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ],
     [
       {
-        "Id": 2,
         "Email": "a.aldrich@gmail.com",
         "Password": "Hel#OOO",
         "FirstName": "AAROND",
         "LastName": "ALDRICH",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ],
     [
       {
-        "Id": 3,
         "Email": "a.allison@gmail.com",
         "Password": "OPuDrw9O",
         "FirstName": "ALPHONSO",
         "LastName": "ALLISON",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ]
   ],
@@ -38,7 +35,7 @@
         "Password": "x7x0x0#5",
         "FirstName": "ILENE",
         "LastName": "REESE",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ],
     [
@@ -47,7 +44,7 @@
         "Password": "rYOWHVsA",
         "FirstName": "IMA",
         "LastName": "CHAMPION",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ],
     [
@@ -56,7 +53,7 @@
         "Password": "nVZ#6p14",
         "FirstName": "IMA",
         "LastName": "MARION",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ],
     [
@@ -65,7 +62,7 @@
         "Password": "3xusJWLA",
         "FirstName": "IRENE",
         "LastName": "MATSON",
-        "RoleId": 3
+        "UserTypeId": 3
       }
     ]
   ]

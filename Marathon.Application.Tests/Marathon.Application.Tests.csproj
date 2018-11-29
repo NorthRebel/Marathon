@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Marathon.Application\Marathon.Application.csproj" />
     <ProjectReference Include="..\Marathon.Domain\Marathon.Domain.csproj" />
+    <ProjectReference Include="..\Marathon.Tests.DAL\Marathon.Tests.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

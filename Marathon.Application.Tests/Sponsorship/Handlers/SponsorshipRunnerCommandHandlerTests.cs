@@ -1,8 +1,9 @@
-﻿using Moq;
-using Xunit;
+﻿using Xunit;
 using System.Threading;
+using Marathon.Tests.DAL;
 using System.Threading.Tasks;
-using Marathon.Application.Tests.Infrastructure.Repositories;
+using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Repositories;
 using Marathon.Application.Sponsorship.Commands.SponsorshipRunner;
 
 namespace Marathon.Application.Tests.Sponsorship.Handlers
@@ -16,40 +17,13 @@ namespace Marathon.Application.Tests.Sponsorship.Handlers
     {
         private readonly SponsorshipRunnerCommandHandler _sponsorshipRunnerCommandHandler;
 
-        private readonly RepositoryMock<Sponsorship> _sponsorshipRepository;
-
-        private readonly CancellationToken _cancellationToken;
+        private readonly IUnitOfWorkFactory _uowFactory;
 
         public SponsorshipRunnerCommandHandlerTests()
         {
-            CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-            _cancellationToken = cancelTokenSource.Token;
+            _uowFactory = new UnitOfWorkFactory(nameof(SponsorshipRunnerCommandHandlerTests));
 
-            _sponsorshipRepository = new RepositoryMock<Sponsorship>();
-
-            _sponsorshipRunnerCommandHandler = new SponsorshipRunnerCommandHandler(_sponsorshipRepository.Object);
-        }
-
-        [Fact]
-        public async Task HandlerMustCallRepositories()
-        {
-            // Arrange
-
-            var request = new SponsorshipRunnerCommand
-            {
-                SponsorName = "Adam Frederic",
-                Amount = 25600m,
-                RunnerMarathonSignUpId = 10
-            };
-
-            // Act
-
-            await _sponsorshipRunnerCommandHandler.Handle(request, _cancellationToken);
-
-            // Assert
-
-            _sponsorshipRepository.Verify(s => s.Add(It.IsAny<Sponsorship>()), Times.Once);
-            _sponsorshipRepository.Verify(s => s.SaveChangesAsync(_cancellationToken), Times.Once);
+            _sponsorshipRunnerCommandHandler = new SponsorshipRunnerCommandHandler(_uowFactory);
         }
 
         [Fact]
@@ -66,12 +40,18 @@ namespace Marathon.Application.Tests.Sponsorship.Handlers
 
             // Act
 
-            await _sponsorshipRunnerCommandHandler.Handle(request, _cancellationToken);
+            await _sponsorshipRunnerCommandHandler.Handle(request, CancellationToken.None);
+
+            IUnitOfWork context = _uowFactory.Create();
+
+            Sponsorship sponsorship = await context.Sponsorships.GetSingleAsync(s => s.Name == request.SponsorName);
 
             // Assert
 
-            long id = _sponsorshipRepository.Items.Find(s => s.Name == request.SponsorName).Id;
-            Assert.NotEqual(default(long), id);
+            Assert.NotEqual(default(long), sponsorship.Id);
+
+            // Cleanup
+            context.Dispose();
         }
     }
 }

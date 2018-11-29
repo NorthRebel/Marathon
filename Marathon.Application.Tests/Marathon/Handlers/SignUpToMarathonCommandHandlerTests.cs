@@ -1,22 +1,21 @@
-﻿using Moq;
-using Xunit;
+﻿using Xunit;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Repositories;
 using System.Collections.Generic;
 using Marathon.Application.Event.Exceptions;
 using Marathon.Application.Tests.Extensions;
-using EventModel = Marathon.Domain.Entities.Event;
+using Marathon.Application.RaceKitOption.Exceptions;
 using Marathon.Application.Event.Queries.GetEventsByTypes;
 using Marathon.Application.Marathon.Queries.GetSignUpStatus;
-using Marathon.Application.Tests.Infrastructure.Repositories;
 using Marathon.Application.Marathon.Commands.SignUpToMarathon;
-using Marathon.Application.RaceKitOption.Exceptions;
 using SignUpStatusEnum = Marathon.Domain.Enumerations.SignUpStatus;
-using Marathon.Application.Tests.Infrastructure.Repositories.BaseEntity;
 using Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable;
 using Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption;
+using Marathon.Application.Tests.Infrastructure;
 
 namespace Marathon.Application.Tests.Marathon.Handlers
 {
@@ -25,105 +24,67 @@ namespace Marathon.Application.Tests.Marathon.Handlers
     /// <summary>
     /// Unit test module for <see cref="SignUpToMarathonCommandHandler"/>
     /// </summary>
+    [Collection("Database collection")]
     public class SignUpToMarathonCommandHandlerTests
     {
-        #region Main handler
-
         private readonly SignUpToMarathonCommandHandler _signUpToMarathonCommandHandler;
 
-        private readonly RepositoryMock<MarathonSignUp> _marathonSignUpRepository;
-        private readonly RepositoryMock<SignUpMarathonEvent> _signUpMarathonEventWriteRepository;
+        private readonly IUnitOfWork _uow;
 
-        #endregion
-
-        #region GetSignUpStatus
-
-        private readonly GetSignUpStatusQueryHandler _signUpStatusQueryHandler;
-
-        private readonly ReadOnlyRepositoryMock<SignUpStatus> _signUpStatusRepository;
-
-        #endregion
-
-        #region GetEventsByTypes
-
-        private readonly GetEventsByTypesQueryHandler _eventsByTypesQueryHandler;
-
-        private readonly ReadOnlyRepositoryMock<EventModel> _eventRepository;
-        private readonly ReadOnlyRepositoryMock<SignUpMarathonEvent> _signUpMarathonEventReadRepository;
-
-        #endregion
-
-        #region GetCostOfSelectedRaceKitOption
-
-        private readonly GetCostOfSelectedRaceKitOptionQueryHandler _costOfSelectedRaceKitOptionQueryHandler;
-
-        private readonly ReadOnlyRepositoryMock<RaceKitOption> _raceKitOptionRepository;
-
-        #region IsRaceKitOptionAvailable
-
-        private readonly IsRaceKitOptionAvailableQueryHandler _raceKitOptionAvailableQueryHandler;
-
-        private readonly ReadOnlyRepositoryMock<RaceKitItem> _raceKitItemRepository;
-        private readonly BaseReadOnlyRepositoryMock<RaceKitOptionItem> _optionItemRepository;
-
-        #endregion
-
-        #endregion
-
-        private readonly CancellationToken _cancellationToken;
-
-        public SignUpToMarathonCommandHandlerTests()
+        public SignUpToMarathonCommandHandlerTests(DbContextFixture contextFixture)
         {
-            CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-            _cancellationToken = cancelTokenSource.Token;
+            IUnitOfWorkFactory uowFactory = new FixtureUoWFactory(contextFixture);
 
-            #region Mock repositories
+            _uow = uowFactory.Create();
 
-            _raceKitItemRepository = (ReadOnlyRepositoryMock<RaceKitItem>)new ReadOnlyRepositoryMock<RaceKitItem>()
-                .FromJson(@"Marathon\Data\RaceKitItem.json");
+            _uow.Initialize(async uow =>
+            {
+                ((IRepository<SignUpStatus>)uow.SignUpStatuses).ImportFromCollection(CreateMarathonSignUpStatuses());
 
-            _optionItemRepository = (BaseReadOnlyRepositoryMock<RaceKitOptionItem>)new BaseReadOnlyRepositoryMock<RaceKitOptionItem>()
-                .FromJson(@"Marathon\Data\RaceKitOptionItem.json");
+                uow.RaceKitItems.ImportFromJson(@"Marathon\Data\RaceKitItem.json");
+                uow.RaceKitOptions.ImportFromJson(@"Marathon\Data\RaceKitOption.json");
+                uow.RaceKitOptionItems.ImportFromJson(@"Marathon\Data\RaceKitOptionItem.json");
 
-            _raceKitOptionRepository = (ReadOnlyRepositoryMock<RaceKitOption>)new ReadOnlyRepositoryMock<RaceKitOption>()
-                .FromJson(@"Marathon\Data\RaceKitOption.json");
+                uow.Events.ImportFromJson(@"Marathon\Data\Event.json");
+                uow.SignUpMarathonEvents.ImportFromJson(@"Marathon\Data\SignUpMarathonEvent.json");
 
-            _eventRepository = (ReadOnlyRepositoryMock<EventModel>)new ReadOnlyRepositoryMock<EventModel>()
-                .FromJson(@"Marathon\Data\Event.json");
-
-            _signUpMarathonEventReadRepository = (ReadOnlyRepositoryMock<SignUpMarathonEvent>)new ReadOnlyRepositoryMock<SignUpMarathonEvent>()
-                .FromJson(@"Marathon\Data\SignUpMarathonEvent.json");
-
-            _signUpStatusRepository = (ReadOnlyRepositoryMock<SignUpStatus>)new ReadOnlyRepositoryMock<SignUpStatus>()
-                .FromCollection(CreateMarathonSignUpStatuses());
-
-            _marathonSignUpRepository = new RepositoryMock<MarathonSignUp>();
-
-            _signUpMarathonEventWriteRepository = new RepositoryMock<SignUpMarathonEvent>();
-
-            #endregion
+                await uow.CommitAsync(CancellationToken.None);
+            });
 
             #region Setup handlers
 
-            _raceKitOptionAvailableQueryHandler = new IsRaceKitOptionAvailableQueryHandler(_raceKitItemRepository.Object,
-                                                                                           _optionItemRepository.Object);
+            var raceKitOptionAvailableQueryHandler = new IsRaceKitOptionAvailableQueryHandler(uowFactory);
 
-            _costOfSelectedRaceKitOptionQueryHandler = new GetCostOfSelectedRaceKitOptionQueryHandler(_raceKitOptionRepository.Object,
-                                                                                                      _raceKitOptionAvailableQueryHandler);
+            var costOfSelectedRaceKitOptionQueryHandler = new GetCostOfSelectedRaceKitOptionQueryHandler(uowFactory, raceKitOptionAvailableQueryHandler);
 
-            _eventsByTypesQueryHandler = new GetEventsByTypesQueryHandler(_eventRepository.Object,
-                                                                          _signUpMarathonEventReadRepository.Object);
+            var eventsByTypesQueryHandler = new GetEventsByTypesQueryHandler(uowFactory);
 
-            _signUpStatusQueryHandler = new GetSignUpStatusQueryHandler(_signUpStatusRepository.Object);
+            var signUpStatusQueryHandler = new GetSignUpStatusQueryHandler(uowFactory);
 
-            _signUpToMarathonCommandHandler = new SignUpToMarathonCommandHandler(_marathonSignUpRepository.Object,
-                                                                                 _signUpMarathonEventWriteRepository.Object,
-                                                                                 _signUpStatusQueryHandler,
-                                                                                 _eventsByTypesQueryHandler,
-                                                                                 _costOfSelectedRaceKitOptionQueryHandler);
+            _signUpToMarathonCommandHandler = new SignUpToMarathonCommandHandler(uowFactory,
+                                                                                 signUpStatusQueryHandler,
+                                                                                 eventsByTypesQueryHandler,
+                                                                                 costOfSelectedRaceKitOptionQueryHandler);
 
             #endregion
         }
+
+        //private async Task SeedData()
+        //{
+        //    using (IUnitOfWork context = _uowFactory.Create())
+        //    {
+        //        ((IRepository<SignUpStatus>)context.SignUpStatuses).ImportFromCollection(CreateMarathonSignUpStatuses());
+
+        //        context.RaceKitItems.ImportFromJson(@"Marathon\Data\RaceKitItem.json");
+        //        context.RaceKitOptions.ImportFromJson(@"Marathon\Data\RaceKitOption.json");
+        //        context.RaceKitOptionItems.ImportFromJson(@"Marathon\Data\RaceKitOptionItem.json");
+
+        //        context.Events.ImportFromJson(@"Marathon\Data\Event.json");
+        //        context.SignUpMarathonEvents.ImportFromJson(@"Marathon\Data\SignUpMarathonEvent.json");
+
+        //        await context.CommitAsync(CancellationToken.None);
+        //    }
+        //}
 
         private IEnumerable<SignUpStatus> CreateMarathonSignUpStatuses()
         {
@@ -136,8 +97,6 @@ namespace Marathon.Application.Tests.Marathon.Handlers
                 };
             }
         }
-        
-        // TODO: Add repositories verification test
 
         [Fact]
         public async Task RunnerGetExceptionIfNoEventsOfSelectedTypes()
@@ -155,7 +114,7 @@ namespace Marathon.Application.Tests.Marathon.Handlers
 
             // Act-Assert
 
-            await Assert.ThrowsAsync<NoEventsOfSelectedTypesException>(async () => await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken));
+            await Assert.ThrowsAsync<NoEventsOfSelectedTypesException>(async () => await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None));
         }
 
         [Theory]
@@ -164,12 +123,13 @@ namespace Marathon.Application.Tests.Marathon.Handlers
         {
             // Act
 
-            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+            await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None);
+
+            MarathonSignUp marathonSignUp = await _uow.MarathonSignUps.GetSingleAsync(ms => ms.RunnerId == request.RunnerId);
 
             // Assert
 
-            long id = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).Id;
-            Assert.NotEqual(default(long), id);
+            Assert.NotEqual(default(long), marathonSignUp.Id);
         }
 
         [Theory]
@@ -180,11 +140,12 @@ namespace Marathon.Application.Tests.Marathon.Handlers
 
             var rnd = new Random();
 
-            request.RaceKitOptionId = rnd.Next((int) _raceKitOptionRepository.Items.Max(i => i.Id), Int32.MaxValue);
+            IEnumerable<RaceKitOption> raceKitOptions = await _uow.RaceKitOptions.GetAllAsync();
+            request.RaceKitOptionId = rnd.Next((int)raceKitOptions.Max(i => i.Id), Int32.MaxValue);
 
             // Act-Assert
 
-            await Assert.ThrowsAsync<RaceKitOptionNotExistsException>(async () => await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken));
+            await Assert.ThrowsAsync<RaceKitOptionNotExistsException>(async () => await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None));
         }
 
         [Theory]
@@ -193,12 +154,13 @@ namespace Marathon.Application.Tests.Marathon.Handlers
         {
             // Act
 
-            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+            await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None);
+
+            MarathonSignUp marathonSignUp = await _uow.MarathonSignUps.GetSingleAsync(ms => ms.RunnerId == request.RunnerId);
 
             // Assert
 
-            DateTime signUpDate = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).SignUpDate;
-            Assert.Equal(DateTime.UtcNow.Date, signUpDate.Date);
+            Assert.Equal(DateTime.UtcNow.Date, marathonSignUp.SignUpDate.Date);
         }
 
         [Theory]
@@ -207,14 +169,14 @@ namespace Marathon.Application.Tests.Marathon.Handlers
         {
             // Act
 
-            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+            await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None);
+
+            MarathonSignUp marathonSignUp = await _uow.MarathonSignUps.GetSingleAsync(ms => ms.RunnerId == request.RunnerId);
+            SignUpMarathonEvent signUpMarathonEvent = await _uow.SignUpMarathonEvents.GetSingleAsync(sm => sm.SignUpId == marathonSignUp.Id);
 
             // Assert
 
-            long signUpId = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).Id;
-            short? bibNumber = _signUpMarathonEventWriteRepository.Items.Find(s => s.SignUpId == signUpId).BibNumber;
-
-            Assert.Null(bibNumber);
+            Assert.Null(signUpMarathonEvent.BibNumber);
         }
 
         [Theory]
@@ -223,14 +185,14 @@ namespace Marathon.Application.Tests.Marathon.Handlers
         {
             // Act
 
-            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+            await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None);
+
+            MarathonSignUp marathonSignUp = await _uow.MarathonSignUps.GetSingleAsync(ms => ms.RunnerId == request.RunnerId);
+            SignUpMarathonEvent signUpMarathonEvent = await _uow.SignUpMarathonEvents.GetSingleAsync(sm => sm.SignUpId == marathonSignUp.Id);
 
             // Assert
 
-            long signUpId = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).Id;
-            long? raceTime = _signUpMarathonEventWriteRepository.Items.Find(s => s.SignUpId == signUpId).RaceTime;
-
-            Assert.Null(raceTime);
+            Assert.Null(signUpMarathonEvent.RaceTime);
         }
 
         [Theory]
@@ -239,13 +201,13 @@ namespace Marathon.Application.Tests.Marathon.Handlers
         {
             // Act
 
-            await _signUpToMarathonCommandHandler.Handle(request, _cancellationToken);
+            await _signUpToMarathonCommandHandler.Handle(request, CancellationToken.None);
+
+            MarathonSignUp marathonSignUp = await _uow.MarathonSignUps.GetSingleAsync(ms => ms.RunnerId == request.RunnerId);
 
             // Assert
 
-            long signUpStatusId = _marathonSignUpRepository.Items.Find(s => s.RunnerId == request.RunnerId).SignUpStatusId;
-
-            Assert.Equal(Domain.Enumerations.SignUpStatus.SignedUp.Id, signUpStatusId);
+            Assert.Equal(SignUpStatusEnum.SignedUp.Id, marathonSignUp.SignUpStatusId);
         }
     }
 }
