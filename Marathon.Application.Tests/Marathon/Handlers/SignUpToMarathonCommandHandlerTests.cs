@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Marathon.DAL.UnitOfWork;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
+using Marathon.Tests.DAL.Extensions;
 using Marathon.Application.Event.Exceptions;
 using Marathon.Application.Tests.Extensions;
+using Marathon.Application.Tests.Infrastructure;
 using Marathon.Application.RaceKitOption.Exceptions;
 using Marathon.Application.Event.Queries.GetEventsByTypes;
 using Marathon.Application.Marathon.Queries.GetSignUpStatus;
@@ -15,7 +17,6 @@ using Marathon.Application.Marathon.Commands.SignUpToMarathon;
 using SignUpStatusEnum = Marathon.Domain.Enumerations.SignUpStatus;
 using Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable;
 using Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOption;
-using Marathon.Application.Tests.Infrastructure;
 
 namespace Marathon.Application.Tests.Marathon.Handlers
 {

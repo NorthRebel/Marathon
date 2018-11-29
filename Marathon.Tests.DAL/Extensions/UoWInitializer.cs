@@ -2,14 +2,17 @@
 using System.Threading.Tasks;
 using Marathon.DAL.UnitOfWork;
 
-namespace Marathon.Application.Tests.Infrastructure
+namespace Marathon.Tests.DAL.Extensions
 {
-    internal static class UoWInitializer
+    /// <summary>
+    /// Thread-safe unitOfWork initializer
+    /// </summary>
+    public static class UoWInitializer
     {
         private static object _lock = new object();
         private static bool _initialized;
 
-        internal static void Initialize(this IUnitOfWork context, Func<IUnitOfWork, Task> seedData)
+        public static void Initialize(this IUnitOfWork context, Func<IUnitOfWork, Task> seedData)
         {
             if (!_initialized)
             {
