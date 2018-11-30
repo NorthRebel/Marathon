@@ -10,7 +10,7 @@ namespace Marathon.Domain.Enumerations
     /// <summary>
     /// Base class of linked enumeration for domain entities
     /// </summary>
-    public abstract class Enumeration<TKey, TEntity> where TEntity : IBaseEntity
+    public abstract class Enumeration<TKey, TEntity> where TEntity : IEnumEntity<TKey>, new()
     {
         public TKey Id { get; }
         public string Name { get; }
@@ -34,6 +34,21 @@ namespace Marathon.Domain.Enumerations
         /// Converts enumeration object to domain entity
         /// </summary>
         /// <returns>Domain entity</returns>
-        public abstract Expression<Func<Enumeration<TKey,TEntity>, TEntity>> ProjectToDomain();
+        public static Expression<Func<Enumeration<TKey, TEntity>, TEntity>> Projection
+        {
+            get
+            {
+                return enumEntity => new TEntity
+                {
+                    Id = enumEntity.Id,
+                    Name = enumEntity.Name
+                };
+            }
+        }
+
+        public static TEntity Create(Enumeration<TKey, TEntity> customer)
+        {
+            return Projection.Compile().Invoke(customer);
+        }
     }
 }

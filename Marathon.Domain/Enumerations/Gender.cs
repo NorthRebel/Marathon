@@ -25,14 +25,5 @@ namespace Marathon.Domain.Enumerations
             {
             }
         }
-
-        public override Expression<Func<Enumeration<char, Entities.Gender>, Entities.Gender>> ProjectToDomain()
-        {
-            return gender => new Entities.Gender
-            {
-                Id = gender.Id,
-                Name = gender.Name
-            };
-        }
     }
 }

@@ -44,14 +44,5 @@ namespace Marathon.Domain.Enumerations
             {
             }
         }
-
-        public override Expression<Func<Enumeration<byte, Entities.SignUpStatus>, Entities.SignUpStatus>> ProjectToDomain()
-        {
-            return signUpStatus => new Entities.SignUpStatus
-            {
-                Id = signUpStatus.Id,
-                Name = signUpStatus.Name
-            };
-        }
     }
 }

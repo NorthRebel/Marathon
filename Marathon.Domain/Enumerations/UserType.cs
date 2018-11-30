@@ -33,14 +33,5 @@ namespace Marathon.Domain.Enumerations
             {
             }
         }
-
-        public override Expression<Func<Enumeration<char, Entities.UserType>, Entities.UserType>> ProjectToDomain()
-        {
-            return userType => new Entities.UserType
-            {
-                Id = userType.Id,
-                Name = userType.Name
-            };
-        }
     }
 }
