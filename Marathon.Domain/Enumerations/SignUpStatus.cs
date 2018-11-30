@@ -3,14 +3,14 @@
     /// <remarks> 
     /// Sign up status class should be marked as abstract with protected constructor to encapsulate known enum types
     /// </remarks>
-    public class SignUpStatus : Enumeration
+    public class SignUpStatus : Enumeration<byte>
     {
         public static SignUpStatus SignedUp = new SignedUpSignUpStatus();
         public static SignUpStatus PaymentConfirmed = new PaymentConfirmedSignUpStatus();
         public static SignUpStatus RaceKitSent = new RaceKitSentSignUpStatus();
         public static SignUpStatus RaceAttended = new RaceAttendedSignUpStatus();
 
-        public SignUpStatus(long id, string name) : base(id, name)
+        public SignUpStatus(byte id, string name) : base(id, name)
         {
         }
 

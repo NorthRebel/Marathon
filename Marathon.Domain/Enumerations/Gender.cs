@@ -1,24 +1,24 @@
 ﻿namespace Marathon.Domain.Enumerations
 {
-    public class Gender : Enumeration
+    public class Gender : Enumeration<char>
     {
         public static Gender Male = new MaleGender();
         public static Gender Female = new FemaleGender();
 
-        public Gender(long id, string name) : base(id, name)
+        public Gender(char id, string name) : base(id, name)
         {
         }
 
         private class MaleGender : Gender
         {
-            public MaleGender() : base(1, "Male")
+            public MaleGender() : base('M', "Male")
             {
             }
         }
 
         private class FemaleGender : Gender
         {
-            public FemaleGender() : base(2, "Female")
+            public FemaleGender() : base('F', "Female")
             {
             }
         }

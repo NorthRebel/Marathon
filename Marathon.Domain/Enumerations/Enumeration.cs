@@ -7,12 +7,12 @@ namespace Marathon.Domain.Enumerations
     /// <summary>
     /// Base class of linked enumeration for domain entities
     /// </summary>
-    public abstract class Enumeration
+    public abstract class Enumeration<TKey>
     {
-        public long Id { get; }
+        public TKey Id { get; }
         public string Name { get; }
 
-        protected Enumeration(long id, string name)
+        protected Enumeration(TKey id, string name)
         {
             Id = id;
             Name = name;
@@ -20,7 +20,7 @@ namespace Marathon.Domain.Enumerations
 
         public override string ToString() => Name;
 
-        public static IEnumerable<T> GetAll<T>() where T : Enumeration
+        public static IEnumerable<T> GetAll<T>() where T : Enumeration<TKey>
         {
             var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
 
