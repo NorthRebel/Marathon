@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Gender of people
     /// </summary>
-    public sealed class Gender : IEntity
+    public sealed class Gender : IBaseEntity
     {
         public Gender()
         {
@@ -14,7 +14,7 @@ namespace Marathon.Domain.Entities
             Volunteers = new HashSet<Volunteer>();
         }
 
-        public long Id { get; set; }
+        public char Id { get; set; }
         public string Name { get; set; }
 
         public ICollection<Runner> Runners { get; set; }

@@ -11,7 +11,7 @@ namespace Marathon.Domain.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string CountryCode { get; set; }
-        public long GenderId { get; set; }
+        public char GenderId { get; set; }
         
         public Country Country { get; set; }
         public Gender Gender { get; set; }
