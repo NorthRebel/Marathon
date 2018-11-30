@@ -3,7 +3,7 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class SignUpStatus : IEntity<byte>
+    public sealed class SignUpStatus : IEnumEntity<byte>
     {
         public SignUpStatus()
         {
