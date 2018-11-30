@@ -1,6 +1,9 @@
-﻿namespace Marathon.Domain.Enumerations
+﻿using System;
+using System.Linq.Expressions;
+
+namespace Marathon.Domain.Enumerations
 {
-    public class UserType : Enumeration<char>
+    public class UserType : Enumeration<char, Entities.UserType>
     {
         public static UserType Administrator = new AdministratorUserType();
         public static UserType Coordinator = new CoordinatorUserType();
@@ -29,6 +32,15 @@
             public RunnerUserType() : base('R', "Runner")
             {
             }
+        }
+
+        public override Expression<Func<Enumeration<char, Entities.UserType>, Entities.UserType>> ProjectToDomain()
+        {
+            return userType => new Entities.UserType
+            {
+                Id = userType.Id,
+                Name = userType.Name
+            };
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿namespace Marathon.Domain.Enumerations
+﻿using System;
+using System.Linq.Expressions;
+
+namespace Marathon.Domain.Enumerations
 {
     /// <remarks> 
     /// Sign up status class should be marked as abstract with protected constructor to encapsulate known enum types
     /// </remarks>
-    public class SignUpStatus : Enumeration<byte>
+    public class SignUpStatus : Enumeration<byte, Entities.SignUpStatus>
     {
         public static SignUpStatus SignedUp = new SignedUpSignUpStatus();
         public static SignUpStatus PaymentConfirmed = new PaymentConfirmedSignUpStatus();
@@ -40,6 +43,15 @@
             public RaceAttendedSignUpStatus() : base(4, "Race Attended")
             {
             }
+        }
+
+        public override Expression<Func<Enumeration<byte, Entities.SignUpStatus>, Entities.SignUpStatus>> ProjectToDomain()
+        {
+            return signUpStatus => new Entities.SignUpStatus
+            {
+                Id = signUpStatus.Id,
+                Name = signUpStatus.Name
+            };
         }
     }
 }
