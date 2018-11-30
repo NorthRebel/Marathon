@@ -20,6 +20,7 @@ namespace Marathon.Domain.Entities
         public long EventTypeId { get; set; }
 
         public EventType EventType { get; set; }
+        public Marathon Marathon { get; set; }
         public ICollection<SignUpMarathonEvent> SignUpMarathonEvents { get; set; }
     }
 }
