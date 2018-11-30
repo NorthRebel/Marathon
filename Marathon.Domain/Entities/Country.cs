@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Short info about <see cref="Country"/>
     /// </summary>
-    public sealed class Country : IEntity
+    public sealed class Country : IBaseEntity
     {
         public Country()
         {
@@ -15,7 +15,7 @@ namespace Marathon.Domain.Entities
             Marathons = new HashSet<Marathon>();
         }
 
-        public long Id { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
         public byte[] Flag { get; set; }
 
