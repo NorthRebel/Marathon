@@ -27,6 +27,7 @@ namespace Marathon.Domain.Entities
         public Runner Runner { get; set; }
         public Charity Charity { get; set; }
         public SignUpStatus SignUpStatus { get; set; }
+        public RaceKitOption RaceKitOption { get; set; }
         public ICollection<Sponsorship> Sponsorships { get; set; }
         public ICollection<SignUpMarathonEvent> SignUpMarathonEvents { get; set; }
     }
