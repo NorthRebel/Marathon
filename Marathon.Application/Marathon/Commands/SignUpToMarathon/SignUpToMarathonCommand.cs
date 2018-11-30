@@ -9,8 +9,8 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
     public sealed class SignUpToMarathonCommand : IRequest
     {
         public long RunnerId { get; set; }
-        public long RaceKitOptionId { get; set; }
-        public IEnumerable<long> EventTypeIds { get; set; }
+        public char RaceKitOptionId { get; set; }
+        public IEnumerable<string> EventTypeIds { get; set; }
         public long CharityId { get; set; }
         public decimal SponsorshipTarget { get; set; }
     }

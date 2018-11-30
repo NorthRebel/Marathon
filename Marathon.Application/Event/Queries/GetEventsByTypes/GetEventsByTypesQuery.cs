@@ -8,9 +8,9 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
     /// </summary>
     public sealed class GetEventsByTypesQuery : IRequest<EventsListViewModel>
     {
-        public IEnumerable<long> EventTypeIds { get; set; }
+        public IEnumerable<string> EventTypeIds { get; set; }
 
-        public GetEventsByTypesQuery(IEnumerable<long> eventTypeIds)
+        public GetEventsByTypesQuery(IEnumerable<string> eventTypeIds)
         {
             EventTypeIds = eventTypeIds;
         }

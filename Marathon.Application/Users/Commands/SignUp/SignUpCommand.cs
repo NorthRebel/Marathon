@@ -14,8 +14,8 @@ namespace Marathon.Application.Users.Commands.SignUp
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public long GenderId { get; set; }
-        public long CountryId { get; set; }
+        public char GenderId { get; set; }
+        public string CountryId { get; set; }
         public byte[] Photo { get; set; }
     }
 }

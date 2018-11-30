@@ -8,9 +8,9 @@ namespace Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable
     /// </summary>
     public sealed class IsRaceKitOptionAvailableQuery : IRequest<bool>
     {
-        public long RaceKitOptionId { get; set; }
+        public char RaceKitOptionId { get; set; }
 
-        public IsRaceKitOptionAvailableQuery(long raceKitOptionId)
+        public IsRaceKitOptionAvailableQuery(char raceKitOptionId)
         {
             RaceKitOptionId = raceKitOptionId;
         }

@@ -5,7 +5,7 @@ namespace Marathon.Application.Users.Queries.GetUserType
     /// <summary>
     /// Gets user's privileges type code by name
     /// </summary>
-    public sealed class GetUserTypeQuery : IRequest<long>
+    public sealed class GetUserTypeQuery : IRequest<char>
     {
         public string Name { get; set; }
 

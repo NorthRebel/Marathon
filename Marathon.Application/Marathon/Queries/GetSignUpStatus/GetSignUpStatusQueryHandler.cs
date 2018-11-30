@@ -11,7 +11,7 @@ namespace Marathon.Application.Marathon.Queries.GetSignUpStatus
     /// <summary>
     /// Handles <see cref="GetSignUpStatusQuery"/>
     /// </summary>
-    public sealed class GetSignUpStatusQueryHandler : IRequestHandler<GetSignUpStatusQuery, long>
+    public sealed class GetSignUpStatusQueryHandler : IRequestHandler<GetSignUpStatusQuery, byte>
     {
         private readonly IUnitOfWorkFactory _uowFactory;
 
@@ -20,7 +20,7 @@ namespace Marathon.Application.Marathon.Queries.GetSignUpStatus
             _uowFactory = uowFactory;
         }
 
-        public async Task<long> Handle(GetSignUpStatusQuery request, CancellationToken cancellationToken)
+        public async Task<byte> Handle(GetSignUpStatusQuery request, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
             {

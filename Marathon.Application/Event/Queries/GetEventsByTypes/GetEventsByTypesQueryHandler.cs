@@ -29,7 +29,7 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
             if (!enumeratedEvents.Any())
                 return EventsListViewModelProjection(new EventLookupModel[0]);
 
-            Dictionary<long, int> eventsParticipants = await GetParticipantsCountByEventIds(enumeratedEvents.Select(ev => ev.Id), cancellationToken);
+            Dictionary<string, int> eventsParticipants = await GetParticipantsCountByEventIds(enumeratedEvents.Select(ev => ev.Id), cancellationToken);
             return EventsListViewModelProjection(GetEventsByTypeIds(enumeratedEvents, eventsParticipants));
         }
 
@@ -52,7 +52,7 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// <param name="events">Events list selected by eventTypeIds and current date</param>
         /// <param name="eventsParticipants">Key value pair where Key is event id; Value is count of participants</param>
         /// <returns>Available events list by participants count selection</returns>
-        private IEnumerable<EventLookupModel> GetEventsByTypeIds(IEnumerable<EventLookupModel> events, Dictionary<long, int> eventsParticipants)
+        private IEnumerable<EventLookupModel> GetEventsByTypeIds(IEnumerable<EventLookupModel> events, Dictionary<string, int> eventsParticipants)
         {
             return from ev in events
                    join evPart in eventsParticipants on ev.Id equals evPart.Key
@@ -64,7 +64,7 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// Get count of signed up runners by event
         /// </summary>
         /// <returns>Key value pair where Key is event id; Value is count of participants</returns>
-        private Task<Dictionary<long, int>> GetParticipantsCountByEventIds(IEnumerable<long> eventIds, CancellationToken cancellationToken)
+        private Task<Dictionary<string, int>> GetParticipantsCountByEventIds(IEnumerable<string> eventIds, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
             {
@@ -85,18 +85,22 @@ namespace Marathon.Application.Event.Queries.GetEventsByTypes
         /// <remarks>
         /// This list not selected by available MaxParticipants property on event.
         /// </remarks>
-        private async Task<IEnumerable<EventLookupModel>> GetEventsByTypeIds(IEnumerable<long> eventTypeIds, CancellationToken cancellationToken)
+        private async Task<IEnumerable<EventLookupModel>> GetEventsByTypeIds(IEnumerable<string> eventTypeIds, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
             {
-                IEnumerable<EventModel> events = await context.Events.GetAsync(e => e.Where(ev => eventTypeIds.Contains(ev.EventTypeId) && ev.StartDate >= DateTime.UtcNow), cancellationToken);
+                IEnumerable<EventModel> events = await context.Events.GetAsync(
+                    e => e.Where(ev => eventTypeIds.Contains(ev.EventTypeId) 
+                                       && (ev.StartDate.HasValue && ev.Cost.HasValue && ev.MaxParticipants.HasValue) && 
+                                       ev.StartDate >= DateTime.UtcNow), 
+                    cancellationToken);
 
                 return events.Select(vm => new EventLookupModel
                 {
                     Id = vm.Id,
-                    StartDate = vm.StartDate,
-                    Cost = vm.Cost,
-                    MaxParticipants = vm.MaxParticipants
+                    StartDate = vm.StartDate.Value,
+                    Cost = vm.Cost.Value,
+                    MaxParticipants = vm.MaxParticipants.Value
                 });
             }
         }

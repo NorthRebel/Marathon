@@ -20,12 +20,12 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
     {
         private readonly IUnitOfWork _dbContext;
 
-        private readonly IRequestHandler<GetSignUpStatusQuery, long> _marathonSignUpStatusFinder;
+        private readonly IRequestHandler<GetSignUpStatusQuery, byte> _marathonSignUpStatusFinder;
         private readonly IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> _eventsOfSelectedTypes;
         private readonly IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> _raceKitOptionCostHandler;
 
         public SignUpToMarathonCommandHandler(IUnitOfWorkFactory uowFactory,
-            IRequestHandler<GetSignUpStatusQuery, long> marathonSignUpStatusFinder,
+            IRequestHandler<GetSignUpStatusQuery, byte> marathonSignUpStatusFinder,
             IRequestHandler<GetEventsByTypesQuery, EventsListViewModel> eventsOfSelectedTypes,
             IRequestHandler<GetCostOfSelectedRaceKitOptionQuery, decimal> raceKitOptionCostHandler)
         {
@@ -53,7 +53,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
 
         #region Command handler helpers
 
-        private async Task<EventsListViewModel> GetEventsOfSelectedTypes(IEnumerable<long> eventTypeIds, CancellationToken cancellationToken)
+        private async Task<EventsListViewModel> GetEventsOfSelectedTypes(IEnumerable<string> eventTypeIds, CancellationToken cancellationToken)
         {
             var events = await _eventsOfSelectedTypes.Handle(new GetEventsByTypesQuery(eventTypeIds), cancellationToken);
 
@@ -115,7 +115,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
             };
         }
 
-        public async Task<decimal> GetCostOfSelectedRaceKitOption(long raceKitOptionId, CancellationToken cancellationToken)
+        public async Task<decimal> GetCostOfSelectedRaceKitOption(char raceKitOptionId, CancellationToken cancellationToken)
         {
             return await _raceKitOptionCostHandler.Handle(new GetCostOfSelectedRaceKitOptionQuery(raceKitOptionId),
                 cancellationToken);
@@ -126,7 +126,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
             return eventsListViewModel.Events.Sum(e => e.Cost);
         }
 
-        private async Task<long> GetInitialMarathonSignUpStatus(CancellationToken cancellationToken)
+        private async Task<byte> GetInitialMarathonSignUpStatus(CancellationToken cancellationToken)
         {
             return await _marathonSignUpStatusFinder.Handle(new GetSignUpStatusQuery(Domain.Enumerations.SignUpStatus.SignedUp.ToString()), cancellationToken);
         }

@@ -5,7 +5,7 @@ namespace Marathon.Application.Marathon.Queries.GetSignUpStatus
     /// <summary>
     /// Gets runner's marathon sign up status code by name
     /// </summary>
-    public sealed class GetSignUpStatusQuery : IRequest<long>
+    public sealed class GetSignUpStatusQuery : IRequest<byte>
     {
         public string Name { get; set; }
 

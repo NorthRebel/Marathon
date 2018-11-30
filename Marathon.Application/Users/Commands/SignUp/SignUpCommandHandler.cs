@@ -17,11 +17,11 @@ namespace Marathon.Application.Users.Commands.SignUp
         private readonly IUnitOfWork _dbContext;
 
         private readonly IRequestHandler<IsUserExistsQuery, bool> _userChecker;
-        private readonly IRequestHandler<GetUserTypeQuery, long> _userTypeFinder;
+        private readonly IRequestHandler<GetUserTypeQuery, char> _userTypeFinder;
 
         public SignUpCommandHandler(IUnitOfWorkFactory uowFactory,
             IRequestHandler<IsUserExistsQuery, bool> userChecker, 
-            IRequestHandler<GetUserTypeQuery, long> userTypeFinder)
+            IRequestHandler<GetUserTypeQuery, char> userTypeFinder)
         {
             _dbContext = uowFactory.Create();
 
@@ -65,7 +65,7 @@ namespace Marathon.Application.Users.Commands.SignUp
             };
         }
 
-        private async Task<long> GetRunnerUserType(CancellationToken cancellationToken)
+        private async Task<char> GetRunnerUserType(CancellationToken cancellationToken)
         {
             return await _userTypeFinder.Handle(new GetUserTypeQuery(Domain.Enumerations.UserType.Runner.ToString()),
                 cancellationToken);

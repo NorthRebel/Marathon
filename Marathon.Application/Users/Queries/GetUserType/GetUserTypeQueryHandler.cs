@@ -10,7 +10,7 @@ namespace Marathon.Application.Users.Queries.GetUserType
     /// <summary>
     /// Handles <see cref="GetUserTypeQuery"/>
     /// </summary>
-    public sealed class GetUserTypeQueryHandler : IRequestHandler<GetUserTypeQuery, long>
+    public sealed class GetUserTypeQueryHandler : IRequestHandler<GetUserTypeQuery, char>
     {
         private readonly IUnitOfWorkFactory _uowFactory;
 
@@ -19,7 +19,7 @@ namespace Marathon.Application.Users.Queries.GetUserType
             _uowFactory = uowFactory;
         }
 
-        public async Task<long> Handle(GetUserTypeQuery request, CancellationToken cancellationToken)
+        public async Task<char> Handle(GetUserTypeQuery request, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
             {

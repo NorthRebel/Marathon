@@ -59,8 +59,8 @@ namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
             return new Sponsorship
             {
                 Name = request.SponsorName,
-                RegistrationId = request.RunnerMarathonSignUpId,
-                Ammount = request.Amount
+                SignUpId = request.RunnerMarathonSignUpId,
+                Amount = request.Amount
             };
         }
 

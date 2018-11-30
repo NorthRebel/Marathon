@@ -40,13 +40,13 @@ namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOpt
 
         #region Command handler helpers
 
-        private Task<RaceKitOption> GetRaceKitOptionById(long raceKitOptionId, CancellationToken cancellationToken)
+        private Task<RaceKitOption> GetRaceKitOptionById(char raceKitOptionId, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
                 return context.RaceKitOptions.GetSingleAsync(r => r.Id == raceKitOptionId, cancellationToken);
         }
 
-        private async Task<bool> CheckRaceKitItemStockState(long raceKitOptionId, CancellationToken cancellationToken)
+        private async Task<bool> CheckRaceKitItemStockState(char raceKitOptionId, CancellationToken cancellationToken)
         {
             return await _itemsStockChecker.Handle(new IsRaceKitOptionAvailableQuery(raceKitOptionId), cancellationToken);
         }

@@ -7,9 +7,9 @@ namespace Marathon.Application.RaceKitOption.Queries.GetCostOfSelectedRaceKitOpt
     /// </summary>
     public sealed class GetCostOfSelectedRaceKitOptionQuery : IRequest<decimal>
     {
-        public long RaceKitOptionId { get; set; }
+        public char RaceKitOptionId { get; set; }
 
-        public GetCostOfSelectedRaceKitOptionQuery(long raceKitOptionId)
+        public GetCostOfSelectedRaceKitOptionQuery(char raceKitOptionId)
         {
             RaceKitOptionId = raceKitOptionId;
         }
