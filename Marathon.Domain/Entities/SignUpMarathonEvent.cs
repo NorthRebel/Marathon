@@ -7,7 +7,7 @@ namespace Marathon.Domain.Entities
         public long Id { get; set; }
         public short? BibNumber { get; set; }
         public long? RaceTime { get; set; }
-        public long EventId { get; set; }
+        public string EventId { get; set; }
         public long SignUpId { get; set; }
 
         public MarathonSignUp SignUp { get; set; }

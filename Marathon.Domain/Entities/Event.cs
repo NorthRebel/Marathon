@@ -4,14 +4,14 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class Event : IEntity
+    public sealed class Event : IBaseEntity
     {
         public Event()
         {
             SignUpMarathonEvents = new HashSet<SignUpMarathonEvent>();
         }
 
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public decimal Cost { get; set; }
         public DateTime StartDate { get; set; }
