@@ -8,11 +8,6 @@ namespace Marathon.Domain.Entities
     /// </summary>
     public sealed class User : IEntity<long>
     {
-        public User()
-        {
-            Runners = new HashSet<Runner>();
-        }
-
         public long Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -21,6 +16,6 @@ namespace Marathon.Domain.Entities
         public char UserTypeId { get; set; }
 
         public UserType UserType { get; set; }
-        public ICollection<Runner> Runners { get; set; }
+        public Runner Runner { get; set; }
     }
 }
