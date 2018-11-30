@@ -136,5 +136,17 @@ namespace Marathon.DAL.Repositories
             var items = await repository.GetAsync(q => q.Where(predicate), cancellationToken);
             return items.SingleOrDefault();
         }
+
+        /// <summary>
+        /// Imports repository items from in-memory collection
+        /// </summary>
+        /// <typeparam name="TEntity">Entity type import</typeparam>
+        /// <param name="repository">Target repository</param>
+        /// <param name="collection">In-memory collection to import</param>
+        public static void ImportFromCollection<TEntity>(this IRepository<TEntity> repository, IEnumerable<TEntity> collection) where TEntity : IBaseEntity
+        {
+            foreach (TEntity entry in collection)
+                repository.Add(entry);
+        }
     }
 }

@@ -25,17 +25,5 @@ namespace Marathon.Tests.DAL.Extensions
             foreach (TEntity entry in JsonConvert.DeserializeObject<IEnumerable<TEntity>>(fileData))
                 repository.Add(entry);
         }
-
-        /// <summary>
-        /// Imports repository items from in-memory collection
-        /// </summary>
-        /// <typeparam name="TEntity">Entity type import</typeparam>
-        /// <param name="repository">Target repository</param>
-        /// <param name="collection">In-memory collection to import</param>
-        public static void ImportFromCollection<TEntity>(this IRepository<TEntity> repository, IEnumerable<TEntity> collection) where TEntity : IBaseEntity
-        {
-            foreach (TEntity entry in collection)
-                repository.Add(entry);
-        }
     }
 }
