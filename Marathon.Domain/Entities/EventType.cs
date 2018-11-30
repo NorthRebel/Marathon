@@ -3,14 +3,14 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class EventType : IEntity
+    public sealed class EventType : IBaseEntity
     {
         public EventType()
         {
             Events = new HashSet<Event>();
         }
 
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
 
         public ICollection<Event> Events { get; set; }

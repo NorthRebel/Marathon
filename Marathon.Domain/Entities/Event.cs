@@ -17,7 +17,7 @@ namespace Marathon.Domain.Entities
         public DateTime StartDate { get; set; }
         public short MaxParticipants { get; set; }
         public long MarathonId { get; set; }
-        public long EventTypeId { get; set; }
+        public string EventTypeId { get; set; }
 
         public EventType EventType { get; set; }
         public Marathon Marathon { get; set; }
