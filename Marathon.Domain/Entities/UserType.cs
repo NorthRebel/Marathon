@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// The type of user that divide rights to use application
     /// </summary>
-    public sealed class UserType : IBaseEntity
+    public sealed class UserType : IEntity<char>
     {
         public UserType()
         {

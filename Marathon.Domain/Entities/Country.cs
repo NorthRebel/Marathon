@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Short info about <see cref="Country"/>
     /// </summary>
-    public sealed class Country : IBaseEntity
+    public sealed class Country : IEntity<string>
     {
         public Country()
         {

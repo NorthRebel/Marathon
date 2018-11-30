@@ -7,7 +7,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of the <see cref="Runner"/>
     /// </summary>
-    public sealed class Runner : IEntity
+    public sealed class Runner : IEntity<long>
     {
         public Runner()
         {

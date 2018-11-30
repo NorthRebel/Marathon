@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of the <see cref="Charity"/>
     /// </summary>
-    public sealed class Charity : IEntity
+    public sealed class Charity : IEntity<long>
     {
         public Charity()
         {

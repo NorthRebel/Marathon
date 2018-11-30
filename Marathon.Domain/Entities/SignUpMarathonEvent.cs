@@ -2,7 +2,7 @@
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class SignUpMarathonEvent : IEntity
+    public sealed class SignUpMarathonEvent : IEntity<long>
     {
         public long Id { get; set; }
         public short? BibNumber { get; set; }

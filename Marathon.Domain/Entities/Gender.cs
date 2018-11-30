@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Gender of people
     /// </summary>
-    public sealed class Gender : IBaseEntity
+    public sealed class Gender : IEntity<char>
     {
         public Gender()
         {

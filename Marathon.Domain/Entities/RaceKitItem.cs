@@ -3,14 +3,14 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class RaceKitItem : IEntity
+    public sealed class RaceKitItem : IEntity<short>
     {
         public RaceKitItem()
         {
             OptionItems = new HashSet<RaceKitOptionItem>();
         }
 
-        public long Id { get; set; }
+        public short Id { get; set; }
         public string Name { get; set; }
         public long Count { get; set; }
 

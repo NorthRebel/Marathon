@@ -3,7 +3,7 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class EventType : IBaseEntity
+    public sealed class EventType : IEntity<string>
     {
         public EventType()
         {

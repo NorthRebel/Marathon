@@ -3,7 +3,7 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class RaceKitOption : IEntity
+    public sealed class RaceKitOption : IEntity<char>
     {
         public RaceKitOption()
         {
@@ -11,7 +11,7 @@ namespace Marathon.Domain.Entities
             SignUps = new HashSet<MarathonSignUp>();
         }
 
-        public long Id { get; set; }
+        public char Id { get; set; }
         public string Name { get; set; }
         public decimal Cost { get; set; }
 

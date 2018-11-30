@@ -4,7 +4,7 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class Event : IBaseEntity
+    public sealed class Event : IEntity<string>
     {
         public Event()
         {

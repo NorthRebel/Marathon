@@ -6,7 +6,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of application user
     /// </summary>
-    public sealed class User : IEntity
+    public sealed class User : IEntity<long>
     {
         public User()
         {

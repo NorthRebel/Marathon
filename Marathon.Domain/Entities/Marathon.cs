@@ -3,7 +3,7 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class Marathon : IBaseEntity
+    public sealed class Marathon : IEntity<byte>
     {
         public Marathon()
         {

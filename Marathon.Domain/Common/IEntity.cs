@@ -3,8 +3,9 @@
     /// <summary>
     /// Adds necessary identity property for entity
     /// </summary>
-    public interface IEntity : IBaseEntity
+    /// <typeparam name="TKey">Type of entity identity property</typeparam>
+    public interface IEntity<TKey> : IBaseEntity
     {
-        long Id { get; set; }
+        TKey Id { get; set; }
     }
 }
