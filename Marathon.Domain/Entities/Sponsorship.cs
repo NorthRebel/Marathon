@@ -10,7 +10,7 @@ namespace Marathon.Domain.Entities
         public long Id { get; set; }
         public string Name { get; set; }
         public long RegistrationId { get; set; }
-        public decimal Ammount { get; set; }
+        public decimal Amount { get; set; }
 
         public MarathonSignUp Registration { get; set; }
     }
