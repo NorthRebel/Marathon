@@ -13,7 +13,7 @@ namespace Marathon.Domain.Entities
         public byte Id { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
-        public long CountryId { get; set; }
+        public string CountryId { get; set; }
         public short? YearHeld { get; set; }
 
         public Country Country { get; set; }

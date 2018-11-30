@@ -18,7 +18,7 @@ namespace Marathon.Domain.Entities
         public long UserId { get; set; }
         public char GenderId { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public string CountryCode { get; set; }
+        public string CountryId { get; set; }
         public byte[] Photo { get; set; }
 
         public User User { get; set; }

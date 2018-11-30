@@ -15,7 +15,7 @@ namespace Marathon.Domain.Entities
             Marathons = new HashSet<Marathon>();
         }
 
-        public string Code { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public byte[] Flag { get; set; }
 
