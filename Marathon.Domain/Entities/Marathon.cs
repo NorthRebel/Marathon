@@ -3,14 +3,14 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class Marathon : IEntity
+    public sealed class Marathon : IBaseEntity
     {
         public Marathon()
         {
             Events = new HashSet<Event>();
         }
 
-        public long Id { get; set; }
+        public byte Id { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         public long CountryId { get; set; }

@@ -16,7 +16,7 @@ namespace Marathon.Domain.Entities
         public decimal Cost { get; set; }
         public DateTime StartDate { get; set; }
         public short MaxParticipants { get; set; }
-        public long MarathonId { get; set; }
+        public byte MarathonId { get; set; }
         public string EventTypeId { get; set; }
 
         public EventType EventType { get; set; }
