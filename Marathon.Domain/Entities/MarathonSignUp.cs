@@ -22,7 +22,7 @@ namespace Marathon.Domain.Entities
         public long RunnerId { get; set; }
         public long CharityId { get; set; }
         public long RaceKitOptionId { get; set; }
-        public long SignUpStatusId { get; set; }
+        public byte SignUpStatusId { get; set; }
 
         public Runner Runner { get; set; }
         public Charity Charity { get; set; }

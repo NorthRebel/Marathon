@@ -18,7 +18,7 @@ namespace Marathon.Domain.Entities
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public long UserTypeId { get; set; }
+        public char UserTypeId { get; set; }
 
         public UserType UserType { get; set; }
         public ICollection<Runner> Runners { get; set; }
