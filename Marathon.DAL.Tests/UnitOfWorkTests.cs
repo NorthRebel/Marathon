@@ -9,6 +9,7 @@ using Marathon.Domain.Entities;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
 using Marathon.Tests.DAL.Infrastructure;
+using UserType = Marathon.Domain.Enumerations.UserType;
 
 namespace Marathon.DAL.Tests
 {
@@ -37,7 +38,7 @@ namespace Marathon.DAL.Tests
                 Password = "qWOvG6TJ",
                 FirstName = "ANTON",
                 LastName = "BEAULIEU",
-                UserTypeId = 3
+                UserTypeId = UserType.Runner.Id
             };
 
             _context.Users.Add(user);

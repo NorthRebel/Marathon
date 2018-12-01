@@ -85,10 +85,10 @@ namespace Marathon.Application.Tests.Marathon.Handlers
             var request = new SignUpToMarathonCommand
             {
                 RunnerId = 242,
-                RaceKitOptionId = 2,
+                RaceKitOptionId ='A',
                 CharityId = 12,
                 SponsorshipTarget = 500m,
-                EventTypeIds = new long[] { 20, 40, 50 }
+                EventTypeIds = new[] { "AA", "BB", "CC" }
             };
 
             // Act-Assert
@@ -117,10 +117,7 @@ namespace Marathon.Application.Tests.Marathon.Handlers
         {
             // Arrange
 
-            var rnd = new Random();
-
-            IEnumerable<RaceKitOption> raceKitOptions = await _unitOfWork.Context.RaceKitOptions.GetAllAsync();
-            request.RaceKitOptionId = rnd.Next((int)raceKitOptions.Max(i => i.Id), Int32.MaxValue);
+            request.RaceKitOptionId = 'D';
 
             // Act-Assert
 

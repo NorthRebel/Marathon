@@ -20,7 +20,7 @@ namespace Marathon.Application.Tests.Marathon.Validators
         [Fact]
         public void ShouldHaveErrorWhenEventTypesNotSelected()
         {
-            _validator.ShouldHaveValidationErrorFor(x => x.EventTypeIds, new long[0]);
+            _validator.ShouldHaveValidationErrorFor(x => x.EventTypeIds, new string[0]);
         }
 
         // TODO: Very strange test result

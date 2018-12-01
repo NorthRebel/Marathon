@@ -5,7 +5,7 @@
     "Password": "jwZh2x@p",
     "FirstName": "AHMAD",
     "LastName": "ADKIN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 2,
@@ -13,7 +13,7 @@
     "Password": "Hel#OOO",
     "FirstName": "AAROND",
     "LastName": "ALDRICH",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 3,
@@ -21,7 +21,7 @@
     "Password": "OPuDrw9O",
     "FirstName": "ALPHONSO",
     "LastName": "ALLISON",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 4,
@@ -29,7 +29,7 @@
     "Password": "sFpGd60D",
     "FirstName": "ANTONIO",
     "LastName": "ARIAS",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 5,
@@ -37,7 +37,7 @@
     "Password": "CPgaZBgb",
     "FirstName": "ALFREDA",
     "LastName": "ASHTON",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 6,
@@ -45,7 +45,7 @@
     "Password": "4jmwa6yH",
     "FirstName": "ARTHUR",
     "LastName": "AUBER",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 7,
@@ -53,7 +53,7 @@
     "Password": "QimhGU$d",
     "FirstName": "ANGUS",
     "LastName": "BARBOSA",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 8,
@@ -61,7 +61,7 @@
     "Password": "qWOvG6TJ",
     "FirstName": "ANTON",
     "LastName": "BEAULIEU",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 9,
@@ -69,7 +69,7 @@
     "Password": "7XbvvZud",
     "FirstName": "APRIL",
     "LastName": "BITSUIE",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 10,
@@ -77,7 +77,7 @@
     "Password": "X$9rJpYU",
     "FirstName": "ALEXANDRIA",
     "LastName": "BLACK",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 11,
@@ -85,7 +85,7 @@
     "Password": "JeHgbD@1",
     "FirstName": "ALEX",
     "LastName": "BLUM",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 12,
@@ -93,7 +93,7 @@
     "Password": "L$J7oyxv",
     "FirstName": "AARON",
     "LastName": "BOULTER",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 13,
@@ -101,7 +101,7 @@
     "Password": "1GFI@Xug",
     "FirstName": "ANTON",
     "LastName": "BOWDEN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 14,
@@ -109,7 +109,7 @@
     "Password": "scBTgwZL",
     "FirstName": "ADELINE",
     "LastName": "BRENNAN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 15,
@@ -117,7 +117,7 @@
     "Password": "!79fwZYi",
     "FirstName": "ARON",
     "LastName": "BROOKS",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 16,
@@ -125,7 +125,7 @@
     "Password": "LQm0Db#m",
     "FirstName": "ALFREDA",
     "LastName": "BURNHAM",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 17,
@@ -133,7 +133,7 @@
     "Password": "6w1GMUFt",
     "FirstName": "ABDUL-SAMI",
     "LastName": "CAMPAIN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 18,
@@ -141,7 +141,7 @@
     "Password": "NixV0GVc",
     "FirstName": "ANGEL",
     "LastName": "CANDLISH",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 19,
@@ -149,7 +149,7 @@
     "Password": "OmVI2YOE",
     "FirstName": "ANNABEL",
     "LastName": "COLVIN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 20,
@@ -157,7 +157,7 @@
     "Password": "H0euIpYf",
     "FirstName": "AMI",
     "LastName": "CONNELL",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 21,
@@ -165,7 +165,7 @@
     "Password": "zY@sNmN4",
     "FirstName": "AISHA",
     "LastName": "CONRAD",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 22,
@@ -173,7 +173,7 @@
     "Password": "lZXF!0VX",
     "FirstName": "ANKE",
     "LastName": "COPELAND",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 23,
@@ -181,7 +181,7 @@
     "Password": "YFUwZMq#",
     "FirstName": "AUSTIN",
     "LastName": "CREWS",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 24,
@@ -189,7 +189,7 @@
     "Password": "o4Wvtdwy",
     "FirstName": "ANIKA",
     "LastName": "CROCKETT",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 25,
@@ -197,7 +197,7 @@
     "Password": "hQankB0k",
     "FirstName": "ANNELIESE",
     "LastName": "CROFT",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 26,
@@ -205,7 +205,7 @@
     "Password": "fa5w!#$U",
     "FirstName": "ANASTACIA",
     "LastName": "CROUCH",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 27,
@@ -213,7 +213,7 @@
     "Password": "!#C3zItn",
     "FirstName": "ALTHEA",
     "LastName": "CRYER",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 28,
@@ -221,7 +221,7 @@
     "Password": "kwHCKJLX",
     "FirstName": "ANDRES",
     "LastName": "CURRIE",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 29,
@@ -229,7 +229,7 @@
     "Password": "N8cS1zY5",
     "FirstName": "ALYSON",
     "LastName": "DARLING",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 30,
@@ -237,7 +237,7 @@
     "Password": "HNb1ZfbI",
     "FirstName": "ALYSSA",
     "LastName": "DAUFELDT",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 31,
@@ -245,7 +245,7 @@
     "Password": "tx@t71Qj",
     "FirstName": "ALLIE",
     "LastName": "DELATORRE",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 32,
@@ -253,7 +253,7 @@
     "Password": "gYNiPBiZ",
     "FirstName": "ADRIA",
     "LastName": "DOHERTY",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 33,
@@ -261,7 +261,7 @@
     "Password": "CHYfs2lR",
     "FirstName": "APRIL",
     "LastName": "DOW",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 34,
@@ -269,7 +269,7 @@
     "Password": "Y8OY9ZXw",
     "FirstName": "AUDREY",
     "LastName": "DYER",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 35,
@@ -277,7 +277,7 @@
     "Password": "CtOzRwtD",
     "FirstName": "ALDO",
     "LastName": "EASLEY",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 36,
@@ -285,7 +285,7 @@
     "Password": "pTN5gvPr",
     "FirstName": "ALDO",
     "LastName": "EMERSON",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 37,
@@ -293,7 +293,7 @@
     "Password": "1CcCFZ5U",
     "FirstName": "AURORA",
     "LastName": "ENBERSBACH",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 38,
@@ -301,7 +301,7 @@
     "Password": "8h7qHHgg",
     "FirstName": "ADRIANNE",
     "LastName": "ENCKELMAN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 39,
@@ -309,7 +309,7 @@
     "Password": "BDqAGuaR",
     "FirstName": "ASHTON",
     "LastName": "ENRIQUEZ",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 40,
@@ -317,7 +317,7 @@
     "Password": "HrKvRwBx",
     "FirstName": "ASHLEY",
     "LastName": "ERWIN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 41,
@@ -325,7 +325,7 @@
     "Password": "vDw2CWzp",
     "FirstName": "ANTHONY",
     "LastName": "FARRELL",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 42,
@@ -333,7 +333,7 @@
     "Password": "9tFBWRmy",
     "FirstName": "AGUSTIN",
     "LastName": "FAUST",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 43,
@@ -341,7 +341,7 @@
     "Password": "n5KhkHpw",
     "FirstName": "ADELA",
     "LastName": "FOLEY",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 44,
@@ -349,7 +349,7 @@
     "Password": "a!FxkIkZ",
     "FirstName": "ALTHEA",
     "LastName": "GALE",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 45,
@@ -357,7 +357,7 @@
     "Password": "p5H2o@h6",
     "FirstName": "ALLAN",
     "LastName": "GLASS",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 46,
@@ -365,7 +365,7 @@
     "Password": "xll9uZAk",
     "FirstName": "ALFONSO",
     "LastName": "GRAY",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 47,
@@ -373,7 +373,7 @@
     "Password": "5AsS7REB",
     "FirstName": "ALPHONSO",
     "LastName": "HARDY",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 48,
@@ -381,7 +381,7 @@
     "Password": "lGVrvS!K",
     "FirstName": "ADRIENNE",
     "LastName": "HARRIS",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 49,
@@ -389,7 +389,7 @@
     "Password": "fTcya2HR",
     "FirstName": "ALEXA",
     "LastName": "HEIMANN",
-    "RoleId": 3
+    "RoleId": "R"
   },
   {
     "Id": 50,
@@ -397,6 +397,6 @@
     "Password": "yw$HahDi",
     "FirstName": "ANDREA",
     "LastName": "HILL",
-    "RoleId": 3
+    "RoleId": "R"
   }
 ]
