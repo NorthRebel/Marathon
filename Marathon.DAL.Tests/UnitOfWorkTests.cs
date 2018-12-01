@@ -60,9 +60,19 @@ namespace Marathon.DAL.Tests
         {
             // Arrange
             IEnumerable<Event> events;
+            var newEvent = new Event
+            {
+                Id = "OM_FM",
+                Name = "Ouse Marathon",
+                Cost = 135.00m,
+                StartDate = DateTime.Parse("2019-08-09 09:00:00"),
+                MaxParticipants = 500,
+                MarathonId = 1,
+                EventTypeId = "FM"
+            };
 
             // Act
-            _context.Events.Add(new Event());
+            _context.Events.Add(newEvent);
             await _context.CommitAsync(CancellationToken.None);
             events = await _context.Events.GetAllAsync();
 
