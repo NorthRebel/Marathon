@@ -25,7 +25,7 @@ namespace Marathon.Persistence.Configurations
 
             builder.HasOne(e => e.Event)
                 .WithMany(p => p.SignUpMarathonEvents)
-                .HasForeignKey(e => e.SignUpId)
+                .HasForeignKey(e => e.EventId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_RegistrationEvents_Events");
         }
