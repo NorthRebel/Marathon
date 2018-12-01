@@ -4,6 +4,7 @@ using Marathon.Domain.Common;
 using Marathon.DAL.UnitOfWork;
 using Marathon.DAL.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 using Marathon.Domain.Enumerations;
 
 namespace Marathon.DAL.Initializer
@@ -60,7 +61,11 @@ namespace Marathon.DAL.Initializer
         public void SeedEnumeration<TEntity, TKey, TEntityEnum>(IReadOnlyRepository<TEntity> repository, IEnumerable<TEntityEnum> items) 
             where TEntity : IEnumEntity<TKey>, new() where TEntityEnum : Enumeration<TKey, TEntity>
         {
-            throw new System.NotImplementedException();
+            var readWriteRepository = (IRepository<TEntity>)repository;
+            var enumList = items.AsQueryable();
+
+            foreach (var item in enumList.Select(Enumeration<TKey, TEntity>.Projection))
+                readWriteRepository.Add(item);
         }
 
         #endregion
