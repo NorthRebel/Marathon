@@ -1,9 +1,11 @@
 ﻿using System;
+using Autofac;
 using System.Threading;
-using System.Threading.Tasks;
-using Marathon.DAL.Initializer;
 using Marathon.Persistence;
+using System.Threading.Tasks;
 using Marathon.DAL.UnitOfWork;
+using Marathon.DAL.Initializer;
+using Marathon.Tests.DAL.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
 
 namespace Marathon.Tests.DAL.Infrastructure
@@ -11,16 +13,17 @@ namespace Marathon.Tests.DAL.Infrastructure
     /// <summary>
     /// Shared context among all the tests in the unit test module
     /// </summary>
-    public class UnitOfWorkFixture : IDisposable
+    public class UnitOfWorkFixture : BootStrapper, IDisposable
     {
-        public IUnitOfWork Context { get; }
+        private readonly IContainer _container;
 
-        public IUnitOfWorkFactory ContextFactory { get; }
+        public IUnitOfWork Context => ContextFactory.Create();
+
+        public IUnitOfWorkFactory ContextFactory => _container.Resolve<IUnitOfWorkFactory>();
 
         public UnitOfWorkFixture()
         {
-            ContextFactory = new UnitOfWorkFactory(GetDbContext());
-            Context = ContextFactory.Create();
+            _container = Build();
 
             Task.Run(() => InitializeContext(Context));
         }
@@ -29,6 +32,11 @@ namespace Marathon.Tests.DAL.Infrastructure
         {
             var initializer = new UnitOfWorkInitializer(uow, CancellationToken.None);
             await initializer.Seed();
+        }
+
+        protected override IUnitOfWorkFactory ConfigureUoWFactory()
+        {
+            return new UnitOfWorkFactory(GetDbContext());
         }
 
         private DbContext GetDbContext(bool useSqlLite = false) 
@@ -60,6 +68,6 @@ namespace Marathon.Tests.DAL.Infrastructure
             dbContext?.Database.EnsureDeleted();
 
             Context.Dispose();
-        }
+        }        
     }
 }
