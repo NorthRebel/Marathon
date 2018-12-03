@@ -30,8 +30,6 @@ namespace Marathon.Application.Tests.Users.Handlers
 
             _unitOfWork.Context.Initialize(async uow =>
             {
-                ((IRepository<UserType>)uow.UserTypes).ImportFromCollection(CreateUserTypes());
-
                 uow.Users.ImportFromJson(@"Users\Data\RunnerUsers.json");
                 await uow.CommitAsync(CancellationToken.None);
 
@@ -50,22 +48,6 @@ namespace Marathon.Application.Tests.Users.Handlers
             _signUpCommandHandler = new SignUpCommandHandler(_unitOfWork.ContextFactory, isUserExistsQueryHandler, getUserTypeQueryHandler);
 
             #endregion
-        }
-
-        /// <summary>
-        /// Converts <see cref="Domain.Enumerations.UserType"/> linked enumeration to <see cref="IEnumerable{UserType}"/>
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerable<UserType> CreateUserTypes()
-        {
-            foreach (var userType in UserTypeEnum.GetAll<UserTypeEnum>())
-            {
-                yield return new UserType
-                {
-                    Id = userType.Id,
-                    Name = userType.Name
-                };
-            }
         }
 
         [Fact]

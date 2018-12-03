@@ -35,8 +35,6 @@ namespace Marathon.Application.Tests.Marathon.Handlers
 
             _unitOfWork.Context.Initialize(async uow =>
             {
-                ((IRepository<SignUpStatus>)uow.SignUpStatuses).ImportFromCollection(CreateMarathonSignUpStatuses());
-
                 uow.RaceKitItems.ImportFromJson(@"Marathon\Data\RaceKitItem.json");
                 uow.RaceKitOptions.ImportFromJson(@"Marathon\Data\RaceKitOption.json");
                 uow.RaceKitOptionItems.ImportFromJson(@"Marathon\Data\RaceKitOptionItem.json");
@@ -63,18 +61,6 @@ namespace Marathon.Application.Tests.Marathon.Handlers
                                                                                  costOfSelectedRaceKitOptionQueryHandler);
 
             #endregion
-        }
-
-        private IEnumerable<SignUpStatus> CreateMarathonSignUpStatuses()
-        {
-            foreach (var signUpStatus in SignUpStatusEnum.GetAll<SignUpStatusEnum>())
-            {
-                yield return new SignUpStatus
-                {
-                    Id = signUpStatus.Id,
-                    Name = signUpStatus.Name
-                };
-            }
         }
 
         [Fact]
