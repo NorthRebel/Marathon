@@ -46,7 +46,7 @@ namespace Marathon.Persistence.Extensions
             if (extended)
                 maxBytesLimit = null;
 
-            return propertyBuilder.HasColumnType($"varbinary({(maxBytesLimit.HasValue ? maxBytesLimit.Value.ToString() : "max")}) {(extended ? "" : "FILESTREAM")}");
+            return propertyBuilder.HasColumnType($"varbinary({(maxBytesLimit.HasValue ? maxBytesLimit.Value.ToString() : "max")}) {(extended ? "FILESTREAM" : "")}");
         }
 
         /// <summary>
