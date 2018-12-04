@@ -14,7 +14,7 @@ namespace Marathon.Domain.Entities
         public string Name { get; set; }
         public string City { get; set; }
         public string CountryId { get; set; }
-        public short? YearHeld { get; set; }
+        public ushort? YearHeld { get; set; }
 
         public Country Country { get; set; }
         public ICollection<Event> Events { get; set; }

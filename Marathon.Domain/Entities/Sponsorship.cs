@@ -5,11 +5,11 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of the <see cref="Sponsorship"/>
     /// </summary>
-    public sealed class Sponsorship : IEntity<long>
+    public sealed class Sponsorship : IEntity<uint>
     {
-        public long Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
-        public long SignUpId { get; set; }
+        public uint SignUpId { get; set; }
         public decimal Amount { get; set; }
 
         public MarathonSignUp SignUp { get; set; }

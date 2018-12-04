@@ -7,15 +7,15 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of the <see cref="Runner"/>
     /// </summary>
-    public sealed class Runner : IEntity<long>
+    public sealed class Runner : IEntity<uint>
     {
         public Runner()
         {
             SignUps = new HashSet<MarathonSignUp>();
         }
 
-        public long Id { get; set; }
-        public long UserId { get; set; }
+        public uint Id { get; set; }
+        public uint UserId { get; set; }
         public char GenderId { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string CountryId { get; set; }

@@ -7,7 +7,7 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of the <see cref="MarathonSignUp"/>
     /// </summary>
-    public sealed class MarathonSignUp : IEntity<long>
+    public sealed class MarathonSignUp : IEntity<uint>
     {
         public MarathonSignUp()
         {
@@ -15,12 +15,12 @@ namespace Marathon.Domain.Entities
             SignUpMarathonEvents = new HashSet<SignUpMarathonEvent>();
         }
 
-        public long Id { get; set; }
+        public uint Id { get; set; }
         public DateTime SignUpDate { get; set; }
         public decimal Cost { get; set; }
         public decimal SponsorshipTarget { get; set; }
-        public long RunnerId { get; set; }
-        public long CharityId { get; set; }
+        public uint RunnerId { get; set; }
+        public uint CharityId { get; set; }
         public char RaceKitOptionId { get; set; }
         public byte SignUpStatusId { get; set; }
 
