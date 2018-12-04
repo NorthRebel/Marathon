@@ -38,7 +38,7 @@ namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
         /// <summary>
         /// Converts <see cref="SponsorshipRunnerCommand"/> DTO to <see cref="Sponsorship"/> entity and save it to sign up repository
         /// </summary>
-        private async Task<long> SponsorshipRunner(SponsorshipRunnerCommand request, CancellationToken cancellationToken)
+        private async Task<uint> SponsorshipRunner(SponsorshipRunnerCommand request, CancellationToken cancellationToken)
         {
             Sponsorship runnerSponsorship = SponsorshipProjection(request);
 

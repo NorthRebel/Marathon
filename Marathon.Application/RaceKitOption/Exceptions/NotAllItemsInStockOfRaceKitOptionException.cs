@@ -7,7 +7,7 @@ namespace Marathon.Application.RaceKitOption.Exceptions
     /// </summary>
     public sealed class NotAllItemsInStockOfRaceKitOptionException : Exception
     {
-        public NotAllItemsInStockOfRaceKitOptionException(long raceKitOptionId) : base("You can't select this race kit option because not all items in stock")
+        public NotAllItemsInStockOfRaceKitOptionException(uint raceKitOptionId) : base("You can't select this race kit option because not all items in stock")
         {
             
         }

@@ -7,7 +7,7 @@ namespace Marathon.Application.RaceKitOption.Exceptions
     /// </summary>
     public sealed class RaceKitOptionNotExistsException : Exception
     {
-        public RaceKitOptionNotExistsException(long raceKitOptionId) : base($"Can't find race kit option by following id {raceKitOptionId}")
+        public RaceKitOptionNotExistsException(uint raceKitOptionId) : base($"Can't find race kit option by following id {raceKitOptionId}")
         {
             
         }

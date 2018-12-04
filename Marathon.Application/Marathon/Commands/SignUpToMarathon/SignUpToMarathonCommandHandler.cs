@@ -40,7 +40,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
         {
             EventsListViewModel eventsListViewModel = await GetEventsOfSelectedTypes(request.EventTypeIds, cancellationToken);
 
-            long signUpId = await SignUpRunnerToMarathon(request, GetEventsTotalCost(eventsListViewModel), cancellationToken);
+            uint signUpId = await SignUpRunnerToMarathon(request, GetEventsTotalCost(eventsListViewModel), cancellationToken);
 
             AssignEventsOfSignUp(eventsListViewModel, signUpId);
 
@@ -66,7 +66,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
         /// <summary>
         /// Converts <see cref="EventsListViewModel"/> to <see cref="SignUpMarathonEvent"/> entities of current marathon sign up and save it to signUpEvent repository
         /// </summary>
-        private void AssignEventsOfSignUp(EventsListViewModel eventsListViewModel, long signUpId)
+        private void AssignEventsOfSignUp(EventsListViewModel eventsListViewModel, uint signUpId)
         {
             IEnumerable<SignUpMarathonEvent> signUpEvents = SignUpMarathonEventsProjection(eventsListViewModel, signUpId);
 
@@ -77,7 +77,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
         /// <summary>
         /// Converts <see cref="EventsListViewModel"/> to <see cref="SignUpMarathonEvent"/> entities of current marathon sign up
         /// </summary>
-        private IEnumerable<SignUpMarathonEvent> SignUpMarathonEventsProjection(EventsListViewModel eventsListViewModel, long signUpId)
+        private IEnumerable<SignUpMarathonEvent> SignUpMarathonEventsProjection(EventsListViewModel eventsListViewModel, uint signUpId)
         {
             return eventsListViewModel.Events.Select(e => new SignUpMarathonEvent
             {
@@ -89,7 +89,7 @@ namespace Marathon.Application.Marathon.Commands.SignUpToMarathon
         /// <summary>
         /// Converts <see cref="SignUpToMarathonCommand"/> DTO to <see cref="MarathonSignUp"/> entity and save it to sign up repository
         /// </summary>
-        private async Task<long> SignUpRunnerToMarathon(SignUpToMarathonCommand request, decimal eventsTotalCost, CancellationToken cancellationToken)
+        private async Task<uint> SignUpRunnerToMarathon(SignUpToMarathonCommand request, decimal eventsTotalCost, CancellationToken cancellationToken)
         {
             MarathonSignUp marathonSignUp = await SignUpProjection(request, eventsTotalCost, cancellationToken);
 

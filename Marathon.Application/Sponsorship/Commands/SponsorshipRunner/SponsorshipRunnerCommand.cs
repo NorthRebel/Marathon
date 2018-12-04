@@ -10,7 +10,7 @@ namespace Marathon.Application.Sponsorship.Commands.SponsorshipRunner
     public sealed class SponsorshipRunnerCommand : IRequest
     {
         public string SponsorName { get; set; }
-        public long RunnerMarathonSignUpId { get; set; }
+        public uint RunnerMarathonSignUpId { get; set; }
         public decimal Amount { get; set; }
         public CardCredentialsViewModel CardCredentials { get; set; }
     }

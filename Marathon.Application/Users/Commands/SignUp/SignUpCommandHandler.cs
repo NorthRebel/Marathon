@@ -33,7 +33,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         {
             await CheckExistUser(request.Email, cancellationToken);
 
-            long userId = await CreateNewUser(request, cancellationToken);
+            uint userId = await CreateNewUser(request, cancellationToken);
             
             CreateNewRunner(request, userId);
 
@@ -74,7 +74,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         /// <summary>
         /// Converts <see cref="SignUpCommand"/> DTO to <see cref="Runner"/> entity
         /// </summary>
-        private Runner RunnerProjection(SignUpCommand request, long userId)
+        private Runner RunnerProjection(SignUpCommand request, uint userId)
         {
             return new Runner
             {
@@ -91,7 +91,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         /// </summary>
         /// <param name="request">Command's request DTO</param> 
         /// <returns>ID of new user</returns>
-        private async Task<long> CreateNewUser(SignUpCommand request, CancellationToken cancellationToken)
+        private async Task<uint> CreateNewUser(SignUpCommand request, CancellationToken cancellationToken)
         {
             var user = await UserProjection(request, cancellationToken);
 
@@ -105,7 +105,7 @@ namespace Marathon.Application.Users.Commands.SignUp
         /// </summary>
         /// <param name="request">Command's request DTO</param>
         /// <param name="userId">ID of new user</param>
-        private void CreateNewRunner(SignUpCommand request, long userId)
+        private void CreateNewRunner(SignUpCommand request, uint userId)
         {
             var runner = RunnerProjection(request, userId);
 

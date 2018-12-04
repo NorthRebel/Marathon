@@ -30,14 +30,14 @@ namespace Marathon.Application.RaceKitOption.Queries.IsRaceKitOptionAvailable
 
         #region Command handler helpers
 
-        private Task<IEnumerable<short>> FindItemsOfRaceKitOption(char raceKitOptionId, CancellationToken cancellationToken)
+        private Task<IEnumerable<ushort>> FindItemsOfRaceKitOption(char raceKitOptionId, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
-                return context.RaceKitOptionItems.GetAsync<IEnumerable<short>>(
+                return context.RaceKitOptionItems.GetAsync<IEnumerable<ushort>>(
                     oi => oi.Where(o => o.OptionId == raceKitOptionId).Select(o => o.ItemId), cancellationToken);
         }
 
-        private Task<IEnumerable<RaceKitItem>> GetItemsOfRaceKitOptionByIds(IEnumerable<short> itemsIds, CancellationToken cancellationToken)
+        private Task<IEnumerable<RaceKitItem>> GetItemsOfRaceKitOptionByIds(IEnumerable<ushort> itemsIds, CancellationToken cancellationToken)
         {
             using (IUnitOfWork context = _uowFactory.Create())
                 return context.RaceKitItems.FindByAsync(ki => itemsIds.Contains(ki.Id), cancellationToken);
