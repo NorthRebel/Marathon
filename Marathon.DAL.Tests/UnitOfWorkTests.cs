@@ -59,25 +59,19 @@ namespace Marathon.DAL.Tests
         public async Task EntrySavedAfterAdd()
         {
             // Arrange
-            IEnumerable<Event> events;
-            var newEvent = new Event
+            IEnumerable<Charity> charities;
+            var newCharity = new Charity
             {
-                Id = "OM_FM",
-                Name = "Ouse Marathon",
-                Cost = 135.00m,
-                StartDate = DateTime.Parse("2019-08-09 09:00:00"),
-                MaxParticipants = 500,
-                MarathonId = 1,
-                EventTypeId = "FM"
+                Name = "SpaceX"
             };
 
             // Act
-            _context.Events.Add(newEvent);
+            _context.Charities.Add(newCharity);
             await _context.CommitAsync(CancellationToken.None);
-            events = await _context.Events.GetAllAsync();
+            charities = await _context.Charities.GetAllAsync();
 
             // Assert
-            Assert.True(events.Any());
+            Assert.True(charities.Any());
         }
 
         [Fact]
@@ -104,7 +98,12 @@ namespace Marathon.DAL.Tests
 
             // Act
 
-            _context.Users.Add(new User { Email = emailBeforeUpdate });
+            _context.Users.Add(new User
+            {
+                Email = emailBeforeUpdate,
+                Password = "X493hello",
+                UserTypeId = UserType.Administrator.Id
+            });
             await _context.CommitAsync(CancellationToken.None);
 
             User addedUser = await _context.Users.GetSingleAsync(u => u.Email == emailBeforeUpdate);
@@ -124,41 +123,52 @@ namespace Marathon.DAL.Tests
         public async Task EntryNotExistsAfterDelete()
         {
             // Arrange
-            const string lastName = "Jonson";
-            Volunteer volunteer = new Volunteer { LastName = lastName };
+            const string eventTypeId = "FM";
+            var eventType = new EventType
+            {
+                Id = eventTypeId,
+                Name = "Full marathon"
+            };
 
             // Act
 
-            _context.Volunteers.Add(volunteer);
+            var eventTypeRepo = (IRepository<EventType>) _context.EventTypes;
+
+            eventTypeRepo.Add(eventType);
             await _context.CommitAsync(CancellationToken.None);
 
-            _context.Volunteers.Remove(volunteer);
+            eventTypeRepo.Remove(eventType);
             await _context.CommitAsync(CancellationToken.None);
 
-            volunteer = await _context.Volunteers.GetSingleAsync(v => v.LastName == lastName);
+            eventType = await eventTypeRepo.GetSingleAsync(e => e.Id == eventTypeId);
 
             // Assert
-            Assert.Null(volunteer);
+            Assert.Null(eventType);
         }
 
         [Fact]
         public async Task ContextRestoreValuePropertiesAfterRollback()
         {
             // Arrange
-            const string sponsorName = "Dylan Smith";
-            Sponsorship sponsorship = new Sponsorship { Name = sponsorName };
+            const string countryName = "France";
+            var country = new Country
+            {
+                Id = "FR",
+                Name = countryName,
+                Flag = new byte[] { 00, 00, 00 }
+            };
 
             // Act
 
-            _context.Sponsorships.Add(sponsorship);
+            ((IRepository<Country>)_context.Countries).Add(country);
             await _context.CommitAsync(CancellationToken.None);
 
-            sponsorship.Name = "Frank Martin";
+            country.Name = "Russia";
 
             _context.Rollback();
 
             // Assert
-            Assert.Equal(sponsorName, sponsorship.Name);
+            Assert.Equal(countryName, country.Name);
         }
 
         [Fact]
@@ -169,7 +179,13 @@ namespace Marathon.DAL.Tests
             TimeSpan beforeCache, afterCache;
 
             // Generate random list of entries
-            IEnumerable<User> users = Enumerable.Range(1, 100).Select(u => new User());
+            IEnumerable<User> users = Enumerable.Range(1, 100)
+                .Select(u => new User
+                {
+                    Email = u.ToString(),
+                    Password = u.ToString(),
+                    UserTypeId = UserType.Coordinator.Id
+                });
 
             // Act
 
