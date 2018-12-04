@@ -16,8 +16,9 @@ namespace Marathon.Persistence.Configurations
                 .HasCharType(3)
                 .HasColumnName("CountryCode");
 
+            // TODO: Temporary fix for SQLite correct work
             builder.Property(e => e.Photo)
-                .HasVarbinaryType();
+                .HasVarbinaryType(10000);
 
             builder.HasOne(e => e.Gender)
                 .WithMany(p => p.Runners)
