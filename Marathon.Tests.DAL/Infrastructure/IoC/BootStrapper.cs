@@ -13,9 +13,14 @@ namespace Marathon.Tests.DAL.Infrastructure.IoC
             builder.Register(x => ConfigureUoWFactory()).As<IUnitOfWorkFactory>()
                 .InstancePerDependency();
 
+            builder.Register(x => ConfigureUoW()).As<IUnitOfWork>()
+                .InstancePerDependency();
+
             return builder.Build();
         }
 
         protected abstract IUnitOfWorkFactory ConfigureUoWFactory();
+
+        protected abstract IUnitOfWork ConfigureUoW();
     }
 }

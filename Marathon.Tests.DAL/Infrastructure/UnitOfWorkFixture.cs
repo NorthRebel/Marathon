@@ -5,6 +5,7 @@ using Marathon.Persistence;
 using System.Threading.Tasks;
 using Marathon.DAL.UnitOfWork;
 using Marathon.DAL.Initializer;
+using Marathon.Tests.DAL.Extensions;
 using Marathon.Tests.DAL.Infrastructure.IoC;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,17 +16,18 @@ namespace Marathon.Tests.DAL.Infrastructure
     /// </summary>
     public class UnitOfWorkFixture : BootStrapper, IDisposable
     {
-        private readonly IContainer _container;
+        private Guid _databaseId;
 
-        public IUnitOfWork Context => ContextFactory.Create();
+        public IContainer Container { get; }
 
-        public IUnitOfWorkFactory ContextFactory => _container.Resolve<IUnitOfWorkFactory>();
+        public IUnitOfWork Context => Container.Resolve<IUnitOfWork>();
+
+        public IUnitOfWorkFactory ContextFactory => Container.Resolve<IUnitOfWorkFactory>();
 
         public UnitOfWorkFixture()
         {
-            _container = Build();
-
-            Task.Run(() => InitializeContext(Context));
+            _databaseId = Guid.NewGuid();
+            Container = Build();
         }
 
         private async Task InitializeContext(IUnitOfWork uow)
@@ -36,16 +38,31 @@ namespace Marathon.Tests.DAL.Infrastructure
 
         protected override IUnitOfWorkFactory ConfigureUoWFactory()
         {
-            return new UnitOfWorkFactory(GetDbContext());
+            return new UnitOfWorkFactory(GetDbContext(true));
         }
 
-        private DbContext GetDbContext(bool useSqlLite = false) 
+        protected override IUnitOfWork ConfigureUoW()
+        {
+            IUnitOfWork uow = ContextFactory.Create();
+
+            // Non-async, else tests will be fail 
+#pragma warning disable 4014
+            InitializeContext(uow);
+#pragma warning restore 4014
+
+            return uow;
+        }
+
+        private DbContext GetDbContext(bool useSqlLite = false)
         {
             var context = new MarathonDbContext(ConfigureDbContext<MarathonDbContext>(useSqlLite));
 
             // SQLite needs to open connection to the DB.
             if (useSqlLite)
+            {
                 context.Database.OpenConnection();
+                context.Database.EnsureCreated();
+            }
 
             return context;
         }
@@ -55,19 +72,29 @@ namespace Marathon.Tests.DAL.Infrastructure
             var builder = new DbContextOptionsBuilder<TContext>();
 
             if (useSqlLite)
-                builder.UseSqlite("DataSource=:memory:", x => { });
+                builder.UseSqlite("DataSource=:memory:");
             else
-                builder.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                builder.UseInMemoryDatabase(_databaseId.ToString());
 
             return builder.Options;
         }
 
         public void Dispose()
         {
-            var dbContext = Context as DbContext;
-            dbContext?.Database.EnsureDeleted();
+            var dbContext = ExtractDbContextFromUoW();
 
-            Context.Dispose();
-        }        
+            {
+                dbContext.Database.CloseConnection();
+                dbContext.Database.EnsureDeleted();
+                dbContext.Dispose();
+            }
+
+            Context?.Dispose();
+        }
+
+        private DbContext ExtractDbContextFromUoW()
+        {
+            return Context.GetFieldValue<DbContext>("_dbContext");
+        }
     }
 }
