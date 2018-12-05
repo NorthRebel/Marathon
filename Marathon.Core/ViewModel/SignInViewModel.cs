@@ -1,10 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Input;
+using Marathon.Core.Helpers;
+using System.Threading.Tasks;
+using Marathon.Core.Models.User;
+using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel
 {
+    using Kernel = IoC.IoC;
+
     /// <summary>
     /// The view model for a SignIn page
     /// </summary>
@@ -47,13 +54,13 @@ namespace Marathon.Core.ViewModel
         #endregion
 
         #region Commands Helpers
-        
+
         /// <summary>
         /// Go to previous page
         /// </summary>
         private void Cancel()
         {
-            IoC.IoC.Get<ApplicationViewModel>().GoToPreviousPage();
+            Kernel.Get<ApplicationViewModel>().GoToPreviousPage();
         }
 
         /// <summary>
@@ -61,7 +68,24 @@ namespace Marathon.Core.ViewModel
         /// </summary>
         private async Task SignInAsync(object password)
         {
-            throw new System.NotImplementedException();
+            var userService = Kernel.Get<IUserService>();
+
+            try
+            {
+                var pass = (password as IHavePassword).SecurePassword.Unsecure();
+
+                UserInfo result = await userService.SignInAsync(Email, pass);
+
+                await Kernel.Application.HandleSuccessfulLoginAsync(result);
+            }
+            catch (Exception)
+            {
+                await Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    Title = "Ошибка",
+                    Message = "Не удалось авторизовать пользователя!"
+                });
+            }
         }
 
         #endregion
