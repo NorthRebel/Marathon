@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Marathon.Persistence;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,19 +23,72 @@ namespace Marathon.API
         {
             services.AddDbContext<MarathonDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Add proper cookie request to follow GDPR 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for 
+                // non-essential cookies is needed for a given request
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            // Add JWT Authentication for Api clients
+            services.AddAuthentication().
+                AddJwtBearer(options =>
+                {
+                    // Set validation parameters
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // Validate issuer
+                        ValidateIssuer = true,
+                        // Validate audience
+                        ValidateAudience = true,
+                        // Validate expiration
+                        ValidateLifetime = true,
+                        // Validate signature
+                        ValidateIssuerSigningKey = true,
+
+                        // Set issuer
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        // Set audience
+                        ValidAudience = Configuration["Jwt:Audience"],
+
+                        // Set signing key
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            // Get our secret key from configuration
+                            Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])),
+                    };
+                });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Setup Identity
+            app.UseAuthentication();
+
+            // If in development...
             if (env.IsDevelopment())
             {
+                // Show any exceptions in browser when they crash
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Run(async (context) =>
+            // Otherwise...
+            else
             {
-                await context.Response.WriteAsync("Hello World!");
-            });
+                // Just show generic error page
+                app.UseExceptionHandler("/Home/Error");
+
+                // In production, tell the browsers (via the HSTS header)
+                // to only try and access our site via HTTPS, not HTTP
+                app.UseHsts();
+            }
+
+            // Serve static files
+            app.UseStaticFiles();
+
+            // Setup MVC routes
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
