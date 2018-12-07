@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using Marathon.API.Repositories;
+using Marathon.API.Repositories.Interfaces;
 using Marathon.API.Settings;
 using Marathon.Persistence;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +26,8 @@ namespace Marathon.API
         {
             services.AddDbContext<MarathonDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IUserRepository, UserRepository>();
 
             // Add proper cookie request to follow GDPR 
             services.Configure<CookiePolicyOptions>(options =>
