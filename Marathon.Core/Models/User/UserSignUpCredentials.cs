@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Security;
+using Newtonsoft.Json;
 
 namespace Marathon.Core.Models.User
 {
@@ -8,7 +9,7 @@ namespace Marathon.Core.Models.User
         public string Email { get; set; }
 
         [JsonProperty]
-        public string Password { get; set; }
+        public SecureString Password { get; set; }
 
         [JsonProperty]
         public string FirstName { get; set; }
