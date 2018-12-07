@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
 using System.Threading.Tasks;
@@ -72,9 +73,17 @@ namespace Marathon.Core.ViewModel
 
             try
             {
-                var pass = (password as IHavePassword).SecurePassword.Unsecure();
+                SecureString securePassword = (password as IHavePassword).SecurePassword;
 
-                UserInfo result = await userService.SignInAsync(Email, pass);
+                UserInfo result = await userService.SignInAsync(new UserSignInCredentials
+                {
+                    Email = Email,
+                    Password = securePassword
+                });
+
+                if (result == null)
+                    // TODO: Create custom exception if login fails
+                    throw new Exception();
 
                 await Kernel.Application.HandleSuccessfulLoginAsync(result);
             }
