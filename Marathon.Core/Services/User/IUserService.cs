@@ -5,6 +5,7 @@ namespace Marathon.Core.Services.User
 {
     public interface IUserService
     {
-        Task<UserInfo> SignInAsync(string email, string password);
+        Task<UserInfo> SignInAsync(UserSignInCredentials credentials);
+        Task<UserInfo> SignUpAsync(UserSignUpCredentials credentials);
     }
 }
