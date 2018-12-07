@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Marathon.API.Settings;
 using Marathon.Persistence;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
@@ -60,6 +61,8 @@ namespace Marathon.API
                             Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])),
                     };
                 });
+
+            BuildAppSettingsProvider();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -89,6 +92,16 @@ namespace Marathon.API
 
             // Setup MVC routes
             app.UseMvcWithDefaultRoute();
+        }
+
+        /// <summary>
+        /// Pass configuration parameters to <see cref="AppSettingsProvider"/>
+        /// </summary>
+        private void BuildAppSettingsProvider()
+        {
+            AppSettingsProvider.Jwt.SecretKey = Configuration["Jwt:SecretKey"];
+            AppSettingsProvider.Jwt.Issuer = Configuration["Jwt:Issuer"];
+            AppSettingsProvider.Jwt.Audience = Configuration["Jwt:Audience"];
         }
     }
 }
