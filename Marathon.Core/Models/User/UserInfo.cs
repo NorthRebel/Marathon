@@ -4,10 +4,10 @@ namespace Marathon.Core.Models.User
 {
     public class UserInfo
     {
-        [JsonProperty("id")]
+        [JsonProperty]
         public uint Id { get; set; }
 
-        [JsonProperty("user_type")]
+        [JsonProperty]
         public char UserType { get; set; }
     }
 }
