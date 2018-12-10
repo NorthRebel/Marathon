@@ -1,6 +1,6 @@
 ﻿using Marathon.Domain.Entities;
-using Marathon.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Marathon.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Marathon.Persistence.Configurations
@@ -15,10 +15,9 @@ namespace Marathon.Persistence.Configurations
             builder.Property(e => e.CountryId)
                 .HasCharType(3)
                 .HasColumnName("CountryCode");
-
-            // TODO: Temporary fix for SQLite correct work
+            
             builder.Property(e => e.Photo)
-                .HasVarbinaryType(10000);
+                .HasVarbinaryType();
 
             builder.HasOne(e => e.Gender)
                 .WithMany(p => p.Runners)
