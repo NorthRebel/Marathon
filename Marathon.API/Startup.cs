@@ -1,14 +1,14 @@
 ﻿using System.Text;
-using Marathon.API.Repositories;
-using Marathon.API.Repositories.Interfaces;
-using Marathon.API.Settings;
 using Marathon.Persistence;
+using Marathon.API.Settings;
 using Microsoft.AspNetCore.Http;
+using Marathon.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using Marathon.API.Repositories.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Marathon.API
@@ -66,6 +66,8 @@ namespace Marathon.API
                     };
                 });
 
+            services.AddMvc();
+
             BuildAppSettingsProvider();
         }
 
@@ -96,6 +98,7 @@ namespace Marathon.API
 
             // Setup MVC routes
             app.UseMvcWithDefaultRoute();
+
         }
 
         /// <summary>
