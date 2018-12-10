@@ -42,7 +42,108 @@ namespace Marathon.Persistence.Seed
                 // Absolute path to source files
                 var contentRootPath = env.ContentRootPath;
 
+                if (!context.UserTypes.Any())
+                {
+                    SeedUserTypes(context);
+                    await context.SaveChangesAsync();
+                }
 
+
+                if (!context.Genders.Any())
+                {
+                    SeedGenders(context);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.SignUpStatuses.Any())
+                {
+                    SeedSignUpStatuses(context);
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Countries.Any())
+                {
+                    await context.Countries.AddRangeAsync(GetCountriesFromFile(contentRootPath, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Marathons.Any())
+                {
+                    await context.Marathons.AddRangeAsync(GetMarathonsFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.EventTypes.Any())
+                {
+                    await context.EventTypes.AddRangeAsync(GetEventTypesFromFile(contentRootPath, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (context.Events.Any())
+                {
+                    await context.Events.AddRangeAsync(GetEventsFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Users.Any())
+                {
+                    await context.Users.AddRangeAsync(GetUsersFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Volunteers.Any())
+                {
+                    await context.Volunteers.AddRangeAsync(GetVolunteersFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Runners.Any())
+                {
+                    await context.Runners.AddRangeAsync(GetRunnersFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Charities.Any())
+                {
+                    await context.Charities.AddRangeAsync(GetCharitiesFromFile(contentRootPath, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.RaceKitOptions.Any())
+                {
+                    await context.RaceKitOptions.AddRangeAsync(GetRaceKitOptionsFromFile(contentRootPath, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.RaceKitItems.Any())
+                {
+                    await context.RaceKitItems.AddRangeAsync(GetRaceKitItemsFromFile(contentRootPath, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.RaceKitOptionItems.Any())
+                {
+                    await context.RaceKitOptionItems.AddRangeAsync(GetOptionItemsFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.MarathonSignUps.Any())
+                {
+                    await context.MarathonSignUps.AddRangeAsync(GetMarathonSignUpsFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Sponsorships.Any())
+                {
+                    await context.Sponsorships.AddRangeAsync(GetSponsorshipsFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.SignUpMarathonEvents.Any())
+                {
+                    await context.SignUpMarathonEvents.AddRangeAsync(GetSignUpMarathonEventsFromFile(contentRootPath, context, logger));
+                    await context.SaveChangesAsync();
+                }
             });
         }
 
