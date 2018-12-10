@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Marathon.Domain.Common;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
+using System.IO.Compression;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Marathon.Domain.Enumerations;
@@ -30,7 +31,7 @@ namespace Marathon.Persistence.Seed
     public class ContextInitializer
     {
         private const string SetupFolder = "Setup";
-        
+
         public async Task SeedAsync(MarathonDbContext context, IHostingEnvironment env, ILogger<ContextInitializer> logger)
         {
             // Policy to catch exceptions on bulk operation
@@ -170,7 +171,6 @@ namespace Marathon.Persistence.Seed
 
         #region Countries
 
-        // TODO: Get image from zip archive
         public IEnumerable<Country> GetCountriesFromFile(string contentRootPath, ILogger<ContextInitializer> logger)
         {
             string csvCountriesFile = Path.Combine(contentRootPath, SetupFolder, "Countries.csv");
@@ -187,12 +187,18 @@ namespace Marathon.Persistence.Seed
                 return new Country[0];
             }
 
-            return File.ReadAllLines(csvCountriesFile)
+            Country[] countries = 
+                File.ReadAllLines(csvCountriesFile)
                 .Skip(1) // skip header row
                 .Select(row => Regex.Split(row, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))
                 .SelectTry(column => CreateCountry(column, csvHeaders))
                 .OnCaughtException(ex => { logger.LogError(ex.Message); return null; })
-                .Where(x => x != null);
+                .Where(x => x != null)
+                .ToArray(); // avoid multiple enumeration
+
+            GetCountriesLogo(contentRootPath, countries, logger);
+
+            return countries;
         }
 
         private Country CreateCountry(string[] columns, string[] headers)
@@ -227,6 +233,48 @@ namespace Marathon.Persistence.Seed
             };
 
             return country;
+        }
+
+        private void GetCountriesLogo(string contentRootPath, Country[] countries, ILogger<ContextInitializer> logger)
+        {
+            string archivePath = Path.Combine(contentRootPath, SetupFolder, "Countries.zip");
+
+            ZipArchive archive = null;
+
+            try
+            {
+                const string fileNamePrefix = "flag_";
+                const string fileExtension = ".png";
+
+                archive = ZipFile.OpenRead(archivePath);
+
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    if (entry.Name.StartsWith(fileNamePrefix, StringComparison.OrdinalIgnoreCase) &&
+                        entry.FullName.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase))
+                    {
+                        string nameWithoutPrefix = StripPrefix(Path.GetFileNameWithoutExtension(entry.Name), fileNamePrefix);
+
+                        using (Stream source = entry.Open())
+                        using (MemoryStream buffer = new MemoryStream())
+                        {
+                            source.CopyTo(buffer);
+                            
+                            Country country = countries.SingleOrDefault(c => c.Name.Equals(nameWithoutPrefix, StringComparison.OrdinalIgnoreCase));
+                            if (country != null)
+                                country.Flag = buffer.ToArray();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+            }
+            finally
+            {
+                archive?.Dispose();
+            }
         }
 
         #endregion
@@ -610,7 +658,6 @@ namespace Marathon.Persistence.Seed
 
         #region Charities
 
-        // TODO: Get image from zip archive
         public IEnumerable<Charity> GetCharitiesFromFile(string contentRootPath, ILogger<ContextInitializer> logger)
         {
             string csvCharitiesFile = Path.Combine(contentRootPath, SetupFolder, "Charities.csv");
@@ -628,12 +675,18 @@ namespace Marathon.Persistence.Seed
                 return new Charity[0];
             }
 
-            return File.ReadAllLines(csvCharitiesFile)
+            Charity[] charities = 
+               File.ReadAllLines(csvCharitiesFile)
                 .Skip(1) // skip header row
                 .Select(row => Regex.Split(row, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))
                 .SelectTry(column => CreateVolunteer(column, csvHeaders))
                 .OnCaughtException(ex => { logger.LogError(ex.Message); return null; })
-                .Where(x => x != null);
+                .Where(x => x != null)
+                .ToArray(); // avoid multiple enumeration
+
+            GetCharitiesLogo(contentRootPath, charities, logger);
+
+            return charities;
         }
 
         private Charity CreateVolunteer(string[] columns, string[] headers)
@@ -687,6 +740,47 @@ namespace Marathon.Persistence.Seed
 
             return charity;
         }
+
+        private void GetCharitiesLogo(string contentRootPath, Charity[] charities, ILogger<ContextInitializer> logger)
+        {
+            string archivePath = Path.Combine(contentRootPath, SetupFolder, "Charities.zip");
+
+            ZipArchive archive = null;
+
+            try
+            {
+                const string fileExtension = ".png";
+
+                archive = ZipFile.OpenRead(archivePath);
+
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    if (entry.FullName.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase))
+                    {
+                        using (Stream source = entry.Open())
+                        using (MemoryStream buffer = new MemoryStream())
+                        {
+                            source.CopyTo(buffer);
+
+                            Charity charity = charities.SingleOrDefault(c =>
+                                c.Name.Equals(Path.GetFileNameWithoutExtension(entry.Name),StringComparison.OrdinalIgnoreCase));
+
+                            if (charity != null)
+                                charity.Logo = buffer.ToArray();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex.Message);
+            }
+            finally
+            {
+                archive?.Dispose();
+            }
+        }
+
 
         #endregion
 
@@ -1652,7 +1746,7 @@ namespace Marathon.Persistence.Seed
         /// <typeparam name="TEntityEnum">Linked enumeration</typeparam>
         /// <param name="repository">Set of context entities</param>
         /// <param name="items">List of linked enumeration instances</param>
-        public void SeedEnumeration<TEntity, TKey, TEntityEnum>(DbSet<TEntity> repository, IEnumerable<TEntityEnum> items)
+        private void SeedEnumeration<TEntity, TKey, TEntityEnum>(DbSet<TEntity> repository, IEnumerable<TEntityEnum> items)
             where TEntity : class, IEnumEntity<TKey>, new()
             where TEntityEnum : Enumeration<TKey, TEntity>
         {
@@ -1660,6 +1754,16 @@ namespace Marathon.Persistence.Seed
 
             foreach (var item in enumList.Select(Enumeration<TKey, TEntity>.Projection))
                 repository.Add(item);
+        }
+
+        /// <summary>
+        /// Remove prefix from string
+        /// </summary>
+        /// <param name="text">Original string</param>
+        /// <param name="prefix">Prefix to remove</param>
+        private string StripPrefix(string text, string prefix)
+        {
+            return text.StartsWith(prefix) ? text.Substring(prefix.Length) : text;
         }
     }
 
