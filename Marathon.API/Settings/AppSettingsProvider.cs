@@ -8,5 +8,10 @@ namespace Marathon.API.Settings
     internal static class AppSettingsProvider
     {
         public static JWT Jwt { get; set; }
+
+        static AppSettingsProvider()
+        {
+            Jwt = new JWT();
+        }
     }
 }
