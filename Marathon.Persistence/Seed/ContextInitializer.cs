@@ -1713,7 +1713,7 @@ namespace Marathon.Persistence.Seed
                     throw new Exception($"CSV header count '{csvHeaders.Length}'  is larger then required '{requiredHeaders.Length}' and optional '{optionalHeaders.Count()}' headers count");
 
             foreach (var requiredHeader in requiredHeaders)
-                if (!csvHeaders.Contains(requiredHeader))
+                if (!csvHeaders.Contains(requiredHeader, StringComparer.InvariantCultureIgnoreCase))
                     throw new Exception($"Does not contain required header '{requiredHeader}'");
 
             return csvHeaders;
