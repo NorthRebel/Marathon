@@ -68,83 +68,83 @@ namespace Marathon.Persistence.Seed
                     await context.SaveChangesAsync();
                 }
 
-                if (!context.Marathons.Any())
-                {
-                    await context.Marathons.AddRangeAsync(GetMarathonsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Marathons.Any())
+                //{
+                //    await context.Marathons.AddRangeAsync(GetMarathonsFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.EventTypes.Any())
-                {
-                    await context.EventTypes.AddRangeAsync(GetEventTypesFromFile(contentRootPath, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.EventTypes.Any())
+                //{
+                //    await context.EventTypes.AddRangeAsync(GetEventTypesFromFile(contentRootPath, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (context.Events.Any())
-                {
-                    await context.Events.AddRangeAsync(GetEventsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (context.Events.Any())
+                //{
+                //    await context.Events.AddRangeAsync(GetEventsFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.Users.Any())
-                {
-                    await context.Users.AddRangeAsync(GetUsersFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Users.Any())
+                //{
+                //    await context.Users.AddRangeAsync(GetUsersFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.Volunteers.Any())
-                {
-                    await context.Volunteers.AddRangeAsync(GetVolunteersFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Volunteers.Any())
+                //{
+                //    await context.Volunteers.AddRangeAsync(GetVolunteersFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.Runners.Any())
-                {
-                    await context.Runners.AddRangeAsync(GetRunnersFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Runners.Any())
+                //{
+                //    await context.Runners.AddRangeAsync(GetRunnersFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.Charities.Any())
-                {
-                    await context.Charities.AddRangeAsync(GetCharitiesFromFile(contentRootPath, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Charities.Any())
+                //{
+                //    await context.Charities.AddRangeAsync(GetCharitiesFromFile(contentRootPath, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.RaceKitOptions.Any())
-                {
-                    await context.RaceKitOptions.AddRangeAsync(GetRaceKitOptionsFromFile(contentRootPath, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.RaceKitOptions.Any())
+                //{
+                //    await context.RaceKitOptions.AddRangeAsync(GetRaceKitOptionsFromFile(contentRootPath, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.RaceKitItems.Any())
-                {
-                    await context.RaceKitItems.AddRangeAsync(GetRaceKitItemsFromFile(contentRootPath, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.RaceKitItems.Any())
+                //{
+                //    await context.RaceKitItems.AddRangeAsync(GetRaceKitItemsFromFile(contentRootPath, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.RaceKitOptionItems.Any())
-                {
-                    await context.RaceKitOptionItems.AddRangeAsync(GetOptionItemsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.RaceKitOptionItems.Any())
+                //{
+                //    await context.RaceKitOptionItems.AddRangeAsync(GetOptionItemsFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.MarathonSignUps.Any())
-                {
-                    await context.MarathonSignUps.AddRangeAsync(GetMarathonSignUpsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.MarathonSignUps.Any())
+                //{
+                //    await context.MarathonSignUps.AddRangeAsync(GetMarathonSignUpsFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.Sponsorships.Any())
-                {
-                    await context.Sponsorships.AddRangeAsync(GetSponsorshipsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Sponsorships.Any())
+                //{
+                //    await context.Sponsorships.AddRangeAsync(GetSponsorshipsFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
 
-                if (!context.SignUpMarathonEvents.Any())
-                {
-                    await context.SignUpMarathonEvents.AddRangeAsync(GetSignUpMarathonEventsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.SignUpMarathonEvents.Any())
+                //{
+                //    await context.SignUpMarathonEvents.AddRangeAsync(GetSignUpMarathonEventsFromFile(contentRootPath, context, logger));
+                //    await context.SaveChangesAsync();
+                //}
             });
         }
 
@@ -187,21 +187,15 @@ namespace Marathon.Persistence.Seed
                 return new Country[0];
             }
 
-            Country[] countries = 
-                File.ReadAllLines(csvCountriesFile)
-                .Skip(1) // skip header row
-                .Select(row => Regex.Split(row, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))
-                .SelectTry(column => CreateCountry(column, csvHeaders))
-                .OnCaughtException(ex => { logger.LogError(ex.Message); return null; })
-                .Where(x => x != null)
-                .ToArray(); // avoid multiple enumeration
-
-            GetCountriesLogo(contentRootPath, countries, logger);
-
-            return countries;
+            return File.ReadAllLines(csvCountriesFile)
+                       .Skip(1) // skip header row
+                       .Select(row => Regex.Split(row, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))
+                       .SelectTry(column => CreateCountry(column, csvHeaders, contentRootPath, logger))
+                       .OnCaughtException(ex => { logger.LogError(ex.Message); return null; })
+                       .Where(x => x?.Flag != null);
         }
 
-        private Country CreateCountry(string[] columns, string[] headers)
+        private Country CreateCountry(string[] columns, string[] headers, string contentRootPath, ILogger<ContextInitializer> logger)
         {
             if (columns.Length != headers.Length)
                 throw new Exception($"Column count '{columns.Length}' not the same as headers count'{headers.Length}'");
@@ -210,7 +204,7 @@ namespace Marathon.Persistence.Seed
 
             #region Primary key
 
-            string id = columns[Array.IndexOf(headers, "Id")].TrimQuotes();
+            string id = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
             if (string.IsNullOrWhiteSpace(id))
                 throw new Exception($"Id '{id}' isn't a valid identity key");
 
@@ -218,7 +212,7 @@ namespace Marathon.Persistence.Seed
 
             #region Name
 
-            string name = columns[Array.IndexOf(headers, "Name")].TrimQuotes();
+            string name = columns[Array.FindIndex(headers, h => h.Equals("Name", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
             if (string.IsNullOrWhiteSpace(name))
                 throw new Exception("Name column is empty");
 
@@ -229,13 +223,15 @@ namespace Marathon.Persistence.Seed
             var country = new Country
             {
                 Id = id,
-                Name = name
+                Name = name,
             };
+
+            country.Flag = GetCountryFlag(contentRootPath, country, logger);
 
             return country;
         }
 
-        private void GetCountriesLogo(string contentRootPath, Country[] countries, ILogger<ContextInitializer> logger)
+        private byte[] GetCountryFlag(string contentRootPath, Country country, ILogger<ContextInitializer> logger)
         {
             string archivePath = Path.Combine(contentRootPath, SetupFolder, "Countries.zip");
 
@@ -253,16 +249,19 @@ namespace Marathon.Persistence.Seed
                     if (entry.Name.StartsWith(fileNamePrefix, StringComparison.OrdinalIgnoreCase) &&
                         entry.FullName.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase))
                     {
-                        string nameWithoutPrefix = StripPrefix(Path.GetFileNameWithoutExtension(entry.Name), fileNamePrefix);
+                        string nameWithoutPrefix =
+                            StripPrefix(Path.GetFileNameWithoutExtension(entry.Name), fileNamePrefix)
+                                .Replace('_', ' ')
+                                .Replace('-', ' ');
+
+                        if (!country.Name.Equals(nameWithoutPrefix, StringComparison.InvariantCultureIgnoreCase))
+                            continue;
 
                         using (Stream source = entry.Open())
                         using (MemoryStream buffer = new MemoryStream())
                         {
                             source.CopyTo(buffer);
-                            
-                            Country country = countries.SingleOrDefault(c => c.Name.Equals(nameWithoutPrefix, StringComparison.OrdinalIgnoreCase));
-                            if (country != null)
-                                country.Flag = buffer.ToArray();
+                            return buffer.ToArray();
                         }
                     }
                 }
@@ -275,6 +274,7 @@ namespace Marathon.Persistence.Seed
             {
                 archive?.Dispose();
             }
+            return null;
         }
 
         #endregion
@@ -675,7 +675,7 @@ namespace Marathon.Persistence.Seed
                 return new Charity[0];
             }
 
-            Charity[] charities = 
+            Charity[] charities =
                File.ReadAllLines(csvCharitiesFile)
                 .Skip(1) // skip header row
                 .Select(row => Regex.Split(row, ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))
@@ -763,7 +763,7 @@ namespace Marathon.Persistence.Seed
                             source.CopyTo(buffer);
 
                             Charity charity = charities.SingleOrDefault(c =>
-                                c.Name.Equals(Path.GetFileNameWithoutExtension(entry.Name),StringComparison.OrdinalIgnoreCase));
+                                c.Name.Equals(Path.GetFileNameWithoutExtension(entry.Name), StringComparison.OrdinalIgnoreCase));
 
                             if (charity != null)
                                 charity.Logo = buffer.ToArray();
