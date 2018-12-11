@@ -1,5 +1,6 @@
 ﻿using System;
 using Marathon.Persistence;
+using Marathon.Persistence.Seed;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
@@ -18,8 +19,15 @@ namespace Marathon.API
             {
                 try
                 {
+                    var env = scope.ServiceProvider.GetService<IHostingEnvironment>();
+                    var logger = scope.ServiceProvider.GetService<ILogger<ContextInitializer>>();
+
                     var context = scope.ServiceProvider.GetService<MarathonDbContext>();
                     context.Database.Migrate();
+
+                    new ContextInitializer()
+                        .SeedAsync(context, env, logger)
+                        .Wait();
                 }
                 catch (Exception ex)
                 {
