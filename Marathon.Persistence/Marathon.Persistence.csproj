@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181210220520_Initial.cs" />
+    <Compile Remove="Migrations\20181211125141_RemoveVarbinaryBytesConstraint.cs" />
+    <Compile Remove="Migrations\20181211125510_Initial.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Setup\Charities.csv" />
     <None Remove="Setup\Charities.zip" />
     <None Remove="Setup\Countries.csv" />

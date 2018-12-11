@@ -51,7 +51,7 @@ namespace Marathon.Persistence.Migrations
                     b.Property<byte[]>("Flag")
                         .IsRequired()
                         .HasColumnName("CountryFlag")
-                        .HasColumnType("varbinary(10000) ");
+                        .HasColumnType("varbinary(max) ");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -298,7 +298,7 @@ namespace Marathon.Persistence.Migrations
 
                     b.HasIndex("SignUpId");
 
-                    b.ToTable("RegistrationEventId");
+                    b.ToTable("RegistrationEvent");
                 });
 
             modelBuilder.Entity("Marathon.Domain.Entities.SignUpStatus", b =>
@@ -516,8 +516,7 @@ namespace Marathon.Persistence.Migrations
                     b.HasOne("Marathon.Domain.Entities.MarathonSignUp", "SignUp")
                         .WithMany("SignUpMarathonEvents")
                         .HasForeignKey("SignUpId")
-                        .HasConstraintName("FK_RegistrationEvents_Registrations")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("FK_RegistrationEvents_Registrations");
                 });
 
             modelBuilder.Entity("Marathon.Domain.Entities.Sponsorship", b =>

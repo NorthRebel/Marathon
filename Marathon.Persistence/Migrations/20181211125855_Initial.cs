@@ -27,7 +27,7 @@ namespace Marathon.Persistence.Migrations
                 {
                     CountryCode = table.Column<string>(type: "char(3)", nullable: false),
                     CountryName = table.Column<string>(maxLength: 100, nullable: false),
-                    CountryFlag = table.Column<byte[]>(type: "varbinary(10000) ", nullable: false)
+                    CountryFlag = table.Column<byte[]>(type: "varbinary(max) ", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -309,7 +309,7 @@ namespace Marathon.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegistrationEventId",
+                name: "RegistrationEvent",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false),
@@ -320,7 +320,7 @@ namespace Marathon.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegistrationEventId", x => x.Id);
+                    table.PrimaryKey("PK_RegistrationEvent", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RegistrationEvents_Events",
                         column: x => x.EventId,
@@ -332,7 +332,7 @@ namespace Marathon.Persistence.Migrations
                         column: x => x.RegistrationId,
                         principalTable: "Registration",
                         principalColumn: "RegistrationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -396,13 +396,13 @@ namespace Marathon.Persistence.Migrations
                 column: "RegistrationStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegistrationEventId_EventId",
-                table: "RegistrationEventId",
+                name: "IX_RegistrationEvent_EventId",
+                table: "RegistrationEvent",
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegistrationEventId_RegistrationId",
-                table: "RegistrationEventId",
+                name: "IX_RegistrationEvent_RegistrationId",
+                table: "RegistrationEvent",
                 column: "RegistrationId");
 
             migrationBuilder.CreateIndex(
@@ -454,7 +454,7 @@ namespace Marathon.Persistence.Migrations
                 name: "RaceKitOptionItems");
 
             migrationBuilder.DropTable(
-                name: "RegistrationEventId");
+                name: "RegistrationEvent");
 
             migrationBuilder.DropTable(
                 name: "Sponsorships");

@@ -38,15 +38,10 @@ namespace Marathon.Persistence.Extensions
         /// Set varbinary column type for binary entity property
         /// </summary>
         /// <param name="propertyBuilder">Current property</param>
-        /// <param name="maxBytesLimit">Data space limit in bytes</param>
         /// <param name="extended">Limit by file system</param>
-        public static PropertyBuilder<byte[]> HasVarbinaryType(this PropertyBuilder<byte[]> propertyBuilder, long? maxBytesLimit = null, bool extended = false)
+        public static PropertyBuilder<byte[]> HasVarbinaryType(this PropertyBuilder<byte[]> propertyBuilder, bool extended = false)
         {
-            // Extended option doesn't have limits
-            if (extended)
-                maxBytesLimit = null;
-
-            return propertyBuilder.HasColumnType($"varbinary({(maxBytesLimit.HasValue ? maxBytesLimit.Value.ToString() : "max")}) {(extended ? "FILESTREAM" : "")}");
+            return propertyBuilder.HasColumnType($"varbinary(max) {(extended ? "FILESTREAM" : "")}");
         }
 
         /// <summary>
