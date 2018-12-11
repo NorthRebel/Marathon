@@ -12,44 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Setup\Charities.csv" />
-    <None Remove="Setup\Charities.zip" />
-    <None Remove="Setup\Countries.csv" />
-    <None Remove="Setup\Countries.zip" />
-    <None Remove="Setup\Events.csv" />
-    <None Remove="Setup\EventTypes.csv" />
-    <None Remove="Setup\Marathons.csv" />
-    <None Remove="Setup\MarathonSignUps.csv" />
-    <None Remove="Setup\OptionItem.csv" />
-    <None Remove="Setup\RaceKitItems.csv" />
-    <None Remove="Setup\RaceKitOptions.csv" />
-    <None Remove="Setup\Runners.csv" />
-    <None Remove="Setup\SignUpMarathonEvents.csv" />
-    <None Remove="Setup\Sponsorships.csv" />
-    <None Remove="Setup\Users.csv" />
-    <None Remove="Setup\Volunteers.csv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Setup\Charities.csv" />
-    <Content Include="Setup\Charities.zip" />
-    <Content Include="Setup\Countries.csv" />
-    <Content Include="Setup\Countries.zip" />
-    <Content Include="Setup\Events.csv" />
-    <Content Include="Setup\EventTypes.csv" />
-    <Content Include="Setup\Marathons.csv" />
-    <Content Include="Setup\MarathonSignUps.csv" />
-    <Content Include="Setup\OptionItem.csv" />
-    <Content Include="Setup\RaceKitItems.csv" />
-    <Content Include="Setup\RaceKitOptions.csv" />
-    <Content Include="Setup\Runners.csv" />
-    <Content Include="Setup\SignUpMarathonEvents.csv" />
-    <Content Include="Setup\Sponsorships.csv" />
-    <Content Include="Setup\Users.csv" />
-    <Content Include="Setup\Volunteers.csv" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0" />
