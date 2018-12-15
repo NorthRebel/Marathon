@@ -1,4 +1,5 @@
 ﻿using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.Services.RequestProvider;
 using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.TitleBar;
@@ -26,7 +27,7 @@ namespace Marathon.Core.IoC
         /// <summary>
         /// A shortcut to access the <see cref="IClientDataStore"/>
         /// </summary>
-        public static IClientDataStore ClientDataStore = IoC.Get<IClientDataStore>();
+        public static IClientDataStore ClientDataStore => IoC.Get<IClientDataStore>();
 
         /// <summary>
         /// A shortcut to access the <see cref="TitleBarViewModel"/>
@@ -69,7 +70,9 @@ namespace Marathon.Core.IoC
 
         private static void BindServices()
         {
-            Kernel.Bind<IUserService, UserService>();
+            Kernel.Bind<IRequestProvider>().To<RequestProvider>();
+
+            Kernel.Bind<IUserService>().To<UserService>();
         }
 
         #endregion

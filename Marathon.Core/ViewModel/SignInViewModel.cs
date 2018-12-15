@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security;
 using System.Windows.Input;
-using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
 using Marathon.Core.Services.User;
