@@ -9,6 +9,6 @@ namespace Marathon.API.Models.User
         public string Email { get; set; }
 
         [JsonProperty]
-        public SecureString Password { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -58,4 +58,8 @@
     <ProjectReference Include="..\Marathon.Persistence\Marathon.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>

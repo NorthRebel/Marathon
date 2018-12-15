@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Security;
+using System.Runtime.InteropServices;
 
-namespace Marathon.API.Helpers
+namespace Marathon.Core.Helpers
 {
     /// <summary>
     /// Helpers for the <see cref="SecureString"/> class

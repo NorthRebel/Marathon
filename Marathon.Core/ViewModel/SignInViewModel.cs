@@ -2,6 +2,7 @@
 using System.Security;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using Marathon.Core.Helpers;
 using Marathon.Core.Models.User;
 using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel.Base;
@@ -72,12 +73,10 @@ namespace Marathon.Core.ViewModel
 
             try
             {
-                SecureString securePassword = (password as IHavePassword).SecurePassword;
-
                 UserInfo result = await userService.SignInAsync(new UserSignInCredentials
                 {
                     Email = Email,
-                    Password = securePassword
+                    Password = (password as IHavePassword).SecurePassword.Unsecure()
                 });
 
                 if (result == null)
@@ -91,7 +90,7 @@ namespace Marathon.Core.ViewModel
                 await Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
                 {
                     Title = "Ошибка",
-                    Message = "Не удалось авторизовать пользователя!"
+                    Message = "Неудалось авторизовать пользователя!"
                 });
             }
         }

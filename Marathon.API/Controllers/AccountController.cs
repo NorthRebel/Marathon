@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using Marathon.API.Helpers;
 using Marathon.API.Models.User;
 using Marathon.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -30,9 +29,7 @@ namespace Marathon.API.Controllers
 
             try
             {
-                string unSecuredPassword = credentials.Password.Unsecure();
-
-                User user = _userRepository.SignIn(credentials.Email, unSecuredPassword);
+                User user = _userRepository.SignIn(credentials.Email, credentials.Password);
 
                 var userInfo = new UserInfo
                 {
@@ -60,9 +57,7 @@ namespace Marathon.API.Controllers
 
             try
             {
-                string unSecuredPassword = credentials.Password.Unsecure();
-
-                User user = _userRepository.SignUp(credentials.Email, unSecuredPassword, credentials.FirstName,
+                User user = _userRepository.SignUp(credentials.Email, credentials.Password, credentials.FirstName,
                     credentials.LastName, credentials.UserTypeId);
 
                 var userInfo = new UserInfo
