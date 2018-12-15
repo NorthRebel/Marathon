@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Marathon.Core.Models.User
 {
+    [Serializable]
     public class UserInfo
     {
         /// <summary>
