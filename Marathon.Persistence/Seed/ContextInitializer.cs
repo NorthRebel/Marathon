@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Marathon.Domain.Common;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Compression;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
@@ -49,7 +50,6 @@ namespace Marathon.Persistence.Seed
                     await context.SaveChangesAsync();
                 }
 
-
                 if (!context.Genders.Any())
                 {
                     SeedGenders(context);
@@ -80,7 +80,7 @@ namespace Marathon.Persistence.Seed
                     await context.SaveChangesAsync();
                 }
 
-                if (context.Events.Any())
+                if (!context.Events.Any())
                 {
                     await context.Events.AddRangeAsync(GetEventsFromFile(contentRootPath, context, logger));
                     await context.SaveChangesAsync();
@@ -254,7 +254,8 @@ namespace Marathon.Persistence.Seed
                                 .Replace('_', ' ')
                                 .Replace('-', ' ');
 
-                        if (!country.Name.Equals(nameWithoutPrefix, StringComparison.InvariantCultureIgnoreCase))
+                        if (!country.Name.Equals(nameWithoutPrefix, StringComparison.InvariantCultureIgnoreCase) &&
+                            !country.Id.Equals(nameWithoutPrefix, StringComparison.InvariantCultureIgnoreCase))
                             continue;
 
                         using (Stream source = entry.Open())
@@ -780,7 +781,7 @@ namespace Marathon.Persistence.Seed
 
             return null;
         }
-        
+
         #endregion
 
         #region RaceKitOptions
@@ -1137,6 +1138,7 @@ namespace Marathon.Persistence.Seed
                 RunnerId = runnerId,
                 SignUpDate = signUpDate,
                 RaceKitOptionId = raceKitOptionId,
+                SignUpStatusId = signUpStatusId,
                 Cost = cost,
                 CharityId = charityId,
                 SponsorshipTarget = sponsorshipTarget
@@ -1617,6 +1619,9 @@ namespace Marathon.Persistence.Seed
             string signUpIdStr = columns[Array.FindIndex(headers, h => h.Equals("SignUpId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
             if (!uint.TryParse(signUpIdStr, out var signUpId))
                 throw new Exception($"Sign up id '{signUpIdStr}' isn't a valid");
+
+            if (!signUpIds.Contains(signUpId))
+                throw new Exception($"Registration with id '{signUpId}' doesn't exist");
 
             #endregion
 
