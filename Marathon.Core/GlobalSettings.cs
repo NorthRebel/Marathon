@@ -2,7 +2,7 @@
 {
     public class GlobalSettings
     {
-        public const string DefaultEndpoint = "http://YOUR_IP_OR_DNS_NAME"; // i.e.: "http://YOUR_IP" or "http://YOUR_DNS_NAME"
+        public const string DefaultEndpoint = "https://localhost:5000";
 
         public static GlobalSettings Instance { get; } = new GlobalSettings();
 
