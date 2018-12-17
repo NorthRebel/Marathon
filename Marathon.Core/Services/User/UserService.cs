@@ -16,13 +16,13 @@ namespace Marathon.Core.Services.User
 
         public Task<UserInfo> SignInAsync(UserSignInCredentials credentials)
         {
-            var uri = UriHelper.CombineUri(GlobalSettings.Instance.SignIn);
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.UserSignIn);
             return _requestProvider.PostAsync<UserSignInCredentials, UserInfo>(uri, credentials);
         }
 
         public Task<UserInfo> SignUpAsync(UserSignUpCredentials credentials)
         {
-            var uri = UriHelper.CombineUri(GlobalSettings.Instance.SignIn);
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.UserSignIn);
             return _requestProvider.PostAsync<UserSignUpCredentials, UserInfo>(uri, credentials);
         }
     }

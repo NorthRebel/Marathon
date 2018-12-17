@@ -14,7 +14,7 @@ namespace Marathon.Core.ViewModel
     using Kernel = IoC.IoC;
 
     /// <summary>
-    /// The view model for a SignIn page
+    /// The view model for a UserSignIn page
     /// </summary>
     public class SignInViewModel : PageViewModel
     {
