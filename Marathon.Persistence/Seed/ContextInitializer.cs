@@ -323,7 +323,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -436,7 +436,7 @@ namespace Marathon.Persistence.Seed
             }
 
             // Get keys from dependency sets
-            IEnumerable<uint> userIds = context.Users.GetKeysFromSet<User, uint>();
+            IEnumerable<int> userIds = context.Users.GetKeysFromSet<User, int>();
             IEnumerable<char> genderIds = context.Genders.GetKeysFromSet<Gender, char>();
             IEnumerable<string> countryIds = context.Countries.GetKeysFromSet<Country, string>();
 
@@ -448,7 +448,7 @@ namespace Marathon.Persistence.Seed
                 .Where(x => x != null);
         }
 
-        private Runner CreateRunner(string[] columns, string[] headers, IEnumerable<uint> userIds, IEnumerable<char> genderIds, IEnumerable<string> countryIds)
+        private Runner CreateRunner(string[] columns, string[] headers, IEnumerable<int> userIds, IEnumerable<char> genderIds, IEnumerable<string> countryIds)
         {
             if (columns.Length != headers.Length)
                 throw new Exception($"Column count '{columns.Length}' not the same as headers count'{headers.Length}'");
@@ -467,7 +467,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -475,7 +475,7 @@ namespace Marathon.Persistence.Seed
             #region UserId
 
             string userIdStr = columns[Array.FindIndex(headers, h => h.Equals("UserId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(userIdStr, out var userId))
+            if (!int.TryParse(userIdStr, out var userId))
                 throw new Exception($"User id '{userIdStr}' isn't valid");
 
             if (!userIds.Contains(userId))
@@ -586,7 +586,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -695,7 +695,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -891,7 +891,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!ushort.TryParse(idStr, out var id))
+            if (!short.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -907,7 +907,7 @@ namespace Marathon.Persistence.Seed
             #region Count
 
             string countStr = columns[Array.FindIndex(headers, h => h.Equals("Count", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(countStr, out var count))
+            if (!int.TryParse(countStr, out var count))
                 throw new Exception($"Count '{countStr}' isn't a valid integer value");
 
             #endregion
@@ -946,7 +946,7 @@ namespace Marathon.Persistence.Seed
 
             // Get keys from dependency sets
             IEnumerable<char> optionIds = context.RaceKitOptions.GetKeysFromSet<RaceKitOption, char>();
-            IEnumerable<ushort> itemIds = context.RaceKitItems.GetKeysFromSet<RaceKitItem, ushort>();
+            IEnumerable<short> itemIds = context.RaceKitItems.GetKeysFromSet<RaceKitItem, short>();
 
             return File.ReadAllLines(csvOptionItemsFile)
                 .Skip(1) // skip header row
@@ -956,7 +956,7 @@ namespace Marathon.Persistence.Seed
                 .Where(x => x != null);
         }
 
-        private RaceKitOptionItem CreateOptionItem(string[] columns, string[] headers, IEnumerable<char> optionIds, IEnumerable<ushort> itemIds)
+        private RaceKitOptionItem CreateOptionItem(string[] columns, string[] headers, IEnumerable<char> optionIds, IEnumerable<short> itemIds)
         {
             if (columns.Length != headers.Length)
                 throw new Exception($"Column count '{columns.Length}' not the same as headers count'{headers.Length}'");
@@ -979,7 +979,7 @@ namespace Marathon.Persistence.Seed
                 throw new Exception($"Race kit option '{optionId}' doesn't exist in dependent set");
 
             string itemIdStr = columns[Array.FindIndex(headers, h => h.Equals("ItemId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!ushort.TryParse(itemIdStr, out var itemId))
+            if (!short.TryParse(itemIdStr, out var itemId))
                 throw new Exception($"ItemId '{itemIdStr}' isn't a valid value of part of primary key");
 
             if (!itemIds.Contains(itemId))
@@ -1019,8 +1019,8 @@ namespace Marathon.Persistence.Seed
             }
 
             // Get keys from dependency sets
-            IEnumerable<uint> runnerIds = context.Runners.GetKeysFromSet<Runner, uint>();
-            IEnumerable<uint> charityIds = context.Charities.GetKeysFromSet<Charity, uint>();
+            IEnumerable<int> runnerIds = context.Runners.GetKeysFromSet<Runner, int>();
+            IEnumerable<int> charityIds = context.Charities.GetKeysFromSet<Charity, int>();
             IEnumerable<byte> signUpStatusIds = context.SignUpStatuses.GetKeysFromSet<SignUpStatus, byte>();
             IEnumerable<char> raceKitOptionIds = context.RaceKitOptions.GetKeysFromSet<RaceKitOption, char>();
 
@@ -1032,7 +1032,7 @@ namespace Marathon.Persistence.Seed
                 .Where(x => x != null);
         }
 
-        private MarathonSignUp CreateMarathonSignUp(string[] columns, string[] headers, IEnumerable<uint> runnerIds, IEnumerable<uint> charityIds, IEnumerable<byte> signUpStatusIds, IEnumerable<char> raceKitOptionIds)
+        private MarathonSignUp CreateMarathonSignUp(string[] columns, string[] headers, IEnumerable<int> runnerIds, IEnumerable<int> charityIds, IEnumerable<byte> signUpStatusIds, IEnumerable<char> raceKitOptionIds)
         {
             if (columns.Length != headers.Length)
                 throw new Exception($"Column count '{columns.Length}' not the same as headers count'{headers.Length}'");
@@ -1054,7 +1054,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -1062,7 +1062,7 @@ namespace Marathon.Persistence.Seed
             #region RunnerId
 
             string runnerIdStr = columns[Array.FindIndex(headers, h => h.Equals("RunnerId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(runnerIdStr, out var runnerId))
+            if (!int.TryParse(runnerIdStr, out var runnerId))
                 throw new Exception($"Runner id '{runnerIdStr}' isn't a valid");
 
             if (!runnerIds.Contains(runnerId))
@@ -1095,7 +1095,7 @@ namespace Marathon.Persistence.Seed
             #region CharityId
 
             string charityIdStr = columns[Array.FindIndex(headers, h => h.Equals("CharityId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(charityIdStr, out var charityId))
+            if (!int.TryParse(charityIdStr, out var charityId))
                 throw new Exception($"Charity id '{charityIdStr}' isn't a valid");
 
             if (!charityIds.Contains(charityId))
@@ -1168,7 +1168,7 @@ namespace Marathon.Persistence.Seed
             }
 
             // Get keys from dependency sets
-            IEnumerable<uint> signUpIds = context.MarathonSignUps.GetKeysFromSet<MarathonSignUp, uint>();
+            IEnumerable<int> signUpIds = context.MarathonSignUps.GetKeysFromSet<MarathonSignUp, int>();
 
             return File.ReadAllLines(csvSponsorshipsFile)
                 .Skip(1) // skip header row
@@ -1178,7 +1178,7 @@ namespace Marathon.Persistence.Seed
                 .Where(x => x != null);
         }
 
-        private Sponsorship CreateSponsorship(string[] columns, string[] headers, IEnumerable<uint> signUpIds)
+        private Sponsorship CreateSponsorship(string[] columns, string[] headers, IEnumerable<int> signUpIds)
         {
             if (columns.Length != headers.Length)
                 throw new Exception($"Column count '{columns.Length}' not the same as headers count'{headers.Length}'");
@@ -1191,7 +1191,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -1207,7 +1207,7 @@ namespace Marathon.Persistence.Seed
             #region SignUpId
 
             string signUpIdStr = columns[Array.FindIndex(headers, h => h.Equals("SignUpId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(signUpIdStr, out var signUpId))
+            if (!int.TryParse(signUpIdStr, out var signUpId))
                 throw new Exception($"Sign up id '{signUpIdStr}' isn't a valid");
 
             if (!signUpIds.Contains(signUpId))
@@ -1334,7 +1334,7 @@ namespace Marathon.Persistence.Seed
             if (yearHeldIndex > -1)
             {
                 string yearHeldStr = columns[yearHeldIndex].TrimQuotes();
-                if (!ushort.TryParse(yearHeldStr, out var yearHeld))
+                if (!short.TryParse(yearHeldStr, out var yearHeld))
                     throw new Exception("Year held value isn't a valid");
 
                 marathon.YearHeld = yearHeld;
@@ -1547,7 +1547,7 @@ namespace Marathon.Persistence.Seed
                 string maxParticipantsStr = columns[maxParticipantsIndex].TrimQuotes();
                 if (!string.IsNullOrWhiteSpace(maxParticipantsStr))
                 {
-                    newEvent.MaxParticipants = ushort.TryParse(maxParticipantsStr, out var maxParticipants)
+                    newEvent.MaxParticipants = short.TryParse(maxParticipantsStr, out var maxParticipants)
                         ? maxParticipants
                         : throw new Exception($"Max Participants '{maxParticipantsStr}' isn't a valid integer value");
                 }
@@ -1582,7 +1582,7 @@ namespace Marathon.Persistence.Seed
             }
 
             // Get keys from dependency sets
-            IEnumerable<uint> signUpIds = context.MarathonSignUps.GetKeysFromSet<MarathonSignUp, uint>();
+            IEnumerable<int> signUpIds = context.MarathonSignUps.GetKeysFromSet<MarathonSignUp, int>();
             IEnumerable<string> eventIds = context.Events.GetKeysFromSet<Event, string>();
 
             return File.ReadAllLines(csvSignUpMarathonEventsFile)
@@ -1593,7 +1593,7 @@ namespace Marathon.Persistence.Seed
                 .Where(x => x != null);
         }
 
-        private SignUpMarathonEvent CreateSignUpMarathonEvent(string[] columns, string[] headers, IEnumerable<uint> signUpIds, IEnumerable<string> eventIds)
+        private SignUpMarathonEvent CreateSignUpMarathonEvent(string[] columns, string[] headers, IEnumerable<int> signUpIds, IEnumerable<string> eventIds)
         {
             if (columns.Length != headers.Length)
                 throw new Exception($"Column count '{columns.Length}' not the same as headers count'{headers.Length}'");
@@ -1609,7 +1609,7 @@ namespace Marathon.Persistence.Seed
             #region Primary key
 
             string idStr = columns[Array.FindIndex(headers, h => h.Equals("Id", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(idStr, out var id))
+            if (!int.TryParse(idStr, out var id))
                 throw new Exception($"Id '{idStr}' isn't a valid identity number");
 
             #endregion
@@ -1617,7 +1617,7 @@ namespace Marathon.Persistence.Seed
             #region SignUpId
 
             string signUpIdStr = columns[Array.FindIndex(headers, h => h.Equals("SignUpId", StringComparison.OrdinalIgnoreCase))].TrimQuotes();
-            if (!uint.TryParse(signUpIdStr, out var signUpId))
+            if (!int.TryParse(signUpIdStr, out var signUpId))
                 throw new Exception($"Sign up id '{signUpIdStr}' isn't a valid");
 
             if (!signUpIds.Contains(signUpId))
@@ -1653,7 +1653,7 @@ namespace Marathon.Persistence.Seed
                 string bibNumberStr = columns[bibNumberIndex].TrimQuotes();
                 if (!string.IsNullOrWhiteSpace(bibNumberStr))
                 {
-                    signUpMarathonEvent.BibNumber = ushort.TryParse(bibNumberStr, out var bibNumber)
+                    signUpMarathonEvent.BibNumber = short.TryParse(bibNumberStr, out var bibNumber)
                         ? bibNumber
                         : throw new Exception($"Bib number '{bibNumberStr}' isn't a valid integer value");
                 }
@@ -1669,7 +1669,7 @@ namespace Marathon.Persistence.Seed
                 string raceTimeStr = columns[raceTimeIndex].TrimQuotes();
                 if (!string.IsNullOrWhiteSpace(raceTimeStr))
                 {
-                    signUpMarathonEvent.RaceTime = uint.TryParse(raceTimeStr, out var raceTime)
+                    signUpMarathonEvent.RaceTime = int.TryParse(raceTimeStr, out var raceTime)
                         ? raceTime
                         : throw new Exception($"Race time '{raceTimeStr}' isn't a valid integer value");
                 }

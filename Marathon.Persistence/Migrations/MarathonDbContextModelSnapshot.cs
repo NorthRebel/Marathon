@@ -15,15 +15,16 @@ namespace Marathon.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Marathon.Domain.Entities.Charity", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("CharityId");
+                        .HasColumnName("CharityId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .HasColumnName("CharityDescription")
@@ -76,7 +77,7 @@ namespace Marathon.Persistence.Migrations
 
                     b.Property<byte>("MarathonId");
 
-                    b.Property<int?>("MaxParticipants");
+                    b.Property<short?>("MaxParticipants");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -143,7 +144,7 @@ namespace Marathon.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(80);
 
-                    b.Property<int?>("YearHeld");
+                    b.Property<short?>("YearHeld");
 
                     b.HasKey("Id");
 
@@ -154,11 +155,12 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.MarathonSignUp", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("RegistrationId");
+                        .HasColumnName("RegistrationId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CharityId");
+                    b.Property<int>("CharityId");
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("decimal(10,2)");
@@ -167,7 +169,7 @@ namespace Marathon.Persistence.Migrations
                         .IsRequired()
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
 
-                    b.Property<long>("RunnerId");
+                    b.Property<int>("RunnerId");
 
                     b.Property<DateTime>("SignUpDate")
                         .HasColumnType("datetime");
@@ -193,11 +195,12 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.RaceKitItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("RaceKitItemId");
+                        .HasColumnName("RaceKitItemId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("Count");
+                    b.Property<int>("Count");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -229,7 +232,7 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.RaceKitOptionItem", b =>
                 {
-                    b.Property<int>("ItemId")
+                    b.Property<short>("ItemId")
                         .HasColumnName("RaceKitItemId");
 
                     b.Property<string>("OptionId")
@@ -246,9 +249,10 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.Runner", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("RunnerId");
+                        .HasColumnName("RunnerId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CountryId")
                         .HasColumnName("CountryCode")
@@ -263,7 +267,7 @@ namespace Marathon.Persistence.Migrations
                     b.Property<byte[]>("Photo")
                         .HasColumnType("varbinary(max) ");
 
-                    b.Property<long>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -279,17 +283,18 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.SignUpMarathonEvent", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BibNumber");
+                    b.Property<short?>("BibNumber");
 
                     b.Property<string>("EventId")
                         .HasColumnType("char(6)");
 
-                    b.Property<long?>("RaceTime");
+                    b.Property<int?>("RaceTime");
 
-                    b.Property<long>("SignUpId")
+                    b.Property<int>("SignUpId")
                         .HasColumnName("RegistrationId");
 
                     b.HasKey("Id");
@@ -318,9 +323,10 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.Sponsorship", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("SponsorshipId");
+                        .HasColumnName("SponsorshipId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(10,2)");
@@ -330,7 +336,7 @@ namespace Marathon.Persistence.Migrations
                         .HasColumnName("SponsorName")
                         .HasMaxLength(150);
 
-                    b.Property<long>("SignUpId")
+                    b.Property<int>("SignUpId")
                         .HasColumnName("RegistrationId");
 
                     b.HasKey("Id");
@@ -342,8 +348,9 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.User", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -391,9 +398,10 @@ namespace Marathon.Persistence.Migrations
 
             modelBuilder.Entity("Marathon.Domain.Entities.Volunteer", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("VolunteerId");
+                        .HasColumnName("VolunteerId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CountryId")
                         .HasColumnName("CountryCode")
