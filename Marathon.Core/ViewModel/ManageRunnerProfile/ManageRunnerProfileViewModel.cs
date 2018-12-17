@@ -2,7 +2,6 @@
 using Marathon.Core.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
@@ -21,16 +20,6 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
         /// The email of the user
         /// </summary>
         public EntryViewModel<string> Email { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user
-        /// </summary>
-        public EntryViewModel<IHavePassword> Password { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user to confirm this
-        /// </summary>
-        public EntryViewModel<IHavePassword> ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user
@@ -97,8 +86,6 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
             #region Initialize entries
 
             Email = new EntryViewModel<string>(nameof(Email));
-            Password = new EntryViewModel<IHavePassword>("Пароль");
-            ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");

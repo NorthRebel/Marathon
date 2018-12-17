@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Marathon.Core.Models;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
-using Marathon.Core.Models;
-using Marathon.Core.Models.Runner;
+using System.Threading.Tasks;
 using Marathon.Core.Models.User;
-using Marathon.Core.Services.Runner;
+using Marathon.Core.Models.Runner;
 using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Dialogs;
+using Marathon.Core.Services.Runner;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
+using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel
@@ -28,16 +28,6 @@ namespace Marathon.Core.ViewModel
         /// The email of the user
         /// </summary>
         public EntryViewModel<string> Email { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user
-        /// </summary>
-        public EntryViewModel<IHavePassword> Password { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user to confirm this
-        /// </summary>
-        public EntryViewModel<IHavePassword> ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user
@@ -100,8 +90,6 @@ namespace Marathon.Core.ViewModel
             #region Initialize entries
 
             Email = new EntryViewModel<string>(nameof(Email));
-            Password = new EntryViewModel<IHavePassword>("Пароль");
-            ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");
