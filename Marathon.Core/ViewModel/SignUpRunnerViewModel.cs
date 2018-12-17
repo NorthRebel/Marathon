@@ -4,6 +4,7 @@ using Marathon.Core.Models;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
 using System.Threading.Tasks;
+using Marathon.Core.Models.Other;
 using Marathon.Core.Models.User;
 using Marathon.Core.Models.Runner;
 using Marathon.Core.Services.Interfaces;
@@ -97,6 +98,9 @@ namespace Marathon.Core.ViewModel
             BirthDay = new EntryViewModel<DateTime>("Дата рождения");
             Country = new ItemsEntryViewModel<string>("Страна");
 
+            Task.Run(GetCountries);
+            Task.Run(GetGenders);
+
             #endregion
 
             SignUpCommand = new RelayCommand(async (password) => await SignUpAsync(password));
@@ -109,16 +113,39 @@ namespace Marathon.Core.ViewModel
 
         private async Task GetCountries()
         {
+            var countryService = Kernel.Get<ICountryService>();
+
             try
             {
-
+                Country.Items = await countryService.GetAllAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 var errorMessage = Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
                 {
                     Title = "Ошибка",
                     Message = "Неудалось получить список стран!\nРегистрация невозможна"
+                });
+
+                if (errorMessage.Wait(TimeSpan.FromSeconds(10)))
+                    Kernel.Application.GoToPreviousPage();
+            }
+        }
+
+        private async Task GetGenders()
+        {
+            var genderService = Kernel.Get<IGenderService>();
+
+            try
+            {
+                Gender.Items = await genderService.GetAllAsync();
+            }
+            catch (Exception)
+            {
+                var errorMessage = Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    Title = "Ошибка",
+                    Message = "Неудалось получить список наименований гендеров!\nРегистрация невозможна"
                 });
 
                 if (errorMessage.Wait(TimeSpan.FromSeconds(10)))

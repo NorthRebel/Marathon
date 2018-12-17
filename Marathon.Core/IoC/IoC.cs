@@ -76,6 +76,8 @@ namespace Marathon.Core.IoC
             Kernel.Bind<IUserService>().To<UserService>();
             Kernel.Bind<IRunnerService>().To<RunnerService>();
 
+            Kernel.Bind<ICountryService>().To<CountryService>();
+            Kernel.Bind<IGenderService>().To<GenderService>();
         }
 
         #endregion

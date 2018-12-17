@@ -19,7 +19,7 @@ namespace Marathon.Core.Services
         {
             var uri = UriHelper.CombineUri(GlobalSettings.Instance.AllGenders);
 
-            return _requestProvider.GetAsync<Genders>(this.GetToken());
+            return _requestProvider.GetAsync<Genders>(uri, this.GetToken());
         }
     }
 }
