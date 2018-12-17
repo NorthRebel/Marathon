@@ -5,18 +5,18 @@ using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Repositories
 {
-    internal class CountryRepository : ICountryRepository
+    internal class GenderRepository : IGenderRepository
     {
         private readonly MarathonDbContext _context;
 
-        public CountryRepository(MarathonDbContext context)
+        public GenderRepository(MarathonDbContext context)
         {
             _context = context;
         }
 
         public IEnumerable<string> GetAllNames()
         {
-            return _context.Countries.Select(c => c.Name);
+            return _context.Genders.Select(g => g.Name);
         }
     }
 }
