@@ -172,21 +172,11 @@ namespace Marathon.Core.ViewModel
         {
             try
             {
-                UserInfo newUser = await SignUpUserAsync(
-                    Email.Value,
-                    (password as IHavePassword).SecurePassword.Unsecure(), 
-                    FirstName.Value, 
-                    LastName.Value);
+                UserInfo newUser = await SignUpUserAsync((password as IHavePassword).SecurePassword.Unsecure());
 
                 await SaveUserInfoAsync(newUser);
-
-
-                uint runnerId = await SignUpRunnerAsync(
-                    newUser.Id, 
-                    'M', 
-                    BirthDay.Value, 
-                    Country.Value, 
-                    null);
+                
+                uint runnerId = await SignUpRunnerAsync(newUser.Id);
 
                 if (runnerId == default(uint))
                     throw new Exception("Runner id shouldn't have zero value!");
@@ -204,32 +194,32 @@ namespace Marathon.Core.ViewModel
 
         }
 
-        private Task<UserInfo> SignUpUserAsync(string email, string password, string firstName, string lastName)
+        private Task<UserInfo> SignUpUserAsync(string password)
         {
             var userService = Kernel.Get<IUserService>();
 
             return userService.SignUpAsync(new UserSignUpCredentials
             {
-                Email = email,
+                Email = Email.Value,
                 Password = password,
-                FirstName = firstName,
-                LastName = lastName,
+                FirstName = FirstName.Value,
+                LastName = LastName.Value,
                 // TODO: Create linked enumeration!
                 UserTypeId = 'R'
             });
         }
 
-        private Task<uint> SignUpRunnerAsync(uint userId, char genderId, DateTime dateOfBirth, string countryId, byte[] photo)
+        private Task<uint> SignUpRunnerAsync(uint userId)
         {
             var runnerService = Kernel.Get<IRunnerService>();
 
             return runnerService.SignUpAsync(new RunnerSignUpCredentials
             {
                 UserId = userId,
-                GenderId = genderId,
-                DateOfBirth = dateOfBirth,
-                CountryId = countryId,
-                Photo = photo
+                Gender = Gender.Value,
+                DateOfBirth = BirthDay.Value,
+                CountryName = Country.Value,
+                //Photo = 
             });
         }
 

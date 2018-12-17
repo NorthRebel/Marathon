@@ -18,5 +18,10 @@ namespace Marathon.API.Repositories
         {
             return _context.Genders.Select(g => g.Name);
         }
+
+        public char GetIdByName(string name)
+        {
+            return _context.Genders.Single(g => g.Name == name).Id;
+        }
     }
 }

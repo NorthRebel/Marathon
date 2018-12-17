@@ -18,5 +18,10 @@ namespace Marathon.API.Repositories
         {
             return _context.Countries.Select(c => c.Name);
         }
+
+        public string GetIdByName(string name)
+        {
+            return _context.Countries.Single(c => c.Name == name).Id;
+        }
     }
 }
