@@ -176,7 +176,7 @@ namespace Marathon.Core.ViewModel
 
                 await SaveUserInfoAsync(newUser);
                 
-                uint runnerId = await SignUpRunnerAsync(newUser.Id);
+                int runnerId = await SignUpRunnerAsync(newUser.Id);
 
                 if (runnerId == default(uint))
                     throw new Exception("Runner id shouldn't have zero value!");
@@ -209,7 +209,7 @@ namespace Marathon.Core.ViewModel
             });
         }
 
-        private Task<uint> SignUpRunnerAsync(uint userId)
+        private Task<int> SignUpRunnerAsync(int userId)
         {
             var runnerService = Kernel.Get<IRunnerService>();
 

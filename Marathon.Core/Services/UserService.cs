@@ -22,7 +22,7 @@ namespace Marathon.Core.Services
 
         public Task<UserInfo> SignUpAsync(UserSignUpCredentials credentials)
         {
-            var uri = UriHelper.CombineUri(GlobalSettings.Instance.UserSignIn);
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.UserSignUp);
             return _requestProvider.PostAsync<UserSignUpCredentials, UserInfo>(uri, credentials);
         }
     }

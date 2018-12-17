@@ -15,10 +15,10 @@ namespace Marathon.Core.Services
             _requestProvider = requestProvider;
         }
 
-        public Task<uint> SignUpAsync(RunnerSignUpCredentials credentials)
+        public Task<int> SignUpAsync(RunnerSignUpCredentials credentials)
         {
             var uri = UriHelper.CombineUri(GlobalSettings.Instance.RunnerSignUp);
-            return _requestProvider.PostAsync<RunnerSignUpCredentials, uint>(uri, credentials, this.GetToken());
+            return _requestProvider.PostAsync<RunnerSignUpCredentials, int>(uri, credentials, this.GetToken());
         }
     }
 }

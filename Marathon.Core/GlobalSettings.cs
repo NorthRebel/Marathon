@@ -16,6 +16,7 @@
         #region Routes
 
         public string UserSignIn { get; set; }
+        public string UserSignUp { get; set; }
         public string RunnerSignUp { get; set; }
 
         public string AllCountries { get; set; }
@@ -36,6 +37,7 @@
         private void UpdateEndpoint(string endpoint)
         {
             UserSignIn = $"{endpoint}/Account/SignIn";
+            UserSignUp = $"{endpoint}/Account/SignUp";
             RunnerSignUp = $"{endpoint}/Runner/SignUp";
 
             AllCountries = $"{endpoint}/Countries/All";

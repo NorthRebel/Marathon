@@ -13,7 +13,7 @@ namespace Marathon.Core.Models.User
         public string Token { get; set; }
 
         [JsonProperty]
-        public uint Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty]
         public char UserType { get; set; }

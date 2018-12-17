@@ -5,6 +5,6 @@ namespace Marathon.Core.Services.Interfaces
 {
     public interface IRunnerService : IService
     {
-        Task<uint> SignUpAsync(RunnerSignUpCredentials credentials);
+        Task<int> SignUpAsync(RunnerSignUpCredentials credentials);
     }
 }

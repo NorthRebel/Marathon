@@ -6,7 +6,7 @@ namespace Marathon.Core.Models.Runner
     public class RunnerSignUpCredentials
     {
         [JsonProperty]
-        public uint UserId { get; set; }
+        public int UserId { get; set; }
 
         [JsonProperty]
         public string Gender { get; set; }
