@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Marathon.Core.Models;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
@@ -101,6 +102,29 @@ namespace Marathon.Core.ViewModel
 
             SignUpCommand = new RelayCommand(async (password) => await SignUpAsync(password));
             CancelCommand = new RelayCommand(x => Cancel());
+        }
+
+        #endregion
+
+        #region Initialize entry lists
+
+        private async Task GetCountries()
+        {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                var errorMessage = Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    Title = "Ошибка",
+                    Message = "Неудалось получить список стран!\nРегистрация невозможна"
+                });
+
+                if (errorMessage.Wait(TimeSpan.FromSeconds(10)))
+                    Kernel.Application.GoToPreviousPage();
+            }
         }
 
         #endregion

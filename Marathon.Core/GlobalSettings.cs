@@ -18,6 +18,9 @@
         public string UserSignIn { get; set; }
         public string RunnerSignUp { get; set; }
 
+        public string AllCountries { get; set; }
+        public string AllGenders { get; set; }
+
         #endregion
 
         public string BaseIdentityEndpoint
@@ -34,6 +37,9 @@
         {
             UserSignIn = $"{endpoint}/Account/SignIn";
             RunnerSignUp = $"{endpoint}/Runner/SignUp";
+
+            AllCountries = $"{endpoint}/Countries/All";
+            AllGenders = $"{endpoint}/Genders/All";
         }
     }
 }
