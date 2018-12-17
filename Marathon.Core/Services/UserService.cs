@@ -1,9 +1,9 @@
 ﻿using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
-using Marathon.Core.Services.RequestProvider;
+using Marathon.Core.Services.Interfaces;
 
-namespace Marathon.Core.Services.User
+namespace Marathon.Core.Services
 {
     public class UserService : IUserService
     {

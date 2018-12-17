@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Marathon.Core.Models.Other;
 
-namespace Marathon.Core.Services.Genders
+namespace Marathon.Core.Services.Interfaces
 {
-    using Models.Other;
-
     public interface IGenderService : IService
     {
         Task<Genders> GetAllAsync();

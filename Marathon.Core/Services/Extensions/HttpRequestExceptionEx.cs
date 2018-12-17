@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace Marathon.Core.Services.RequestProvider
+namespace Marathon.Core.Services.Extensions
 {
     public class HttpRequestExceptionEx : HttpRequestException
     {

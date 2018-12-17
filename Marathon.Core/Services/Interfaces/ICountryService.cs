@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Marathon.Core.Models.Other;
 
-namespace Marathon.Core.Services.Countries
+namespace Marathon.Core.Services.Interfaces
 {
-    using Models.Other;
-
     public interface ICountryService : IService
     {
         Task<Countries> GetAllAsync();

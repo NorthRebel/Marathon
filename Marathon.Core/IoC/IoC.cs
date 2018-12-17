@@ -1,7 +1,7 @@
 ﻿using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.Services;
+using Marathon.Core.Services.Interfaces;
 using Marathon.Core.Services.RequestProvider;
-using Marathon.Core.Services.Runner;
-using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.TitleBar;
 using Ninject;

@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Marathon.Core.Exceptions;
+using Marathon.Core.Services.Extensions;
+using Marathon.Core.Services.Interfaces;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 

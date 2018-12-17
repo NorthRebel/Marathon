@@ -1,12 +1,11 @@
 ﻿using Marathon.Core.Helpers;
 using System.Threading.Tasks;
+using Marathon.Core.Models.Other;
 using Marathon.Core.Services.Extensions;
-using Marathon.Core.Services.RequestProvider;
+using Marathon.Core.Services.Interfaces;
 
-namespace Marathon.Core.Services.Countries
+namespace Marathon.Core.Services
 {
-    using Models.Other;
-
     public class CountryService : ICountryService
     {
         private readonly IRequestProvider _requestProvider;
