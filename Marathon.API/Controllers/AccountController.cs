@@ -29,7 +29,7 @@ namespace Marathon.API.Controllers
 
             try
             {
-                User user = _userRepository.SignIn(credentials.Email, credentials.Password);
+                User user = _userRepository.SignIn(credentials);
 
                 var userInfo = new UserInfo
                 {
@@ -57,8 +57,7 @@ namespace Marathon.API.Controllers
 
             try
             {
-                User user = _userRepository.SignUp(credentials.Email, credentials.Password, credentials.FirstName,
-                    credentials.LastName, credentials.UserTypeId);
+                User user = _userRepository.SignUp(credentials);
 
                 var userInfo = new UserInfo
                 {

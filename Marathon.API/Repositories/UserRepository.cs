@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Marathon.Persistence;
 using Marathon.API.Exceptions;
+using Marathon.API.Models.User;
 using Marathon.Domain.Entities;
 using Marathon.API.Repositories.Interfaces;
 
@@ -15,9 +16,9 @@ namespace Marathon.API.Repositories
             _context = context;
         }
 
-        public User SignIn(string email, string password)
+        public User SignIn(UserSignInCredentials credentials)
         {
-            User user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+            User user = _context.Users.SingleOrDefault(u => u.Email == credentials.Email && u.Password == credentials.Password);
 
             if (user == null)
                 throw new InvalidUserCredentialsException();
@@ -25,26 +26,43 @@ namespace Marathon.API.Repositories
             return user;
         }
 
-        public User SignUp(string email, string password, string firstName, string lastName, char userTypeId)
+        #region SignUp
+        
+        public User SignUp(UserSignUpCredentials credentials)
         {
-            User existedUser = _context.Users.SingleOrDefault(u => u.Email == email);
-
-            if (existedUser != null)
+            if (IsUserExists(credentials.Email))
                 throw new UserAlreadyExistsException();
 
-            var newUser = new User
-            {
-                Email = email,
-                Password = password,
-                FirstName = firstName,
-                LastName = lastName,
-                UserTypeId = userTypeId
-            };
+            var newUser = CreateNewUser(credentials);
 
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
+            SaveUser(newUser);
 
             return newUser;
         }
+
+        private void SaveUser(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+
+        private User CreateNewUser(UserSignUpCredentials credentials)
+        {
+            return new User
+            {
+                Email = credentials.Email,
+                Password = credentials.Password,
+                FirstName = credentials.FirstName,
+                LastName = credentials.LastName,
+                UserTypeId = credentials.UserTypeId
+            };
+        }
+
+        private bool IsUserExists(string email)
+        {
+            return _context.Users.SingleOrDefault(u => u.Email == email) != null;
+        }
+
+        #endregion
     }
 }
