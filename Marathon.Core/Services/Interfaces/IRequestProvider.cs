@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Marathon.Core.Services.RequestProvider
+namespace Marathon.Core.Services.Interfaces
 {
     /// <summary>
     /// Provides HTTP calls for sending and receiving information from a HTTP server

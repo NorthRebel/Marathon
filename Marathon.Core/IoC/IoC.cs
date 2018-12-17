@@ -1,7 +1,7 @@
 ﻿using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.Services;
+using Marathon.Core.Services.Interfaces;
 using Marathon.Core.Services.RequestProvider;
-using Marathon.Core.Services.Runner;
-using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.TitleBar;
 using Ninject;
@@ -75,6 +75,9 @@ namespace Marathon.Core.IoC
 
             Kernel.Bind<IUserService>().To<UserService>();
             Kernel.Bind<IRunnerService>().To<RunnerService>();
+
+            Kernel.Bind<ICountryService>().To<CountryService>();
+            Kernel.Bind<IGenderService>().To<GenderService>();
         }
 
         #endregion

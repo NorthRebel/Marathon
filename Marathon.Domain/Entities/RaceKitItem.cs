@@ -3,16 +3,16 @@ using Marathon.Domain.Common;
 
 namespace Marathon.Domain.Entities
 {
-    public sealed class RaceKitItem : IEntity<ushort>
+    public sealed class RaceKitItem : IEntity<short>
     {
         public RaceKitItem()
         {
             OptionItems = new HashSet<RaceKitOptionItem>();
         }
 
-        public ushort Id { get; set; }
+        public short Id { get; set; }
         public string Name { get; set; }
-        public uint Count { get; set; }
+        public int Count { get; set; }
 
 
         public ICollection<RaceKitOptionItem> OptionItems { get; set; }

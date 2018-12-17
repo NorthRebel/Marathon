@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.Models
@@ -16,16 +15,6 @@ namespace Marathon.Core.ViewModel.Models
         /// The email of the user
         /// </summary>
         EntryViewModel<string> Email { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user
-        /// </summary>
-        EntryViewModel<IHavePassword> Password { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user to confirm this
-        /// </summary>
-        EntryViewModel<IHavePassword> ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user

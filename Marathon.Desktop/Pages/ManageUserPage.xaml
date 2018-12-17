@@ -115,14 +115,42 @@
                 <StackPanel Grid.Row="2">
 
                     <!--Password-->
-                    <input:LeftEntryControl DataContext="{Binding Password}">
-                        <PasswordBox Tag="{Binding Label}"/>
-                    </input:LeftEntryControl>
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Пароль:"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                        <PasswordBox Grid.Column="1"
+                                     x:Name="PasswordText"
+                                     Margin="5 0"
+                                     VerticalAlignment="Center"
+                                     Tag="Введите свой пароль"/>
+                    </Grid>
 
                     <!--Confirm password-->
-                    <input:LeftEntryControl DataContext="{Binding ConfirmPassword}">
-                        <PasswordBox Tag="{Binding Label}"/>
-                    </input:LeftEntryControl>
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Подтвердите пароль:"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+
+                        <PasswordBox Grid.Column="1"
+                                     x:Name="ConfirmPasswordText"
+                                     Margin="5 0"
+                                     VerticalAlignment="Center"
+                                     Tag="Подтвердите пароль"/>
+                    </Grid>
 
                 </StackPanel>
 

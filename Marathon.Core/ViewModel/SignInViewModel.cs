@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Marathon.Core.Helpers;
 using Marathon.Core.Models.User;
-using Marathon.Core.Services.User;
+using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.PageCaption;

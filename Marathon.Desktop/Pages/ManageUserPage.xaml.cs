@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.ManageUser;
 
 namespace Marathon.Desktop.Pages
@@ -19,11 +21,16 @@ namespace Marathon.Desktop.Pages
     /// <summary>
     /// Interaction logic for ManageUserPage.xaml
     /// </summary>
-    public partial class ManageUserPage : BasePage<ManageUserViewModel>
+    public partial class ManageUserPage : BasePage<ManageUserViewModel>, IHavePassword
     {
         public ManageUserPage()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// The secure password
+        /// </summary>
+        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }

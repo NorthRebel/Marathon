@@ -10,13 +10,19 @@ namespace Marathon.API.Repositories
     internal class RunnerRepository : IRunnerRepository
     {
         private readonly MarathonDbContext _context;
+        private readonly IGenderRepository _genderRepository;
+        private readonly ICountryRepository _countryRepository;
 
-        public RunnerRepository(MarathonDbContext context)
+        public RunnerRepository(MarathonDbContext context, 
+            IGenderRepository genderRepository,
+            ICountryRepository countryRepository)
         {
             _context = context;
+            _genderRepository = genderRepository;
+            _countryRepository = countryRepository;
         }
 
-        public uint SignUp(RunnerSignUpCredentials credentials)
+        public int SignUp(RunnerSignUpCredentials credentials)
         {
             if (IsUserRunner(credentials.UserId))
                 throw new Exception($"User with id {credentials.UserId} is already signed up as runner");
@@ -39,14 +45,14 @@ namespace Marathon.API.Repositories
             return new Runner
             {
                 UserId = credentials.UserId,
-                GenderId = credentials.GenderId,
+                GenderId = _genderRepository.GetIdByName(credentials.Gender),
                 DateOfBirth = credentials.DateOfBirth,
-                CountryId = credentials.CountryId,
+                CountryId = _countryRepository.GetIdByName(credentials.CountryName),
                 Photo = credentials.Photo
             };
         }
 
-        private bool IsUserRunner(uint userId)
+        private bool IsUserRunner(int userId)
         {
             return _context.Runners.SingleOrDefault(r => r.UserId == userId) != null;
         }

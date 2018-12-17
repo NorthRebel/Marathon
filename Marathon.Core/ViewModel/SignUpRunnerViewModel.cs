@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Threading;
+using Marathon.Core.Models;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
-using Marathon.Core.Models;
-using Marathon.Core.Models.Runner;
+using System.Threading.Tasks;
+using Marathon.Core.Models.Other;
 using Marathon.Core.Models.User;
-using Marathon.Core.Services.Runner;
-using Marathon.Core.Services.User;
+using Marathon.Core.Models.Runner;
+using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
+using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel
@@ -28,16 +29,6 @@ namespace Marathon.Core.ViewModel
         /// The email of the user
         /// </summary>
         public EntryViewModel<string> Email { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user
-        /// </summary>
-        public EntryViewModel<IHavePassword> Password { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user to confirm this
-        /// </summary>
-        public EntryViewModel<IHavePassword> ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user
@@ -100,8 +91,6 @@ namespace Marathon.Core.ViewModel
             #region Initialize entries
 
             Email = new EntryViewModel<string>(nameof(Email));
-            Password = new EntryViewModel<IHavePassword>("Пароль");
-            ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");
@@ -109,10 +98,59 @@ namespace Marathon.Core.ViewModel
             BirthDay = new EntryViewModel<DateTime>("Дата рождения");
             Country = new ItemsEntryViewModel<string>("Страна");
 
+            Task.Run(GetCountries);
+            Task.Run(GetGenders);
+
             #endregion
 
             SignUpCommand = new RelayCommand(async (password) => await SignUpAsync(password));
             CancelCommand = new RelayCommand(x => Cancel());
+        }
+
+        #endregion
+
+        #region Initialize entry lists
+
+        private async Task GetCountries()
+        {
+            var countryService = Kernel.Get<ICountryService>();
+
+            try
+            {
+                Country.Items = await countryService.GetAllAsync();
+            }
+            catch (Exception)
+            {
+                var errorMessage = Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    Title = "Ошибка",
+                    Message = "Неудалось получить список стран!\nРегистрация невозможна"
+                });
+
+                if (errorMessage.Wait(TimeSpan.FromSeconds(10)))
+                    Kernel.Application.GoToPreviousPage();
+            }
+        }
+
+        private async Task GetGenders()
+        {
+            var genderService = Kernel.Get<IGenderService>();
+
+            try
+            {
+                Gender.Items = await genderService.GetAllAsync();
+            }
+            catch (Exception)
+            {
+                var errorMessage = Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    Title = "Ошибка",
+                    Message = "Неудалось получить список наименований гендеров!\nРегистрация невозможна"
+                });
+
+                if (errorMessage.Wait(TimeSpan.FromSeconds(10)))
+                    Kernel.Application.GoToPreviousPage();
+            }
         }
 
         #endregion
@@ -134,21 +172,11 @@ namespace Marathon.Core.ViewModel
         {
             try
             {
-                UserInfo newUser = await SignUpUserAsync(
-                    Email.Value,
-                    (password as IHavePassword).SecurePassword.Unsecure(), 
-                    FirstName.Value, 
-                    LastName.Value);
+                UserInfo newUser = await SignUpUserAsync((password as IHavePassword).SecurePassword.Unsecure());
 
                 await SaveUserInfoAsync(newUser);
-
-
-                uint runnerId = await SignUpRunnerAsync(
-                    newUser.Id, 
-                    'M', 
-                    BirthDay.Value, 
-                    Country.Value, 
-                    null);
+                
+                int runnerId = await SignUpRunnerAsync(newUser.Id);
 
                 if (runnerId == default(uint))
                     throw new Exception("Runner id shouldn't have zero value!");
@@ -166,32 +194,32 @@ namespace Marathon.Core.ViewModel
 
         }
 
-        private Task<UserInfo> SignUpUserAsync(string email, string password, string firstName, string lastName)
+        private Task<UserInfo> SignUpUserAsync(string password)
         {
             var userService = Kernel.Get<IUserService>();
 
             return userService.SignUpAsync(new UserSignUpCredentials
             {
-                Email = email,
+                Email = Email.Value,
                 Password = password,
-                FirstName = firstName,
-                LastName = lastName,
+                FirstName = FirstName.Value,
+                LastName = LastName.Value,
                 // TODO: Create linked enumeration!
                 UserTypeId = 'R'
             });
         }
 
-        private Task<uint> SignUpRunnerAsync(uint userId, char genderId, DateTime dateOfBirth, string countryId, byte[] photo)
+        private Task<int> SignUpRunnerAsync(int userId)
         {
             var runnerService = Kernel.Get<IRunnerService>();
 
             return runnerService.SignUpAsync(new RunnerSignUpCredentials
             {
                 UserId = userId,
-                GenderId = genderId,
-                DateOfBirth = dateOfBirth,
-                CountryId = countryId,
-                Photo = photo
+                Gender = Gender.Value,
+                DateOfBirth = BirthDay.Value,
+                CountryName = Country.Value,
+                //Photo = 
             });
         }
 

@@ -5,9 +5,9 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of the <see cref="Volunteer"/>
     /// </summary>
-    public sealed class Volunteer : IEntity<uint>
+    public sealed class Volunteer : IEntity<int>
     {
-        public uint Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string CountryId { get; set; }

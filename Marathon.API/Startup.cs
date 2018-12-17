@@ -27,7 +27,8 @@ namespace Marathon.API
             services.AddDbContext<MarathonDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<IUserRepository, UserRepository>();
+
+            BindRepositories(services);
 
             // Add proper cookie request to follow GDPR 
             services.Configure<CookiePolicyOptions>(options =>
@@ -109,6 +110,17 @@ namespace Marathon.API
             AppSettingsProvider.Jwt.SecretKey = Configuration["Jwt:SecretKey"];
             AppSettingsProvider.Jwt.Issuer = Configuration["Jwt:Issuer"];
             AppSettingsProvider.Jwt.Audience = Configuration["Jwt:Audience"];
+        }
+
+        /// <summary>
+        /// Configures repository services for data access
+        /// </summary>
+        private void BindRepositories(IServiceCollection services)
+        {
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRunnerRepository, RunnerRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
+            services.AddTransient<IGenderRepository, GenderRepository>();
         }
     }
 }

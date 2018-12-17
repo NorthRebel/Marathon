@@ -4,6 +4,6 @@ namespace Marathon.API.Repositories.Interfaces
 {
     public interface IRunnerRepository
     {
-        uint SignUp(RunnerSignUpCredentials credentials);
+        int SignUp(RunnerSignUpCredentials credentials);
     }
 }

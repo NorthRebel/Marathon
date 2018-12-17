@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,17 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Marathon.Core.ViewModel;
+using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Desktop.Pages
 {
     /// <summary>
     /// Логика взаимодействия для SignUpRunnerPage.xaml
     /// </summary>
-    public partial class SignUpRunnerPage : BasePage<SignUpRunnerViewModel>
+    public partial class SignUpRunnerPage : BasePage<SignUpRunnerViewModel>, IHavePassword
     {
         public SignUpRunnerPage()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// The secure password
+        /// </summary>
+        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }

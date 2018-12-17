@@ -6,9 +6,9 @@ namespace Marathon.Domain.Entities
     /// <summary>
     /// Details of application user
     /// </summary>
-    public sealed class User : IEntity<uint>
+    public sealed class User : IEntity<int>
     {
-        public uint Id { get; set; }
+        public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }

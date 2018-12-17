@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Marathon.Persistence.Migrations
@@ -11,7 +12,8 @@ namespace Marathon.Persistence.Migrations
                 name: "Charities",
                 columns: table => new
                 {
-                    CharityId = table.Column<long>(nullable: false),
+                    CharityId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CharityName = table.Column<string>(maxLength: 100, nullable: false),
                     CharityDescription = table.Column<string>(maxLength: 2000, nullable: true),
                     CharityLogo = table.Column<byte[]>(nullable: true)
@@ -62,9 +64,10 @@ namespace Marathon.Persistence.Migrations
                 name: "RaceKitItems",
                 columns: table => new
                 {
-                    RaceKitItemId = table.Column<int>(nullable: false),
+                    RaceKitItemId = table.Column<short>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Count = table.Column<long>(nullable: false)
+                    Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,7 +119,7 @@ namespace Marathon.Persistence.Migrations
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     City = table.Column<string>(maxLength: 80, nullable: true),
                     CountryCode = table.Column<string>(type: "char(3)", nullable: true),
-                    YearHeld = table.Column<int>(nullable: true)
+                    YearHeld = table.Column<short>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -133,7 +136,8 @@ namespace Marathon.Persistence.Migrations
                 name: "Volunteers",
                 columns: table => new
                 {
-                    VolunteerId = table.Column<long>(nullable: false),
+                    VolunteerId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(maxLength: 80, nullable: true),
                     LastName = table.Column<string>(maxLength: 80, nullable: true),
                     CountryCode = table.Column<string>(type: "char(3)", nullable: true),
@@ -161,7 +165,7 @@ namespace Marathon.Persistence.Migrations
                 columns: table => new
                 {
                     RaceKitOptionId = table.Column<string>(nullable: false),
-                    RaceKitItemId = table.Column<int>(nullable: false)
+                    RaceKitItemId = table.Column<short>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -185,7 +189,8 @@ namespace Marathon.Persistence.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     Password = table.Column<string>(maxLength: 100, nullable: false),
                     FirstName = table.Column<string>(maxLength: 80, nullable: true),
@@ -211,7 +216,7 @@ namespace Marathon.Persistence.Migrations
                     EventName = table.Column<string>(maxLength: 50, nullable: false),
                     Cost = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
                     StartDateTime = table.Column<DateTime>(type: "datetime", nullable: true),
-                    MaxParticipants = table.Column<int>(nullable: true),
+                    MaxParticipants = table.Column<short>(nullable: true),
                     MarathonId = table.Column<byte>(nullable: false),
                     EventTypeId = table.Column<string>(nullable: true)
                 },
@@ -236,8 +241,9 @@ namespace Marathon.Persistence.Migrations
                 name: "Runners",
                 columns: table => new
                 {
-                    RunnerId = table.Column<long>(nullable: false),
-                    UserId = table.Column<long>(nullable: false),
+                    RunnerId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
                     GenderId = table.Column<string>(nullable: false),
                     DateOfBirth = table.Column<DateTime>(nullable: true),
                     CountryCode = table.Column<string>(type: "char(3)", nullable: true),
@@ -270,12 +276,13 @@ namespace Marathon.Persistence.Migrations
                 name: "Registration",
                 columns: table => new
                 {
-                    RegistrationId = table.Column<long>(nullable: false),
+                    RegistrationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SignUpDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Cost = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     SponsorshipTarget = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    RunnerId = table.Column<long>(nullable: false),
-                    CharityId = table.Column<long>(nullable: false),
+                    RunnerId = table.Column<int>(nullable: false),
+                    CharityId = table.Column<int>(nullable: false),
                     RaceKitOptionId = table.Column<string>(nullable: false),
                     RegistrationStatusId = table.Column<byte>(nullable: false)
                 },
@@ -312,11 +319,12 @@ namespace Marathon.Persistence.Migrations
                 name: "RegistrationEvent",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false),
-                    BibNumber = table.Column<int>(nullable: true),
-                    RaceTime = table.Column<long>(nullable: true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BibNumber = table.Column<short>(nullable: true),
+                    RaceTime = table.Column<int>(nullable: true),
                     EventId = table.Column<string>(type: "char(6)", nullable: true),
-                    RegistrationId = table.Column<long>(nullable: false)
+                    RegistrationId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -339,9 +347,10 @@ namespace Marathon.Persistence.Migrations
                 name: "Sponsorships",
                 columns: table => new
                 {
-                    SponsorshipId = table.Column<long>(nullable: false),
+                    SponsorshipId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     SponsorName = table.Column<string>(maxLength: 150, nullable: false),
-                    RegistrationId = table.Column<long>(nullable: false),
+                    RegistrationId = table.Column<int>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
