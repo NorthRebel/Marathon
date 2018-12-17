@@ -21,7 +21,7 @@ namespace Marathon.API.Controllers
         [HttpPost]
         [Route(nameof(SignUp))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(uint), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
         public IActionResult SignUp([FromBody]RunnerSignUpCredentials credentials)
         {
             if (credentials == null)
@@ -29,7 +29,7 @@ namespace Marathon.API.Controllers
 
             try
             {
-                uint runnerId =_runnerRepository.SignUp(credentials);
+                int runnerId =_runnerRepository.SignUp(credentials);
 
                 return Ok(runnerId);
             }

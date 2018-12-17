@@ -22,7 +22,7 @@ namespace Marathon.API.Repositories
             _countryRepository = countryRepository;
         }
 
-        public uint SignUp(RunnerSignUpCredentials credentials)
+        public int SignUp(RunnerSignUpCredentials credentials)
         {
             if (IsUserRunner(credentials.UserId))
                 throw new Exception($"User with id {credentials.UserId} is already signed up as runner");
@@ -52,7 +52,7 @@ namespace Marathon.API.Repositories
             };
         }
 
-        private bool IsUserRunner(uint userId)
+        private bool IsUserRunner(int userId)
         {
             return _context.Runners.SingleOrDefault(r => r.UserId == userId) != null;
         }
