@@ -6,7 +6,6 @@ using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
 {
-    [AuthorizeToken]
     [Route("[controller]")]
     public class CountriesController : Controller
     {

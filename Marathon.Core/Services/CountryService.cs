@@ -1,7 +1,6 @@
 ﻿using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.Other;
-using Marathon.Core.Services.Extensions;
 using Marathon.Core.Services.Interfaces;
 
 namespace Marathon.Core.Services
@@ -19,7 +18,7 @@ namespace Marathon.Core.Services
         {
             var uri = UriHelper.CombineUri(GlobalSettings.Instance.AllCountries);
 
-            return _requestProvider.GetAsync<Countries>(uri, this.GetToken());
+            return _requestProvider.GetAsync<Countries>(uri);
         }
     }
 }
