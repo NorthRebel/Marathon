@@ -13,6 +13,7 @@ namespace Marathon.Desktop.IoC
     {
         private readonly string _path;
         private readonly BinaryFormatter _formatter;
+        private readonly object _fileLock = new object();
 
         public ClientDataStore()
         {
@@ -40,9 +41,12 @@ namespace Marathon.Desktop.IoC
 
             try
             {
-                fs = new FileStream(_path, FileMode.OpenOrCreate);
-                
-                _formatter.Serialize(fs, new UserInfo());
+                lock (_fileLock)
+                {
+                    fs = new FileStream(_path, FileMode.OpenOrCreate);
+
+                    _formatter.Serialize(fs, new UserInfo());
+                }
             }
             finally
             {
@@ -62,10 +66,13 @@ namespace Marathon.Desktop.IoC
 
             try
             {
-                fs = new FileStream(_path, FileMode.OpenOrCreate);
-
                 await Task.Delay(0);
-                return (UserInfo)_formatter.Deserialize(fs);
+                lock (_fileLock)
+                {
+                    fs = new FileStream(_path, FileMode.OpenOrCreate);
+
+                    return (UserInfo)_formatter.Deserialize(fs);
+                }
             }
             finally
             {
@@ -84,9 +91,12 @@ namespace Marathon.Desktop.IoC
 
             try
             {
-                fs = new FileStream(_path, FileMode.OpenOrCreate);
+                lock (_fileLock)
+                {
+                    fs = new FileStream(_path, FileMode.OpenOrCreate);
 
-                _formatter.Serialize(fs, loginCredentials);
+                    _formatter.Serialize(fs, loginCredentials);
+                }
             }
             finally
             {
@@ -101,7 +111,10 @@ namespace Marathon.Desktop.IoC
         /// </summary>
         public Task ClearAllUserInfoAsync()
         {
-            File.Delete(_path);
+            lock (_fileLock)
+            {
+                File.Delete(_path);
+            }
             return Task.Delay(0);
         }
 
