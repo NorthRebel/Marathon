@@ -20,7 +20,7 @@ namespace Marathon.Core.ViewModel.SponsorRunner
         /// <summary>
         /// List of runners to select for sponsorship
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Runner { get; set; }
+        public ItemsEntryViewModel<string> Runner { get; set; }
 
         /// <summary>
         /// Selected runner for sponsorship
@@ -35,17 +35,17 @@ namespace Marathon.Core.ViewModel.SponsorRunner
         /// <summary>
         /// 16-x Number of bank card
         /// </summary>
-        public EntryViewModel<long> CardNumber { get; set; }
+        public EntryViewModel<long?> CardNumber { get; set; }
 
         /// <summary>
         /// Validity date of bank card
         /// </summary>
-        public EntryViewModel<DateTimeOffset> CardValidity { get; set; }
+        public EntryViewModel<DateTimeOffset?> CardValidity { get; set; }
 
         /// <summary>
         /// CVC code of bank card
         /// </summary>
-        public EntryViewModel<short> CardCVCCode { get; set; }
+        public EntryViewModel<short?> CardCVCCode { get; set; }
 
         #endregion
 

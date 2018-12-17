@@ -21,7 +21,7 @@
         /// </summary>
         public CharityDetailDesignModel(string label) : base(label)
         {
-            Value = new string[]
+            Items = new string[]
             {
                 "Фонд А",
                 "Фонд Б",

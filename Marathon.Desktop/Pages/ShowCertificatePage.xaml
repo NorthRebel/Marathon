@@ -32,7 +32,8 @@
                 Margin="10"
                 DataContext="{Binding Marathons}">
 
-                <ComboBox ItemsSource="{Binding Value}"/>
+                <ComboBox ItemsSource="{Binding Items}"
+                          SelectedItem="{Binding Value}"/>
 
             </input:LeftEntryControl>
 
@@ -42,7 +43,8 @@
                 Margin="10"
                 DataContext="{Binding Distances}">
 
-                <ComboBox ItemsSource="{Binding Value}"/>
+                <ComboBox ItemsSource="{Binding Items}"
+                          SelectedItem="{Binding Value}"/>
 
             </input:LeftEntryControl>
 

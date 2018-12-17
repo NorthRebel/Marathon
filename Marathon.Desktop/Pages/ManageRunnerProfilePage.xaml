@@ -42,37 +42,42 @@
                         Name="LeftPanel">
                 <!--Email-->
                 <input:LeftEntryControl DataContext="{Binding Email}">
-                    <TextBlock/>
+                    <TextBlock Text="{Binding Value}"/>
                 </input:LeftEntryControl>
 
                 <!--First name-->
                 <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Tag="Имя"/>
+                    <TextBox Text="{Binding Value}"
+                             Tag="{Binding Label}"/>
                 </input:LeftEntryControl>
 
                 <!--Last name-->
                 <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBox Tag="Фамилия"/>
+                    <TextBox Text="{Binding Value}"
+                             Tag="{Binding Label}"/>
                 </input:LeftEntryControl>
 
                 <!--Gender-->
                 <input:LeftEntryControl DataContext="{Binding Gender}">
-                    <ComboBox Tag="Пол"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
                 </input:LeftEntryControl>
 
                 <!--Date of birth-->
                 <input:LeftEntryControl DataContext="{Binding BirthDay}">
-                    <DatePicker/>
+                    <DatePicker SelectedDate="{Binding Value}"/>
                 </input:LeftEntryControl>
 
                 <!--Country-->
                 <input:LeftEntryControl DataContext="{Binding Country}">
-                    <ComboBox/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
                 </input:LeftEntryControl>
 
                 <!--Sign up statuses-->
                 <input:TopEntryControl DataContext="{Binding SignUpStatuses}">
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
                 </input:TopEntryControl>
 
             </StackPanel>
@@ -107,7 +112,9 @@
                         DataContext="{Binding Photo}">
                         <TextBox IsReadOnly="True"
                                  Foreground="{StaticResource GrayBrush}"
-                                 FontStyle="Italic"/>
+                                 FontStyle="Italic"
+                                 Text="{Binding Value}"
+                                 Tag="Выберите фото"/>
                     </input:TopEntryControl>
 
                     <Button Grid.Column="1"
@@ -152,12 +159,12 @@
 
                         <!--Password-->
                         <input:LeftEntryControl DataContext="{Binding Password}">
-                            <PasswordBox Tag="Пароль"/>
+                            <PasswordBox Tag="{Binding Label}"/>
                         </input:LeftEntryControl>
 
                         <!--Confirm password-->
                         <input:LeftEntryControl DataContext="{Binding ConfirmPassword}">
-                            <PasswordBox Tag="Повторите пароль"/>
+                            <PasswordBox Tag="{Binding Label}"/>
                         </input:LeftEntryControl>
 
                     </StackPanel>

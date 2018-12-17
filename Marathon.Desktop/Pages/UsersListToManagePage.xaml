@@ -63,7 +63,8 @@
                     Grid.Row="0"
                     DataContext="{Binding UserTypes}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -73,7 +74,8 @@
                     Grid.Row="1"
                     DataContext="{Binding AttributesToSort}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -83,7 +85,7 @@
                     Grid.Row="2"
                     DataContext="{Binding SearchRequest}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <TextBox Text="{Binding Value}"/>
 
 
                 </input:LeftEntryControl>

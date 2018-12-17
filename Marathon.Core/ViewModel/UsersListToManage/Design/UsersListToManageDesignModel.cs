@@ -23,14 +23,14 @@ namespace Marathon.Core.ViewModel.UsersListToManage.Design
         /// </summary>
         public UsersListToManageDesignModel()
         {
-            UserTypes.Value = new[]
+            UserTypes.Items = new[]
             {
                 "Администратор",
                 "Координатор",
                 "Бегун"
             };
 
-            AttributesToSort.Value = new[]
+            AttributesToSort.Items = new[]
             {
                 "Имя",
                 "Фамилия",

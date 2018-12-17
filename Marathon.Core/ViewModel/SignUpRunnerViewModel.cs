@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Marathon.Core.Helpers;
 using Marathon.Core.Models;
+using Marathon.Core.Models.Runner;
+using Marathon.Core.Models.User;
+using Marathon.Core.Services.Runner;
+using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel
 {
+    using Kernel = IoC.IoC;
+
     /// <summary>
     /// The view model for a SignUpRunner page
     /// </summary>
@@ -44,7 +52,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public EntryViewModel<string> Gender { get; set; }
+        public ItemsEntryViewModel<string> Gender { get; set; }
 
         /// <summary>
         /// Path to photo of the user
@@ -59,7 +67,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public EntryViewModel<string> Country { get; set; }
+        public ItemsEntryViewModel<string> Country { get; set; }
 
         #endregion
 
@@ -96,10 +104,10 @@ namespace Marathon.Core.ViewModel
             ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
-            Gender = new EntryViewModel<string>("Пол");
+            Gender = new ItemsEntryViewModel<string>("Пол");
             Photo = new EntryViewModel<string>("Фото файл");
             BirthDay = new EntryViewModel<DateTime>("Дата рождения");
-            Country = new EntryViewModel<string>("Страна");
+            Country = new ItemsEntryViewModel<string>("Страна");
 
             #endregion
 
@@ -116,7 +124,7 @@ namespace Marathon.Core.ViewModel
         /// </summary>
         private void Cancel()
         {
-            IoC.IoC.Get<ApplicationViewModel>().GoToPreviousPage();
+            Kernel.Get<ApplicationViewModel>().GoToPreviousPage();
         }
 
         /// <summary>
@@ -124,8 +132,72 @@ namespace Marathon.Core.ViewModel
         /// </summary>
         private async Task SignUpAsync(object password)
         {
-            await Task.Delay(1);
-            GoToPage(ApplicationPage.SignUpToMarathon);
+            try
+            {
+                UserInfo newUser = await SignUpUserAsync(
+                    Email.Value,
+                    (password as IHavePassword).SecurePassword.Unsecure(), 
+                    FirstName.Value, 
+                    LastName.Value);
+
+                await SaveUserInfoAsync(newUser);
+
+
+                uint runnerId = await SignUpRunnerAsync(
+                    newUser.Id, 
+                    'M', 
+                    BirthDay.Value, 
+                    Country.Value, 
+                    null);
+
+                if (runnerId == default(uint))
+                    throw new Exception("Runner id shouldn't have zero value!");
+
+                GoToPage(ApplicationPage.SignUpToMarathon);
+            }
+            catch (Exception)
+            {
+                await Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+                {
+                    Title = "Ошибка",
+                    Message = "Неудалось зарегистрировать бегуна!"
+                });
+            }
+
+        }
+
+        private Task<UserInfo> SignUpUserAsync(string email, string password, string firstName, string lastName)
+        {
+            var userService = Kernel.Get<IUserService>();
+
+            return userService.SignUpAsync(new UserSignUpCredentials
+            {
+                Email = email,
+                Password = password,
+                FirstName = firstName,
+                LastName = lastName,
+                // TODO: Create linked enumeration!
+                UserTypeId = 'R'
+            });
+        }
+
+        private Task<uint> SignUpRunnerAsync(uint userId, char genderId, DateTime dateOfBirth, string countryId, byte[] photo)
+        {
+            var runnerService = Kernel.Get<IRunnerService>();
+
+            return runnerService.SignUpAsync(new RunnerSignUpCredentials
+            {
+                UserId = userId,
+                GenderId = genderId,
+                DateOfBirth = dateOfBirth,
+                CountryId = countryId,
+                Photo = photo
+            });
+        }
+
+        private Task SaveUserInfoAsync(UserInfo userInfo)
+        {
+            return Kernel.ClientDataStore.SaveUserInfoAsync(userInfo);
         }
 
         #endregion

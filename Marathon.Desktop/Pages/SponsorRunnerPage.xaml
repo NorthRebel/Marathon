@@ -46,22 +46,26 @@
 
                     <!--Name-->
                     <input:LeftEntryControl DataContext="{Binding Name}">
-                        <TextBox Tag="Ваше имя"/>
+                        <TextBox Text="{Binding Value}"
+                                 Tag="Ваше имя"/>
                     </input:LeftEntryControl>
 
                     <!--Runner-->
                     <input:LeftEntryControl DataContext="{Binding Runner}">
-                        <ComboBox ItemsSource="{Binding Value}"/>
+                        <ComboBox ItemsSource="{Binding Items}"
+                                  SelectedItem="{Binding Value}"/>
                     </input:LeftEntryControl>
 
                     <!--Card holder-->
                     <input:LeftEntryControl DataContext="{Binding CardHolder}">
-                        <TextBox Tag="Владелец карты"/>
+                        <TextBox Text="{Binding Value}"
+                                 Tag="Владелец карты"/>
                     </input:LeftEntryControl>
 
                     <!--Card number-->
                     <input:LeftEntryControl DataContext="{Binding CardNumber}">
-                        <TextBox Tag="XXXX XXXX XXXX XXXX"/>
+                        <TextBox Text="{Binding Value}"
+                                 Tag="XXXX XXXX XXXX XXXX"/>
                     </input:LeftEntryControl>
 
                     <!--Card validity-->
@@ -69,13 +73,14 @@
 
                         <StackPanel Orientation="Horizontal">
 
+                            <!--TODO: Format date by fields-->
                             <!--Month-->
-                            <TextBox Text="" 
+                            <TextBox Text="{Binding Value}" 
                                      Tag="XX"
                                      Width="35"/>
 
                             <!--Year-->
-                            <TextBox Text=""
+                            <TextBox Text="{Binding Value}"
                                      Tag="XXXX"
                                      Width="60"
                                      Margin="10 0 0 0"/>

@@ -21,7 +21,7 @@
         /// </summary>
         public ManageRunnerProfileDesignModel()
         {
-            SignUpStatuses.Value = new[]
+            SignUpStatuses.Items = new[]
             {
                 "Зарегистрирован",
                 "Вышел на старт"

@@ -53,7 +53,8 @@
                     Grid.Column="0"
                     DataContext="{Binding Marathons}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedValue="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -63,7 +64,8 @@
                     Grid.Column="0"
                     DataContext="{Binding Distances}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -74,7 +76,8 @@
                     DataContext="{Binding Genders}"
                     Margin="30 0 0 0">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -85,7 +88,8 @@
                     DataContext="{Binding AgeCategories}"
                     Margin="30 0 0 0">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedValue="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 

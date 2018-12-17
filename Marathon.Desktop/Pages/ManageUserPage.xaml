@@ -50,7 +50,7 @@
 
                         <!--TextBox if manage type is add-->
                         <TextBox Text="{Binding Value}"
-                                 Tag="Email"
+                                 Tag="{Binding Label}"
                                  Visibility="{Binding DataContext.ManagementType, ElementName=Page, 
                                     Converter={converters:UserManagementTypeToVisibilityConverter}}"/>
                     </Grid>
@@ -59,19 +59,20 @@
 
                 <!--First name-->
                 <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Tag="Имя"
-                             Text="{Binding Value}"/>
+                    <TextBox Text="{Binding Value}"
+                             Tag="{Binding Label}"/>
                 </input:LeftEntryControl>
 
                 <!--Last name-->
                 <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBox Tag="Фамилия"
-                             Text="{Binding Value}"/>
+                    <TextBox Text="{Binding Value}" 
+                             Tag="{Binding Label}"/>
                 </input:LeftEntryControl>
 
                 <!--User role-->
                 <input:LeftEntryControl DataContext="{Binding UserRole}">
-                    <ComboBox ItemsSource="{Binding Value}"/>                    
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>                    
                 </input:LeftEntryControl>
 
             </StackPanel>
@@ -115,12 +116,12 @@
 
                     <!--Password-->
                     <input:LeftEntryControl DataContext="{Binding Password}">
-                        <PasswordBox Tag="Пароль"/>
+                        <PasswordBox Tag="{Binding Label}"/>
                     </input:LeftEntryControl>
 
                     <!--Confirm password-->
                     <input:LeftEntryControl DataContext="{Binding ConfirmPassword}">
-                        <PasswordBox Tag="Повторите пароль"/>
+                        <PasswordBox Tag="{Binding Label}"/>
                     </input:LeftEntryControl>
 
                 </StackPanel>

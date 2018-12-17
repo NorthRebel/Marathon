@@ -26,31 +26,35 @@ namespace Marathon.Core.ViewModel.MarathonResults.Design
         /// </summary>
         public MarathonResultsDesignModel()
         {
-            Marathons.Value = new[]
+            Marathons.Items = new[]
             {
                 "2014 - Japan",
                 "2015 - Berlin",
             };
+            Marathons.Value = Marathons.Items.First();
 
-            Distances.Value = new[]
+            Distances.Items = new[]
             {
                 "10 км малый марафон",
                 "42 км полный марафон"
             };
+            Distances.Value = Distances.Items.First();
 
-            Genders.Value = new[]
+            Genders.Items = new[]
             {
                 "Любой",
                 "Мужской",
                 "Женский"
             };
+            Genders.Value = Genders.Items.First(); 
 
-            AgeCategories.Value = new[]
+            AgeCategories.Items = new[]
             {
                 "18 - 29",
                 "30 - 35",
                 "36 - 45"
             };
+            AgeCategories.Value = AgeCategories.Items.First(); 
 
             TotalRunnersCount.Value = 1234;
             FinishedRunnersCount.Value = 1198;
@@ -58,10 +62,10 @@ namespace Marathon.Core.ViewModel.MarathonResults.Design
 
             ResultsCondition = new MarathonResultsCondition
             {
-                Marathon = Marathons.Value.First(),
-                Distance = Distances.Value.First(), 
-                Gender = Genders.Value.First(),
-                AgeCategory = AgeCategories.Value.First()
+                Marathon = Marathons.Value,
+                Distance = Distances.Value, 
+                Gender = Genders.Value,
+                AgeCategory = AgeCategories.Value
             };
 
             Results = new MarathonResultsListDesignModel();

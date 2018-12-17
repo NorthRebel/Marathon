@@ -32,7 +32,7 @@ namespace Marathon.Core.ViewModel.ManageUser
         /// <summary>
         /// List of user's types of privileges
         /// </summary>
-        public EntryViewModel<string> UserRole { get; set; }
+        public ItemsEntryViewModel<string> UserRole { get; set; }
 
         /// <summary>
         /// Last name of the user
@@ -78,7 +78,7 @@ namespace Marathon.Core.ViewModel.ManageUser
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
             Password = new EntryViewModel<IHavePassword>("Пароль");
-            UserRole = new EntryViewModel<string>("Роль");
+            UserRole = new ItemsEntryViewModel<string>("Роль");
             ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
 
             CancelCommand = new RelayCommand(x => Cancel());

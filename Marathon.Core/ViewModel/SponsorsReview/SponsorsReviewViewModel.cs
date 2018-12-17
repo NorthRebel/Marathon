@@ -17,7 +17,7 @@ namespace Marathon.Core.ViewModel.SponsorsReview
         /// <summary>
         /// Attributes of sponsorship organizations for <see cref="SortCommand"/>
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> AttributesToSort { get; set; }
+        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
 
         /// <inheritdoc cref="CharityListViewModel"/>
         public CharityListViewModel CharityList { get; set; }

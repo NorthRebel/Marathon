@@ -1,7 +1,6 @@
 ﻿using System;
 using Marathon.Core.Models;
 using System.Windows.Input;
-using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
@@ -20,17 +19,17 @@ namespace Marathon.Core.ViewModel.VolunteersListToManage
         /// <summary>
         /// List of countries which volunteers from
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Countries { get; set; }
+        public ItemsEntryViewModel<string> Countries { get; set; }
 
         /// <summary>
         /// List of volunteers gender
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Genders { get; set; }
+        public ItemsEntryViewModel<string> Genders { get; set; }
 
         /// <summary>
         /// Attributes of runners list for <see cref="SortCommand"/>
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> AttributesToSort { get; set; }
+        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
 
         /// <inheritdoc cref="ManageVolunteersCondition"/>
         public ManageVolunteersCondition VolunteersCondition { get; set; }
@@ -70,9 +69,9 @@ namespace Marathon.Core.ViewModel.VolunteersListToManage
         {
             PageCaption = new PageCaptionViewModel("Управление волонтерами");
 
-            Countries = new EntryViewModel<IEnumerable<string>>("Страна");
-            Genders = new EntryViewModel<IEnumerable<string>>("Пол");
-            AttributesToSort = new EntryViewModel<IEnumerable<string>>("Сортировать");
+            Countries = new ItemsEntryViewModel<string>("Страна");
+            Genders = new ItemsEntryViewModel<string>("Пол");
+            AttributesToSort = new ItemsEntryViewModel<string>("Сортировать");
 
             VolunteersCondition = new ManageVolunteersCondition();
             Volunteers = new VolunteersListViewModel();

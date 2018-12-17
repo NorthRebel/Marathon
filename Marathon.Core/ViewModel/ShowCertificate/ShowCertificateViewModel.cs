@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.ShowCertificate.Models;
@@ -16,12 +15,12 @@ namespace Marathon.Core.ViewModel.ShowCertificate
         /// <summary>
         /// List of spent marathons that current runner take part 
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Marathons { get; set; }
+        public ItemsEntryViewModel<string> Marathons { get; set; }
 
         /// <summary>
         /// List of marathon distances that current runner take part
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Distances { get; set; }
+        public ItemsEntryViewModel<string> Distances { get; set; }
 
         /// <inheritdoc cref="CertificateViewModel"/>
         public CertificateViewModel Certificate { get; set; }
@@ -41,8 +40,8 @@ namespace Marathon.Core.ViewModel.ShowCertificate
 
         public ShowCertificateViewModel()
         {
-            Marathons = new EntryViewModel<IEnumerable<string>>("Марафон");
-            Distances = new EntryViewModel<IEnumerable<string>>("Вид марафона");
+            Marathons = new ItemsEntryViewModel<string>("Марафон");
+            Distances = new ItemsEntryViewModel<string>("Вид марафона");
 
             ShowCertificateCommand = new RelayCommand(ShowRunnerCertificate);
         }

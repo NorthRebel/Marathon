@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
@@ -19,17 +18,17 @@ namespace Marathon.Core.ViewModel.RunnersListToManage
         /// <summary>
         /// List of runner sign up status
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Statuses { get; set; }
+        public ItemsEntryViewModel<string> Statuses { get; set; }
 
         /// <summary>
         /// List of distances of marathon
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Distances { get; set; }
+        public ItemsEntryViewModel<string> Distances { get; set; }
 
         /// <summary>
         /// Attributes of runners list for <see cref="SortCommand"/>
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> AttributesToSort { get; set; }
+        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
 
         /// <inheritdoc cref="ManageRunnersCondition"/>
         public ManageRunnersCondition RunnersCondition { get; set; }
@@ -74,9 +73,9 @@ namespace Marathon.Core.ViewModel.RunnersListToManage
         {
             PageCaption = new PageCaptionViewModel("Управление бегунами");
 
-            Statuses = new EntryViewModel<IEnumerable<string>>("Статус");
-            Distances = new EntryViewModel<IEnumerable<string>>("Дистанция");
-            AttributesToSort = new EntryViewModel<IEnumerable<string>>("Сортировать");
+            Statuses = new ItemsEntryViewModel<string>("Статус");
+            Distances = new ItemsEntryViewModel<string>("Дистанция");
+            AttributesToSort = new ItemsEntryViewModel<string>("Сортировать");
 
             RunnersCondition = new ManageRunnersCondition();
             Runners = new RunnersListViewModel();
