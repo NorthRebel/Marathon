@@ -23,19 +23,19 @@ namespace Marathon.Core.ViewModel.VolunteersListToManage.Design
         /// </summary>
         public VolunteersListToManageDesignModel()
         {
-            Countries.Value = new[]
+            Countries.Items = new[]
             {
                 "Japan",
                 "Germany"
             };
 
-            Genders.Value = new[]
+            Genders.Items = new[]
             {
                 "Male",
                 "Female"
             };
 
-            AttributesToSort.Value = new[]
+            AttributesToSort.Items = new[]
             {
                 "Имя",
                 "Фамилия",

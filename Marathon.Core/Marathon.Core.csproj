@@ -4,15 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Fody" Version="3.2.9" />
-    <PackageReference Include="Ninject" Version="3.3.4" />
-    <PackageReference Include="PropertyChanged.Fody" Version="2.5.13" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Marathon.Application\Marathon.Application.csproj" />
-    <ProjectReference Include="..\Marathon.Infrastructure\Marathon.Infrastructure.csproj" />
+    <PackageReference Include="Fody" Version="3.2.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="PropertyChanged.Fody" Version="2.5.13" />
   </ItemGroup>
 
   <ItemGroup>

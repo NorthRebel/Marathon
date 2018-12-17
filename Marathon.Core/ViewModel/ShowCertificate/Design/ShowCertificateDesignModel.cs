@@ -21,13 +21,13 @@
         /// </summary>
         public ShowCertificateDesignModel()
         {
-            Marathons.Value = new[]
+            Marathons.Items = new[]
             {
                 "2014 - Japan",
                 "2015 - Berlin"
             };
 
-            Distances.Value = new[]
+            Distances.Items = new[]
             {
                 "42km Полный марафон",
                 "21km Полумарафон",

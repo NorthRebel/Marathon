@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Marathon.Core.Models;
+using Marathon.Core.Models.User;
 using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel
@@ -68,6 +70,29 @@ namespace Marathon.Core.ViewModel
                 if (IoC.IoC.TitleBar.LogoutButtonVisible)
                     IoC.IoC.TitleBar.LogoutButtonVisible = false;
                 GoToPage(PreviousPages.Pop(), true);
+            }
+        }
+
+        /// <summary>
+        /// Handles what happens when we have successfully logged in
+        /// </summary>
+        /// <param name="loginResult">The results from the successful login</param>
+        public async Task HandleSuccessfulLoginAsync(UserInfo loginResult)
+        {
+            // Store this in the client data store
+            await IoC.IoC.ClientDataStore.SaveUserInfoAsync(loginResult);
+
+            switch (loginResult.UserType)
+            {
+                case 'A':
+                    GoToPage(ApplicationPage.AdministratorMenu);
+                    break;
+                case 'C':
+                    GoToPage(ApplicationPage.CoordinatorMenu);
+                    break;
+                case 'R':
+                    GoToPage(ApplicationPage.RunnerMenu);
+                    break;
             }
         }
     }

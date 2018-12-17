@@ -44,7 +44,7 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public EntryViewModel<string> Gender { get; set; }
+        public ItemsEntryViewModel<string> Gender { get; set; }
 
         /// <summary>
         /// Path to photo of the user
@@ -59,7 +59,7 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public EntryViewModel<string> Country { get; set; }
+        public ItemsEntryViewModel<string> Country { get; set; }
 
         #endregion
 
@@ -95,10 +95,10 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
             ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
-            Gender = new EntryViewModel<string>("Пол");
+            Gender = new ItemsEntryViewModel<string>("Пол");
             Photo = new EntryViewModel<string>("Фото файл");
             BirthDay = new EntryViewModel<DateTime>("Дата рождения");
-            Country = new EntryViewModel<string>("Страна");
+            Country = new ItemsEntryViewModel<string>("Страна");
 
             #endregion
 

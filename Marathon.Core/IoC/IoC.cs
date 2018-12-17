@@ -1,4 +1,7 @@
 ﻿using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.Services.RequestProvider;
+using Marathon.Core.Services.Runner;
+using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.TitleBar;
 using Ninject;
@@ -23,6 +26,11 @@ namespace Marathon.Core.IoC
         public static IUIManager UI => IoC.Get<IUIManager>();
 
         /// <summary>
+        /// A shortcut to access the <see cref="IClientDataStore"/>
+        /// </summary>
+        public static IClientDataStore ClientDataStore => IoC.Get<IClientDataStore>();
+
+        /// <summary>
         /// A shortcut to access the <see cref="TitleBarViewModel"/>
         /// </summary>
         public static TitleBarViewModel TitleBar => IoC.Get<TitleBarViewModel>();
@@ -45,6 +53,8 @@ namespace Marathon.Core.IoC
         {
             // Bind all required view models
             BindViewModels();
+
+            BindServices();
         }
 
         /// <summary>
@@ -57,6 +67,14 @@ namespace Marathon.Core.IoC
 
             // Bind to a single instance of Title Bar view model
             Kernel.Bind<TitleBarViewModel>().ToConstant(new TitleBarViewModel());
+        }
+
+        private static void BindServices()
+        {
+            Kernel.Bind<IRequestProvider>().To<RequestProvider>();
+
+            Kernel.Bind<IUserService>().To<UserService>();
+            Kernel.Bind<IRunnerService>().To<RunnerService>();
         }
 
         #endregion

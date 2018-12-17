@@ -4,7 +4,7 @@ namespace Marathon.Core.ViewModel.Input
 {
     /// <summary>
     /// The view model for a entry with label to edit contains content
-    /// <summary>
+    /// </summary>
     /// <typeparam name="T">Type of entry value</typeparam>
     public class EntryViewModel<T> : BaseViewModel
     {

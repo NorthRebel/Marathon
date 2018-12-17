@@ -40,7 +40,7 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// Gender of the user
         /// </summary>
-        EntryViewModel<string> Gender { get; set; }
+        ItemsEntryViewModel<string> Gender { get; set; }
 
         /// <summary>
         /// Path to photo of the user
@@ -55,7 +55,7 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// Country name of the user
         /// </summary>
-        EntryViewModel<string> Country { get; set; }
+        ItemsEntryViewModel<string> Country { get; set; }
 
         #endregion
 

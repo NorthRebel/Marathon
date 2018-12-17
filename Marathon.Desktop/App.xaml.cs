@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using Marathon.Core.IoC;
-using Marathon.Core.IoC.Interfaces;
 using Marathon.Desktop.IoC;
+using Marathon.Core.IoC.Interfaces;
 using Kernel = Marathon.Core.IoC.IoC;
 
 namespace Marathon.Desktop
@@ -38,6 +37,8 @@ namespace Marathon.Desktop
 
             // Bind a UI Manager
             Kernel.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
+
+            Kernel.Kernel.Bind<IClientDataStore>().ToConstant(new ClientDataStore());
         }
     }
 }

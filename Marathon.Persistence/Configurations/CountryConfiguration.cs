@@ -21,7 +21,7 @@ namespace Marathon.Persistence.Configurations
 
             builder.Property(e => e.Flag)
                 .HasColumnName("CountryFlag")
-                .HasVarbinaryType(10000)
+                .HasVarbinaryType()
                 .IsRequired();
         }
     }

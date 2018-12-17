@@ -59,7 +59,8 @@
                                         Grid.Column="0"
                                         DataContext="{Binding Countries}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -68,7 +69,8 @@
                                         Grid.Column="0"
                                         DataContext="{Binding Genders}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 
@@ -77,7 +79,8 @@
                                         Grid.Column="0"
                                         DataContext="{Binding AttributesToSort}">
 
-                    <ComboBox ItemsSource="{Binding Value}"/>
+                    <ComboBox ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding Value}"/>
 
                 </input:LeftEntryControl>
 

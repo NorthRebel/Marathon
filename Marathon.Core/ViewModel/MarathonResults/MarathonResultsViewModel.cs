@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
@@ -19,22 +18,22 @@ namespace Marathon.Core.ViewModel.MarathonResults
         /// <summary>
         /// List of spent marathons
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Marathons { get; set; }
+        public ItemsEntryViewModel<string> Marathons { get; set; }
 
         /// <summary>
         /// List of distances of marathon
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Distances { get; set; }
+        public ItemsEntryViewModel<string> Distances { get; set; }
 
         /// <summary>
         /// List of runner gender
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> Genders { get; set; }
+        public ItemsEntryViewModel<string> Genders { get; set; }
 
         /// <summary>
         /// List of age categories
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> AgeCategories { get; set; }
+        public ItemsEntryViewModel<string> AgeCategories { get; set; }
 
         /// <summary>
         /// Count of runners which take part on marathon
@@ -79,10 +78,10 @@ namespace Marathon.Core.ViewModel.MarathonResults
         {
             PageCaption = new PageCaptionViewModel("Результаты предыдущих гонок");
 
-            Marathons = new EntryViewModel<IEnumerable<string>>("Марафон");
-            Distances = new EntryViewModel<IEnumerable<string>>("Дистанция");
-            Genders = new EntryViewModel<IEnumerable<string>>("Пол");
-            AgeCategories = new EntryViewModel<IEnumerable<string>>("Категория");
+            Marathons = new ItemsEntryViewModel<string>("Марафон");
+            Distances = new ItemsEntryViewModel<string>("Дистанция");
+            Genders = new ItemsEntryViewModel<string>("Пол");
+            AgeCategories = new ItemsEntryViewModel<string>("Категория");
 
             TotalRunnersCount = new EntryViewModel<long>("Всего бегунов");
             FinishedRunnersCount = new EntryViewModel<long>("Всего бегунов финишировало");

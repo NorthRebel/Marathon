@@ -9,7 +9,7 @@ namespace Marathon.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<SignUpMarathonEvent> builder)
         {
-            builder.ToTable("RegistrationEventId");
+            builder.ToTable("RegistrationEvent");
 
             builder.Property(e => e.SignUpId)
                 .HasColumnName("RegistrationId");
@@ -20,7 +20,7 @@ namespace Marathon.Persistence.Configurations
             builder.HasOne(e => e.SignUp)
                 .WithMany(p => p.SignUpMarathonEvents)
                 .HasForeignKey(e => e.SignUpId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_RegistrationEvents_Registrations");
 
             builder.HasOne(e => e.Event)

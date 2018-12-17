@@ -89,14 +89,14 @@
 
                             <!--List of charity-->
                             <ComboBox Grid.Column="0"
-                                      ItemsSource="{Binding Value}"
-                                      ComboBox.Name="CharityList"/>
+                                      ItemsSource="{Binding Items}"
+                                      SelectedItem="{Binding Value}"/>
 
                             <!--Show info about charity-->
                             <Button Grid.Column="1"
-                                    Button.Name="InfoAboutCharityButton"
                                     Content="i"
-                                    Command="{Binding AboutSelectedCharityCommand}"/>
+                                    Command="{Binding AboutSelectedCharityCommand}"
+                                    CommandParameter="{Binding Value}"/>
 
                         </Grid>
 

@@ -5,7 +5,7 @@ namespace Marathon.Domain.Entities
     public sealed class SignUpMarathonEvent : IEntity<uint>
     {
         public uint Id { get; set; }
-        public short? BibNumber { get; set; }
+        public ushort? BibNumber { get; set; }
         public uint? RaceTime { get; set; }
         public string EventId { get; set; }
         public uint SignUpId { get; set; }

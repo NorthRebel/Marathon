@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
@@ -20,12 +19,12 @@ namespace Marathon.Core.ViewModel.UsersListToManage
         /// <summary>
         /// List of user's types of privileges
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> UserTypes { get; set; }
+        public ItemsEntryViewModel<string> UserTypes { get; set; }
 
         /// <summary>
         /// Attributes of users list for <see cref="SortCommand"/>
         /// </summary>
-        public EntryViewModel<IEnumerable<string>> AttributesToSort { get; set; }
+        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
 
         /// <summary>
         /// Request which contains values to search user by any attribute of <see cref="UsersListItemViewModel"/> for <see cref="SearchCommand"/>
@@ -70,8 +69,8 @@ namespace Marathon.Core.ViewModel.UsersListToManage
         {
             PageCaption = new PageCaptionViewModel("Управление пользователями");
 
-            UserTypes = new EntryViewModel<IEnumerable<string>>("Фильтр по ролям");
-            AttributesToSort = new EntryViewModel<IEnumerable<string>>("Сортировать по");
+            UserTypes = new ItemsEntryViewModel<string>("Фильтр по ролям");
+            AttributesToSort = new ItemsEntryViewModel<string>("Сортировать по");
             SearchRequest = new EntryViewModel<string>("Поиск");
 
             UsersCondition = new ManageUsersCondition();

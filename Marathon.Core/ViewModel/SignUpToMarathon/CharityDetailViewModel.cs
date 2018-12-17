@@ -7,7 +7,7 @@ using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
-    public class CharityDetailViewModel : EntryViewModel<IEnumerable<string>>
+    public class CharityDetailViewModel : ItemsEntryViewModel<string>
     {
         #region Commands
 
