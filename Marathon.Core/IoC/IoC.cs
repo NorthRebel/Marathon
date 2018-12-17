@@ -1,5 +1,6 @@
 ﻿using Marathon.Core.IoC.Interfaces;
 using Marathon.Core.Services.RequestProvider;
+using Marathon.Core.Services.Runner;
 using Marathon.Core.Services.User;
 using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.TitleBar;
@@ -73,6 +74,7 @@ namespace Marathon.Core.IoC
             Kernel.Bind<IRequestProvider>().To<RequestProvider>();
 
             Kernel.Bind<IUserService>().To<UserService>();
+            Kernel.Bind<IRunnerService>().To<RunnerService>();
         }
 
         #endregion
