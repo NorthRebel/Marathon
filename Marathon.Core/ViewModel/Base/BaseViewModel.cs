@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using PropertyChanged;
 using Marathon.Core.Models;
-using PropertyChanged;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Marathon.Core.ViewModel.Base
 {

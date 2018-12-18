@@ -22,8 +22,11 @@ namespace Marathon.Core.ViewModel.Base
         {
             _target = target;
             _validator = GetValidator(target.GetType());
-            _validationResult = _validator.Validate(target);
-            target.PropertyChanged += Validate;
+            if (_validator != null)
+            {
+                _validationResult = _validator.Validate(target);
+                target.PropertyChanged += Validate;
+            }
         }
 
         static ValidationTemplate()
@@ -59,9 +62,16 @@ namespace Marathon.Core.ViewModel.Base
         {
             if (!Validators.TryGetValue(modelType.TypeHandle, out var validator))
             {
-                var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
-                var type = modelType.Assembly.GetType(typeName, true);
-                Validators[modelType.TypeHandle] = validator = (IValidator)Activator.CreateInstance(type);
+                try
+                {
+                    var typeName = $"{modelType.Namespace}.{modelType.Name}Validator";
+                    var type = modelType.Assembly.GetType(typeName, true);
+                    Validators[modelType.TypeHandle] = validator = (IValidator)Activator.CreateInstance(type);
+                }
+                catch
+                {
+                    return null;
+                }
             }
             return validator;
         }
