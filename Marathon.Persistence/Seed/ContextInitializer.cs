@@ -40,7 +40,6 @@ namespace Marathon.Persistence.Seed
 
             await policy.ExecuteAsync(async () =>
             {
-
                 // Absolute path to source files
                 var contentRootPath = env.ContentRootPath;
 
@@ -88,26 +87,63 @@ namespace Marathon.Persistence.Seed
 
                 if (!context.Users.Any())
                 {
-                    await context.Users.AddRangeAsync(GetUsersFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "Users", true);
+
+                        await context.Users.AddRangeAsync(GetUsersFromFile(contentRootPath, context, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "Users", false);
+
+                        transaction.Commit();
+                    }
+
                 }
 
                 if (!context.Volunteers.Any())
                 {
-                    await context.Volunteers.AddRangeAsync(GetVolunteersFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "Volunteers", true);
+
+                        await context.Volunteers.AddRangeAsync(GetVolunteersFromFile(contentRootPath, context, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "Volunteers", false);
+
+                        transaction.Commit();
+                    }
                 }
 
                 if (!context.Runners.Any())
                 {
-                    await context.Runners.AddRangeAsync(GetRunnersFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "Runners", true);
+
+                        await context.Runners.AddRangeAsync(GetRunnersFromFile(contentRootPath, context, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "Runners", false);
+
+                        transaction.Commit();
+                    }
                 }
 
                 if (!context.Charities.Any())
                 {
-                    await context.Charities.AddRangeAsync(GetCharitiesFromFile(contentRootPath, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "Charities", true);
+
+                        await context.Charities.AddRangeAsync(GetCharitiesFromFile(contentRootPath, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "Charities", false);
+
+                        transaction.Commit();
+                    }
                 }
 
                 if (!context.RaceKitOptions.Any())
@@ -118,8 +154,17 @@ namespace Marathon.Persistence.Seed
 
                 if (!context.RaceKitItems.Any())
                 {
-                    await context.RaceKitItems.AddRangeAsync(GetRaceKitItemsFromFile(contentRootPath, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "RaceKitItems", true);
+
+                        await context.RaceKitItems.AddRangeAsync(GetRaceKitItemsFromFile(contentRootPath, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "RaceKitItems", false);
+
+                        transaction.Commit();
+                    }
                 }
 
                 if (!context.RaceKitOptionItems.Any())
@@ -130,21 +175,49 @@ namespace Marathon.Persistence.Seed
 
                 if (!context.MarathonSignUps.Any())
                 {
-                    await context.MarathonSignUps.AddRangeAsync(GetMarathonSignUpsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "Registration", true);
+
+                        await context.MarathonSignUps.AddRangeAsync(GetMarathonSignUpsFromFile(contentRootPath, context, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "Registration", false);
+
+                        transaction.Commit();
+                    }
                 }
 
                 if (!context.Sponsorships.Any())
                 {
-                    await context.Sponsorships.AddRangeAsync(GetSponsorshipsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "Sponsorships", true);
+
+                        await context.Sponsorships.AddRangeAsync(GetSponsorshipsFromFile(contentRootPath, context, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "Sponsorships", false);
+
+                        transaction.Commit();
+                    }
                 }
 
                 if (!context.SignUpMarathonEvents.Any())
                 {
-                    await context.SignUpMarathonEvents.AddRangeAsync(GetSignUpMarathonEventsFromFile(contentRootPath, context, logger));
-                    await context.SaveChangesAsync();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        SetIdentityInsert(context, "RegistrationEvent", true);
+
+                        await context.SignUpMarathonEvents.AddRangeAsync(GetSignUpMarathonEventsFromFile(contentRootPath, context, logger));
+                        await context.SaveChangesAsync();
+
+                        SetIdentityInsert(context, "RegistrationEvent", false);
+
+                        transaction.Commit();
+                    }
                 }
+
             });
         }
 
@@ -1768,6 +1841,16 @@ namespace Marathon.Persistence.Seed
         private string StripPrefix(string text, string prefix)
         {
             return text.StartsWith(prefix) ? text.Substring(prefix.Length) : text;
+        }
+
+        private void SetIdentityInsert(MarathonDbContext context, string tableName, bool enabled)
+        {
+            context.Database.ExecuteSqlCommand(GetIdentityInsertCommand(tableName, enabled));
+        }
+
+        private string GetIdentityInsertCommand(string tableName, bool enabled)
+        {
+            return $"SET IDENTITY_INSERT dbo.[{tableName}] {(enabled ? "ON" : "OFF")};";
         }
     }
 
