@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Threading;
 using Marathon.Core.Models;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
 using System.Threading.Tasks;
-using Marathon.Core.Models.Other;
 using Marathon.Core.Models.User;
 using Marathon.Core.Models.Runner;
-using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.Dialogs;
+using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel
@@ -48,7 +46,12 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        public EntryViewModel<string> Photo { get; set; }
+        public EntryViewModel<string> PhotoPath { get; set; }
+
+        /// <summary>
+        /// Photo of the user
+        /// </summary>
+        public byte[] Photo { get; set; }
 
         /// <summary>
         /// The date of birth of the user
@@ -75,7 +78,7 @@ namespace Marathon.Core.ViewModel
         public ICommand CancelCommand { get; set; }
 
         /// <summary>
-        /// Change <see cref="Photo"/> of a runner profile
+        /// Change <see cref="PhotoPath"/> of a runner profile
         /// </summary>
         public ICommand ChangePhotoCommand { get; set; }
 
@@ -94,7 +97,7 @@ namespace Marathon.Core.ViewModel
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");
-            Photo = new EntryViewModel<string>("Фото файл");
+            PhotoPath = new EntryViewModel<string>("Фото файл");
             BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
             Country = new ItemsEntryViewModel<string>("Страна");
 
@@ -105,6 +108,7 @@ namespace Marathon.Core.ViewModel
 
             SignUpCommand = new RelayCommand(async (password) => await SignUpAsync(password));
             CancelCommand = new RelayCommand(x => Cancel());
+            ChangePhotoCommand = new RelayCommand(x => OpenFileDialog());
         }
 
         #endregion
@@ -166,6 +170,24 @@ namespace Marathon.Core.ViewModel
         }
 
         /// <summary>
+        /// Show open file dialog for select photo of runner
+        /// </summary>
+        private void OpenFileDialog()
+        {
+            string photoPath = Kernel.UI.OpenFile(new OpenFileDialogViewModel
+            {
+                Title = "Выбор фото",
+                DefaultExtension = "JPG",
+                Filter = "Файлы изображений(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF"
+            });
+
+            if (!string.IsNullOrEmpty(photoPath))
+            {
+                PhotoPath.Value = photoPath;
+            }
+        }
+
+        /// <summary>
         /// Attempts to log the user in
         /// </summary>
         private async Task SignUpAsync(object password)
@@ -175,7 +197,7 @@ namespace Marathon.Core.ViewModel
                 UserInfo newUser = await SignUpUserAsync((password as IHavePassword).SecurePassword.Unsecure());
 
                 await SaveUserInfoAsync(newUser);
-                
+
                 int runnerId = await SignUpRunnerAsync(newUser.Id);
 
                 if (runnerId == default(uint))
@@ -217,7 +239,7 @@ namespace Marathon.Core.ViewModel
             {
                 UserId = userId,
                 Gender = Gender.Value,
-                DateOfBirth = (DateTime) BirthDay.Value,
+                DateOfBirth = (DateTime)BirthDay.Value,
                 CountryName = Country.Value,
                 //Photo = 
             });
