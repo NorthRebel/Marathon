@@ -1,7 +1,11 @@
-﻿using System.Windows;
+﻿using Validar;
+using System.Windows;
 using Marathon.Desktop.IoC;
 using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.ViewModel.Base;
 using Kernel = Marathon.Core.IoC.IoC;
+
+[assembly: ValidationTemplate(typeof(ValidationTemplate))]
 
 namespace Marathon.Desktop
 {
