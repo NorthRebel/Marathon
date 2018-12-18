@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Marathon.Core.Models;
 using System.Windows.Input;
 using Marathon.Core.Helpers;
@@ -184,6 +185,7 @@ namespace Marathon.Core.ViewModel
             if (!string.IsNullOrEmpty(photoPath))
             {
                 PhotoPath.Value = photoPath;
+                Photo = File.ReadAllBytes(photoPath);
             }
         }
 
