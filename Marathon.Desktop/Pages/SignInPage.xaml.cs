@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Marathon.Core.ViewModel;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.ViewModel.SignIn;
 
 namespace Marathon.Desktop.Pages
 {
