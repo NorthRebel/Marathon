@@ -53,7 +53,7 @@ namespace Marathon.Core.ViewModel
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        public EntryViewModel<DateTime> BirthDay { get; set; }
+        public EntryViewModel<DateTime?> BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user
@@ -95,7 +95,7 @@ namespace Marathon.Core.ViewModel
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");
             Photo = new EntryViewModel<string>("Фото файл");
-            BirthDay = new EntryViewModel<DateTime>("Дата рождения");
+            BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
             Country = new ItemsEntryViewModel<string>("Страна");
 
             Task.Run(GetCountries);
@@ -217,7 +217,7 @@ namespace Marathon.Core.ViewModel
             {
                 UserId = userId,
                 Gender = Gender.Value,
-                DateOfBirth = BirthDay.Value,
+                DateOfBirth = (DateTime) BirthDay.Value,
                 CountryName = Country.Value,
                 //Photo = 
             });

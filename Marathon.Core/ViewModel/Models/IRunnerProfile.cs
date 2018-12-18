@@ -39,7 +39,7 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        EntryViewModel<DateTime> BirthDay { get; set; }
+        EntryViewModel<DateTime?> BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user

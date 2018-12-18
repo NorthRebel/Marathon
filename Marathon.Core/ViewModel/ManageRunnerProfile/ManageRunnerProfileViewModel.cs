@@ -44,7 +44,7 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        public EntryViewModel<DateTime> BirthDay { get; set; }
+        public EntryViewModel<DateTime?> BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user
@@ -90,7 +90,7 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");
             Photo = new EntryViewModel<string>("Фото файл");
-            BirthDay = new EntryViewModel<DateTime>("Дата рождения");
+            BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
             Country = new ItemsEntryViewModel<string>("Страна");
             SignUpStatuses = new ItemsEntryViewModel<string>("Регистрационный статус");
 
