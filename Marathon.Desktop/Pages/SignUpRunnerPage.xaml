@@ -111,8 +111,7 @@
                         HorizontalAlignment="Right" 
                         CornerRadius="5">
 
-
-                    <Image/>
+                    <Image Source="{Binding Photo, Converter={converters:BytesToImageConverter}}"/>
                 </Border>
 
                 <!--Select photo-->
@@ -128,7 +127,7 @@
                     <!--Selected file path-->
                     <input:TopEntryControl
                         Grid.Column="0"
-                        DataContext="{Binding Photo}">
+                        DataContext="{Binding PhotoPath}">
                         <TextBox IsReadOnly="True"
                                  Foreground="{StaticResource GrayBrush}"
                                  FontStyle="Italic"
@@ -138,7 +137,8 @@
 
                     <Button Grid.Column="1"
                             Content="Открыть"                            
-                            Margin="10 30 10 15"/>
+                            Margin="10 30 10 15"
+                            Command="{Binding ChangePhotoCommand}"/>
 
                 </Grid>
 

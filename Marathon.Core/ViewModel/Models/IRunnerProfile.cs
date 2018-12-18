@@ -34,7 +34,12 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        EntryViewModel<string> Photo { get; set; }
+        EntryViewModel<string> PhotoPath { get; set; }
+
+        /// <summary>
+        /// Photo of the user
+        /// </summary>
+        byte[] Photo { get; set; }
 
         /// <summary>
         /// The date of birth of the user
@@ -56,7 +61,7 @@ namespace Marathon.Core.ViewModel.Models
         ICommand CancelCommand { get; set; }
 
         /// <summary>
-        /// Change <see cref="Photo"/> of a runner profile
+        /// Change <see cref="PhotoPath"/> of a runner profile
         /// </summary>
         ICommand ChangePhotoCommand { get; set; }
 

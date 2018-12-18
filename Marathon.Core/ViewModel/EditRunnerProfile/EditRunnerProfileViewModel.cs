@@ -39,7 +39,12 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        public EntryViewModel<string> Photo { get; set; }
+        public EntryViewModel<string> PhotoPath { get; set; }
+
+        /// <summary>
+        /// Photo of the user
+        /// </summary>
+        public byte[] Photo { get; set; }
 
         /// <summary>
         /// The date of birth of the user
@@ -66,7 +71,7 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         public ICommand CancelCommand { get; set; }
 
         /// <summary>
-        /// Change <see cref="Photo"/> of a runner profile
+        /// Change <see cref="PhotoPath"/> of a runner profile
         /// </summary>
         public ICommand ChangePhotoCommand { get; set; }
 
@@ -84,7 +89,7 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
             FirstName = new EntryViewModel<string>("Имя");
             LastName = new EntryViewModel<string>("Фамилия");
             Gender = new ItemsEntryViewModel<string>("Пол");
-            Photo = new EntryViewModel<string>("Фото файл");
+            PhotoPath = new EntryViewModel<string>("Фото файл");
             BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
             Country = new ItemsEntryViewModel<string>("Страна");
 
