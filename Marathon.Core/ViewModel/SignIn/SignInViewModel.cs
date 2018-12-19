@@ -7,6 +7,7 @@ using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
+using Validar;
 
 namespace Marathon.Core.ViewModel.SignIn
 {
@@ -15,6 +16,7 @@ namespace Marathon.Core.ViewModel.SignIn
     /// <summary>
     /// The view model for a UserSignIn page
     /// </summary>
+    [InjectValidation]
     public class SignInViewModel : PageViewModel
     {
         #region Public Properties
