@@ -84,13 +84,13 @@
 
                 <!--First name-->
                 <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Text="{Binding Value}"
+                    <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                              Tag="{Binding Label}"/>
                 </input:LeftEntryControl>
 
                 <!--Last name-->
                 <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBox Text="{Binding Value}"
+                    <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                              Tag="{Binding Label}"/>
                 </input:LeftEntryControl>
 

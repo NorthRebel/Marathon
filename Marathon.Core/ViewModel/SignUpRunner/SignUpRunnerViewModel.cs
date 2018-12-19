@@ -1,4 +1,5 @@
 ﻿using System;
+using Validar;
 using System.IO;
 using Marathon.Core.Models;
 using System.Windows.Input;
@@ -20,6 +21,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
     /// <summary>
     /// The view model for a SignUpRunner page
     /// </summary>
+    [InjectValidation]
     public class SignUpRunnerViewModel : PageViewModel, IRunnerProfile
     {
         #region Public Properties
