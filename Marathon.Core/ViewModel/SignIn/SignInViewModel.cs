@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Security;
 using System.Windows.Input;
-using System.Threading.Tasks;
 using Marathon.Core.Helpers;
+using System.Threading.Tasks;
 using Marathon.Core.Models.User;
-using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
+using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
+using Validar;
 
-namespace Marathon.Core.ViewModel
+namespace Marathon.Core.ViewModel.SignIn
 {
     using Kernel = IoC.IoC;
 
     /// <summary>
     /// The view model for a UserSignIn page
     /// </summary>
+    [InjectValidation]
     public class SignInViewModel : PageViewModel
     {
         #region Public Properties

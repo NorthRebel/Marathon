@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Marathon.Desktop.Dialogs;
 using Marathon.Core.IoC.Interfaces;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Inventory.Dialogs;
-using Marathon.Desktop.Dialogs;
+using Microsoft.Win32;
 
 namespace Marathon.Desktop.IoC
 {
@@ -49,6 +51,24 @@ namespace Marathon.Desktop.IoC
         public Task ShowInventoryReport(InventoryReportDialogViewModel viewModel)
         {
             return new InventoryReportDialog().ShowDialog(viewModel);
+        }
+
+        /// <summary>
+        /// Displays a dialog window where user can select file to open them
+        /// </summary>
+        public string OpenFile(OpenFileDialogViewModel viewModel)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                CheckFileExists = true,
+                Filter = viewModel.Filter,
+                DefaultExt = viewModel.DefaultExtension,
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+                return openFileDialog.FileName;
+
+            return string.Empty;
         }
     }
 }

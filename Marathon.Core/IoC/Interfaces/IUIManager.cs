@@ -35,5 +35,13 @@ namespace Marathon.Core.IoC.Interfaces
         /// Displays a dialog message of report about inventory state
         /// </summary>
         Task ShowInventoryReport(InventoryReportDialogViewModel viewModel);
+
+        /// <summary>
+        /// Displays a dialog window where user can select file to open them
+        /// </summary>
+        /// <returns>
+        /// Path of selected file
+        /// </returns>
+        string OpenFile(OpenFileDialogViewModel viewModel);
     }
 }

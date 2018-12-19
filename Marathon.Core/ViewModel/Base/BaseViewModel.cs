@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using PropertyChanged;
 using Marathon.Core.Models;
-using PropertyChanged;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Marathon.Core.ViewModel.Base
 {
@@ -12,6 +12,13 @@ namespace Marathon.Core.ViewModel.Base
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private readonly IDataErrorInfo _validationTemplate;
+
+        protected BaseViewModel()
+        {
+            _validationTemplate = new ValidationTemplate(this);
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

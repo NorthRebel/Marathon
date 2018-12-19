@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Pages"
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
-             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel;assembly=Marathon.Core"
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignIn;assembly=Marathon.Core"
              mc:Ignorable="d" 
              x:Name="Page"
              d:DesignHeight="600" d:DesignWidth="800">
@@ -58,9 +58,9 @@
                 <TextBox Grid.Column="1"
                          Grid.Row="0"
                          Width="300"
-                         Margin="10 0 0 10"
+                         Margin="5,0,5,10"
                          VerticalAlignment="Center"
-                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          Tag="Введите свой email"/>
 
                 <TextBlock Grid.Column="0"
