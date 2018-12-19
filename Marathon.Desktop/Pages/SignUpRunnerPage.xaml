@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
              xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
              xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
-             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel;assembly=Marathon.Core"   
+             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpRunner;assembly=Marathon.Core"
              mc:Ignorable="d"
              x:Name="Page"
              d:DesignHeight="600" d:DesignWidth="800">

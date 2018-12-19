@@ -13,7 +13,7 @@ using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
 
-namespace Marathon.Core.ViewModel
+namespace Marathon.Core.ViewModel.SignUpRunner
 {
     using Kernel = IoC.IoC;
 
