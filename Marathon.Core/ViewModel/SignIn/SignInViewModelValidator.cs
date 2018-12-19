@@ -11,9 +11,8 @@ namespace Marathon.Core.ViewModel.SignIn
         {
             RuleFor(x => x.Email)
                 .NotEmpty()
-                .WithMessage("Test 1")
                 .EmailAddress()
-                .WithMessage("Test 2");
+                .WithMessage("Строка не соответствует шаблону \"user@mail.com\"");
         }
     }
 }
