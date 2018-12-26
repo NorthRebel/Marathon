@@ -8,7 +8,6 @@
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
              xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
              xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
-             xmlns:Props="clr-namespace:Marathon.Desktop.AttachedProperties"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon;assembly=Marathon.Core"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
@@ -48,11 +47,12 @@
             <controls:MarathonOptionsControl
                 Grid.Column="0"
                 Grid.Row="0"
-                DataContext="{Binding MarathonTypes}"
+                Title="Вид марафона"
                 ContentHorizontalAlignment="Center">
 
-                <MarathonOptions:MarathonOptionsListControl
-                    Props:OptionSelectionTypeAttachedProperty.Value="CheckBox"/>
+                <MarathonOptions:MarathonOptionsMultiple
+                    ItemsSource="{Binding MarathonTypesToSelect}"
+                    SelectedItems="{Binding SelectedMarathonTypes}"/>
 
             </controls:MarathonOptionsControl>
 
@@ -60,11 +60,12 @@
             <controls:MarathonOptionsControl
                 Grid.Column="1"
                 Grid.Row="0"
-                DataContext="{Binding RaceKits}"
+                Title="Варианты комплектов"
                 ContentHorizontalAlignment="Center">
 
-                <MarathonOptions:MarathonOptionsListControl
-                    Props:OptionSelectionTypeAttachedProperty.Value="RadioButton"/>
+                <MarathonOptions:MarathonOptionsSingle
+                    ItemsSource="{Binding RaceKits}"
+                    SelectedItem="{Binding SelectedRaceKit}"/>
 
             </controls:MarathonOptionsControl>
 
@@ -72,42 +73,30 @@
             <controls:MarathonOptionsControl
                 Grid.Column="0"
                 Grid.Row="1"
-                DataContext="{Binding SponsorshipDetails}"
+                Title="Детали спонсорства"
                 ContentHorizontalAlignment="Stretch">
 
-                <StackPanel DataContext="{Binding}">
+                <StackPanel DataContext="{Binding DataContext.SponsorshipDetails, RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}">
 
-                    <!--List of charity for sponsorship-->
-                    <input:LeftEntryControl DataContext="{Binding CharityDetail}">
+                    <StackPanel Orientation="Horizontal"
+                                DataContext="{Binding CharityDetail}">
 
-                        <Grid>
+                        <!--List of charity for sponsorship-->
+                        <input:LabelledComboBox Label="Взнос"
+                                                Items="{Binding Charities}"
+                                                SelectedItem="{Binding Charity}"/>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
 
-                            <!--List of charity-->
-                            <ComboBox Grid.Column="0"
-                                      ItemsSource="{Binding Items}"
-                                      SelectedItem="{Binding Value}"/>
+                        <!--Show info about charity-->
+                        <Button Content="i"
+                                Command="{Binding AboutSelectedCharityCommand}"
+                                CommandParameter="{Binding Value}"/>
 
-                            <!--Show info about charity-->
-                            <Button Grid.Column="1"
-                                    Content="i"
-                                    Command="{Binding AboutSelectedCharityCommand}"
-                                    CommandParameter="{Binding Value}"/>
-
-                        </Grid>
-
-                    </input:LeftEntryControl>
+                    </StackPanel>
 
                     <!--Sponsorship amount for charity organization-->
-                    <input:LeftEntryControl DataContext="{Binding SponsorshipAmount}">
-                        <TextBox Text="{Binding Value, StringFormat='{}${0}'}"
-                                 Foreground="{StaticResource GrayBrush}"
-                                 FontStyle="Italic"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="Сумма взноса"
+                                           Text="{Binding SponsorshipAmount, StringFormat='{}${0}'}"/>
 
                 </StackPanel>
 
@@ -146,14 +135,18 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Grid.RowSpan="2"
-                DataContext="{Binding PaymentDetail}"
+                Title="Регистрационный взнос"
                 ContentHorizontalAlignment="Center">
 
-                <TextBlock Text="{Binding Payment, StringFormat='{}${0}'}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Foreground="{StaticResource GrayBrush}"
-                           FontSize="{StaticResource FontSizeUltraGigant}"/>
+                <Border DataContext="{Binding DataContext.PaymentDetail, RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}">
+
+                    <TextBlock Text="{Binding Payment, StringFormat='{}${0}'}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Foreground="{StaticResource GrayBrush}"
+                               FontSize="{StaticResource FontSizeUltraGigant}"/>
+
+                </Border>
 
             </controls:MarathonOptionsControl>
         </Grid>

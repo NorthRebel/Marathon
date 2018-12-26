@@ -90,7 +90,6 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
-    <Compile Include="AttachedProperties\OptionSelectionTypeAttachedProperty.cs" />
     <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
@@ -125,6 +124,7 @@
     <Compile Include="Controls\CharityList\CharityListItemControl.xaml.cs">
       <DependentUpon>CharityListItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Custom\ListBox.cs" />
     <Compile Include="Controls\HowLongMarathon\HowLongMarathonItemControl.xaml.cs">
       <DependentUpon>HowLongMarathonItemControl.xaml</DependentUpon>
     </Compile>
@@ -159,11 +159,11 @@
     <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
       <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MarathonOptions\MarathonOptionsItemControl.xaml.cs">
-      <DependentUpon>MarathonOptionsItemControl.xaml</DependentUpon>
+    <Compile Include="Controls\MarathonOptions\MarathonOptionsMultiple.xaml.cs">
+      <DependentUpon>MarathonOptionsMultiple.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MarathonOptions\MarathonOptionsListControl.xaml.cs">
-      <DependentUpon>MarathonOptionsListControl.xaml</DependentUpon>
+    <Compile Include="Controls\MarathonOptions\MarathonOptionsSingle.xaml.cs">
+      <DependentUpon>MarathonOptionsSingle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MarathonResults\MarathonResultsListControl.xaml.cs">
       <DependentUpon>MarathonResultsListControl.xaml</DependentUpon>
@@ -436,11 +436,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MarathonOptions\MarathonOptionsItemControl.xaml">
+    <Page Include="Controls\MarathonOptions\MarathonOptionsMultiple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MarathonOptions\MarathonOptionsListControl.xaml">
+    <Page Include="Controls\MarathonOptions\MarathonOptionsSingle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
