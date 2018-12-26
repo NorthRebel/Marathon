@@ -32,6 +32,6 @@ namespace Marathon.Desktop.Pages
         /// <summary>
         /// The secure password for this login page
         /// </summary>
-        public SecureString SecurePassword => PasswordText.SecurePassword;
+        public SecureString SecurePassword => PasswordBox.PasswordText.SecurePassword;
     }
 }
