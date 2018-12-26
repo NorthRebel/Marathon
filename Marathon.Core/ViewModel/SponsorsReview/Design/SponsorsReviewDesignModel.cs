@@ -1,5 +1,4 @@
-﻿using Marathon.Core.ViewModel.Input;
-using Marathon.Core.ViewModel.SponsorsReview.CharityList.Design;
+﻿using Marathon.Core.ViewModel.SponsorsReview.CharityList.Design;
 
 namespace Marathon.Core.ViewModel.SponsorsReview.Design
 {
@@ -24,13 +23,10 @@ namespace Marathon.Core.ViewModel.SponsorsReview.Design
         /// </summary>
         public SponsorsReviewDesignModel()
         {
-            AttributesToSort = new ItemsEntryViewModel<string>("Отсортировать")
+            AttributesToSort = new[]
             {
-                Items = new []
-                {
-                    "Наименование",
-                    "Сумма",
-                }
+                "Наименование",
+                "Сумма"
             };
 
             CharityList = new CharityListDesignModel();

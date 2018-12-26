@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 using Marathon.Core.Models;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.UsersListToManage.Models;
 using Marathon.Core.ViewModel.UsersListToManage.UsersList;
@@ -19,17 +19,27 @@ namespace Marathon.Core.ViewModel.UsersListToManage
         /// <summary>
         /// List of user's types of privileges
         /// </summary>
-        public ItemsEntryViewModel<string> UserTypes { get; set; }
+        public IEnumerable<string> UserTypes { get; set; }
+
+        /// <summary>
+        /// Selected user type
+        /// </summary>
+        public string UserType { get; set; }
 
         /// <summary>
         /// Attributes of users list for <see cref="SortCommand"/>
         /// </summary>
-        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
+        public IEnumerable<string> AttributesToSort { get; set; }
+
+        /// <summary>
+        /// Selected attribute to sort list of users
+        /// </summary>
+        public string AttributeToSort { get; set; }
 
         /// <summary>
         /// Request which contains values to search user by any attribute of <see cref="UsersListItemViewModel"/> for <see cref="SearchCommand"/>
         /// </summary>
-        public EntryViewModel<string> SearchRequest { get; set; }
+        public string SearchRequest { get; set; }
 
         /// <inheritdoc cref="UsersListViewModel"/>
         public UsersListViewModel Users { get; set; }
@@ -68,10 +78,6 @@ namespace Marathon.Core.ViewModel.UsersListToManage
         public UsersListToManageViewModel()
         {
             PageCaption = new PageCaptionViewModel("Управление пользователями");
-
-            UserTypes = new ItemsEntryViewModel<string>("Фильтр по ролям");
-            AttributesToSort = new ItemsEntryViewModel<string>("Сортировать по");
-            SearchRequest = new EntryViewModel<string>("Поиск");
 
             UsersCondition = new ManageUsersCondition();
             Users = new UsersListViewModel();

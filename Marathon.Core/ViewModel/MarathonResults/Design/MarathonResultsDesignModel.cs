@@ -26,46 +26,46 @@ namespace Marathon.Core.ViewModel.MarathonResults.Design
         /// </summary>
         public MarathonResultsDesignModel()
         {
-            Marathons.Items = new[]
+            Marathons = new[]
             {
                 "2014 - Japan",
                 "2015 - Berlin",
             };
-            Marathons.Value = Marathons.Items.First();
+            Marathon = Marathons.First();
 
-            Distances.Items = new[]
+            Distances = new[]
             {
                 "10 км малый марафон",
                 "42 км полный марафон"
             };
-            Distances.Value = Distances.Items.First();
+            Distance = Distances.First();
 
-            Genders.Items = new[]
+            Genders = new[]
             {
                 "Любой",
                 "Мужской",
                 "Женский"
             };
-            Genders.Value = Genders.Items.First(); 
+            Gender = Genders.First(); 
 
-            AgeCategories.Items = new[]
+            AgeCategories = new[]
             {
                 "18 - 29",
                 "30 - 35",
                 "36 - 45"
             };
-            AgeCategories.Value = AgeCategories.Items.First(); 
+            AgeCategory = AgeCategories.First(); 
 
-            TotalRunnersCount.Value = 1234;
-            FinishedRunnersCount.Value = 1198;
-            AverageTime.Value = new TimeSpan(4, 2, 10);
+            TotalRunnersCount = 1234;
+            FinishedRunnersCount = 1198;
+            AverageTime = new TimeSpan(4, 2, 10);
 
             ResultsCondition = new MarathonResultsCondition
             {
-                Marathon = Marathons.Value,
-                Distance = Distances.Value, 
-                Gender = Genders.Value,
-                AgeCategory = AgeCategories.Value
+                Marathon = Marathon,
+                Distance = Distance, 
+                Gender = Gender,
+                AgeCategory = AgeCategory
             };
 
             Results = new MarathonResultsListDesignModel();

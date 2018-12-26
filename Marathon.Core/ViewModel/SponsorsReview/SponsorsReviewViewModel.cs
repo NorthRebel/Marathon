@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.SponsorsReview.CharityList;
 
@@ -17,7 +16,12 @@ namespace Marathon.Core.ViewModel.SponsorsReview
         /// <summary>
         /// Attributes of sponsorship organizations for <see cref="SortCommand"/>
         /// </summary>
-        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
+        public IEnumerable<string> AttributesToSort { get; set; }
+
+        /// <summary>
+        /// Selected attribute to sort list of sponsorship organizations
+        /// </summary>
+        public string AttributeToSort { get; set; }
 
         /// <inheritdoc cref="CharityListViewModel"/>
         public CharityListViewModel CharityList { get; set; }

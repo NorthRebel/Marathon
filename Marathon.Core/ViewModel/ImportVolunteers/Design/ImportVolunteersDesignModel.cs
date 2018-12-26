@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.ImportVolunteers.Design
 {
@@ -24,10 +23,10 @@ namespace Marathon.Core.ViewModel.ImportVolunteers.Design
         /// </summary>
         public ImportVolunteersDesignModel()
         {
-            var attributesRequirements = new List<EntryViewModel<string>>();
+            var attributesRequirements = new List<KeyValuePair<string, string>>();
 
             for (int i = 1; i <= 5; i++)
-                attributesRequirements.Add(new EntryViewModel<string>($"Поле {i}") {Value = "Описание поля"});
+                attributesRequirements.Add(new KeyValuePair<string, string>($"Поле {i}", "Описание поля"));
 
             RequiredFields = attributesRequirements;
 

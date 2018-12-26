@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.MarathonOptions;
 
 namespace Marathon.Core.ViewModel.SponsorRunner
@@ -15,12 +14,12 @@ namespace Marathon.Core.ViewModel.SponsorRunner
         /// <summary>
         /// Sponsor name
         /// </summary>
-        public EntryViewModel<string> Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// List of runners to select for sponsorship
         /// </summary>
-        public ItemsEntryViewModel<string> Runner { get; set; }
+        public IEnumerable<string> Runners { get; set; }
 
         /// <summary>
         /// Selected runner for sponsorship
@@ -30,22 +29,22 @@ namespace Marathon.Core.ViewModel.SponsorRunner
         /// <summary>
         /// First and last name of card holder
         /// </summary>
-        public EntryViewModel<string> CardHolder { get; set; }
+        public string CardHolder { get; set; }
 
         /// <summary>
         /// 16-x Number of bank card
         /// </summary>
-        public EntryViewModel<long?> CardNumber { get; set; }
+        public long? CardNumber { get; set; }
 
         /// <summary>
         /// Validity date of bank card
         /// </summary>
-        public EntryViewModel<DateTimeOffset?> CardValidity { get; set; }
+        public DateTimeOffset? CardValidity { get; set; }
 
         /// <summary>
         /// CVC code of bank card
         /// </summary>
-        public EntryViewModel<short?> CardCVCCode { get; set; }
+        public short? CardCVCCode { get; set; }
 
         #endregion
 

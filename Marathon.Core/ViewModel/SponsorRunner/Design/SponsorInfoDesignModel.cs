@@ -1,7 +1,4 @@
-﻿using System;
-using Marathon.Core.ViewModel.Input;
-
-namespace Marathon.Core.ViewModel.SponsorRunner.Design
+﻿namespace Marathon.Core.ViewModel.SponsorRunner.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="SponsorInfoViewModel"/>
@@ -26,26 +23,14 @@ namespace Marathon.Core.ViewModel.SponsorRunner.Design
         {
             Title = "Информация о Спонсоре";
 
-            Name = new EntryViewModel<string>("Имя");
-            Runner = new ItemsEntryViewModel<string>("Бегун")
+            Runners = new[]
             {
-                Items = new[]
-                {
-                    "Kyle Verberder - 122 (Germany)",
-                    "Migel Oriviera - 159 (Spain)",
-                    "Иван Прудов - 204 (Russia)",
-                    "Julie Lawet - 007 (France)",
-                }
-            };
+                "Kyle Verberder - 122 (Germany)",
+                "Migel Oriviera - 159 (Spain)",
+                "Иван Прудов - 204 (Russia)",
+                "Julie Lawet - 007 (France)"
 
-            CardHolder = new EntryViewModel<string>("Карта");
-            CardNumber = new EntryViewModel<long?>("Номер карты");
-            CardValidity = new EntryViewModel<DateTimeOffset?>("Срок действия")
-            {
-                Value = DateTimeOffset.Now
             };
-
-            CardCVCCode = new EntryViewModel<short?>("CVC");
         }
 
         #endregion

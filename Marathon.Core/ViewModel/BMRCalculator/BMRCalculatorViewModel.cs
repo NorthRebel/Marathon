@@ -1,9 +1,9 @@
 ﻿using System.Windows.Input;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
+using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.BMRCalculator.Models;
-using Marathon.Core.ViewModel.Dialogs;
 
 namespace Marathon.Core.ViewModel.BMRCalculator
 {
@@ -24,17 +24,17 @@ namespace Marathon.Core.ViewModel.BMRCalculator
         /// <summary>
         /// User's growth
         /// </summary>
-        public EntryViewModel<double?> Growth { get; set; }
+        public double? Growth { get; set; }
 
         /// <summary>
         /// User's weight
         /// </summary>
-        public EntryViewModel<double?> Weight { get; set; }
+        public double? Weight { get; set; }
 
         /// <summary>
         /// User's age
         /// </summary>
-        public EntryViewModel<byte?> Age { get; set; }
+        public byte? Age { get; set; }
 
         /// <inheritdoc cref="BMRResultViewModel"/>
         public BMRResultViewModel Result { get; set; }
@@ -71,10 +71,6 @@ namespace Marathon.Core.ViewModel.BMRCalculator
         {
             PageCaption = new PageCaptionViewModel("BMR калькулятор");
 
-            Growth = new EntryViewModel<double?>("Рост");
-            Weight = new EntryViewModel<double?>("Вес");
-            Age = new EntryViewModel<byte?>("Возраст");
-
             Result = new BMRResultViewModel();
 
             CancelCommand = new RelayCommand(x => Cancel());
@@ -94,11 +90,11 @@ namespace Marathon.Core.ViewModel.BMRCalculator
             {
                 ActivityLevels = new []
                 {
-                    new EntryViewModel<string>("Сидячий образ") {Value = "Нет работы или работа за столом"}, 
-                    new EntryViewModel<string>("Маленькая активность") {Value = "Мало физических работы или занятия спортом 1-3 раза в неделю"}, 
-                    new EntryViewModel<string>("Средняя активность") {Value = "Умеренная физическая работа или занятия спортом 3 - 5 дней в неделю"}, 
-                    new EntryViewModel<string>("Сильная активность") {Value = "Сильные физическая нагрузка или занятия спортом 6 - 7 дней в неделю"}, 
-                    new EntryViewModel<string>("Максимальная активность") {Value = "Сильная ежедневная физическая нагрузка или спорт и физическая работа"}, 
+                    new KeyValuePair<string, string>("Сидячий образ", "Нет работы или работа за столом"),
+                    new KeyValuePair<string, string>("Маленькая активность", "Мало физических работы или занятия спортом 1-3 раза в неделю"),
+                    new KeyValuePair<string, string>("Средняя активность", "Умеренная физическая работа или занятия спортом 3 - 5 дней в неделю"),
+                    new KeyValuePair<string, string>("Сильная активность", "Сильные физическая нагрузка или занятия спортом 6 - 7 дней в неделю"),
+                    new KeyValuePair<string, string>("Максимальная активность", "Сильная ежедневная физическая нагрузка или спорт и физическая работа")
                 }
             });
         }
@@ -108,7 +104,7 @@ namespace Marathon.Core.ViewModel.BMRCalculator
         /// </summary>
         private bool CanCalculateBMR(object obj)
         {
-            return (_selectedGender != null) && (Growth != null && Growth.Value > 0) &&
+            return (_selectedGender != null) && (Growth != null && Growth > 0) &&
                    (Weight != null && Weight.Value > 0) && (Age != null && Age.Value > 0);
         }
 

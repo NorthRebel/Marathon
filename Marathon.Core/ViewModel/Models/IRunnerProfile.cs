@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using Marathon.Core.ViewModel.Input;
+using System.Collections.Generic;
 
 namespace Marathon.Core.ViewModel.Models
 {
@@ -14,27 +14,32 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// The email of the user
         /// </summary>
-        EntryViewModel<string> Email { get; set; }
+        string Email { get; set; }
 
         /// <summary>
         /// First name of the user
         /// </summary>
-        EntryViewModel<string> FirstName { get; set; }
+        string FirstName { get; set; }
 
         /// <summary>
         /// Last name of the user
         /// </summary>
-        EntryViewModel<string> LastName { get; set; }
+        string LastName { get; set; }
 
         /// <summary>
         /// Gender of the user
         /// </summary>
-        ItemsEntryViewModel<string> Gender { get; set; }
+        string Gender { get; set; }
+
+        /// <summary>
+        /// List of gender to select
+        /// </summary>
+        IEnumerable<string> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        EntryViewModel<string> PhotoPath { get; set; }
+        string PhotoPath { get; set; }
 
         /// <summary>
         /// Photo of the user
@@ -44,12 +49,17 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        EntryViewModel<DateTime?> BirthDay { get; set; }
+        DateTime? BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user
         /// </summary>
-        ItemsEntryViewModel<string> Country { get; set; }
+        string Country { get; set; }
+
+        /// <summary>
+        /// List of countries to select
+        /// </summary>
+        IEnumerable<string> Countries { get; set; }
 
         #endregion
 

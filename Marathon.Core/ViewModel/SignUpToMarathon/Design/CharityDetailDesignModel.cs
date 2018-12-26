@@ -10,7 +10,7 @@
         /// <summary>
         /// A single instance of the design model
         /// </summary>
-        public static CharityDetailDesignModel Instance => new CharityDetailDesignModel("Взнос");
+        public static CharityDetailDesignModel Instance => new CharityDetailDesignModel();
 
         #endregion
 
@@ -19,14 +19,14 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CharityDetailDesignModel(string label) : base(label)
+        public CharityDetailDesignModel()
         {
-            Items = new string[]
-            {
-                "Фонд А",
-                "Фонд Б",
-                "Фонд В",
-            };
+            //Items = new string[]
+            //{
+            //    "Фонд А",
+            //    "Фонд Б",
+            //    "Фонд В",
+            //};
         }
 
         #endregion

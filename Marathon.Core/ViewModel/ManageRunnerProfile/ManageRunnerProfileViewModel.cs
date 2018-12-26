@@ -2,8 +2,8 @@
 using Marathon.Core.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.PageCaption;
 
@@ -19,27 +19,32 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
         /// <summary>
         /// The email of the user
         /// </summary>
-        public EntryViewModel<string> Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// First name of the user
         /// </summary>
-        public EntryViewModel<string> FirstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Last name of the user
         /// </summary>
-        public EntryViewModel<string> LastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public ItemsEntryViewModel<string> Gender { get; set; }
+        public string Gender { get; set; }
+
+        /// <summary>
+        /// List of gender to select
+        /// </summary>
+        public IEnumerable<string> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        public EntryViewModel<string> PhotoPath { get; set; }
+        public string PhotoPath { get; set; }
 
         /// <summary>
         /// Photo of the user
@@ -49,17 +54,27 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        public EntryViewModel<DateTime?> BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public ItemsEntryViewModel<string> Country { get; set; }
+        public string Country { get; set; }
+
+        /// <summary>
+        /// List of countries to select
+        /// </summary>
+        public IEnumerable<string> Countries { get; set; }
+
+        /// <summary>
+        /// Sign up status of user
+        /// </summary>
+        public string SignUpStatus { get; set; }
 
         /// <summary>
         /// List of available sign up statues of runner to marathon
         /// </summary>
-        public ItemsEntryViewModel<string> SignUpStatuses { get; set; }
+        public IEnumerable<string> SignUpStatuses { get; set; }
 
         #endregion
 
@@ -87,19 +102,6 @@ namespace Marathon.Core.ViewModel.ManageRunnerProfile
         public ManageRunnerProfileViewModel()
         {
             PageCaption = new PageCaptionViewModel("Редактирование профиля бегуна");
-
-            #region Initialize entries
-
-            Email = new EntryViewModel<string>(nameof(Email));
-            FirstName = new EntryViewModel<string>("Имя");
-            LastName = new EntryViewModel<string>("Фамилия");
-            Gender = new ItemsEntryViewModel<string>("Пол");
-            PhotoPath = new EntryViewModel<string>("Фото файл");
-            BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
-            Country = new ItemsEntryViewModel<string>("Страна");
-            SignUpStatuses = new ItemsEntryViewModel<string>("Регистрационный статус");
-
-            #endregion
 
             CancelCommand = new RelayCommand(x => Cancel());
             SaveCommand = new RelayCommand(async (password) => await SaveProfileChangesAsync(password));

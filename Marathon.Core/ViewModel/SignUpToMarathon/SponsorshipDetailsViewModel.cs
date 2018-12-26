@@ -1,5 +1,4 @@
-﻿using Marathon.Core.ViewModel.Input;
-using Marathon.Core.ViewModel.MarathonOptions;
+﻿using Marathon.Core.ViewModel.MarathonOptions;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
@@ -19,7 +18,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// <summary>
         /// Sponsorship amount for charity organization
         /// </summary>
-        public EntryViewModel<decimal> SponsorshipAmount { get; set; }
+        public decimal SponsorshipAmount { get; set; }
 
         #endregion
 

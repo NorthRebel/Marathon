@@ -1,6 +1,4 @@
-﻿using Marathon.Core.ViewModel.Input;
-
-namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
+﻿namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="SponsorshipDetailsViewModel"/>
@@ -27,10 +25,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
 
             CharityDetail = CharityDetailDesignModel.Instance;
 
-            SponsorshipAmount = new EntryViewModel<decimal>("Сумма взноса")
-            {
-                Value = 500
-            };
+            SponsorshipAmount = 500;
         }
 
         #endregion

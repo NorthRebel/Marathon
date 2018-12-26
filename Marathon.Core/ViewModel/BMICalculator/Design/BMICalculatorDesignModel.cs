@@ -21,8 +21,8 @@
         /// </summary>
         public BMICalculatorDesignModel()
         {
-            Growth.Value = 170;
-            Weight.Value = 70;
+            Growth = 170;
+            Weight = 70;
 
             Result = new BMIResultDesignModel();
         }

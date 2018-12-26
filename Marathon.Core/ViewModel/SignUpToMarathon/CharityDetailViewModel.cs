@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Dialogs.Design;
-using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
-    public class CharityDetailViewModel : ItemsEntryViewModel<string>
+    public class CharityDetailViewModel
     {
         #region Commands
 
@@ -15,7 +13,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 
         #endregion
 
-        public CharityDetailViewModel(string label) : base(label)
+        public CharityDetailViewModel()
         {
             AboutSelectedCharityCommand = new RelayCommand(ShowCharityInfo);
         }

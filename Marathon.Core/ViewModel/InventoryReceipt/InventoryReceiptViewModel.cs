@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.InventoryReceipt
@@ -14,9 +13,9 @@ namespace Marathon.Core.ViewModel.InventoryReceipt
         #region Public Properties
 
         /// <summary>
-        /// Items to receipt
+        /// Items to receipt where Key is item name, Value - count of item to receipt
         /// </summary>
-        public IEnumerable<EntryViewModel<long?>> InventoryItemsToReceipt { get; set; }
+        public IEnumerable<KeyValuePair<string, long?>> InventoryItemsToReceipt { get; set; }
 
         #endregion
 

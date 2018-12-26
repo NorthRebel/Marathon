@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.MarathonResults.Models;
 using Marathon.Core.ViewModel.MarathonResults.ResultsList;
@@ -18,37 +18,57 @@ namespace Marathon.Core.ViewModel.MarathonResults
         /// <summary>
         /// List of spent marathons
         /// </summary>
-        public ItemsEntryViewModel<string> Marathons { get; set; }
+        public IEnumerable<string> Marathons { get; set; }
+
+        /// <summary>
+        /// Selected marathon
+        /// </summary>
+        public string Marathon { get; set; }
 
         /// <summary>
         /// List of distances of marathon
         /// </summary>
-        public ItemsEntryViewModel<string> Distances { get; set; }
+        public IEnumerable<string> Distances { get; set; }
+
+        /// <summary>
+        /// Selected distance
+        /// </summary>
+        public string Distance { get; set; }
 
         /// <summary>
         /// List of runner gender
         /// </summary>
-        public ItemsEntryViewModel<string> Genders { get; set; }
+        public IEnumerable<string> Genders { get; set; }
+
+        /// <summary>
+        /// Selected gender
+        /// </summary>
+        public string Gender { get; set; }
 
         /// <summary>
         /// List of age categories
         /// </summary>
-        public ItemsEntryViewModel<string> AgeCategories { get; set; }
+        public IEnumerable<string> AgeCategories { get; set; }
+
+        /// <summary>
+        /// Selected age category
+        /// </summary>
+        public string AgeCategory { get; set; }
 
         /// <summary>
         /// Count of runners which take part on marathon
         /// </summary>
-        public EntryViewModel<long> TotalRunnersCount { get; set; }
+        public long TotalRunnersCount { get; set; }
 
         /// <summary>
         /// Count of runners which complete marathon distance
         /// </summary>
-        public EntryViewModel<long> FinishedRunnersCount { get; set; }
+        public long FinishedRunnersCount { get; set; }
 
         /// <summary>
         /// Average time of completion marathon distance
         /// </summary>
-        public EntryViewModel<TimeSpan> AverageTime { get; set; }
+        public TimeSpan AverageTime { get; set; }
 
         /// <inheritdoc cref="MarathonResultsCondition"/>
         public MarathonResultsCondition ResultsCondition { get; set; }
@@ -77,15 +97,6 @@ namespace Marathon.Core.ViewModel.MarathonResults
         public MarathonResultsViewModel()
         {
             PageCaption = new PageCaptionViewModel("Результаты предыдущих гонок");
-
-            Marathons = new ItemsEntryViewModel<string>("Марафон");
-            Distances = new ItemsEntryViewModel<string>("Дистанция");
-            Genders = new ItemsEntryViewModel<string>("Пол");
-            AgeCategories = new ItemsEntryViewModel<string>("Категория");
-
-            TotalRunnersCount = new EntryViewModel<long>("Всего бегунов");
-            FinishedRunnersCount = new EntryViewModel<long>("Всего бегунов финишировало");
-            AverageTime = new EntryViewModel<TimeSpan>("Среднее время");
 
             Results = new MarathonResultsListViewModel();
             ResultsCondition = new MarathonResultsCondition();

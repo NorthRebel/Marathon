@@ -24,16 +24,16 @@ namespace Marathon.Core.ViewModel.RunnerInfoManage.Design
         /// </summary>
         public RunnerInfoManageDesignModel()
         {
-            Email.Value = "brian_urban@gmail.com";
-            FirstName.Value = "Brian";
-            LastName.Value = "Urban";
-            Gender.Value = "Man";
-            DateOfBirth.Value = new DateTime(1972, 10, 03);
-            CountryName.Value = "Bulgaria";
-            CharityOrganization.Value = "PRO Sport LTD";
-            SponsorshipAmount.Value = 16842m;
-            SelectedRaceKit.Value = "Вариант B($20): вариант A +бейсболка + бутылка воды.";
-            SelectedDistance.Value = "5km Малая дистанция ($20)";
+            Email = "brian_urban@gmail.com";
+            FirstName = "Brian";
+            LastName = "Urban";
+            Gender = "Man";
+            DateOfBirth = new DateTime(1972, 10, 03);
+            CountryName = "Bulgaria";
+            CharityOrganization = "PRO Sport LTD";
+            SponsorshipAmount = 16842m;
+            SelectedRaceKit = "Вариант B($20): вариант A +бейсболка + бутылка воды.";
+            SelectedDistance = "5km Малая дистанция ($20)";
 
             Statuses = new SignUpStatusListDesignModel();
         }

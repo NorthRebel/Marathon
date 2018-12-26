@@ -2,8 +2,8 @@
 using System.Windows.Input;
 using Marathon.Core.Models;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.ManageUser.Models;
 
@@ -22,32 +22,37 @@ namespace Marathon.Core.ViewModel.ManageUser
         /// <summary>
         /// The email of the user
         /// </summary>
-        public EntryViewModel<string> Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// First name of the user
         /// </summary>
-        public EntryViewModel<string> FirstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// List of user's types of privileges
         /// </summary>
-        public ItemsEntryViewModel<string> UserRole { get; set; }
+        public IEnumerable<string> UserRoles { get; set; }
+
+        /// <summary>
+        /// Selected user role
+        /// </summary>
+        public string UserRole { get; set; }
 
         /// <summary>
         /// Last name of the user
         /// </summary>
-        public EntryViewModel<string> LastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// The secured password string of the user
         /// </summary>
-        public EntryViewModel<IHavePassword> Password { get; set; }
+        public IHavePassword Password { get; set; }
 
         /// <summary>
         /// The secured password string of the user to confirm this
         /// </summary>
-        public EntryViewModel<IHavePassword> ConfirmPassword { get; set; }
+        public IHavePassword ConfirmPassword { get; set; }
 
         #endregion
 
@@ -73,13 +78,6 @@ namespace Marathon.Core.ViewModel.ManageUser
             ManagementType = UserManagementType.Edit;
 
             PageCaption = new PageCaptionViewModel(GetCaptionByManagementType(ManagementType));
-
-            Email = new EntryViewModel<string>(nameof(Email));
-            FirstName = new EntryViewModel<string>("Имя");
-            LastName = new EntryViewModel<string>("Фамилия");
-            Password = new EntryViewModel<IHavePassword>("Пароль");
-            UserRole = new ItemsEntryViewModel<string>("Роль");
-            ConfirmPassword = new EntryViewModel<IHavePassword>("Повторите пароль");
 
             CancelCommand = new RelayCommand(x => Cancel());
             SaveCommand = new RelayCommand(async (password) => await SaveChangesAsync(password));
