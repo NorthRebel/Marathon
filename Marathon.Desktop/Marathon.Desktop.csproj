@@ -131,6 +131,12 @@
     <Compile Include="Controls\HowLongMarathon\HowLongMarathonItemsListControl.xaml.cs">
       <DependentUpon>HowLongMarathonItemsListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Input\LabelledComboBox.xaml.cs">
+      <DependentUpon>LabelledComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Input\LabelledDatePicker.xaml.cs">
+      <DependentUpon>LabelledDatePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Input\LabelledPasswordBox.xaml.cs">
       <DependentUpon>LabelledPasswordBox.xaml</DependentUpon>
     </Compile>
@@ -138,12 +144,6 @@
       <DependentUpon>LabelledTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Input\LayoutGroup.cs" />
-    <Compile Include="Controls\Input\LeftEntryControl.xaml.cs">
-      <DependentUpon>LeftEntryControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Input\TopEntryControl.xaml.cs">
-      <DependentUpon>TopEntryControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Bars\MainTitleBarControl.xaml.cs">
       <DependentUpon>MainTitleBarControl.xaml</DependentUpon>
     </Compile>
@@ -400,19 +400,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Input\LabelledComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Input\LabelledDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Input\LabelledPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Input\LabelledTextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Input\LeftEntryControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Input\TopEntryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
