@@ -21,8 +21,6 @@
         /// </summary>
         public SponsorInfoDesignModel()
         {
-            Title = "Информация о Спонсоре";
-
             Runners = new[]
             {
                 "Kyle Verberder - 122 (Germany)",

@@ -21,7 +21,6 @@
         /// </summary>
         public RunnerCharityDesignModel()
         {
-            Title = "Благотворительность";
             CharityName = "Фонд Кошек";
         }
 

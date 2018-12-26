@@ -21,7 +21,6 @@
         /// </summary>
         public PaymentSignInMarathonDesignModel()
         {
-            Title = "Регистрационный взнос";
             Payment = 660;
         }
 

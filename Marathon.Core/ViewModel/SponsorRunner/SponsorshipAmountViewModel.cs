@@ -1,14 +1,13 @@
 ﻿using System.Windows.Input;
 using Marathon.Core.Models;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.MarathonOptions;
 
 namespace Marathon.Core.ViewModel.SponsorRunner
 {
     /// <summary>
     /// The view model for a sponsorship amount part of SponsorRunner page
     /// </summary>
-    public class SponsorshipAmountViewModel : OptionsViewModel
+    public class SponsorshipAmountViewModel : PageViewModel
     {
         #region Public Properties
 

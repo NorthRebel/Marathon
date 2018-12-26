@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Marathon.Core.ViewModel.MarathonOptions;
+using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel.SponsorRunner
 {
     /// <summary>
     /// The view model for a sponsor info part of SponsorRunner page
     /// </summary>
-    public class SponsorInfoViewModel : OptionsViewModel
+    public class SponsorInfoViewModel : BaseViewModel
     {
         #region Public Properties
 

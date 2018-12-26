@@ -1,4 +1,4 @@
-﻿using Marathon.Core.ViewModel.MarathonOptions;
+﻿using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
@@ -6,7 +6,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
     /// <summary>
     /// The view model for a sponsorship details part of SignUpToMarathon page
     /// </summary>
-    public class SponsorshipDetailsViewModel : OptionsViewModel
+    public class SponsorshipDetailsViewModel : BaseViewModel
     {
         #region Public Properties
 

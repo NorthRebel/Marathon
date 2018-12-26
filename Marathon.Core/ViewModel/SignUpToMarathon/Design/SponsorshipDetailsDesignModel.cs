@@ -21,8 +21,6 @@
         /// </summary>
         public SponsorshipDetailsDesignModel()
         {
-            Title = "Детали спонсорства";
-
             CharityDetail = CharityDetailDesignModel.Instance;
 
             SponsorshipAmount = 500;
