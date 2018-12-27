@@ -1,12 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Marathon.Desktop.Controls.Input
 {
     /// <summary>
     /// Interaction logic for LabelledTextBox.xaml
     /// </summary>
-    public partial class LabelledTextBox : UserControl
+    public partial class LabelledTextBox : UserControl, IDataErrorInfo
     {
         #region Dependency Properties
 
@@ -53,8 +57,40 @@ namespace Marathon.Desktop.Controls.Input
         public LabelledTextBox()
         {
             InitializeComponent();
-            Root.DataContext = this;
         }
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get
+            {
+                if (Validation.GetHasError(this))
+                    return string.Join(Environment.NewLine, Validation.GetErrors(this).Select(e => e.ErrorContent));
+
+                return null;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                // use a specific validation or ask for UserControl Validation Error 
+                if (Validation.GetHasError(this))
+                {
+                    var error = Validation.GetErrors(this)
+                        .FirstOrDefault(e => ((BindingExpression)e.BindingInError).TargetProperty.Name == columnName);
+
+                    if (error != null)
+                        return error.ErrorContent as string;
+                }
+
+                return null;
+            }
+        }
+
+        #endregion
 
         #region Dependency properties Helpers
 
