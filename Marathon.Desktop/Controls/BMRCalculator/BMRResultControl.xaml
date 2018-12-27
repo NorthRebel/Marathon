@@ -52,11 +52,8 @@
             <ItemsControl ItemsSource="{Binding WastedCalories}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <input:LeftEntryControl DataContext="{Binding Value}"
-                                                Foreground="{Binding Value.Background, Converter={converters:StringRGBToBrushConverter}}">
-                            <TextBlock Text="{Binding Value}"
-                                       FontSize="{StaticResource FontSizeMedium}"/>
-                        </input:LeftEntryControl>
+                        <input:LabelledTextBox Label="{Binding Key}"
+                                               Text="{Binding Value}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
