@@ -70,6 +70,12 @@ namespace Marathon.Core.ViewModel.SignIn
         /// </summary>
         private async Task SignInAsync(object password)
         {
+            if (!IsModelValid)
+            {
+                await NotifyAboutValidationErrors();
+                return;
+            }
+
             var userService = Kernel.Get<IUserService>();
 
             try

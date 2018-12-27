@@ -1,10 +1,14 @@
 ﻿using PropertyChanged;
 using Marathon.Core.Models;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using Marathon.Core.ViewModel.Dialogs;
 
 namespace Marathon.Core.ViewModel.Base
 {
+    using Kernel = IoC.IoC;
+
     /// <summary>
     /// A base view model that fires Property Changed events as needed
     /// </summary>
@@ -14,6 +18,11 @@ namespace Marathon.Core.ViewModel.Base
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly IDataErrorInfo _validationTemplate;
+
+        /// <summary>
+        /// Flag that indicates is model doesn't have validation errors
+        /// </summary>
+        protected bool IsModelValid => !((ValidationTemplate) _validationTemplate).HasErrors;
 
         protected BaseViewModel()
         {
@@ -33,6 +42,19 @@ namespace Marathon.Core.ViewModel.Base
         protected virtual void GoToPage(ApplicationPage page, bool goBack = false)
         {
             IoC.IoC.Get<ApplicationViewModel>().GoToPage(page);
+        }
+
+        #endregion
+
+        #region ModelErrorsHandler
+
+        protected Task NotifyAboutValidationErrors()
+        {
+            return Kernel.UI.ShowMessage(new MessageBoxDialogViewModel
+            {
+                Title = "Ошибка",
+                Message = "Некоторые поля введены неверно!"
+            });
         }
 
         #endregion
