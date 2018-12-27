@@ -9,13 +9,13 @@ namespace Marathon.Core.Models.Runner
         public int UserId { get; set; }
 
         [JsonProperty]
-        public string Gender { get; set; }
+        public char GenderId { get; set; }
 
         [JsonProperty]
         public DateTime DateOfBirth { get; set; }
 
         [JsonProperty]
-        public string CountryName { get; set; }
+        public string CountryId { get; set; }
 
         [JsonProperty]
         public byte[] Photo { get; set; }

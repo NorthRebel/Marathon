@@ -1,5 +1,6 @@
 ﻿using Marathon.Core.Helpers;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Marathon.Core.Models.Other;
 using Marathon.Core.Services.Interfaces;
 
@@ -14,11 +15,11 @@ namespace Marathon.Core.Services
             _requestProvider = requestProvider;
         }
 
-        public Task<Countries> GetAllAsync()
+        public Task<IEnumerable<Country>> GetAllAsync()
         {
             var uri = UriHelper.CombineUri(GlobalSettings.Instance.AllCountries);
 
-            return _requestProvider.GetAsync<Countries>(uri);
+            return _requestProvider.GetAsync<IEnumerable<Country>>(uri);
         }
     }
 }

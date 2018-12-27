@@ -10,16 +10,10 @@ namespace Marathon.API.Repositories
     internal class RunnerRepository : IRunnerRepository
     {
         private readonly MarathonDbContext _context;
-        private readonly IGenderRepository _genderRepository;
-        private readonly ICountryRepository _countryRepository;
 
-        public RunnerRepository(MarathonDbContext context, 
-            IGenderRepository genderRepository,
-            ICountryRepository countryRepository)
+        public RunnerRepository(MarathonDbContext context)
         {
             _context = context;
-            _genderRepository = genderRepository;
-            _countryRepository = countryRepository;
         }
 
         public int SignUp(RunnerSignUpCredentials credentials)
@@ -45,9 +39,9 @@ namespace Marathon.API.Repositories
             return new Runner
             {
                 UserId = credentials.UserId,
-                GenderId = _genderRepository.GetIdByName(credentials.Gender),
+                GenderId = credentials.GenderId,
                 DateOfBirth = credentials.DateOfBirth,
-                CountryId = _countryRepository.GetIdByName(credentials.CountryName),
+                CountryId = credentials.CountryId,
                 Photo = credentials.Photo
             };
         }
