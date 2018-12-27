@@ -140,6 +140,9 @@
     <Compile Include="Controls\Input\LabelledPasswordBox.xaml.cs">
       <DependentUpon>LabelledPasswordBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Input\LabelledTextBlock.xaml.cs">
+      <DependentUpon>LabelledTextBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Input\LabelledTextBox.xaml.cs">
       <DependentUpon>LabelledTextBox.xaml</DependentUpon>
     </Compile>
@@ -409,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Input\LabelledPasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Input\LabelledTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

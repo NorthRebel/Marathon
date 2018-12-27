@@ -38,49 +38,42 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0"
-                        Name="LeftPanel">
+            <input:LayoutGroup Grid.Column="0"
+                               x:Name="LeftPanel">
                 <!--Email-->
-                <input:LeftEntryControl DataContext="{Binding Email}">
-                    <TextBlock Text="{Binding Value}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Email"
+                                         Text="{Binding Email}"/>
 
                 <!--First name-->
-                <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Text="{Binding Value}"
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Имя"
+                                       Text="{Binding FirstName}"
+                                       TextPlaceholder="Имя"/>
 
                 <!--Last name-->
-                <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBox Text="{Binding Value}"
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Фамилия"
+                                       Text="{Binding LastName}"
+                                       TextPlaceholder="Фамилия"/>
 
                 <!--Gender-->
-                <input:LeftEntryControl DataContext="{Binding Gender}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-                </input:LeftEntryControl>
+                <input:LabelledComboBox Label="Пол"
+                                        Items="{Binding Genders}"
+                                        SelectedItem="{Binding Gender}"/>
 
                 <!--Date of birth-->
-                <input:LeftEntryControl DataContext="{Binding BirthDay}">
-                    <DatePicker SelectedDate="{Binding Value}"/>
-                </input:LeftEntryControl>
+                <input:LabelledDatePicker Label="Дата рождения"
+                                          Date="{Binding BirthDay}"/>
 
                 <!--Country-->
-                <input:LeftEntryControl DataContext="{Binding Country}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-                </input:LeftEntryControl>
+                <input:LabelledComboBox Label="Страна"
+                                        Items="{Binding Countries}"
+                                        SelectedItem="{Binding Country}"/>
 
                 <!--Sign up statuses-->
-                <input:TopEntryControl DataContext="{Binding SignUpStatuses}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-                </input:TopEntryControl>
+                <input:LabelledComboBox Label="Регистрационный статус"
+                                        Items="{Binding SignUpStatuses}"
+                                        SelectedItem="{Binding SignUpStatus}"/>
 
-            </StackPanel>
+            </input:LayoutGroup>
 
             <StackPanel Grid.Column="1">
 
@@ -106,15 +99,11 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Selected file path-->
-                    <input:TopEntryControl
-                        Grid.Column="0"
-                        DataContext="{Binding PhotoPath}">
-                        <TextBox IsReadOnly="True"
-                                 Foreground="{StaticResource GrayBrush}"
-                                 FontStyle="Italic"
-                                 Text="{Binding Value}"
-                                 Tag="Выберите фото"/>
-                    </input:TopEntryControl>
+                    <input:LayoutGroup Grid.Column="0">
+                        <input:LabelledTextBox Label="Фото файл"
+                                               Text="{Binding PhotoPath}"
+                                               TextPlaceholder="Выберите фото"/>
+                    </input:LayoutGroup>
 
                     <Button Grid.Column="1"
                             Content="Открыть"                            
@@ -154,19 +143,17 @@
                                Text="Оставьте эти поля, незаполненными, если вы не хотите изменять пароль"/>
 
                     <!--Content-->
-                    <StackPanel Grid.Row="2">
+                    <input:LayoutGroup Grid.Row="2">
 
                         <!--Password-->
-                        <input:LeftEntryControl DataContext="{Binding Password}">
-                            <PasswordBox Tag="{Binding Label}"/>
-                        </input:LeftEntryControl>
+                        <input:LabelledPasswordBox Label="Пароль"
+                                                   PasswordPlaceholder="Пароль"/>
 
                         <!--Confirm password-->
-                        <input:LeftEntryControl DataContext="{Binding ConfirmPassword}">
-                            <PasswordBox Tag="{Binding Label}"/>
-                        </input:LeftEntryControl>
+                        <input:LabelledPasswordBox Label="Подтверждение пароля"
+                                                   PasswordPlaceholder="Подтверждение пароля"/>
 
-                    </StackPanel>
+                    </input:LayoutGroup>
 
                 </Grid>
 

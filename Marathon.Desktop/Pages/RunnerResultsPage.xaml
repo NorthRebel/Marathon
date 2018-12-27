@@ -31,15 +31,9 @@
         <DockPanel Grid.Row="1">
         
             <!--Runner gender-->
-            <input:LeftEntryControl
-                DockPanel.Dock="Top"
-                DataContext="{Binding Gender}"
-                HorizontalAlignment="Center">
-                
-                <TextBlock Text="{Binding Value}"/>
+            <input:LabelledTextBox Label="Пол"
+                                   Text="{Binding Gender}"/>
 
-            </input:LeftEntryControl>
-        
             <!--Show all results-->
             <Button DockPanel.Dock="Bottom"
                     HorizontalAlignment="Center"

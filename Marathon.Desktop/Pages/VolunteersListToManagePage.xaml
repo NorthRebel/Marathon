@@ -47,42 +47,33 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Sort and filter label-->
-                <TextBlock Grid.Row="0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           HorizontalAlignment="Center"
-                           Text="Сортировка и фильтрация"
-                           FontSize="{StaticResource FontSizeMedium}"/>
+                <controls:MarathonOptionsControl
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Title="Сортировка и фильтрация"
+                    ContentHorizontalAlignment="Center">
 
-                <!--Countries-->
-                <input:LeftEntryControl Grid.Row="1"
-                                        Grid.Column="0"
-                                        DataContext="{Binding Countries}">
+                    <input:LayoutGroup>
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
+                        <!--Countries-->
+                        <input:LabelledComboBox Label="Статус"
+                                                Items="{Binding Countries}"
+                                                SelectedItem="{Binding Country}"/>
 
-                </input:LeftEntryControl>
+                        <!--Genders-->
+                        <input:LabelledComboBox Label="Пол"
+                                                Items="{Binding Genders}"
+                                                SelectedItem="{Binding Gender}"/>
 
-                <!--Genders-->
-                <input:LeftEntryControl Grid.Row="2"
-                                        Grid.Column="0"
-                                        DataContext="{Binding Genders}">
+                        <!--Attributes to sort-->
+                        <input:LabelledComboBox Label="Сортировать по"
+                                                Items="{Binding AttributesToSort}"
+                                                SelectedItem="{Binding AttributeToSort}"/>
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
+                    </input:LayoutGroup>
 
-                </input:LeftEntryControl>
-
-                <!--AttributesToSort-->
-                <input:LeftEntryControl Grid.Row="3"
-                                        Grid.Column="0"
-                                        DataContext="{Binding AttributesToSort}">
-
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-
-                </input:LeftEntryControl>
+                </controls:MarathonOptionsControl>
 
                 <!--Find command-->
                 <Button Grid.Row="1"

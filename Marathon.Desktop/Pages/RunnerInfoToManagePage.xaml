@@ -44,67 +44,49 @@
             </Grid.ColumnDefinitions>
 
             <!--Runner info-->
-            <StackPanel Grid.Column="0">
-
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}"
-                           x:Key="RunnerInfoValue">
-                        <Setter Property="Foreground" Value="{StaticResource GrayBrush}"/>
-                        <Setter Property="TextWrapping" Value="Wrap"/>
-                    </Style>
-                </StackPanel.Resources>
+            <input:LayoutGroup Grid.Column="0">
 
                 <!--Email-->
-                <input:LeftEntryControl DataContext="{Binding Email}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Email"
+                                         Text="{Binding Email}"/>
 
                 <!--First name-->
-                <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Имя"
+                                         Text="{Binding FirstName}"/>
 
                 <!--Last name-->
-                <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Фамилия"
+                                         Text="{Binding LastName}"/>
 
                 <!--Gender-->
-                <input:LeftEntryControl DataContext="{Binding Gender}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Пол"
+                                         Text="{Binding Gender}"/>
 
                 <!--Date of birth-->
-                <input:LeftEntryControl DataContext="{Binding DateOfBirth}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Дата рождения"
+                                         Text="{Binding DateOfBirth}"/>
 
                 <!--Country name-->
-                <input:LeftEntryControl DataContext="{Binding CountryName}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Страна"
+                                         Text="{Binding CountryName}"/>
 
                 <!--Charity organization-->
-                <input:LeftEntryControl DataContext="{Binding CharityOrganization}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Благотворит"
+                                         Text="{Binding CharityOrganization}"/>
 
                 <!--Sponsorship amount-->
-                <input:LeftEntryControl DataContext="{Binding SponsorshipAmount}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Пожертвовано"
+                                         Text="{Binding SponsorshipAmount}"/>
 
                 <!--Selected race kit-->
-                <input:LeftEntryControl DataContext="{Binding SelectedRaceKit}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Выбранный пакет"
+                                         Text="{Binding SelectedRaceKit}"/>
 
                 <!--Selected distance-->
-                <input:LeftEntryControl DataContext="{Binding SelectedDistance}">
-                    <TextBlock Text="{Binding Value}" Style="{StaticResource RunnerInfoValue}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Label="Дистанция"
+                                         Text="{Binding SelectedDistance}"/>
 
-            </StackPanel>
+            </input:LayoutGroup>
 
             <!--Photo-->
             <Image Grid.Column="1"

@@ -39,11 +39,10 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Attributes list to sort-->
-                <input:LeftEntryControl Grid.Column="0"
-                                        DataContext="{Binding AttributesToSort}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-                </input:LeftEntryControl>
+                <input:LabelledComboBox Grid.Column="0"
+                                        Label="Отсортировать"
+                                        Items="{Binding AttributesToSort}"
+                                        SelectedItem="{Binding AttributeToSort}"/>
 
                 <!--Sort charity list-->
                 <Button Grid.Column="1"

@@ -45,18 +45,9 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Selected file to import-->
-                    <input:LeftEntryControl
-                        Grid.Column="0"
-                        DataContext="{Binding FileToImport}">
-
-                        <TextBox VerticalAlignment="Center" 
-                                 Foreground="{StaticResource GrayBrush}" 
-                                 Tag="Выберите файл для загрузки"
-                                 Text="{Binding Value}"
-                                 IsReadOnly="True" 
-                                 FontStyle="Italic"/>
-
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="CSV файл волонтеров"
+                                           Text="{Binding FileToImport}"
+                                           TextPlaceholder="Выберите файл для загрузки"/>
 
                     <!--Open file-->
                     <Button Grid.Column="1"
@@ -137,12 +128,8 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <!--Required field-->
-                                <input:LeftEntryControl DataContext="{Binding}">
-
-                                    <!--Description of requirement-->
-                                    <TextBlock Text="{Binding Value}"/>
-
-                                </input:LeftEntryControl>
+                                <input:LabelledTextBox Label="{Binding Key}"
+                                                       Text="{Binding Value}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

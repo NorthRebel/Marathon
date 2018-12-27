@@ -35,11 +35,6 @@
             <Grid DockPanel.Dock="Top"
                   Margin="30 0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -47,78 +42,62 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!--Marathons-->
-                <input:LeftEntryControl
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    DataContext="{Binding Marathons}">
+                <input:LayoutGroup Grid.Column="0">
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedValue="{Binding Value}"/>
+                    <!--Marathons-->
+                    <input:LabelledComboBox Label="Марафон"
+                                            Items="{Binding Marathons}"
+                                            SelectedItem="{Binding Marathon}"/>
 
-                </input:LeftEntryControl>
+                    <!--Distances-->
+                    <input:LabelledComboBox Label="Дистанция"
+                                            Items="{Binding Distances}"
+                                            SelectedItem="{Binding Distance}"/>
 
-                <!--Distances-->
-                <input:LeftEntryControl
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    DataContext="{Binding Distances}">
+                </input:LayoutGroup>
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
+                <input:LayoutGroup Grid.Column="1">
 
-                </input:LeftEntryControl>
+                    <!--Genders-->
+                    <input:LabelledComboBox Label="Пол"
+                                            Items="{Binding Genders}"
+                                            SelectedItem="{Binding Gender}"/>
 
-                <!--Genders-->
-                <input:LeftEntryControl
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    DataContext="{Binding Genders}"
-                    Margin="30 0 0 0">
+                    <!--Age categories-->
+                    <input:LabelledComboBox Label="Категория"
+                                            Items="{Binding AgeCategories}"
+                                            SelectedItem="{Binding AgeCategory}"/>
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
+                </input:LayoutGroup>
 
-                </input:LeftEntryControl>
+                <Grid Grid.Column="2">
 
-                <!--AgeCategories-->
-                <input:LeftEntryControl
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    DataContext="{Binding AgeCategories}"
-                    Margin="30 0 0 0">
+                    <Grid.RowDefinitions>
+                        <!--Clear condition-->
+                        <RowDefinition Height="*"/>
+                        <!--Execute find condition-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedValue="{Binding Value}"/>
+                    <!--Clear condition-->
+                    <Button Grid.Row="0"
+                            Content="Отмена"
+                            VerticalAlignment="Center"
+                            Command="{Binding ClearCommand}"/>
 
-                </input:LeftEntryControl>
+                    <!--Execute find condition-->
+                    <Button Grid.Row="1"
+                            Content="Поиск"
+                            VerticalAlignment="Center"
+                            Command="{Binding FindCommand}"/>
 
-                <!--Clear condition-->
-                <Button Grid.Row="0"
-                        Grid.Column="2"
-                        Content="Отмена"
-                        VerticalAlignment="Center"
-                        Command="{Binding ClearCommand}"/>
-
-                <!--Execute find condition-->
-                <Button Grid.Row="1"
-                        Grid.Column="2"
-                        Content="Поиск"
-                        VerticalAlignment="Center"
-                        Command="{Binding FindCommand}"/>
+                </Grid>
 
             </Grid>
 
             <!--Common marathon results info-->
             <Grid DockPanel.Dock="Top"
                   Margin="5">
-
-                <Grid.Resources>
-                    <!--Customize controls align-->
-                    <Style TargetType="{x:Type input:LeftEntryControl}">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                    </Style>
-                </Grid.Resources>
 
                 <Grid.ColumnDefinitions>
                     <!--Total runners count-->
@@ -130,31 +109,22 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Total runners count-->
-                <input:LeftEntryControl Grid.Column="0"
-                                        DataContext="{Binding TotalRunnersCount}">
-
-                    <TextBlock Text="{Binding Value}"/>
-
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Grid.Column="0" 
+                                         Label="Всего бегунов"
+                                         Text="{Binding TotalRunnersCount}"/>
 
                 <!--Finished runners count-->
-                <input:LeftEntryControl Grid.Column="1"
-                                        DataContext="{Binding FinishedRunnersCount}">
-
-                    <TextBlock Text="{Binding Value}"/>
-
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Grid.Column="1" 
+                                         Label="Всего бегунов финишировало"
+                                         Text="{Binding FinishedRunnersCount}"/>
 
                 <!--Average time-->
-                <input:LeftEntryControl Grid.Column="2"
-                                        DataContext="{Binding AverageTime}">
-
-                    <TextBlock Text="{Binding Value, Converter={converters:MarathonResultTimeConverter}}"/>
-
-                </input:LeftEntryControl>
+                <input:LabelledTextBlock Grid.Column="2" 
+                                         Label="Среднее время"
+                                         Text="{Binding AverageTime, Converter={converters:MarathonResultTimeConverter}}"/>
 
             </Grid>
-            
+
             <!--Results of marathon-->
             <marathonResults:MarathonResultsListControl
                 HorizontalAlignment="Stretch"
