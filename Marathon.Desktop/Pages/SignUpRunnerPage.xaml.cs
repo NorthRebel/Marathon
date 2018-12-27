@@ -32,6 +32,7 @@ namespace Marathon.Desktop.Pages
         /// <summary>
         /// The secure password
         /// </summary>
-        public SecureString SecurePassword => PasswordText.SecurePassword;
+        /// TODO: Fix password injection
+        public SecureString SecurePassword => null;
     }
 }
