@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Collections.Generic;
+using Marathon.Core.Models.Other;
 
 namespace Marathon.Core.ViewModel.Models
 {
@@ -29,12 +30,12 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// Gender of the user
         /// </summary>
-        string Gender { get; set; }
+        char GenderId { get; set; }
 
         /// <summary>
         /// List of gender to select
         /// </summary>
-        IEnumerable<string> Genders { get; set; }
+        IEnumerable<Gender> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
@@ -54,12 +55,12 @@ namespace Marathon.Core.ViewModel.Models
         /// <summary>
         /// Country name of the user
         /// </summary>
-        string Country { get; set; }
+        string CountryId { get; set; }
 
         /// <summary>
         /// List of countries to select
         /// </summary>
-        IEnumerable<string> Countries { get; set; }
+        IEnumerable<Country> Countries { get; set; }
 
         #endregion
 

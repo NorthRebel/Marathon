@@ -3,6 +3,7 @@ using Marathon.Core.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Marathon.Core.Models.Other;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.PageCaption;
@@ -34,12 +35,12 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public string Gender { get; set; }
+        public char GenderId { get; set; }
 
         /// <summary>
         /// List of gender to select
         /// </summary>
-        public IEnumerable<string> Genders { get; set; }
+        public IEnumerable<Gender> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
@@ -59,12 +60,12 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public string Country { get; set; }
+        public string CountryId { get; set; }
 
         /// <summary>
         /// List of countries to select
         /// </summary>
-        public IEnumerable<string> Countries { get; set; }
+        public IEnumerable<Country> Countries { get; set; }
 
         #endregion
 

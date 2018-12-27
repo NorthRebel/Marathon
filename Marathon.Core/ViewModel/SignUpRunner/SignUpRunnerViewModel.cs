@@ -7,6 +7,7 @@ using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
 using System.Collections.Generic;
+using Marathon.Core.Models.Other;
 using Marathon.Core.Models.Runner;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Models;
@@ -44,12 +45,12 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public string Gender { get; set; }
+        public char GenderId { get; set; }
 
         /// <summary>
         /// List of gender to select
         /// </summary>
-        public IEnumerable<string> Genders { get; set; }
+        public IEnumerable<Gender> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
@@ -69,12 +70,12 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public string Country { get; set; }
+        public string CountryId { get; set; }
 
         /// <summary>
         /// List of countries to select
         /// </summary>
-        public IEnumerable<string> Countries { get; set; }
+        public IEnumerable<Country> Countries { get; set; }
 
         #endregion
 
@@ -126,7 +127,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             try
             {
-                //Country.Items = await countryService.GetAllAsync();
+                Countries = await countryService.GetAllAsync();
             }
             catch (Exception)
             {
@@ -147,7 +148,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             try
             {
-               // Gender.Items = await genderService.GetAllAsync();
+               Genders = await genderService.GetAllAsync();
             }
             catch (Exception)
             {
@@ -244,10 +245,10 @@ namespace Marathon.Core.ViewModel.SignUpRunner
             return runnerService.SignUpAsync(new RunnerSignUpCredentials
             {
                 UserId = userId,
-                Gender = this.Gender,
-                DateOfBirth = (DateTime)BirthDay.Value,
-                CountryName = this.Country,
-                //Photo = 
+                GenderId = this.GenderId,
+                DateOfBirth = BirthDay.Value,
+                CountryId = this.CountryId,
+                Photo = this.Photo
             });
         }
 
