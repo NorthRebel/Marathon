@@ -30,6 +30,9 @@
         <ComboBox Grid.Column="1"
                   ItemsSource="{Binding Items}"
                   SelectedItem="{Binding SelectedItem}"
+                  SelectedValue="{Binding SelectedValue}"
+                  DisplayMemberPath="{Binding DisplayMember}"
+                  SelectedValuePath="{Binding ValueMember}"
                   x:Name="EntryComboBox"/>
 
     </Grid>

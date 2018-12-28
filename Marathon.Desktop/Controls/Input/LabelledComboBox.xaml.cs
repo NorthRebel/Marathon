@@ -37,6 +37,7 @@ namespace Marathon.Desktop.Controls.Input
             DependencyProperty.Register(nameof(Items), typeof(IEnumerable), typeof(LabelledComboBox),
                 new FrameworkPropertyMetadata(default(IEnumerable)));
 
+
         public object SelectedItem
         {
             get => (object)GetValue(SelectedItemProperty);
@@ -46,6 +47,39 @@ namespace Marathon.Desktop.Controls.Input
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(LabelledComboBox),
                 new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+
+        public object SelectedValue
+        {
+            get => (object)GetValue(SelectedValueProperty);
+            set => SetValue(SelectedValueProperty, value);
+        }
+
+        public static readonly DependencyProperty SelectedValueProperty =
+            DependencyProperty.Register(nameof(SelectedValue), typeof(object), typeof(LabelledComboBox),
+                new FrameworkPropertyMetadata(default(object), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        
+        public string DisplayMember
+        {
+            get => (string)GetValue(DisplayMemberProperty);
+            set => SetValue(DisplayMemberProperty, value);
+        }
+
+        public static readonly DependencyProperty DisplayMemberProperty =
+            DependencyProperty.Register(nameof(DisplayMember), typeof(string), typeof(LabelledComboBox), 
+                new FrameworkPropertyMetadata(default(string)));
+
+        
+        public string ValueMember
+        {
+            get => (string)GetValue(ValueMemberProperty);
+            set => SetValue(ValueMemberProperty, value);
+        }
+
+        public static readonly DependencyProperty ValueMemberProperty =
+            DependencyProperty.Register(nameof(ValueMember), typeof(string), typeof(LabelledComboBox), 
+                new FrameworkPropertyMetadata(default(string)));
 
         #endregion
 
