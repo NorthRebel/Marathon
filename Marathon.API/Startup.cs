@@ -121,6 +121,8 @@ namespace Marathon.API
             services.AddTransient<IRunnerRepository, RunnerRepository>();
             services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddTransient<IGenderRepository, GenderRepository>();
+            services.AddTransient<IMarathonRepository, MarathonRepository>();
+            services.AddTransient<IRaceKitRepository, RaceKitRepository>();
         }
     }
 }
