@@ -23,5 +23,17 @@ namespace Marathon.API.Repositories
                 Name = c.Name
             });
         }
+
+        public AboutCharity GetInfoAboutCharity(int id)
+        {
+            var charity = _context.Charities.Single(c => c.Id == id);
+
+            return new AboutCharity
+            {
+                Name = charity.Name,
+                Description = charity.Description,
+                Logo = charity.Logo
+            };
+        }
     }
 }

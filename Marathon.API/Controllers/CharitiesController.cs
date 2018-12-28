@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Marathon.API.Models.Charity;
@@ -24,6 +25,27 @@ namespace Marathon.API.Controllers
             var charities = _charityRepository.GetAll();
 
             return Ok(charities);
+        }
+
+        [HttpGet]
+        [Route("About")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(AboutCharity), (int)HttpStatusCode.OK)]
+        public IActionResult AboutCharity(int id)
+        {
+            if (id <= default(int))
+                return BadRequest();
+
+            try
+            {
+                var aboutCharity = _charityRepository.GetInfoAboutCharity(id);
+
+                return Ok(aboutCharity);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
     }
 }

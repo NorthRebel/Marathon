@@ -20,5 +20,11 @@ namespace Marathon.Core.Services
             var uri = UriHelper.CombineUri(GlobalSettings.Instance.RunnerSignUp);
             return _requestProvider.PostAsync<RunnerSignUpCredentials, int>(uri, credentials, this.GetToken());
         }
+
+        public Task<int> GetId(int userId)
+        {
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.GetRunnerIdRoute(userId));
+            return _requestProvider.GetAsync<int>(uri, this.GetToken());
+        }
     }
 }

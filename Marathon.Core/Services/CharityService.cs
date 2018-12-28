@@ -21,5 +21,12 @@ namespace Marathon.Core.Services
 
             return _requestProvider.GetAsync<IEnumerable<Charity>>(uri);
         }
+
+        public Task<AboutCharity> AboutCharity(int id)
+        {
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.GetAboutCharityRoute(id));
+
+            return _requestProvider.GetAsync<AboutCharity>(uri);
+        }
     }
 }

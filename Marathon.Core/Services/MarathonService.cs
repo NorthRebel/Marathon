@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Marathon.Core.Models.Marathon;
+using Marathon.Core.Services.Extensions;
 using Marathon.Core.Services.Interfaces;
 
 namespace Marathon.Core.Services
@@ -19,7 +20,14 @@ namespace Marathon.Core.Services
         {
             var uri = UriHelper.CombineUri(GlobalSettings.Instance.EventTypes);
 
-            return _requestProvider.GetAsync<IEnumerable<EventType>>(uri);
+            return _requestProvider.GetAsync<IEnumerable<EventType>>(uri, this.GetToken());
+        }
+
+        public Task<int> SignUp(MarathonSignUp signUpCredentials)
+        {
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.SignUpToMarathon);
+
+            return _requestProvider.PostAsync<MarathonSignUp, int>(uri, signUpCredentials, this.GetToken());
         }
     }
 }

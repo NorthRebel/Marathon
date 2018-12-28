@@ -9,5 +9,8 @@ namespace Marathon.Core.Models.Marathon
 
         [JsonProperty]
         public string Name { get; set; }
+
+        [JsonProperty]
+        public decimal Cost { get; set; }
     }
 }

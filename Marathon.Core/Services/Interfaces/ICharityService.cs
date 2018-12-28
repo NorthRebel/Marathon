@@ -7,5 +7,7 @@ namespace Marathon.Core.Services.Interfaces
     public interface ICharityService : IService
     {
         Task<IEnumerable<Charity>> GetAllAsync();
+
+        Task<AboutCharity> AboutCharity(int id);
     }
 }

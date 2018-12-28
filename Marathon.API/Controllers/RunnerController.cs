@@ -38,5 +38,15 @@ namespace Marathon.API.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpGet]
+        [Route("Id")]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
+        public IActionResult GetId(int userId)
+        {
+            int runnerId = _runnerRepository.GetId(userId);
+
+            return Ok(runnerId);
+        }
     }
 }
