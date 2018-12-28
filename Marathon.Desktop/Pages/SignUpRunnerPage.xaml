@@ -45,14 +45,14 @@
                                        TextPlaceholder="Email"/>
 
                 <!--Password-->
-                <input:LabelledPasswordBox Label="Пароль"
-                                           x:Name="MainPasswordBox"
-                                           PasswordPlaceholder="Пароль"/>
+                <input:LabelledTextBox Label="Пароль"
+                                       Text="{Binding Password}"
+                                       TextPlaceholder="Пароль"/>
 
                 <!--Confirm password-->
-                <input:LabelledPasswordBox Label="Повторите пароль"
-                                           x:Name="ConfirmPasswordBox"
-                                           PasswordPlaceholder="Повторите пароль"/>
+                <input:LabelledTextBox Label="Повторите пароль"
+                                       Text="{Binding ConfirmPassword}"
+                                       TextPlaceholder="Повторите пароль"/>
                 <!--First name-->
                 <input:LabelledTextBox Label="Имя"
                                        Text="{Binding FirstName}"

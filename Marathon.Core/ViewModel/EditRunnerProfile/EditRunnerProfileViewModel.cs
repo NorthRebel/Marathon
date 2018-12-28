@@ -23,6 +23,16 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         public string Email { get; set; }
 
         /// <summary>
+        /// The password of the user
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Confirmation of <see cref="Password"/>
+        /// </summary>
+        public string ConfirmPassword { get; set; }
+
+        /// <summary>
         /// First name of the user
         /// </summary>
         public string FirstName { get; set; }

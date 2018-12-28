@@ -22,17 +22,11 @@ namespace Marathon.Desktop.Pages
     /// <summary>
     /// Логика взаимодействия для SignUpRunnerPage.xaml
     /// </summary>
-    public partial class SignUpRunnerPage : BasePage<SignUpRunnerViewModel>, IHavePassword
+    public partial class SignUpRunnerPage : BasePage<SignUpRunnerViewModel>
     {
         public SignUpRunnerPage()
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// The secure password
-        /// </summary>
-        /// TODO: Fix password injection
-        public SecureString SecurePassword => null;
     }
 }

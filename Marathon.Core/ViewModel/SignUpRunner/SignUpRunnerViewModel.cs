@@ -3,7 +3,6 @@ using Validar;
 using System.IO;
 using Marathon.Core.Models;
 using System.Windows.Input;
-using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
 using System.Collections.Generic;
@@ -31,6 +30,16 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         /// The email of the user
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// The password of the user
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Confirmation of <see cref="Password"/>
+        /// </summary>
+        public string ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user
@@ -201,7 +210,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         {
             try
             {
-                UserInfo newUser = await SignUpUserAsync((password as IHavePassword).SecurePassword.Unsecure());
+                UserInfo newUser = await SignUpUserAsync();
 
                 await SaveUserInfoAsync(newUser);
 
@@ -223,14 +232,14 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
         }
 
-        private Task<UserInfo> SignUpUserAsync(string password)
+        private Task<UserInfo> SignUpUserAsync()
         {
             var userService = Kernel.Get<IUserService>();
 
             return userService.SignUpAsync(new UserSignUpCredentials
             {
                 Email = this.Email,
-                Password = password,
+                Password = this.Password,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
                 // TODO: Create linked enumeration!

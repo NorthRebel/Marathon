@@ -146,12 +146,14 @@
                     <input:LayoutGroup Grid.Row="2">
 
                         <!--Password-->
-                        <input:LabelledPasswordBox Label="Пароль"
-                                                   PasswordPlaceholder="Пароль"/>
+                        <input:LabelledTextBox Label="Пароль"
+                                               Text="{Binding Password}"
+                                               TextPlaceholder="Пароль"/>
 
                         <!--Confirm password-->
-                        <input:LabelledPasswordBox Label="Подтверждение пароля"
-                                                   PasswordPlaceholder="Подтверждение пароля"/>
+                        <input:LabelledTextBox Label="Повторите пароль"
+                                               Text="{Binding ConfirmPassword}"
+                                               TextPlaceholder="Повторите пароль"/>
 
                     </input:LayoutGroup>
 

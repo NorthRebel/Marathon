@@ -90,7 +90,6 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
-    <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
     </Compile>
@@ -136,9 +135,6 @@
     </Compile>
     <Compile Include="Controls\Input\LabelledDatePicker.xaml.cs">
       <DependentUpon>LabelledDatePicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Input\LabelledPasswordBox.xaml.cs">
-      <DependentUpon>LabelledPasswordBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Input\LabelledTextBlock.xaml.cs">
       <DependentUpon>LabelledTextBlock.xaml</DependentUpon>
@@ -408,10 +404,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Input\LabelledDatePicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Input\LabelledPasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

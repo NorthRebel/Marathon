@@ -45,14 +45,9 @@ namespace Marathon.Core.ViewModel.ManageUser
         public string LastName { get; set; }
 
         /// <summary>
-        /// The secured password string of the user
+        /// The password of the user
         /// </summary>
-        public IHavePassword Password { get; set; }
-
-        /// <summary>
-        /// The secured password string of the user to confirm this
-        /// </summary>
-        public IHavePassword ConfirmPassword { get; set; }
+        public string Password { get; set; }
 
         #endregion
 

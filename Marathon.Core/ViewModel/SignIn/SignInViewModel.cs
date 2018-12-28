@@ -1,13 +1,12 @@
 ﻿using System;
+using Validar;
 using System.Windows.Input;
-using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
-using Validar;
 
 namespace Marathon.Core.ViewModel.SignIn
 {
@@ -25,6 +24,11 @@ namespace Marathon.Core.ViewModel.SignIn
         /// The email of the user
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// The password of the user
+        /// </summary>
+        public string Password { get; set; }
 
         #endregion
 
@@ -49,7 +53,7 @@ namespace Marathon.Core.ViewModel.SignIn
             PageCaption = new PageCaptionViewModel("Форма авторизации",
                 "Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль");
 
-            SignInCommand = new RelayCommand(async (password) => await SignInAsync(password));
+            SignInCommand = new RelayCommand(async o => await SignInAsync());
             CancelCommand = new RelayCommand(x => Cancel());
         }
 
@@ -68,7 +72,7 @@ namespace Marathon.Core.ViewModel.SignIn
         /// <summary>
         /// Attempts to log the user in
         /// </summary>
-        private async Task SignInAsync(object password)
+        private async Task SignInAsync()
         {
             if (!IsModelValid)
             {
@@ -83,7 +87,7 @@ namespace Marathon.Core.ViewModel.SignIn
                 UserInfo result = await userService.SignInAsync(new UserSignInCredentials
                 {
                     Email = Email,
-                    Password = (password as IHavePassword).SecurePassword.Unsecure()
+                    Password = Password
                 });
 
                 if (result == null)

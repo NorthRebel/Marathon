@@ -43,9 +43,9 @@
                                            Text="{Binding Email}"
                                            TextPlaceholder="Введите свой email"/>
 
-                    <input:LabelledPasswordBox Label="Пароль"
-                                               x:Name="PasswordBox"
-                                               PasswordPlaceholder="Введите свой пароль"/>
+                    <input:LabelledTextBox Label="Пароль"
+                                           Text="{Binding Password}"
+                                           TextPlaceholder="Введите свой пароль"/>
 
                 </input:LayoutGroup>
 

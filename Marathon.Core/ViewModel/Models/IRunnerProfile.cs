@@ -18,6 +18,16 @@ namespace Marathon.Core.ViewModel.Models
         string Email { get; set; }
 
         /// <summary>
+        /// The password of the user
+        /// </summary>
+        string Password { get; set; }
+
+        /// <summary>
+        /// Confirmation of <see cref="Password"/>
+        /// </summary>
+        string ConfirmPassword { get; set; }
+
+        /// <summary>
         /// First name of the user
         /// </summary>
         string FirstName { get; set; }

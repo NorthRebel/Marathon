@@ -21,16 +21,11 @@ namespace Marathon.Desktop.Pages
     /// <summary>
     /// Interaction logic for EditRunnerProfilePage.xaml
     /// </summary>
-    public partial class EditRunnerProfilePage : BasePage<EditRunnerProfileViewModel>, IHavePassword
+    public partial class EditRunnerProfilePage : BasePage<EditRunnerProfileViewModel>
     {
         public EditRunnerProfilePage()
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// The secure password
-        /// </summary>
-        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }
