@@ -47,14 +47,28 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Sort and filter label-->
-                <controls:MarathonOptionsControl
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Grid.RowSpan="3"
-                    Title="Сортировка и фильтрация"
-                    ContentHorizontalAlignment="Center">
+                <Grid Grid.Column="0"
+                      Grid.Row="0"
+                      Grid.RowSpan="4">
 
-                    <input:LayoutGroup>
+                    <Grid.RowDefinitions>
+                        <!--Title-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Content-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title-->
+                    <TextBlock Grid.Row="0"
+                               FontSize="{StaticResource FontSizeMedium}"
+                               FontFamily="{StaticResource TitleFont}"
+                               Foreground="{StaticResource GrayBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 10"
+                               Text="Информация о Спонсоре"/>
+
+                    <input:LayoutGroup Grid.Row="1">
 
                         <!--Countries-->
                         <input:LabelledComboBox Label="Статус"
@@ -73,7 +87,7 @@
 
                     </input:LayoutGroup>
 
-                </controls:MarathonOptionsControl>
+                    </Grid>
 
                 <!--Find command-->
                 <Button Grid.Row="1"
@@ -95,10 +109,14 @@
 
                 <!--Import label-->
                 <TextBlock Grid.Row="0"
-                           Grid.Column="2" 
+                           Grid.Column="2"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
                            HorizontalAlignment="Center"
-                           Text="Загрузка"
-                           FontSize="{StaticResource FontSizeMedium}"/>
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Загрузка"/>
 
                 <!--Import volunteers-->
                 <Button Grid.Row="1"

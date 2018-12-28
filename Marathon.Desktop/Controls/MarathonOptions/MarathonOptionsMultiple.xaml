@@ -9,6 +9,7 @@
 
     <custom:ListBox ItemsSource="{Binding ItemsSource}"
                     SelectionMode="Multiple"
+                    Background="Transparent"
                     SelectedItemsList="{Binding SelectedItems}"/>
 
 </UserControl>

@@ -35,12 +35,28 @@
             </Grid.ColumnDefinitions>
 
             <!--Sponsor information-->
-            <controls:MarathonOptionsControl
-                Grid.Column="0"
-                ContentHorizontalAlignment="Stretch"
-                Title="Информация о Спонсоре">
+            <Grid Grid.Column="0">
 
-                <StackPanel DataContext="{Binding SponsorInfo}">
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Content-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Информация о Спонсоре"/>
+
+                
+                <StackPanel Grid.Row="1" 
+                            DataContext="{Binding SponsorInfo}">
 
                     <!--Name-->
                     <input:LabelledTextBox Label="Ваше имя"
@@ -74,18 +90,33 @@
 
                 </StackPanel>
 
-            </controls:MarathonOptionsControl>
+            </Grid>
 
             <!--Runner charity and amount-->
             <DockPanel Grid.Column="1">
 
                 <!--Runner charity-->
-                <controls:MarathonOptionsControl
-                    DockPanel.Dock="Top"
-                    ContentHorizontalAlignment="Center"
-                    Title="Благотворительность">
+                <Grid DockPanel.Dock="Top">
 
-                    <Grid DataContext="{Binding RunnerCharity}">
+                    <Grid.RowDefinitions>
+                        <!--Title-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Content-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title-->
+                    <TextBlock Grid.Row="0"
+                               FontSize="{StaticResource FontSizeMedium}"
+                               FontFamily="{StaticResource TitleFont}"
+                               Foreground="{StaticResource GrayBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 10"
+                               Text="Благотворительность"/>
+
+                    <Grid Grid.Row="1" 
+                          DataContext="{Binding RunnerCharity}">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -94,6 +125,7 @@
 
                         <!--Сharity name-->
                         <TextBlock Grid.Column="0"
+                                   TextAlignment="Center"
                                    Text="{Binding CharityName}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Stretch"/>
@@ -105,14 +137,30 @@
 
                     </Grid>
 
-                </controls:MarathonOptionsControl>
+                </Grid>
 
                 <!--Amount-->
-                <controls:MarathonOptionsControl
-                    ContentHorizontalAlignment="Center"
-                    Title="Сумма пожертвования">
+                <Grid>
 
-                    <Grid DataContext="{Binding SponsorshipAmount}">
+                    <Grid.RowDefinitions>
+                        <!--Title-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Content-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title-->
+                    <TextBlock Grid.Row="0"
+                               FontSize="{StaticResource FontSizeMedium}"
+                               FontFamily="{StaticResource TitleFont}"
+                               Foreground="{StaticResource GrayBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 10"
+                               Text="Сумма пожертвования"/>
+
+                    <Grid Grid.Row="1" 
+                          DataContext="{Binding SponsorshipAmount}">
 
                         <Grid.RowDefinitions>
                             <!--Amount label-->
@@ -194,7 +242,7 @@
 
                     </Grid>
 
-                </controls:MarathonOptionsControl>
+                </Grid>
 
             </DockPanel>
         </Grid>

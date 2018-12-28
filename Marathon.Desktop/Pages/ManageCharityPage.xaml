@@ -86,10 +86,27 @@
                 </Grid>
 
                 <!--Logo-->
-                <controls:MarathonOptionsControl
-                    Title="Текущий логотип">
+                <Grid HorizontalAlignment="Center">
+
+                    <Grid.RowDefinitions>
+                        <!--Title-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Content-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title-->
+                    <TextBlock Grid.Row="0"
+                               FontSize="{StaticResource FontSizeMedium}"
+                               FontFamily="{StaticResource TitleFont}"
+                               Foreground="{StaticResource GrayBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 10"
+                               Text="Регистрационный взнос"/>
 
                     <Border
+                        Grid.Row="1"
                         MaxWidth="80"
                         MaxHeight="80"
                         BorderThickness="1"
@@ -102,7 +119,7 @@
 
                     </Border>
 
-                </controls:MarathonOptionsControl>
+                </Grid>
 
             </DockPanel>
 

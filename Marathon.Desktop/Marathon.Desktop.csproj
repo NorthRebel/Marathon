@@ -155,9 +155,6 @@
     <Compile Include="Controls\Inventory\Report\ReportListControl.xaml.cs">
       <DependentUpon>ReportListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
-      <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MarathonOptions\MarathonOptionsMultiple.xaml.cs">
       <DependentUpon>MarathonOptionsMultiple.xaml</DependentUpon>
     </Compile>
@@ -428,10 +425,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Inventory\Report\ReportListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MarathonOptions\MarathonOptionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
