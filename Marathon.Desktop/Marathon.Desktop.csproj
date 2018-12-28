@@ -200,6 +200,9 @@
       <DependentUpon>AboutCharityDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\BaseDialogUserControl.cs" />
+    <Compile Include="Dialogs\ConfirmMessageBox.xaml.cs">
+      <DependentUpon>ConfirmMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\CoordinatorsContactsDialog.xaml.cs">
       <DependentUpon>CoordinatorsContactsDialog.xaml</DependentUpon>
     </Compile>
@@ -477,6 +480,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\AboutCharityDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ConfirmMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

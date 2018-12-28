@@ -11,7 +11,7 @@
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800"
-             DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
+             d:DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
     <Grid>
         <Grid.RowDefinitions>
             <!--Caption and description-->
