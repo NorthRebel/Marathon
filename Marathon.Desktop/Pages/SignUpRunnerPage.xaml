@@ -10,7 +10,6 @@
              xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpRunner;assembly=Marathon.Core"
              mc:Ignorable="d"
-             x:Name="Page"
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
 
@@ -146,8 +145,7 @@
                     Width="80"
                     HorizontalAlignment="Left"
                     Content="Регистрация"
-                    Command="{Binding SignUpCommand}"
-                    CommandParameter="{Binding ElementName=Page}"/>
+                    Command="{Binding SignUpCommand}"/>
 
         </Grid>
     </Grid>

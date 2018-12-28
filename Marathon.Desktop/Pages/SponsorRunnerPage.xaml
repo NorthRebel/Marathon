@@ -188,8 +188,7 @@
                                     Content="Заплатить"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Bottom"
-                                    Command="{Binding ConfirmCommand}"
-                                    CommandParameter="{Binding ElementName=Page}"/>
+                                    Command="{Binding ConfirmCommand}"/>
 
                         </Grid>
 
