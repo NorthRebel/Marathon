@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Controls.Input"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             x:Name="Parent" Validation.ErrorTemplate="{x:Null}">
 
     <Grid x:Name="Root"
-          Margin="5 10">
+          Margin="5 10"
+          DataContext="{Binding ElementName=Parent, ValidatesOnDataErrors=True}">
 
         <Grid.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
@@ -30,7 +32,7 @@
         <ComboBox Grid.Column="1"
                   ItemsSource="{Binding Items}"
                   SelectedItem="{Binding SelectedItem}"
-                  SelectedValue="{Binding SelectedValue}"
+                  SelectedValue="{Binding SelectedValue, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                   DisplayMemberPath="{Binding DisplayMember}"
                   SelectedValuePath="{Binding ValueMember}"
                   x:Name="EntryComboBox"/>
