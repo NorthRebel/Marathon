@@ -21,6 +21,7 @@
     <FontFamily x:Key="TitleFont">pack://appliction;,,,/Fonts/open-sans/#OpenSans-Semibold</FontFamily>
     <FontFamily x:Key="FontAwesome">pack://appliction;,,,/Fonts/#FontAwesome</FontFamily>
     <media:FontFamily x:Key="AlternateFont">Arial</media:FontFamily>
+    <BitmapImage x:Key="InfoIcon" UriSource="../Images/Info.png" />
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
         <Setter Property="FontFamily" Value="{StaticResource MainFont}" />
