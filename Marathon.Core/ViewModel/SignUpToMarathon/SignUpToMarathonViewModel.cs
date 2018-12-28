@@ -1,12 +1,13 @@
 ﻿using System;
+using Validar;
 using Marathon.Core.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using Marathon.Core.Models.User;
 using System.Collections.Generic;
 using Marathon.Core.Models.RaceKit;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.Models.Marathon;
-using Marathon.Core.Models.User;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
@@ -18,8 +19,14 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
     /// <summary>
     /// The view model for a SignUpToMarathon page
     /// </summary>
+    [InjectValidation]
     public class SignUpToMarathonViewModel : SignedInViewModel
     {
+        /// <summary>
+        /// Check validation for current and child models
+        /// </summary>
+        public override bool IsModelValid => base.IsModelValid && SponsorshipDetails.IsModelValid;
+        
         #region Private members
 
         private decimal _sponsorshipAmount;
@@ -229,7 +236,7 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
                 RaceKitOptionId = SelectedRaceKit.Id,
                 EventTypeId = SelectedMarathonType.Id,
                 Cost = PaymentDetail.Payment,
-                SponsorshipTarget = SponsorshipDetails.SponsorshipAmount
+                SponsorshipTarget = SponsorshipDetails.SponsorshipAmount.Value
             };
         }
 

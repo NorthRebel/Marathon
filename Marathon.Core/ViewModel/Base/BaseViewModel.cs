@@ -22,7 +22,7 @@ namespace Marathon.Core.ViewModel.Base
         /// <summary>
         /// Flag that indicates is model doesn't have validation errors
         /// </summary>
-        protected bool IsModelValid => !((ValidationTemplate) _validationTemplate).HasErrors;
+        public virtual bool IsModelValid => !((ValidationTemplate) _validationTemplate).HasErrors;
 
         protected BaseViewModel()
         {

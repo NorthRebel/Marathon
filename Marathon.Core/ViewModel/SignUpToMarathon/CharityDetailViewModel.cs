@@ -1,4 +1,5 @@
 ﻿using System;
+using Validar;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
     using Kernel = IoC.IoC;
 
-    public class CharityDetailViewModel
+    [InjectValidation]
+    public class CharityDetailViewModel : BaseViewModel
     {
         #region Properties
 

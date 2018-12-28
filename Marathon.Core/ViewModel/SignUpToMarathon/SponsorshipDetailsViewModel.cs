@@ -1,4 +1,5 @@
 ﻿using System;
+using Validar;
 using Marathon.Core.ViewModel.Base;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
@@ -7,11 +8,17 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
     /// <summary>
     /// The view model for a sponsorship details part of SignUpToMarathon page
     /// </summary>
+    [InjectValidation]
     public class SponsorshipDetailsViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Check validation for current and child models
+        /// </summary>
+        public override bool IsModelValid => base.IsModelValid && CharityDetail.IsModelValid;
+
         #region Private members
 
-        private decimal _sponsorshipAmount;
+        private decimal? _sponsorshipAmount;
 
         #endregion
 
@@ -30,14 +37,14 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// <summary>
         /// Sponsorship amount for charity organization
         /// </summary>
-        public decimal SponsorshipAmount
+        public decimal? SponsorshipAmount
         {
             get => _sponsorshipAmount;
             set
             {
                 _sponsorshipAmount = value;
                 OnPropertyChanged();
-                SponsorshipAmountUpdated?.Invoke(this, _sponsorshipAmount);
+                SponsorshipAmountUpdated?.Invoke(this, _sponsorshipAmount ?? 0);
             }
         }
 
