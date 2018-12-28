@@ -1,4 +1,4 @@
-﻿using Marathon.Core.ViewModel.Input;
+﻿using System.Collections.Generic;
 
 namespace Marathon.Core.ViewModel.Dialogs.Design
 {
@@ -28,14 +28,8 @@ namespace Marathon.Core.ViewModel.Dialogs.Design
 
             Contacts = new[]
             {
-                new EntryViewModel<string>("Телефон")
-                {
-                    Value = "+55 11 9988 7766"
-                },
-                new EntryViewModel<string>("Email")
-                {
-                    Value = "+coordinators@marathonskills.org"
-                },
+                new KeyValuePair<string, string>("Телефон","+55 11 9988 7766"),
+                new KeyValuePair<string, string>("Email","coordinators@marathonskills.org")
             };
         }
 

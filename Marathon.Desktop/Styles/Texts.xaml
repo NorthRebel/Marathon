@@ -4,89 +4,47 @@
 					xmlns:Props="clr-namespace:Marathon.Desktop.AttachedProperties"
 					xmlns:Converters="clr-namespace:Marathon.Desktop.ValueConverters">
 
-	<!--PasswordBox with placeholder-->
-	<Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}">
+    <!--TextBox with placeholder-->
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
 
-		<Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
 
-		<Setter Property="Props:MonitorPasswordProperty.Value"  Value="True"/>
+        <!--Template for control if field has validation errors-->
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
 
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <DockPanel LastChildFill="true">
+                        <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                                ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                            </TextBlock>
+                        </Border>
+                        <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                            <Border BorderBrush="red" BorderThickness="1" />
+                        </AdornedElementPlaceholder>
+                    </DockPanel>
 
-					<Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
-						<Border x:Name="border" 
-							BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}"
-							Background="{TemplateBinding Background}"
-							SnapsToDevicePixels="True"
-							CornerRadius="5">
-							<ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-						</Border>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
 
-						<TextBlock IsHitTestVisible="False"
-								   Text="{TemplateBinding Tag}"
-								   x:Name="placeholder"
-								   FontFamily="{TemplateBinding FontFamily}"
-								   FontSize="{TemplateBinding FontSize}"
-								   Padding="{TemplateBinding Padding}"
-								   Foreground="{StaticResource GrayBrush}"
-								   FontStyle="Italic"
-								   Margin="3 0 0 0"
-								   Visibility="{TemplateBinding Props:HasTextProperty.Value, Converter={Converters:BooleanToVisibilityConverter}, ConverterParameter=True}"
-								   VerticalAlignment="Center"/>
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
+                    <Grid>
 
-	<!--TextBox with placeholder-->
-	<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
-
-		<Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
-
-		<!--Template for control if field has validation errors-->
-		<Setter Property="Validation.ErrorTemplate">
-			<Setter.Value>
-				<ControlTemplate>
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-
-						<AdornedElementPlaceholder Grid.Column="0"/>
-
-						<TextBlock Grid.Column="1"
-								   Foreground="Red"
-								   HorizontalAlignment="Right"
-						           Text="{StaticResource ErrorIcon}"
-                                   FontSize="{StaticResource FontSizeLarge}"/>
-
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type TextBoxBase}">
-
-					<Grid>
-
-						<Border x:Name="border" 
+                        <Border x:Name="border" 
 								BorderBrush="{TemplateBinding BorderBrush}" 
 								BorderThickness="{TemplateBinding BorderThickness}"
 								Background="{TemplateBinding Background}"
 								SnapsToDevicePixels="True"
 								CornerRadius="5">
-							<ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-						</Border>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
 
-						<TextBlock IsHitTestVisible="False"
+                        <TextBlock IsHitTestVisible="False"
 								   Text="{TemplateBinding Tag}"
 								   x:Name="placeholder"
 								   FontFamily="{TemplateBinding FontFamily}"
@@ -97,33 +55,33 @@
 								   Margin="3 0 0 0"
 								   VerticalAlignment="Center">
 
-							<TextBlock.Style>
-								<Style TargetType="{x:Type TextBlock}">
-									<Setter Property="Visibility" Value="Collapsed" />
-									<Style.Triggers>
-										<DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
-											<Setter Property="Visibility" Value="Visible" />
-										</DataTrigger>
-									</Style.Triggers>
-								</Style>
-							</TextBlock.Style>
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
 
-						</TextBlock>
+                        </TextBlock>
 
-					</Grid>
+                    </Grid>
 
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
-		<!--Show validations errors in tooltip of control-->
-		<Style.Triggers>
-			<Trigger Property="Validation.HasError" Value="True">
-				<Setter Property="BorderBrush" Value="Red"/>
-				<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
-			</Trigger>
-		</Style.Triggers>
+        <!--Show validations errors in tooltip of control-->
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
 
-	</Style>
+    </Style>
 
 </ResourceDictionary>

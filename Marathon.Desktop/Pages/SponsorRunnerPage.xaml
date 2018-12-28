@@ -7,8 +7,6 @@
              xmlns:local="clr-namespace:Marathon.Desktop.Pages"
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
              xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
-             xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
-             xmlns:Props="clr-namespace:Marathon.Desktop.AttachedProperties"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SponsorRunner;assembly=Marathon.Core"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SponsorRunner.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
@@ -40,65 +38,41 @@
             <controls:MarathonOptionsControl
                 Grid.Column="0"
                 ContentHorizontalAlignment="Stretch"
-                DataContext="{Binding SponsorInfo}">
+                Title="Информация о Спонсоре">
 
-                <StackPanel HorizontalAlignment="Stretch">
+                <StackPanel DataContext="{Binding SponsorInfo}">
 
                     <!--Name-->
-                    <input:LeftEntryControl DataContext="{Binding Name}">
-                        <TextBox Text="{Binding Value}"
-                                 Tag="Ваше имя"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="Ваше имя"
+                                           Text="{Binding Name}"
+                                           TextPlaceholder="Ваше имя"/>
 
                     <!--Runner-->
-                    <input:LeftEntryControl DataContext="{Binding Runner}">
-                        <ComboBox ItemsSource="{Binding Items}"
-                                  SelectedItem="{Binding Value}"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledComboBox Label="Бегун"
+                                            Items="{Binding Runners}"
+                                            SelectedItem="{Binding SelectedRunner}"/>
 
                     <!--Card holder-->
-                    <input:LeftEntryControl DataContext="{Binding CardHolder}">
-                        <TextBox Text="{Binding Value}"
-                                 Tag="Владелец карты"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="Карта"
+                                           Text="{Binding CardHolder}"
+                                           TextPlaceholder="Владелец карты"/>
 
                     <!--Card number-->
-                    <input:LeftEntryControl DataContext="{Binding CardNumber}">
-                        <TextBox Text="{Binding Value}"
-                                 Tag="XXXX XXXX XXXX XXXX"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="Номер карты"
+                                           Text="{Binding CardNumber}"
+                                           TextPlaceholder="XXXX XXXX XXXX XXXX"/>
 
                     <!--Card validity-->
-                    <input:LeftEntryControl DataContext="{Binding CardValidity}">
-
-                        <StackPanel Orientation="Horizontal">
-
-                            <!--TODO: Format date by fields-->
-                            <!--Month-->
-                            <TextBox Text="{Binding Value}" 
-                                     Tag="XX"
-                                     Width="35"/>
-
-                            <!--Year-->
-                            <TextBox Text="{Binding Value}"
-                                     Tag="XXXX"
-                                     Width="60"
-                                     Margin="10 0 0 0"/>
-
-                        </StackPanel>
-
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="Срок действия"
+                                           Text="{Binding CardValidity}"
+                                           TextPlaceholder="XX XXXX"/>
 
                     <!--Card CVC code-->
-                    <input:LeftEntryControl DataContext="{Binding CardCVCCode}">
-                        <TextBox Tag="XXX"
-                                 Text="{Binding Value}"
-                                 Width="45"
-                                 HorizontalAlignment="Left"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="CVC"
+                                           Text="{Binding CardCVCCode}"
+                                           TextPlaceholder="XXX"/>
 
                 </StackPanel>
-
 
             </controls:MarathonOptionsControl>
 
@@ -109,9 +83,9 @@
                 <controls:MarathonOptionsControl
                     DockPanel.Dock="Top"
                     ContentHorizontalAlignment="Center"
-                    DataContext="{Binding RunnerCharity}">
+                    Title="Благотворительность">
 
-                    <Grid>
+                    <Grid DataContext="{Binding RunnerCharity}">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -136,9 +110,9 @@
                 <!--Amount-->
                 <controls:MarathonOptionsControl
                     ContentHorizontalAlignment="Center"
-                    DataContext="{Binding SponsorshipAmount}">
+                    Title="Сумма пожертвования">
 
-                    <Grid>
+                    <Grid DataContext="{Binding SponsorshipAmount}">
 
                         <Grid.RowDefinitions>
                             <!--Amount label-->

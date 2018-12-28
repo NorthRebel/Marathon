@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.Dialogs
 {
@@ -9,8 +8,8 @@ namespace Marathon.Core.ViewModel.Dialogs
     public class AboutActivityLevelsDialogViewModel : BaseDialogViewModel
     {
         /// <summary>
-        /// Activity levels with description
+        /// Activity levels with description where Key is name, Value - description
         /// </summary>
-        public IEnumerable<EntryViewModel<string>> ActivityLevels { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> ActivityLevels { get; set; }
     }
 }

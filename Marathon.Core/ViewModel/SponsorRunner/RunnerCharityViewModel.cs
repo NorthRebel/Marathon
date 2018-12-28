@@ -2,14 +2,13 @@
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Dialogs.Design;
-using Marathon.Core.ViewModel.MarathonOptions;
 
 namespace Marathon.Core.ViewModel.SponsorRunner
 {
     /// <summary>
     /// The view model for a selected runner charity of SponsorRunner page
     /// </summary>
-    public class RunnerCharityViewModel : OptionsViewModel
+    public class RunnerCharityViewModel : BaseViewModel
     {
         #region Public Properties
 

@@ -21,16 +21,11 @@ namespace Marathon.Desktop.Pages
     /// <summary>
     /// Interaction logic for ManageUserPage.xaml
     /// </summary>
-    public partial class ManageUserPage : BasePage<ManageUserViewModel>, IHavePassword
+    public partial class ManageUserPage : BasePage<ManageUserViewModel>
     {
         public ManageUserPage()
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// The secure password
-        /// </summary>
-        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.SignUpRunner
 {
@@ -10,31 +9,16 @@ namespace Marathon.Core.ViewModel.SignUpRunner
     {
         public SignUpRunnerViewModelValidator()
         {
-            RuleFor(x => x.Email).SetValidator(new EmailValidator());
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .EmailAddress()
+                .WithMessage("Строка не соответствует шаблону \"user@mail.com\"");
 
-            RuleFor(x => x.FirstName).SetValidator(new NameValidator());
+            RuleFor(x => x.FirstName)
+                .NotEmpty();
 
-            RuleFor(x => x.LastName).SetValidator(new NameValidator());
-        }
-        
-        private class EmailValidator : AbstractValidator<EntryViewModel<string>>
-        {
-            public EmailValidator()
-            {
-                RuleFor(x => x.Value)
-                    .NotEmpty()
-                    .EmailAddress()
-                    .WithMessage("Строка не соответствует шаблону \"user@mail.com\"");
-            }
-        }
-
-        private class NameValidator : AbstractValidator<EntryViewModel<string>>
-        {
-            public NameValidator()
-            {
-                RuleFor(x => x.Value)
-                    .NotEmpty();
-            }
+            RuleFor(x => x.LastName)
+                .NotEmpty();
         }
     }
 }

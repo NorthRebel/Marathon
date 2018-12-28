@@ -27,26 +27,17 @@
             </Grid.ColumnDefinitions>
 
             <!--Marathons-->
-            <input:LeftEntryControl
-                Grid.Column="0"
-                Margin="10"
-                DataContext="{Binding Marathons}">
+            <input:LabelledComboBox Grid.Column="0"
+                                    Label="Марафон"
+                                    Items="{Binding Marathons}"
+                                    SelectedItem="{Binding Marathon}"/>
 
-                <ComboBox ItemsSource="{Binding Items}"
-                          SelectedItem="{Binding Value}"/>
-
-            </input:LeftEntryControl>
 
             <!--Distances-->
-            <input:LeftEntryControl
-                Grid.Column="1"
-                Margin="10"
-                DataContext="{Binding Distances}">
-
-                <ComboBox ItemsSource="{Binding Items}"
-                          SelectedItem="{Binding Value}"/>
-
-            </input:LeftEntryControl>
+            <input:LabelledComboBox Grid.Column="1"
+                                    Label="Дистанция"
+                                    Items="{Binding Distances}"
+                                    SelectedItem="{Binding Distance}"/>
 
         </Grid>
 

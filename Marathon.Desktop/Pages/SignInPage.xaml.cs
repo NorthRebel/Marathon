@@ -22,16 +22,11 @@ namespace Marathon.Desktop.Pages
     /// <summary>
     /// Логика взаимодействия для SignInPage.xaml
     /// </summary>
-    public partial class SignInPage : BasePage<SignInViewModel>, IHavePassword
+    public partial class SignInPage : BasePage<SignInViewModel>
     {
         public SignInPage()
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// The secure password for this login page
-        /// </summary>
-        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }

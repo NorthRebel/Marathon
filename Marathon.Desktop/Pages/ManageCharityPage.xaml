@@ -41,26 +41,13 @@
             <DockPanel Grid.Column="0">
 
                 <!--Name-->
-                <input:TopEntryControl
-                    DockPanel.Dock="Top"
-                    DataContext="{Binding Name}">
-
-                    <TextBox Text="{Binding Value}"
-                             Tag="Наименование"/>
-
-                </input:TopEntryControl>
-
+                <input:LabelledTextBox Label="Наименование"
+                                       Text="{Binding Name}"
+                                       TextPlaceholder="Наименование"/>
                 <!--Description-->
-                <input:TopEntryControl
-                    DataContext="{Binding Description}"
-                    InnerContentVerticalAlignment="Stretch">
-
-                    <TextBox Text="{Binding Value}"
-                             VerticalScrollBarVisibility="Auto"
-                             Tag="Описание благотворительной организации"/>
-
-                </input:TopEntryControl>
-
+                <input:LabelledTextBox Label="Описание"
+                                       Text="{Binding Description}"
+                                       TextPlaceholder="Описание благотворительной организации"/>
             </DockPanel>
 
             <!--Right panel-->
@@ -85,16 +72,11 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Logo file name-->
-                    <input:TopEntryControl 
-                        Grid.Column="0"
-                        DataContext="{Binding LogoFileName}">
-
-                        <TextBox Text="{Binding Value}"
-                                 IsReadOnly="True"
-                                 FontStyle="Italic"
-                                 Foreground="{StaticResource GrayBrush}"/>
-
-                    </input:TopEntryControl>
+                    <input:LayoutGroup Grid.Column="0">
+                        <input:LabelledTextBox Label="Фото файл"
+                                               Text="{Binding LogoFileName}"
+                                               TextPlaceholder="Выберите фото"/>
+                    </input:LayoutGroup>
 
                     <Button Grid.Column="1"
                             Content="Открыть"                            
@@ -104,8 +86,8 @@
                 </Grid>
 
                 <!--Logo-->
-                <input:TopEntryControl
-                    DataContext="{Binding Logo}">
+                <controls:MarathonOptionsControl
+                    Title="Текущий логотип">
 
                     <Border
                         MaxWidth="80"
@@ -115,12 +97,12 @@
                         Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                         CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
 
-                        <Image Source="{Binding Value, Converter={converters:BytesToImageConverter}}"
+                        <Image Source="{Binding Logo, Converter={converters:BytesToImageConverter}}"
                                Stretch="Fill"/>
 
                     </Border>
 
-                </input:TopEntryControl>
+                </controls:MarathonOptionsControl>
 
             </DockPanel>
 

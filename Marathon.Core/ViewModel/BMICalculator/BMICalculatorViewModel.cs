@@ -1,6 +1,5 @@
 ﻿using System.Windows.Input;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.BMICalculator
@@ -15,12 +14,12 @@ namespace Marathon.Core.ViewModel.BMICalculator
         /// <summary>
         /// User's growth
         /// </summary>
-        public EntryViewModel<double?> Growth { get; set; }
+        public double? Growth { get; set; }
 
         /// <summary>
         /// User's weight
         /// </summary>
-        public EntryViewModel<double?> Weight { get; set; }
+        public double? Weight { get; set; }
 
         /// <inheritdoc cref="BmiResultViewModel"/>
         public BMIResultViewModel Result { get; set; }
@@ -46,9 +45,6 @@ namespace Marathon.Core.ViewModel.BMICalculator
         public BMICalculatorViewModel()
         {
             PageCaption = new PageCaptionViewModel("BMI калькулятор");
-
-            Growth = new EntryViewModel<double?>("Рост");
-            Weight = new EntryViewModel<double?>("Вес");
 
             Result = new BMIResultViewModel();
 

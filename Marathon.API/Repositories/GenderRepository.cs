@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Marathon.API.Models;
 using Marathon.Persistence;
 using System.Collections.Generic;
 using Marathon.API.Repositories.Interfaces;
@@ -14,14 +15,13 @@ namespace Marathon.API.Repositories
             _context = context;
         }
 
-        public IEnumerable<string> GetAllNames()
+        public IEnumerable<Gender> GetAll()
         {
-            return _context.Genders.Select(g => g.Name);
-        }
-
-        public char GetIdByName(string name)
-        {
-            return _context.Genders.Single(g => g.Name == name).Id;
+            return _context.Genders.Select(g => new Gender
+            {
+                Id = g.Id,
+                Name = g.Name
+            });
         }
     }
 }

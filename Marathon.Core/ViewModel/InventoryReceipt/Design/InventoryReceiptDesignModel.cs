@@ -1,4 +1,4 @@
-﻿using Marathon.Core.ViewModel.Input;
+﻿using System.Collections.Generic;
 
 namespace Marathon.Core.ViewModel.InventoryReceipt.Design
 {
@@ -25,12 +25,12 @@ namespace Marathon.Core.ViewModel.InventoryReceipt.Design
         {
             InventoryItemsToReceipt = new[]
             {
-                new EntryViewModel<long?>("Номер бегуна"),
-                new EntryViewModel<long?>("Номер бегуна"),
-                new EntryViewModel<long?>("Номер бегуна"),
-                new EntryViewModel<long?>("Номер бегуна"),
-                new EntryViewModel<long?>("Номер бегуна"),
-                new EntryViewModel<long?>("Номер бегуна"),
+                new KeyValuePair<string, long?>("Номер бегуна",0),
+                new KeyValuePair<string, long?>("Номер бегуна",0),
+                new KeyValuePair<string, long?>("Номер бегуна",0),
+                new KeyValuePair<string, long?>("Номер бегуна",0),
+                new KeyValuePair<string, long?>("Номер бегуна",0),
+                new KeyValuePair<string, long?>("Номер бегуна",0)
             };
         }
 

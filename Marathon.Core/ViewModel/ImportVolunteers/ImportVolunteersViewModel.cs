@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.ImportVolunteers
@@ -16,12 +15,13 @@ namespace Marathon.Core.ViewModel.ImportVolunteers
         /// <summary>
         /// Selected file name to import
         /// </summary>
-        public EntryViewModel<string> FileToImport { get; set; }
+        public string FileToImport { get; set; }
 
         /// <summary>
-        /// List of required fields which <see cref="FileToImport"/> must contain
+        /// List of required fields which <see cref="FileToImport"/> must contain,
+        /// where Key is field name, Key - description
         /// </summary>
-        public IEnumerable<EntryViewModel<string>> RequiredFields { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> RequiredFields { get; set; }
 
         /// <summary>
         /// Shows process of importing from <see cref="FileToImport"/>
@@ -55,7 +55,6 @@ namespace Marathon.Core.ViewModel.ImportVolunteers
         {
             PageCaption = new PageCaptionViewModel("Загрузка волонтеров");
 
-            FileToImport = new EntryViewModel<string>("CSV файл волонтеров");
             ImportProgress = new ProgressViewModel();
 
             SelectFileCommand = new RelayCommand(SelectFileToImport);

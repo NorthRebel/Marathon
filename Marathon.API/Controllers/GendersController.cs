@@ -1,7 +1,7 @@
 ﻿using System.Net;
+using Marathon.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Marathon.API.Authentication;
-using Marathon.API.Models.Gender;
+using System.Collections.Generic;
 using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
@@ -18,10 +18,10 @@ namespace Marathon.API.Controllers
 
         [HttpGet]
         [Route("All")]
-        [ProducesResponseType(typeof(Genders), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Gender>), (int)HttpStatusCode.OK)]
         public IActionResult GetAll()
         {
-            var genders = _genderRepository.GetAllNames();
+            var genders = _genderRepository.GetAll();
 
             return Ok(genders);
         }

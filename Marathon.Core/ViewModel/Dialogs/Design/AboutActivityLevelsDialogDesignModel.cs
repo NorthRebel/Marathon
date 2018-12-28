@@ -1,4 +1,4 @@
-﻿using Marathon.Core.ViewModel.Input;
+﻿using System.Collections.Generic;
 
 namespace Marathon.Core.ViewModel.Dialogs.Design
 {
@@ -25,9 +25,9 @@ namespace Marathon.Core.ViewModel.Dialogs.Design
         {
             ActivityLevels = new[]
             {
-                new EntryViewModel<string>("Сидячий") {Value = "описание…"},
-                new EntryViewModel<string>("Маленькая активность") {Value = "описание…"},
-                new EntryViewModel<string>("Средняя активность") {Value = "описание…"},
+                new KeyValuePair<string, string>("Сидячий","описание…"), 
+                new KeyValuePair<string, string>("Маленькая активность","описание…"), 
+                new KeyValuePair<string, string>("Средняя активность","описание…")
             };
         }
 

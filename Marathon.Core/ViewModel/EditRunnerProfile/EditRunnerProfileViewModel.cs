@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Marathon.Core.Models;
+using System.Windows.Input;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Marathon.Core.Models.Other;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.PageCaption;
 
@@ -19,27 +20,42 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// The email of the user
         /// </summary>
-        public EntryViewModel<string> Email { get; set; }
+        public string Email { get; set; }
+
+        /// <summary>
+        /// The password of the user
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Confirmation of <see cref="Password"/>
+        /// </summary>
+        public string ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user
         /// </summary>
-        public EntryViewModel<string> FirstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Last name of the user
         /// </summary>
-        public EntryViewModel<string> LastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public ItemsEntryViewModel<string> Gender { get; set; }
+        public char GenderId { get; set; }
+
+        /// <summary>
+        /// List of gender to select
+        /// </summary>
+        public IEnumerable<Gender> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        public EntryViewModel<string> PhotoPath { get; set; }
+        public string PhotoPath { get; set; }
 
         /// <summary>
         /// Photo of the user
@@ -49,12 +65,17 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        public EntryViewModel<DateTime?> BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public ItemsEntryViewModel<string> Country { get; set; }
+        public string CountryId { get; set; }
+
+        /// <summary>
+        /// List of countries to select
+        /// </summary>
+        public IEnumerable<Country> Countries { get; set; }
 
         #endregion
 
@@ -82,18 +103,6 @@ namespace Marathon.Core.ViewModel.EditRunnerProfile
         public EditRunnerProfileViewModel()
         {
             PageCaption = new PageCaptionViewModel("Редактирование профиля");
-
-            #region Initialize entries
-
-            Email = new EntryViewModel<string>(nameof(Email));
-            FirstName = new EntryViewModel<string>("Имя");
-            LastName = new EntryViewModel<string>("Фамилия");
-            Gender = new ItemsEntryViewModel<string>("Пол");
-            PhotoPath = new EntryViewModel<string>("Фото файл");
-            BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
-            Country = new ItemsEntryViewModel<string>("Страна");
-
-            #endregion
 
             CancelCommand = new RelayCommand(x => Cancel());
             SaveCommand = new RelayCommand(async (password) => await SaveProfileChangesAsync(password));

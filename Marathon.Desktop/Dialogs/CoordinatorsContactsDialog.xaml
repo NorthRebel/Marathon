@@ -25,9 +25,8 @@
             <ItemsControl ItemsSource="{Binding Contacts}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <input:LeftEntryControl>
-                            <TextBlock Text="{Binding Value}"/>
-                        </input:LeftEntryControl>
+                        <input:LabelledTextBox Label="{Binding Key}"
+                                               Text="{Binding Value}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

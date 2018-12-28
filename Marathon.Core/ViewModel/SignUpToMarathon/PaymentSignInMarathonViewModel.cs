@@ -1,12 +1,11 @@
 ﻿using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.MarathonOptions;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
 {
     /// <summary>
     /// The view model for a payment detail part of SignUpToMarathon page
     /// </summary>
-    public class PaymentSignInMarathonViewModel : OptionsViewModel
+    public class PaymentSignInMarathonViewModel : BaseViewModel
     {
         #region Public Properties
 

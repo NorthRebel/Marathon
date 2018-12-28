@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.RunnersListToManage.Models;
 using Marathon.Core.ViewModel.RunnersListToManage.RunnersList;
@@ -18,17 +18,32 @@ namespace Marathon.Core.ViewModel.RunnersListToManage
         /// <summary>
         /// List of runner sign up status
         /// </summary>
-        public ItemsEntryViewModel<string> Statuses { get; set; }
+        public IEnumerable<string> Statuses { get; set; }
+
+        /// <summary>
+        /// Selected runner sign up status
+        /// </summary>
+        public string Status { get; set; }
 
         /// <summary>
         /// List of distances of marathon
         /// </summary>
-        public ItemsEntryViewModel<string> Distances { get; set; }
+        public IEnumerable<string> Distances { get; set; }
+
+        /// <summary>
+        /// Selected distance of marathon
+        /// </summary>
+        public string Distance { get; set; }
 
         /// <summary>
         /// Attributes of runners list for <see cref="SortCommand"/>
         /// </summary>
-        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
+        public IEnumerable<string> AttributesToSort { get; set; }
+
+        /// <summary>
+        /// Selected attribute to sort list of runners
+        /// </summary>
+        public string AttributeToSort { get; set; }
 
         /// <inheritdoc cref="ManageRunnersCondition"/>
         public ManageRunnersCondition RunnersCondition { get; set; }
@@ -72,10 +87,6 @@ namespace Marathon.Core.ViewModel.RunnersListToManage
         public RunnersListToManageViewModel()
         {
             PageCaption = new PageCaptionViewModel("Управление бегунами");
-
-            Statuses = new ItemsEntryViewModel<string>("Статус");
-            Distances = new ItemsEntryViewModel<string>("Дистанция");
-            AttributesToSort = new ItemsEntryViewModel<string>("Сортировать");
 
             RunnersCondition = new ManageRunnersCondition();
             Runners = new RunnersListViewModel();

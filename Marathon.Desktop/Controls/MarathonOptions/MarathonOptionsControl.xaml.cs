@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Marathon.Desktop.Controls
 {
@@ -21,6 +9,8 @@ namespace Marathon.Desktop.Controls
     public partial class MarathonOptionsControl : UserControl
     {
         #region Dependency Properties
+
+        #region Horizontal alignment
 
         /// <summary>
         /// Horizontally aligns inner content of control
@@ -32,26 +22,41 @@ namespace Marathon.Desktop.Controls
         }
 
         public static readonly DependencyProperty ContentHorizontalAlignmentProperty =
-            DependencyProperty.Register("ContentHorizontalAlignment", typeof(HorizontalAlignment), typeof(MarathonOptionsControl),
+            DependencyProperty.Register(nameof(ContentHorizontalAlignment), typeof(HorizontalAlignment), typeof(MarathonOptionsControl),
                 new PropertyMetadata(HorizontalAlignment.Left, HorizontalAlignmentPropertyChanged));
+
+        #endregion
+
+        #region Title
+
+        public string Title
+        {
+            get => (string)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
+        }
+
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(MarathonOptionsControl),
+                new FrameworkPropertyMetadata("Unnamed Title"));
+
+        #endregion
 
         #endregion
 
         public MarathonOptionsControl()
         {
             InitializeComponent();
+            Root.DataContext = this;
         }
 
         #region Dependency Helpers
 
         private static void HorizontalAlignmentPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var optionsControl = d as MarathonOptionsControl;
-
-            if (optionsControl.ApplyTemplate())
+            if (d is MarathonOptionsControl ctrl)
             {
-                var contentPresenter = optionsControl.Template.FindName("OptionsContent", optionsControl) as ContentPresenter;
-                contentPresenter.HorizontalAlignment = (HorizontalAlignment) e.NewValue;
+                if (ctrl.Template.FindName("OptionsContent", ctrl) is ContentPresenter contentPresenter)
+                    contentPresenter.HorizontalAlignment = (HorizontalAlignment)e.NewValue;
             }
         }
 

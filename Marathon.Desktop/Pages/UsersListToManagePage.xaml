@@ -41,54 +41,33 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
                 <!--Add new user-->
-                <Button Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.RowSpan="2"
+                <Button Grid.Column="0"
                         HorizontalAlignment="Left"
                         Content="+ Добавление нового"
                         Command="{Binding AddNewUserCommand}"
                         Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}},
                               Converter={converters:DivValueConverter}, ConverterParameter=4}"/>
 
-                <!--Find by user type-->
-                <input:LeftEntryControl
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    DataContext="{Binding UserTypes}">
+                <!--Find, sort options-->
+                <input:LayoutGroup Grid.Column="1">
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
+                    <!--Find by user type-->
+                    <input:LabelledComboBox Label="Фильтр по ролям"
+                                            Items="{Binding UserTypes}"
+                                            SelectedItem="{Binding UserType}"/>
 
-                </input:LeftEntryControl>
+                    <!--Sort by attribute-->
+                    <input:LabelledComboBox Label="Сортировать по"
+                                            Items="{Binding AttributesToSort}"
+                                            SelectedItem="{Binding AttributeToSort}"/>
 
-                <!--Sort by attribute-->
-                <input:LeftEntryControl
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    DataContext="{Binding AttributesToSort}">
+                    <!--Search request-->
+                    <input:LabelledTextBox Label="Поиск"
+                                           Text="{Binding SearchRequest}"
+                                           TextPlaceholder="Поиск"/>
 
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-
-                </input:LeftEntryControl>
-
-                <!--Search by any attribute-->
-                <input:LeftEntryControl
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    DataContext="{Binding SearchRequest}">
-
-                    <TextBox Text="{Binding Value}"/>
-
-
-                </input:LeftEntryControl>
+                </input:LayoutGroup>
 
             </Grid>
 

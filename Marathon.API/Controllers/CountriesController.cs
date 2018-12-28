@@ -1,7 +1,7 @@
 ﻿using System.Net;
+using Marathon.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Marathon.API.Authentication;
-using Marathon.API.Models.Country;
+using System.Collections.Generic;
 using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
@@ -18,10 +18,10 @@ namespace Marathon.API.Controllers
 
         [HttpGet]
         [Route("All")]
-        [ProducesResponseType(typeof(Countries), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Country>), (int)HttpStatusCode.OK)]
         public IActionResult GetAll()
         {
-            var countries = _countryRepository.GetAllNames();
+            var countries = _countryRepository.GetAll();
 
             return Ok(countries);
         }

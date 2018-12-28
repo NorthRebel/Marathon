@@ -23,19 +23,19 @@ namespace Marathon.Core.ViewModel.RunnersListToManage.Design
         /// </summary>
         public RunnersListToManageDesignModel()
         {
-            Statuses.Items = new[]
+            Statuses = new[]
             {
                 "Оплата подтверждена",
                 "Оплата не подтверждена"
             };
 
-            Distances.Items = new[]
+            Distances = new[]
             {
                 "10 км малый марафон",
                 "42 км полный марафон"
             };
 
-            AttributesToSort.Items = new[]
+            AttributesToSort = new[]
             {
                 "Имя",
                 "Фамилия",

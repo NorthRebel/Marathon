@@ -37,45 +37,29 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0">
+            <input:LayoutGroup Grid.Column="0">
 
                 <!--Email-->
-                <input:LeftEntryControl DataContext="{Binding Email}">
-
-                    <Grid>
-                        <!--Label if manage type is edit-->
-                        <TextBlock Text="{Binding Value}"
-                                   Visibility="{Binding DataContext.ManagementType, ElementName=Page, 
-                                     Converter={converters:UserManagementTypeToVisibilityConverter}}"/>
-
-                        <!--TextBox if manage type is add-->
-                        <TextBox Text="{Binding Value}"
-                                 Tag="{Binding Label}"
-                                 Visibility="{Binding DataContext.ManagementType, ElementName=Page, 
-                                    Converter={converters:UserManagementTypeToVisibilityConverter}}"/>
-                    </Grid>
-
-                </input:LeftEntryControl>
-
+                <!--TODO: improve switch UserManagementTypeToVisibilityConverter-->
+                <input:LabelledTextBox Label="Email"
+                                       Text="{Binding Email}"/>
+            
                 <!--First name-->
-                <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Text="{Binding Value}"
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Имя"
+                                       Text="{Binding FirstName}"
+                                       TextPlaceholder="Имя"/>
 
                 <!--Last name-->
-                <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBox Text="{Binding Value}" 
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Фамилия"
+                                       Text="{Binding LastName}"
+                                       TextPlaceholder="Фамилия"/>
 
                 <!--User role-->
-                <input:LeftEntryControl DataContext="{Binding UserRole}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>                    
-                </input:LeftEntryControl>
+                <input:LabelledComboBox Label="Роль"
+                                        Items="{Binding UserRoles}"
+                                        SelectedItem="{Binding UserRole}"/>
 
-            </StackPanel>
+            </input:LayoutGroup>
 
             <Grid Grid.Column="1" 
                   Margin="10 0">

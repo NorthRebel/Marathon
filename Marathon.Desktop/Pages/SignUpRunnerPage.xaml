@@ -36,70 +36,41 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0"
-                        Name="LeftPanel">
+            <input:LayoutGroup Grid.Column="0"
+                               x:Name="LeftPanel">
+
                 <!--Email-->
-                <input:LeftEntryControl DataContext="{Binding Email}">
-                    <TextBox Text="{Binding Value}"
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Email"
+                                       Text="{Binding Email}"
+                                       TextPlaceholder="Email"/>
 
                 <!--Password-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0"
-                               Text="Пароль:"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"/>
-
-                    <PasswordBox Grid.Column="1"
-                                 x:Name="PasswordText"
-                                 Margin="5 0"
-                                 VerticalAlignment="Center"
-                                 Tag="Введите свой пароль"/>
-                </Grid>
+                <input:LabelledTextBox Label="Пароль"
+                                       Text="{Binding Password}"
+                                       TextPlaceholder="Пароль"/>
 
                 <!--Confirm password-->
-                <Grid Margin="0 10 0 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0"
-                               Text="Подтвердите пароль:"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"/>
-
-                    <PasswordBox Grid.Column="1"
-                                 x:Name="ConfirmPasswordText"
-                                 Margin="5 0"
-                                 VerticalAlignment="Center"
-                                 Tag="Подтвердите пароль"/>
-                </Grid>
-
+                <input:LabelledTextBox Label="Повторите пароль"
+                                       Text="{Binding ConfirmPassword}"
+                                       TextPlaceholder="Повторите пароль"/>
                 <!--First name-->
-                <input:LeftEntryControl DataContext="{Binding FirstName}">
-                    <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Имя"
+                                       Text="{Binding FirstName}"
+                                       TextPlaceholder="Имя"/>
 
                 <!--Last name-->
-                <input:LeftEntryControl DataContext="{Binding LastName}">
-                    <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                             Tag="{Binding Label}"/>
-                </input:LeftEntryControl>
+                <input:LabelledTextBox Label="Фамилия"
+                                       Text="{Binding LastName}"
+                                       TextPlaceholder="Фамилия"/>
 
                 <!--Gender-->
-                <input:LeftEntryControl DataContext="{Binding Gender}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-                </input:LeftEntryControl>
-            </StackPanel>
+                <input:LabelledComboBox Label="Пол"
+                                        Items="{Binding Genders}"
+                                        DisplayMember="Name"
+                                        ValueMember="Id"
+                                        SelectedValue="{Binding GenderId}"/>
+
+            </input:LayoutGroup>
 
             <StackPanel Grid.Column="1">
 
@@ -125,15 +96,11 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Selected file path-->
-                    <input:TopEntryControl
-                        Grid.Column="0"
-                        DataContext="{Binding PhotoPath}">
-                        <TextBox IsReadOnly="True"
-                                 Foreground="{StaticResource GrayBrush}"
-                                 FontStyle="Italic"
-                                 Text="{Binding Value}"
-                                 Tag="Выберите фото"/>
-                    </input:TopEntryControl>
+                    <input:LayoutGroup Grid.Column="0">
+                        <input:LabelledTextBox Label="Фото файл"
+                                               Text="{Binding PhotoPath}"
+                                               TextPlaceholder="Выберите фото"/>
+                    </input:LayoutGroup>
 
                     <Button Grid.Column="1"
                             Content="Открыть"                            
@@ -142,16 +109,20 @@
 
                 </Grid>
 
-                <!--Date of birth-->
-                <input:LeftEntryControl DataContext="{Binding BirthDay}">
-                    <DatePicker SelectedDate="{Binding Value}"/>
-                </input:LeftEntryControl>
+                <input:LayoutGroup>
 
-                <!--Country-->
-                <input:LeftEntryControl DataContext="{Binding Country}">
-                    <ComboBox ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding Value}"/>
-                </input:LeftEntryControl>
+                    <!--Date of birth-->
+                    <input:LabelledDatePicker Label="Дата рождения"
+                                              Date="{Binding BirthDay}"/>
+
+                    <!--Country-->
+                    <input:LabelledComboBox Label="Страна"
+                                            Items="{Binding Countries}"
+                                            DisplayMember="Name"
+                                            ValueMember="Id"
+                                            SelectedValue="{Binding CountryId}"/>
+
+                </input:LayoutGroup>
             </StackPanel>
 
         </Grid>

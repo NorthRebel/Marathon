@@ -21,8 +21,6 @@
         /// </summary>
         public SponsorshipAmountDesignModel()
         {
-            Title = "Сумма пожертвования";
-
             Ammount = 50;
         }
 

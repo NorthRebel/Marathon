@@ -1,8 +1,8 @@
 ﻿using System;
 using Marathon.Core.Models;
 using System.Windows.Input;
+using System.Collections.Generic;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.PageCaption;
 using Marathon.Core.ViewModel.VolunteersListToManage.Models;
 using Marathon.Core.ViewModel.VolunteersListToManage.VolunteersList;
@@ -19,17 +19,32 @@ namespace Marathon.Core.ViewModel.VolunteersListToManage
         /// <summary>
         /// List of countries which volunteers from
         /// </summary>
-        public ItemsEntryViewModel<string> Countries { get; set; }
+        public IEnumerable<string> Countries { get; set; }
+
+        /// <summary>
+        /// Selected country
+        /// </summary>
+        public string Country { get; set; }
 
         /// <summary>
         /// List of volunteers gender
         /// </summary>
-        public ItemsEntryViewModel<string> Genders { get; set; }
+        public IEnumerable<string> Genders { get; set; }
 
         /// <summary>
-        /// Attributes of runners list for <see cref="SortCommand"/>
+        /// Selected gender
         /// </summary>
-        public ItemsEntryViewModel<string> AttributesToSort { get; set; }
+        public string Gender { get; set; }
+
+        /// <summary>
+        /// Attributes of volunteers list for <see cref="SortCommand"/>
+        /// </summary>
+        public IEnumerable<string> AttributesToSort { get; set; }
+
+        /// <summary>
+        /// Selected attribute to sort volunteers list
+        /// </summary>
+        public string AttributeToSort { get; set; }
 
         /// <inheritdoc cref="ManageVolunteersCondition"/>
         public ManageVolunteersCondition VolunteersCondition { get; set; }
@@ -68,10 +83,6 @@ namespace Marathon.Core.ViewModel.VolunteersListToManage
         public VolunteersListToManageViewModel()
         {
             PageCaption = new PageCaptionViewModel("Управление волонтерами");
-
-            Countries = new ItemsEntryViewModel<string>("Страна");
-            Genders = new ItemsEntryViewModel<string>("Пол");
-            AttributesToSort = new ItemsEntryViewModel<string>("Сортировать");
 
             VolunteersCondition = new ManageVolunteersCondition();
             Volunteers = new VolunteersListViewModel();

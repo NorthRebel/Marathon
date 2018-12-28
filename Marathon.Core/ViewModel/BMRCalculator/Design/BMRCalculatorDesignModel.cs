@@ -21,9 +21,9 @@
         /// </summary>
         public BMRCalculatorDesignModel()
         {
-            Growth.Value = 180;
-            Weight.Value = 70;
-            Age.Value = 30;
+            Growth = 180;
+            Weight = 70;
+            Age = 30;
 
             Result = new BMRResultDesignModel();
         }

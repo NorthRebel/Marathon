@@ -13,10 +13,8 @@
         <ItemsControl ItemsSource="{Binding ActivityLevels}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <input:LeftEntryControl
-                        LabelWeight="Bold">
-                        <TextBlock Text="{Binding Value}"/>
-                    </input:LeftEntryControl>
+                    <input:LabelledTextBox Label="{Binding Key}"
+                                           Text="{Binding Value}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

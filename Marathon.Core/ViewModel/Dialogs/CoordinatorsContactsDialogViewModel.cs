@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Marathon.Core.ViewModel.Input;
 
 namespace Marathon.Core.ViewModel.Dialogs
 {
@@ -16,9 +15,9 @@ namespace Marathon.Core.ViewModel.Dialogs
         public string Message { get; set; }
 
         /// <summary>
-        /// Contact of coordinators
+        /// Contact of coordinators where Key is coordinator's contact type, Value = info to contact 
         /// </summary>
-        public IEnumerable<EntryViewModel<string>> Contacts { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> Contacts { get; set; }
 
         #endregion
 

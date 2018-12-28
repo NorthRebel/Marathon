@@ -3,12 +3,12 @@ using Validar;
 using System.IO;
 using Marathon.Core.Models;
 using System.Windows.Input;
-using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
+using System.Collections.Generic;
+using Marathon.Core.Models.Other;
 using Marathon.Core.Models.Runner;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.ViewModel.Input;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.Services.Interfaces;
@@ -29,27 +29,42 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         /// <summary>
         /// The email of the user
         /// </summary>
-        public EntryViewModel<string> Email { get; set; }
+        public string Email { get; set; }
+
+        /// <summary>
+        /// The password of the user
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// Confirmation of <see cref="Password"/>
+        /// </summary>
+        public string ConfirmPassword { get; set; }
 
         /// <summary>
         /// First name of the user
         /// </summary>
-        public EntryViewModel<string> FirstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Last name of the user
         /// </summary>
-        public EntryViewModel<string> LastName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Gender of the user
         /// </summary>
-        public ItemsEntryViewModel<string> Gender { get; set; }
+        public char GenderId { get; set; }
+
+        /// <summary>
+        /// List of gender to select
+        /// </summary>
+        public IEnumerable<Gender> Genders { get; set; }
 
         /// <summary>
         /// Path to photo of the user
         /// </summary>
-        public EntryViewModel<string> PhotoPath { get; set; }
+        public string PhotoPath { get; set; }
 
         /// <summary>
         /// Photo of the user
@@ -59,12 +74,17 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         /// <summary>
         /// The date of birth of the user
         /// </summary>
-        public EntryViewModel<DateTime?> BirthDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         /// <summary>
         /// Country name of the user
         /// </summary>
-        public ItemsEntryViewModel<string> Country { get; set; }
+        public string CountryId { get; set; }
+
+        /// <summary>
+        /// List of countries to select
+        /// </summary>
+        public IEnumerable<Country> Countries { get; set; }
 
         #endregion
 
@@ -96,14 +116,6 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             #region Initialize entries
 
-            Email = new EntryViewModel<string>(nameof(Email));
-            FirstName = new EntryViewModel<string>("Имя");
-            LastName = new EntryViewModel<string>("Фамилия");
-            Gender = new ItemsEntryViewModel<string>("Пол");
-            PhotoPath = new EntryViewModel<string>("Фото файл");
-            BirthDay = new EntryViewModel<DateTime?>("Дата рождения");
-            Country = new ItemsEntryViewModel<string>("Страна");
-
             Task.Run(GetCountries);
             Task.Run(GetGenders);
 
@@ -124,7 +136,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             try
             {
-                Country.Items = await countryService.GetAllAsync();
+                Countries = await countryService.GetAllAsync();
             }
             catch (Exception)
             {
@@ -145,7 +157,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             try
             {
-                Gender.Items = await genderService.GetAllAsync();
+               Genders = await genderService.GetAllAsync();
             }
             catch (Exception)
             {
@@ -186,7 +198,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             if (!string.IsNullOrEmpty(photoPath))
             {
-                PhotoPath.Value = photoPath;
+                PhotoPath = photoPath;
                 Photo = File.ReadAllBytes(photoPath);
             }
         }
@@ -198,7 +210,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         {
             try
             {
-                UserInfo newUser = await SignUpUserAsync((password as IHavePassword).SecurePassword.Unsecure());
+                UserInfo newUser = await SignUpUserAsync();
 
                 await SaveUserInfoAsync(newUser);
 
@@ -220,16 +232,16 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
         }
 
-        private Task<UserInfo> SignUpUserAsync(string password)
+        private Task<UserInfo> SignUpUserAsync()
         {
             var userService = Kernel.Get<IUserService>();
 
             return userService.SignUpAsync(new UserSignUpCredentials
             {
-                Email = Email.Value,
-                Password = password,
-                FirstName = FirstName.Value,
-                LastName = LastName.Value,
+                Email = this.Email,
+                Password = this.Password,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
                 // TODO: Create linked enumeration!
                 UserTypeId = 'R'
             });
@@ -242,10 +254,10 @@ namespace Marathon.Core.ViewModel.SignUpRunner
             return runnerService.SignUpAsync(new RunnerSignUpCredentials
             {
                 UserId = userId,
-                Gender = Gender.Value,
-                DateOfBirth = (DateTime)BirthDay.Value,
-                CountryName = Country.Value,
-                //Photo = 
+                GenderId = this.GenderId,
+                DateOfBirth = BirthDay.Value,
+                CountryId = this.CountryId,
+                Photo = this.Photo
             });
         }
 

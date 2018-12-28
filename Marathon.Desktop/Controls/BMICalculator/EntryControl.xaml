@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Marathon.Desktop.Controls.BMICalculator"
              xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
-             xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.Input;assembly=Marathon.Core"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="250">
     <Grid>
@@ -18,20 +17,12 @@
         </Grid.ColumnDefinitions>
 
         <!--Input-->
-        <input:LeftEntryControl
-            Grid.Column="0"
-            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, 
-                AncestorType={x:Type UserControl}}, Path=DataContext}">
-
-            <TextBox Text="{Binding Value}"
-                     TextAlignment="Center"
-                     FontStyle="Italic"
-                     Foreground="{StaticResource GrayBrush}"/>
-
-        </input:LeftEntryControl>
-
+        <input:LabelledTextBox Label="{Binding Label}"
+                               Text="{Binding Text}"/>
+        
+        <!--Unit label-->
         <TextBlock Grid.Column="1" 
-                   x:Name="UnitText"
+                   Text="{Binding Unit}"
                    VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

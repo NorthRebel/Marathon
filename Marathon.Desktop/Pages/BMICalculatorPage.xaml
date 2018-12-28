@@ -1,19 +1,19 @@
 ﻿<local:BasePage x:TypeArguments="viewModels:BMICalculatorViewModel" 
-      x:Class="Marathon.Desktop.Pages.BMICalculatorPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Marathon.Desktop.Pages"
-      xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
-      xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
-      xmlns:bmiControls="clr-namespace:Marathon.Desktop.Controls.BMICalculator"
-      xmlns:bmiResult="clr-namespace:Marathon.Desktop.Controls.BMICalculator.BMIResult"
-      xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator;assembly=Marathon.Core"
-      xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator.Design;assembly=Marathon.Core"
-      mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
-      DataContext="{x:Static designModels:BMICalculatorDesignModel.Instance}">
+                x:Class="Marathon.Desktop.Pages.BMICalculatorPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:local="clr-namespace:Marathon.Desktop.Pages"
+                xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+                xmlns:converters="clr-namespace:Marathon.Desktop.ValueConverters"
+                xmlns:bmiControls="clr-namespace:Marathon.Desktop.Controls.BMICalculator"
+                xmlns:bmiResult="clr-namespace:Marathon.Desktop.Controls.BMICalculator.BMIResult"
+                xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator;assembly=Marathon.Core"
+                xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.BMICalculator.Design;assembly=Marathon.Core"
+                mc:Ignorable="d" 
+                d:DesignHeight="600" d:DesignWidth="800"
+                DataContext="{x:Static designModels:BMICalculatorDesignModel.Instance}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -84,14 +84,17 @@
                                 Converter={converters:DivValueConverter}, ConverterParameter=2}">
 
                     <!--Growth-->
-                    <bmiControls:EntryControl 
+                    <bmiControls:EntryControl
+                            Label="Рост"
                             Unit="см"
-                            DataContext="{Binding Growth}"/>
+                            Text="{Binding Growth}"/>
 
                     <!--Weight-->
                     <bmiControls:EntryControl 
+                            Label="Вес"
                             Unit="кг"
-                            DataContext="{Binding Weight}"/>
+                            Text="{Binding Weight}"/>
+
                 </StackPanel>
 
                 <!--Cancel-->
