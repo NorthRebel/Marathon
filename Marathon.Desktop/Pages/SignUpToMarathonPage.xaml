@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Marathon.Desktop.Pages"
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
              xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
-             xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
+             xmlns:custom="clr-namespace:Marathon.Desktop.Controls.Custom"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon;assembly=Marathon.Core"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
@@ -64,10 +64,21 @@
                            Margin="0 0 0 10"
                            Text="Вид марафона"/>
 
-                <MarathonOptions:MarathonOptionsMultiple
-                    Grid.Row="1"
-                    ItemsSource="{Binding MarathonTypesToSelect}"
-                    SelectedItems="{Binding SelectedMarathonTypes}"/>
+                <custom:ListBox Grid.Row="1"
+                                ItemsSource="{Binding MarathonTypesToSelect}"
+                                SelectedItemsList="{Binding SelectedMarathonTypes}"
+                                SelectionMode="Multiple"
+                                Background="Transparent">
+
+                    <custom:ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="RadioList"
+                                         Content="{Binding Name}">
+                            </RadioButton>
+                        </DataTemplate>
+                    </custom:ListBox.ItemTemplate>
+
+                </custom:ListBox>
 
             </Grid>
 
@@ -92,10 +103,7 @@
                            Margin="0 0 0 10"
                            Text="Варианты комплектов"/>
 
-                <MarathonOptions:MarathonOptionsSingle
-                    Grid.Row="1"
-                    ItemsSource="{Binding RaceKits}"
-                    SelectedItem="{Binding SelectedRaceKit}"/>
+                
 
             </Grid>
 
