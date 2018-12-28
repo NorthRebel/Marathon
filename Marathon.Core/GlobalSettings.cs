@@ -22,6 +22,10 @@
         public string AllCountries { get; set; }
         public string AllGenders { get; set; }
 
+        public string AllRaceKits { get; set; }
+
+        public string EventTypes { get; set; }
+
         #endregion
 
         public string BaseIdentityEndpoint
@@ -42,6 +46,9 @@
 
             AllCountries = $"{endpoint}/Countries/All";
             AllGenders = $"{endpoint}/Genders/All";
+
+            AllRaceKits = $"{endpoint}/RaceKit/All";
+            EventTypes = $"{endpoint}/Marathon/EventTypes";
         }
     }
 }
