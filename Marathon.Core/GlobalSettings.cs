@@ -25,6 +25,7 @@
         public string AllRaceKits { get; set; }
 
         public string EventTypes { get; set; }
+        public string AllCharities { get; set; }
 
         #endregion
 
@@ -49,6 +50,7 @@
 
             AllRaceKits = $"{endpoint}/RaceKit/All";
             EventTypes = $"{endpoint}/Marathon/EventTypes";
+            AllCharities = $"{endpoint}/Charities/All";
         }
     }
 }

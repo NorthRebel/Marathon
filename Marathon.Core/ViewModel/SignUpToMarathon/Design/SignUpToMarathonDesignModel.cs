@@ -1,4 +1,7 @@
-﻿namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
+﻿using Marathon.Core.Models.Marathon;
+using Marathon.Core.Models.RaceKit;
+
+namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="SignUpToMarathonViewModel"/>
@@ -26,16 +29,43 @@
 
             MarathonTypesToSelect = new[]
             {
-                "42km Полный марафон($145)",
-                "21km Полумарафон ($75)",
-                "5km Малая дистанция ($20)"
+                new EventType
+                {
+                    Id = "FM",
+                    Name = "Полный марафон"
+                },
+                new EventType
+                {
+                    Id = "HM",
+                    Name = "Полумарафон"
+                },
+                new EventType
+                {
+                    Id = "SM",
+                    Name = "Малая дистанция"
+                }
             };
 
             RaceKits = new[]
             {
-                "Вариант A ($0): Номер бегуна + RFID браслет.",
-                "Вариант B ($20): вариант A + бейсболка + бутылка воды.",
-                "Вариант C ($45): Вариант B + футболка + сувенирный буклет."
+                new RaceKit
+                {
+                    Id = 'A',
+                    Name = "Номер бегуна + RFID браслет",
+                    Cost = 0m
+                },
+                new RaceKit
+                {
+                    Id = 'B',
+                    Name = "Вариант A + бейсболка + бутылка воды",
+                    Cost = 20m
+                },
+                new RaceKit
+                {
+                    Id = 'C',
+                    Name = "Вариант B + футболка + сувенирный буклет",
+                    Cost = 45m
+                }
             };
         }
 

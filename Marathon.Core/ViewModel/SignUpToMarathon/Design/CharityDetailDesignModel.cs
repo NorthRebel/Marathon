@@ -1,4 +1,6 @@
-﻿namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
+﻿using Marathon.Core.Models.Charity;
+
+namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
 {
     /// <summary>
     /// The design-time data for a <see cref="CharityDetailViewModel"/>
@@ -21,12 +23,24 @@
         /// </summary>
         public CharityDetailDesignModel()
         {
-            //Items = new string[]
-            //{
-            //    "Фонд А",
-            //    "Фонд Б",
-            //    "Фонд В",
-            //};
+            Charities = new[]
+            {
+                new Charity
+                {
+                    Id = 1,
+                    Name = "Фонд А"
+                },
+                new Charity
+                {
+                    Id = 2,
+                    Name = "Фонд Б"
+                },
+                new Charity
+                {
+                    Id = 3,
+                    Name = "Фонд В"
+                },
+            };
         }
 
         #endregion

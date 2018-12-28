@@ -1,7 +1,10 @@
-﻿using System.Windows.Input;
-using Marathon.Core.Models;
+﻿using Marathon.Core.Models;
+using System.Windows.Input;
 using System.Collections.Generic;
+using Marathon.Core.Models.RaceKit;
 using Marathon.Core.ViewModel.Base;
+using Marathon.Core.Models.Marathon;
+using System.Collections.ObjectModel;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon
@@ -16,14 +19,22 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// <summary>
         /// Types of marathon for take part them
         /// </summary>
-        public IEnumerable<string> MarathonTypesToSelect { get; set; }
-        public IEnumerable<string> SelectedMarathonTypes { get; set; }
+        public IEnumerable<EventType> MarathonTypesToSelect { get; set; }
+
+        /// <summary>
+        /// Collection of selected marathon types
+        /// </summary>
+        public EventType SelectedMarathonType { get; set; }
 
         /// <summary>
         /// Types of race kit which runner can use it in marathon
         /// </summary>
-        public IEnumerable<string> RaceKits { get; set; }
-        public string SelectedRaceKit { get; set; }
+        public IEnumerable<RaceKit> RaceKits { get; set; }
+
+        /// <summary>
+        /// Key of selected race kit
+        /// </summary>
+        public RaceKit SelectedRaceKit { get; set; }
 
         /// <summary>
         /// Details which means payment amount for charity organization 

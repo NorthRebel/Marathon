@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using System.Collections.Generic;
+using Marathon.Core.Models.Charity;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Dialogs.Design;
@@ -13,12 +14,12 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
         /// <summary>
         /// List of charities to sponsorship
         /// </summary>
-        public IEnumerable<string> Charities { get; set; }
+        public IEnumerable<Charity> Charities { get; set; }
 
         /// <summary>
         /// Selected charity
         /// </summary>
-        public string Charity { get; set; }
+        public Charity Charity { get; set; }
 
         #endregion
 
