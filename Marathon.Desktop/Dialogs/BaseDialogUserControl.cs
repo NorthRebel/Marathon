@@ -10,16 +10,16 @@ using Marathon.Desktop.ViewModel;
 namespace Marathon.Desktop.Dialogs
 {
     /// <summary>
-    /// The base class for any content that is being used inside of a <see cref="DialogWindow"/>
+    /// The base class for any content that is being used inside of a <see cref="Desktop.DialogWindow"/>
     /// </summary>
     public class BaseDialogUserControl : UserControl
     {
-        #region Private Members
+        #region Protected Members
 
         /// <summary>
         /// The dialog window we will be contained within
         /// </summary>
-        private DialogWindow _dialogWindow;
+        protected DialogWindow DialogWindow;
 
         #endregion
 
@@ -66,11 +66,11 @@ namespace Marathon.Desktop.Dialogs
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
                 // Create a new dialog window
-                _dialogWindow = new DialogWindow();
-                _dialogWindow.ViewModel = new DialogWindowViewModel(_dialogWindow);
+                DialogWindow = new DialogWindow();
+                DialogWindow.ViewModel = new DialogWindowViewModel(DialogWindow);
 
                 // Create close command
-                CloseCommand = new RelayCommand(x => _dialogWindow.Close());
+                CloseCommand = new RelayCommand(x => DialogWindow.Close());
             }
         }
 
@@ -95,23 +95,23 @@ namespace Marathon.Desktop.Dialogs
                 try
                 {
                     // Match controls expected sizes to the dialog windows view model
-                    _dialogWindow.ViewModel.WindowMinimumWidth = WindowMinimumWidth;
-                    _dialogWindow.ViewModel.WindowMinimumHeight = WindowMinimumHeight;
-                    _dialogWindow.ViewModel.TitleHeight = TitleHeight;
-                    _dialogWindow.ViewModel.Title = string.IsNullOrEmpty(viewModel.Title) ? Title : viewModel.Title;
+                    DialogWindow.ViewModel.WindowMinimumWidth = WindowMinimumWidth;
+                    DialogWindow.ViewModel.WindowMinimumHeight = WindowMinimumHeight;
+                    DialogWindow.ViewModel.TitleHeight = TitleHeight;
+                    DialogWindow.ViewModel.Title = string.IsNullOrEmpty(viewModel.Title) ? Title : viewModel.Title;
 
                     // Set this control to the dialog window content
-                    _dialogWindow.ViewModel.Content = this;
+                    DialogWindow.ViewModel.Content = this;
 
                     // Setup this controls data context binding to the view model
                     DataContext = viewModel;
 
                     // Show in the center of the parent
-                    _dialogWindow.Owner = Application.Current.MainWindow;
-                    _dialogWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    DialogWindow.Owner = Application.Current.MainWindow;
+                    DialogWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
                     // Show dialog
-                    _dialogWindow.ShowDialog();
+                    DialogWindow.ShowDialog();
                 }
                 finally
                 {

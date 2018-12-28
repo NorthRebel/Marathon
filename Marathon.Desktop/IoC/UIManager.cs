@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
 using System.Threading.Tasks;
 using Marathon.Desktop.Dialogs;
 using Marathon.Core.IoC.Interfaces;
 using Marathon.Core.ViewModel.Dialogs;
 using Marathon.Core.ViewModel.Inventory.Dialogs;
-using Microsoft.Win32;
 
 namespace Marathon.Desktop.IoC
 {
@@ -19,6 +18,14 @@ namespace Marathon.Desktop.IoC
         public Task ShowMessage(MessageBoxDialogViewModel viewModel)
         {
             return new DialogMessageBox().ShowDialog(viewModel);
+        }
+
+        /// <summary>
+        /// Displays a single message box to confirm or decline action
+        /// </summary>
+        public Task<bool> ShowConfirmMessage(ConfirmMessageBoxDialogViewModel viewModel)
+        {
+            return new ConfirmMessageBox().ShowDialogWithResult(viewModel);
         }
 
         /// <summary>

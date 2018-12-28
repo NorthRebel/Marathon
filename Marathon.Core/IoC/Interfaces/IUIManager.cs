@@ -17,6 +17,13 @@ namespace Marathon.Core.IoC.Interfaces
         Task ShowMessage(MessageBoxDialogViewModel viewModel);
 
         /// <summary>
+        /// Displays a single message box to confirm or decline action
+        /// </summary>
+        /// <param name="viewModel">The view model</param>
+        /// <returns></returns>
+        Task<bool> ShowConfirmMessage(ConfirmMessageBoxDialogViewModel viewModel);
+
+        /// <summary>
         /// Displays a dialog message about selected charity
         /// </summary>
         Task ShowAboutCharityInformation(AboutCharityDialogViewModel viewModel);
