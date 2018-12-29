@@ -87,10 +87,11 @@ namespace Marathon.API.Repositories
         }
 
         // TODO: Add max participants check
+        // TODO: Add start date condition
         private IEnumerable<Event> GetEventsByEventType(string eventTypeId)
         {
             return _context.Events.Where(e =>
-                e.EventTypeId == eventTypeId && e.StartDate.HasValue && e.StartDate.Value >= DateTime.Now);
+                e.EventTypeId == eventTypeId && e.StartDate.HasValue);
         }
 
         private void SignUpRunner(Domain.Entities.MarathonSignUp marathonSignUp)
@@ -99,9 +100,12 @@ namespace Marathon.API.Repositories
             _context.SaveChanges();
         }
 
+        // TODO: Add start date condition
         private decimal GetActualCostOfCurrentEventType(string eventTypeId)
         {
-            return (decimal)_context.Events.Single(e => e.EventTypeId == eventTypeId && e.StartDate.HasValue && e.StartDate.Value >= DateTime.Now).Cost;
+            Event actualEvent = _context.Events.FirstOrDefault(e => e.EventTypeId == eventTypeId);
+
+            return actualEvent?.Cost ?? 0;
         }
     }
 }
