@@ -107,8 +107,8 @@ namespace Marathon.Core.ViewModel.SignUpToMarathon
 
         public SignUpToMarathonViewModel()
         {
-            SignInCommand = new RelayCommand(async o => await CancelSignUp());
-            CancelCommand = new RelayCommand(async o => await ConfirmSignUp());
+            SignInCommand = new RelayCommand(async o => await ConfirmSignUp());
+            CancelCommand = new RelayCommand(async o => await CancelSignUp());
 
 
             #region Initialize entries
