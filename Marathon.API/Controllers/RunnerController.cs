@@ -40,7 +40,7 @@ namespace Marathon.API.Controllers
         }
 
         [HttpGet]
-        [Route("Id")]
+        [Route("Id/{userId}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
         public IActionResult GetId(int userId)
         {

@@ -28,7 +28,7 @@ namespace Marathon.API.Controllers
         }
 
         [HttpGet]
-        [Route("About")]
+        [Route("About/{id}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(AboutCharity), (int)HttpStatusCode.OK)]
         public IActionResult AboutCharity(int id)
