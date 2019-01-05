@@ -182,8 +182,7 @@
                     Width="80"
                     HorizontalAlignment="Left"
                     Content="Сохранить"
-                    Command="{Binding SaveCommand}"
-                    CommandParameter="{Binding ElementName=Page}"/>
+                    Command="{Binding SaveCommand}"/>
 
         </Grid>
 

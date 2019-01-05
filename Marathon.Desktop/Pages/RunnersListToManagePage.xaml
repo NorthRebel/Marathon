@@ -47,14 +47,26 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Sort and filter-->
-                <controls:MarathonOptionsControl
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Grid.RowSpan="3"
-                    Title="Сортировка и фильтрация"
-                    ContentHorizontalAlignment="Center">
+                <Grid Grid.RowSpan="4">
 
-                    <input:LayoutGroup>
+                    <Grid.RowDefinitions>
+                        <!--Title-->
+                        <RowDefinition Height="Auto"/>
+                        <!--Content-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title-->
+                    <TextBlock Grid.Row="0"
+                               FontSize="{StaticResource FontSizeMedium}"
+                               FontFamily="{StaticResource TitleFont}"
+                               Foreground="{StaticResource GrayBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 10"
+                               Text="Сортировка и фильтрация"/>
+
+                    <input:LayoutGroup Grid.Row="1">
 
                         <!--Status-->
                         <input:LabelledComboBox Label="Статус"
@@ -73,7 +85,7 @@
 
                     </input:LayoutGroup>
 
-                </controls:MarathonOptionsControl>
+                </Grid>
 
                 <!--Find command-->
                 <Button Grid.Row="1"
@@ -95,10 +107,14 @@
 
                 <!--Sort and filter label-->
                 <TextBlock Grid.Row="0"
-                           Grid.Column="2" 
+                           Grid.Column="2"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
                            HorizontalAlignment="Center"
-                           Text="Выгрузка"
-                           FontSize="{StaticResource FontSizeMedium}"/>
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Выгрузка"/>
 
                 <!--Unload detailed info-->
                 <Button Grid.Row="1"

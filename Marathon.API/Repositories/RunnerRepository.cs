@@ -28,6 +28,11 @@ namespace Marathon.API.Repositories
             return newRunner.Id;
         }
 
+        public int GetId(int userId)
+        {
+            return _context.Runners.SingleOrDefault(r => r.UserId == userId)?.Id ?? default(int);
+        }
+
         private void SaveRunner(Runner runner)
         {
             _context.Runners.Add(runner);

@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Collections;
+using System.Windows.Data;
+using System.ComponentModel;
 using System.Windows.Controls;
 
 namespace Marathon.Desktop.Controls.Input
@@ -7,7 +11,7 @@ namespace Marathon.Desktop.Controls.Input
     /// <summary>
     /// Interaction logic for LabelledComboBox.xaml
     /// </summary>
-    public partial class LabelledComboBox : UserControl
+    public partial class LabelledComboBox : UserControl, IDataErrorInfo
     {
         #region Dependency Properties
 
@@ -88,7 +92,39 @@ namespace Marathon.Desktop.Controls.Input
         public LabelledComboBox()
         {
             InitializeComponent();
-            Root.DataContext = this;
         }
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get
+            {
+                if (Validation.GetHasError(this))
+                    return string.Join(Environment.NewLine, Validation.GetErrors(this).Select(e => e.ErrorContent));
+
+                return null;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                // use a specific validation or ask for UserControl Validation Error 
+                if (Validation.GetHasError(this))
+                {
+                    var error = Validation.GetErrors(this)
+                        .FirstOrDefault(e => ((BindingExpression)e.BindingInError).TargetProperty.Name == columnName);
+
+                    if (error != null)
+                        return error.ErrorContent as string;
+                }
+
+                return null;
+            }
+        }
+
+        #endregion
     }
 }

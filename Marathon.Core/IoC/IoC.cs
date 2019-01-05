@@ -78,6 +78,11 @@ namespace Marathon.Core.IoC
 
             Kernel.Bind<ICountryService>().To<CountryService>();
             Kernel.Bind<IGenderService>().To<GenderService>();
+
+            Kernel.Bind<IMarathonService>().To<MarathonService>();
+
+            Kernel.Bind<IRaceKitService>().To<RaceKitService>();
+            Kernel.Bind<ICharityService>().To<CharityService>();
         }
 
         #endregion

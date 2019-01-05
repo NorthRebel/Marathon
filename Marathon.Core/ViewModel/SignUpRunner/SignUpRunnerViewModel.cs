@@ -121,7 +121,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
             #endregion
 
-            SignUpCommand = new RelayCommand(async (password) => await SignUpAsync(password));
+            SignUpCommand = new RelayCommand(async o => await SignUpAsync());
             CancelCommand = new RelayCommand(x => Cancel());
             ChangePhotoCommand = new RelayCommand(x => OpenFileDialog());
         }
@@ -206,8 +206,14 @@ namespace Marathon.Core.ViewModel.SignUpRunner
         /// <summary>
         /// Attempts to log the user in
         /// </summary>
-        private async Task SignUpAsync(object password)
+        private async Task SignUpAsync()
         {
+            if (!IsModelValid)
+            {
+                await NotifyAboutValidationErrors();
+                return;
+            }
+
             try
             {
                 UserInfo newUser = await SignUpUserAsync();

@@ -7,12 +7,11 @@
              xmlns:local="clr-namespace:Marathon.Desktop.Pages"
              xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
              xmlns:input="clr-namespace:Marathon.Desktop.Controls.Input"
-             xmlns:MarathonOptions="clr-namespace:Marathon.Desktop.Controls.MarathonOptions"
              xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon;assembly=Marathon.Core"
              xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.SignUpToMarathon.Design;assembly=Marathon.Core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800"
-             DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
+             d:DataContext="{x:Static designModels:SignUpToMarathonDesignModel.Instance}">
     <Grid>
         <Grid.RowDefinitions>
             <!--Caption and description-->
@@ -44,55 +43,125 @@
             </Grid.ColumnDefinitions>
 
             <!--Marathon type-->
-            <controls:MarathonOptionsControl
-                Grid.Column="0"
-                Grid.Row="0"
-                Title="Вид марафона"
-                ContentHorizontalAlignment="Center">
+            <Grid Grid.Column="0"
+                  Grid.Row="0">
 
-                <MarathonOptions:MarathonOptionsMultiple
-                    ItemsSource="{Binding MarathonTypesToSelect}"
-                    SelectedItems="{Binding SelectedMarathonTypes}"/>
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Content-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            </controls:MarathonOptionsControl>
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Вид марафона"/>
+
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding MarathonTypesToSelect}"
+                         SelectedItem="{Binding SelectedMarathonType}"
+                         Background="Transparent">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="MarathonTypeList"
+                                         Content="{Binding Name}">
+                            </RadioButton>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </Grid>
 
             <!--Types of race kit-->
-            <controls:MarathonOptionsControl
-                Grid.Column="1"
-                Grid.Row="0"
-                Title="Варианты комплектов"
-                ContentHorizontalAlignment="Center">
+            <Grid Grid.Column="1"
+                  Grid.Row="0">
 
-                <MarathonOptions:MarathonOptionsSingle
-                    ItemsSource="{Binding RaceKits}"
-                    SelectedItem="{Binding SelectedRaceKit}"/>
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Content-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            </controls:MarathonOptionsControl>
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Варианты комплектов"/>
+
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding RaceKits}"
+                         SelectedItem="{Binding SelectedRaceKit}"
+                         Background="Transparent">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="RaceKitList"
+                                         Content="{Binding Name}">
+                            </RadioButton>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </Grid>
 
             <!--Sponsorship details-->
-            <controls:MarathonOptionsControl
-                Grid.Column="0"
-                Grid.Row="1"
-                Title="Детали спонсорства"
-                ContentHorizontalAlignment="Stretch">
+            <Grid Grid.Column="0"
+                  Grid.Row="1">
 
-                <StackPanel DataContext="{Binding DataContext.SponsorshipDetails, RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}">
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Content-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal"
-                                DataContext="{Binding CharityDetail}">
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Детали спонсорства"/>
+
+                <StackPanel Grid.Row="1"
+                            DataContext="{Binding SponsorshipDetails}">
+
+                    <DockPanel DataContext="{Binding CharityDetail}">
+
+                        <!--Show info about charity-->
+                        <Button DockPanel.Dock="Right"
+                                Command="{Binding AboutSelectedCharityCommand}"
+                                CommandParameter="{Binding Charity}"
+                                Width="25"
+                                Height="25">
+
+                            <Image Source="{StaticResource InfoIcon}"/>
+
+                        </Button>
 
                         <!--List of charity for sponsorship-->
                         <input:LabelledComboBox Label="Взнос"
                                                 Items="{Binding Charities}"
+                                                DisplayMember="Name"
                                                 SelectedItem="{Binding Charity}"/>
 
-
-                        <!--Show info about charity-->
-                        <Button Content="i"
-                                Command="{Binding AboutSelectedCharityCommand}"
-                                CommandParameter="{Binding Value}"/>
-
-                    </StackPanel>
+                    </DockPanel>
 
                     <!--Sponsorship amount for charity organization-->
                     <input:LabelledTextBox Label="Сумма взноса"
@@ -100,7 +169,7 @@
 
                 </StackPanel>
 
-            </controls:MarathonOptionsControl>
+            </Grid>
 
             <!--Confirm buttons-->
             <Grid Grid.Column="0"
@@ -131,14 +200,28 @@
 
 
             <!--Payment of sign up to marathon-->
-            <controls:MarathonOptionsControl
-                Grid.Row="1"
-                Grid.Column="1"
-                Grid.RowSpan="2"
-                Title="Регистрационный взнос"
-                ContentHorizontalAlignment="Center">
+            <Grid Grid.Column="1"
+                  Grid.Row="1">
 
-                <Border DataContext="{Binding DataContext.PaymentDetail, RelativeSource={RelativeSource FindAncestor, AncestorType=Page}}">
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition Height="Auto"/>
+                    <!--Content-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Title-->
+                <TextBlock Grid.Row="0"
+                           FontSize="{StaticResource FontSizeMedium}"
+                           FontFamily="{StaticResource TitleFont}"
+                           Foreground="{StaticResource GrayBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 10"
+                           Text="Регистрационный взнос"/>
+
+                <Border Grid.Row="1"
+                        DataContext="{Binding PaymentDetail}">
 
                     <TextBlock Text="{Binding Payment, StringFormat='{}${0}'}"
                                VerticalAlignment="Center"
@@ -148,7 +231,7 @@
 
                 </Border>
 
-            </controls:MarathonOptionsControl>
+            </Grid>
         </Grid>
 
     </Grid>

@@ -123,7 +123,6 @@
     <Compile Include="Controls\CharityList\CharityListItemControl.xaml.cs">
       <DependentUpon>CharityListItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Custom\ListBox.cs" />
     <Compile Include="Controls\HowLongMarathon\HowLongMarathonItemControl.xaml.cs">
       <DependentUpon>HowLongMarathonItemControl.xaml</DependentUpon>
     </Compile>
@@ -154,15 +153,6 @@
     </Compile>
     <Compile Include="Controls\Inventory\Report\ReportListControl.xaml.cs">
       <DependentUpon>ReportListControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MarathonOptions\MarathonOptionsControl.xaml.cs">
-      <DependentUpon>MarathonOptionsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MarathonOptions\MarathonOptionsMultiple.xaml.cs">
-      <DependentUpon>MarathonOptionsMultiple.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MarathonOptions\MarathonOptionsSingle.xaml.cs">
-      <DependentUpon>MarathonOptionsSingle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MarathonResults\MarathonResultsListControl.xaml.cs">
       <DependentUpon>MarathonResultsListControl.xaml</DependentUpon>
@@ -210,6 +200,9 @@
       <DependentUpon>AboutCharityDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\BaseDialogUserControl.cs" />
+    <Compile Include="Dialogs\ConfirmMessageBox.xaml.cs">
+      <DependentUpon>ConfirmMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\CoordinatorsContactsDialog.xaml.cs">
       <DependentUpon>CoordinatorsContactsDialog.xaml</DependentUpon>
     </Compile>
@@ -224,7 +217,6 @@
     </Compile>
     <Compile Include="IoC\ClientDataStore.cs" />
     <Compile Include="IoC\UIManager.cs" />
-    <Compile Include="Models\OptionSelectionType.cs" />
     <Compile Include="Pages\AboutMarathonPage.xaml.cs">
       <DependentUpon>AboutMarathonPage.xaml</DependentUpon>
     </Compile>
@@ -431,18 +423,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MarathonOptions\MarathonOptionsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MarathonOptions\MarathonOptionsMultiple.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MarathonOptions\MarathonOptionsSingle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\MarathonResults\MarathonResultsListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -500,6 +480,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\AboutCharityDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ConfirmMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -675,6 +659,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\DatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Fonts.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -755,6 +747,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\open-sans\Apache License.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

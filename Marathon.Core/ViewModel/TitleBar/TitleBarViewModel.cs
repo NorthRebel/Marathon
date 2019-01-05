@@ -16,6 +16,11 @@ namespace Marathon.Core.ViewModel.TitleBar
         /// </summary>
         public bool LogoutButtonVisible { get; set; }
 
+        /// <summary>
+        /// Enables/disables <see cref="GoBackCommand"/>
+        /// </summary>
+        public bool GoBackEnabled { get; set; } = true;
+
         #endregion
 
         #region Commands
@@ -36,7 +41,7 @@ namespace Marathon.Core.ViewModel.TitleBar
 
         public TitleBarViewModel()
         {
-            GoBackCommand = new RelayCommand(x => GoBack());
+            GoBackCommand = new RelayCommand(x => GoBack(), o => GoBackEnabled);
         }
 
         #endregion
