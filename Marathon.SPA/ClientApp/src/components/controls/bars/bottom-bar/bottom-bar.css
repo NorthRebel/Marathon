@@ -1,0 +1,9 @@
+.bottom-bar {
+    background-color: #505050;
+    padding:10px;
+}
+
+.bottom-bar p {
+    color: white;
+    text-align: center;
+}

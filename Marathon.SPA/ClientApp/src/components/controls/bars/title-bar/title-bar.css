@@ -1,0 +1,8 @@
+.title-bar {
+    background-color: #505050;
+    padding:15px 10px;
+}
+
+.title-bar p {
+    color: white;
+}

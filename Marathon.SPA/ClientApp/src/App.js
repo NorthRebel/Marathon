@@ -1,8 +1,13 @@
-﻿import React from 'react';
+﻿import React, { Component } from 'react';
 import { Route } from 'react-router';
 
-const App = () => (
-  <h1>Marathon SKills 2019</h1>
-);
+import Layout from './components/layout';
 
-export default App;
+export default class App extends Component {
+
+  render() {
+    return (
+      <Layout />
+    );
+  }
+}

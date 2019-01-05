@@ -1,0 +1,14 @@
+.main-title-bar {
+    background-color: #505050;
+    padding:10px;
+}
+
+.main-title-bar h1 {
+    color: white;
+    text-align: center;
+}
+
+.main-title-bar div {
+    color: white;
+    text-align: center;
+}
