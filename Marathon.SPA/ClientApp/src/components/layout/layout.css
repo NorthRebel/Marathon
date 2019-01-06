@@ -6,6 +6,14 @@
     transform: translate(-50%, -50%)
 }
 
+/* Align main content to bottom */
+.bottom-content {
+  position: absolute; 
+  left: 50%; 
+  top: 80%;
+  transform: translate(-50%, -50%)
+}
+
 /* Sticky footer styles */
 html {
     position: relative;
