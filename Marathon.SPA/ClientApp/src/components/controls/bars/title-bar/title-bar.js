@@ -1,20 +1,19 @@
 ﻿import React from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 import './title-bar.css';
 
 const TitleBar = () => {
     return (
-        <Grid fluid>
-            <Row className="title-bar">
-                <Col xs={1}>
-                    <Button variant="secondary">Назад</Button>
-                </Col>
-                <Col xs={11}>
+        <div className="container-fluid">
+            <div className="row title-bar">
+                <div className="col-xs-1">
+                    <button className="btn">Назад</button>
+                </div>
+                <div className="col-xs-11">
                     <p>MARATHON SKILLS 2019</p>
-                </Col>
-            </Row>
-        </Grid>
+                </div>
+            </div>
+        </div>
     );
 };
 

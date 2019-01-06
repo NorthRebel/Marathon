@@ -1,6 +1,7 @@
 .main-title-bar {
     background-color: #505050;
-    padding:10px;
+    padding-top:10px;
+    padding-bottom:10px;
 }
 
 .main-title-bar h1 {
