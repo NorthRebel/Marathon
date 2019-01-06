@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { TitleBar, BottomBar, MainTitleBar } from '../controls/bars';
-import { MainPage, CheckRunner } from '../pages';
+import { MainPage, CheckRunner, SignInPage } from '../pages';
 
 import './layout.css';
 
@@ -12,8 +12,8 @@ export default class Layout extends Component {
             <div>
                 <MainTitleBar />
                
-                <div className="container-fluid main-content">
-                    <MainPage />
+                <div className="container-fluid">
+                    <SignInPage />
                 </div>
                 
                 <div className="footer">
