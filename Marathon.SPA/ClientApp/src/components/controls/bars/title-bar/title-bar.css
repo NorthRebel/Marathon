@@ -1,8 +1,21 @@
 .title-bar {
     background-color: #505050;
-    padding:15px 10px;
+    padding: 10px 5px;
 }
 
-.title-bar p {
-    color: white;
+.title-bar h1 {
+    color: #EBEBEB;
+    vertical-align: middle;
+}
+
+.title-bar button {
+    background-color: #B4B4B4;
+}
+
+.title-bar button:hover {
+    background-color: #EBEBEB;
+}
+
+.title-bar button:disabled {
+    background-color: #EBEBEB;
 }

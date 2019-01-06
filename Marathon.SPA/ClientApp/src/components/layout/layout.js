@@ -10,7 +10,7 @@ export default class Layout extends Component {
     render() {
         return (
             <div>
-                <MainTitleBar />
+                <TitleBar />
                
                 <div className="container-fluid">
                     <SignInPage />
