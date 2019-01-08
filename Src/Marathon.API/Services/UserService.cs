@@ -11,10 +11,12 @@ namespace Marathon.API.Services
     public class UserService : IUserService
     {
         private readonly MarathonDbContext _context;
+        private readonly IMapper _mapper;
 
-        public UserService(MarathonDbContext context)
+        public UserService(MarathonDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<UserInfo> SignInAsync(UserSignInCredentials credentials)
@@ -27,7 +29,7 @@ namespace Marathon.API.Services
                     if(u.Result == null)
                         throw new InvalidUserCredentialsException();
 
-                    result = Mapper.Map<UserInfo>(u.Result);
+                    result = _mapper.Map<UserInfo>(u.Result);
                 });
 
             return result;
@@ -43,7 +45,7 @@ namespace Marathon.API.Services
             UserInfo result = null;
 
             await SaveUser(newUser)
-                .ContinueWith(u => result = Mapper.Map<UserInfo>(newUser));
+                .ContinueWith(u => result = _mapper.Map<UserInfo>(newUser));
 
             return result;
         }

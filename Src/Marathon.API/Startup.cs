@@ -70,7 +70,10 @@ namespace Marathon.API
 
             services.AddMvc();
 
-            services.AddAutoMapper(cfg => cfg.AddProfile(new DefaultAutomapperProfile()));
+            // Configure automapper
+            var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new DefaultAutomapperProfile()));
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             BuildAppSettingsProvider();
         }
