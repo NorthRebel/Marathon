@@ -1,10 +1,10 @@
-﻿using System.Text;
-using AutoMapper;
-using Marathon.API.Infrastructure;
+﻿using AutoMapper;
+using System.Text;
 using Marathon.Persistence;
 using Marathon.API.Settings;
 using Marathon.API.Services;
 using Microsoft.AspNetCore.Http;
+using Marathon.API.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -70,6 +70,9 @@ namespace Marathon.API
 
             services.AddMvc();
 
+            // Register the Swagger services
+            services.AddSwaggerDocument();
+
             // Configure automapper
             var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new DefaultAutomapperProfile()));
             IMapper mapper = mappingConfig.CreateMapper();
@@ -102,6 +105,10 @@ namespace Marathon.API
 
             // Serve static files
             app.UseStaticFiles();
+
+            // Register the Swagger generator and the Swagger UI middlewares
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
             // Setup MVC routes
             app.UseMvcWithDefaultRoute();
