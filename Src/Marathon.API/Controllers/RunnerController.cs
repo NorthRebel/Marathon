@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Net;
+using Marathon.API.Services;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Marathon.API.Models.Runner;
 using Marathon.API.Authentication;
-using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
 {
@@ -11,25 +12,25 @@ namespace Marathon.API.Controllers
     [Route("[controller]")]
     public class RunnerController : Controller
     {
-        private readonly IRunnerRepository _runnerRepository;
+        private readonly IRunnerService _runnerService;
 
-        public RunnerController(IRunnerRepository runnerRepository)
+        public RunnerController(IRunnerService runnerService)
         {
-            _runnerRepository = runnerRepository;
+            _runnerService = runnerService;
         }
 
         [HttpPost]
         [Route(nameof(SignUp))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
-        public IActionResult SignUp([FromBody]RunnerSignUpCredentials credentials)
+        public async Task<IActionResult> SignUp([FromBody]RunnerSignUpCredentials credentials)
         {
             if (credentials == null)
                 return BadRequest();
 
             try
             {
-                int runnerId =_runnerRepository.SignUp(credentials);
+                int runnerId = await _runnerService.SignUpAsync(credentials);
 
                 return Ok(runnerId);
             }
@@ -42,9 +43,9 @@ namespace Marathon.API.Controllers
         [HttpGet]
         [Route("Id/{userId}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
-        public IActionResult GetId(int userId)
+        public async Task<IActionResult> GetId(int userId)
         {
-            int runnerId = _runnerRepository.GetId(userId);
+            int runnerId = await _runnerService.GetId(userId);
 
             return Ok(runnerId);
         }

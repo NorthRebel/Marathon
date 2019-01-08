@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Linq;
 using Marathon.Persistence;
+using System.Threading.Tasks;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
-using Marathon.API.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace Marathon.API.Repositories
+namespace Marathon.API.Services
 {
     using EventType = Models.Marathon.EventType;
-    using MarathonSignUp = Models.Marathon.MarathonSignUp;
     using SignUpStatus = Domain.Enumerations.SignUpStatus;
+    using MarathonSignUp = Models.Marathon.MarathonSignUp;
 
-    internal class MarathonRepository : IMarathonRepository
+    public class MarathonService : IMarathonService
     {
         private readonly MarathonDbContext _context;
 
-        public MarathonRepository(MarathonDbContext context)
+        public MarathonService(MarathonDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<EventType> GetAllEventTypes()
+        public async Task<IEnumerable<EventType>> GetEventTypes()
         {
-            var eventTypes = _context.EventTypes.ToArray();
-
-            return eventTypes.Select(e => new EventType
-            {
-                Id = e.Id,
-                Name = e.Name,
-                Cost = GetActualCostOfCurrentEventType(e.Id)
-            });
+            return await _context.EventTypes
+                .Select(e => new EventType
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Cost = GetActualCostOfCurrentEventType(e.Id)
+                })
+                .ToArrayAsync();
         }
 
-        // TODO: Add race kit item stock count decrease
-        public int SignUp(MarathonSignUp signUpCredentials)
+        public async Task<int> SignUp(MarathonSignUp signUpCredentials)
         {
             var marathonSignUp = new Domain.Entities.MarathonSignUp
             {
@@ -48,7 +48,8 @@ namespace Marathon.API.Repositories
 
             try
             {
-                SignUpRunner(marathonSignUp);
+                SignUpRunner(marathonSignUp)
+                    .Wait();
             }
             catch
             {
@@ -58,24 +59,24 @@ namespace Marathon.API.Repositories
 
             try
             {
-                SignUpRunnerToEvents(marathonSignUp.Id, GetEventsByEventType(signUpCredentials.EventTypeId));
+                SignUpRunnerToEvents(marathonSignUp.Id, GetEventsByEventType(signUpCredentials.EventTypeId))
+                    .Wait();
             }
             catch
             {
-                RemoveMarathonSignUp(marathonSignUp.Id);
-                throw new Exception("Error has given when signed up runner to events");
+                await RemoveMarathonSignUp(marathonSignUp.Id).ContinueWith(x => throw new Exception("Error has given when signed up runner to events"));
             }
 
             return marathonSignUp.Id;
         }
 
-        private void RemoveMarathonSignUp(int marathonSignUpId)
+        private Task RemoveMarathonSignUp(int marathonSignUpId)
         {
             _context.MarathonSignUps.Remove(new Domain.Entities.MarathonSignUp { Id = marathonSignUpId });
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
 
-        private void SignUpRunnerToEvents(int marathonSignUpId, IEnumerable<Event> events)
+        private Task SignUpRunnerToEvents(int marathonSignUpId, IEnumerable<Event> events)
         {
             _context.SignUpMarathonEvents.AddRange(events.Select(e => new SignUpMarathonEvent
             {
@@ -83,7 +84,7 @@ namespace Marathon.API.Repositories
                 EventId = e.Id
             }));
 
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
 
         // TODO: Add max participants check
@@ -94,10 +95,10 @@ namespace Marathon.API.Repositories
                 e.EventTypeId == eventTypeId && e.StartDate.HasValue);
         }
 
-        private void SignUpRunner(Domain.Entities.MarathonSignUp marathonSignUp)
+        private Task SignUpRunner(Domain.Entities.MarathonSignUp marathonSignUp)
         {
             _context.Add(marathonSignUp);
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
 
         // TODO: Add start date condition

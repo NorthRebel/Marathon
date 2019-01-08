@@ -1,27 +1,28 @@
 ﻿using System.Net;
 using Marathon.API.Models;
+using Marathon.API.Services;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
 {
     [Route("[controller]")]
     public class GendersController : Controller
     {
-        private readonly IGenderRepository _genderRepository;
+        private readonly IGenderService _genderService;
 
-        public GendersController(IGenderRepository genderRepository)
+        public GendersController(IGenderService genderService)
         {
-            _genderRepository = genderRepository;
+            _genderService = genderService;
         }
 
         [HttpGet]
         [Route("All")]
         [ProducesResponseType(typeof(IEnumerable<Gender>), (int)HttpStatusCode.OK)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var genders = _genderRepository.GetAll();
+            IEnumerable<Gender> genders = await _genderService.GetAllAsync();
 
             return Ok(genders);
         }

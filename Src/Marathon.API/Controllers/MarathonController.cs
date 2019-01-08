@@ -1,9 +1,10 @@
 ﻿using System.Net;
+using Marathon.API.Services;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Marathon.API.Authentication;
 using Marathon.API.Models.Marathon;
-using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
 {
@@ -11,19 +12,19 @@ namespace Marathon.API.Controllers
     [Route("[controller]")]
     public class MarathonController : Controller
     {
-        private readonly IMarathonRepository _marathonRepository;
+        private readonly IMarathonService _marathonService;
 
-        public MarathonController(IMarathonRepository marathonRepository)
+        public MarathonController(IMarathonService marathonService)
         {
-            _marathonRepository = marathonRepository;
+            _marathonService = marathonService;
         }
 
         [HttpGet]
         [Route("EventTypes")]
         [ProducesResponseType(typeof(IEnumerable<EventType>), (int)HttpStatusCode.OK)]
-        public IActionResult EventTypes()
+        public async Task<IActionResult> EventTypes()
         {
-            IEnumerable<EventType> eventTypes = _marathonRepository.GetAllEventTypes();
+            IEnumerable<EventType> eventTypes = await _marathonService.GetEventTypes();
 
             return Ok(eventTypes);
         }
@@ -32,14 +33,14 @@ namespace Marathon.API.Controllers
         [Route(nameof(SignUp))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
-        public IActionResult SignUp([FromBody]MarathonSignUp signUpCredentials)
+        public async Task<IActionResult> SignUp([FromBody]MarathonSignUp signUpCredentials)
         {
             if (signUpCredentials == null)
                 return BadRequest();
-
+            
             try
             {
-                var marathonSignUpId = _marathonRepository.SignUp(signUpCredentials);
+                int marathonSignUpId = await _marathonService.SignUp(signUpCredentials);
 
                 return Ok(marathonSignUpId);
             }

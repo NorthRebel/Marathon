@@ -1,44 +1,36 @@
 ﻿using System;
 using System.Net;
+using Marathon.API.Services;
+using System.Threading.Tasks;
 using Marathon.API.Models.User;
-using Marathon.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Marathon.API.Authentication;
-using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
 {
     [Route("[controller]")]
     public class AccountController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public AccountController(IUserRepository userRepository)
+        public AccountController(IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         [HttpPost]
         [Route(nameof(SignIn))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UserInfo),(int)HttpStatusCode.OK)]
-        public IActionResult SignIn([FromBody]UserSignInCredentials credentials)
+        public async Task<IActionResult> SignIn([FromBody]UserSignInCredentials credentials)
         {
             if (credentials == null)
                 return BadRequest();
 
             try
             {
-                User user = _userRepository.SignIn(credentials);
+                UserInfo result = await _userService.SignInAsync(credentials);
 
-                var userInfo = new UserInfo
-                {
-                    Id = user.Id,
-                    UserType = user.UserTypeId,
-                    Token = user.GenerateJwtToken()
-                };
-
-                return Ok(userInfo);
+                return Ok(result);
             }
             catch (Exception e)
             {
@@ -50,23 +42,16 @@ namespace Marathon.API.Controllers
         [Route(nameof(SignUp))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UserInfo),(int)HttpStatusCode.OK)]
-        public IActionResult SignUp([FromBody]UserSignUpCredentials credentials)
+        public async Task<IActionResult> SignUp([FromBody]UserSignUpCredentials credentials)
         {
             if (credentials == null)
                 return BadRequest();
 
             try
             {
-                User user = _userRepository.SignUp(credentials);
+                UserInfo result = await _userService.SignUpAsync(credentials);
 
-                var userInfo = new UserInfo
-                {
-                    Id = user.Id,
-                    UserType = user.UserTypeId,
-                    Token = user.GenerateJwtToken()
-                };
-
-                return Ok(userInfo);
+                return Ok(result);
             }
             catch (Exception e)
             {

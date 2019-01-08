@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Net;
+using Marathon.API.Services;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Marathon.API.Models.Charity;
-using Marathon.API.Repositories.Interfaces;
 
 namespace Marathon.API.Controllers
 {
     [Route("[controller]")]
     public class CharitiesController : Controller
     {
-        private readonly ICharityRepository _charityRepository;
+        private readonly ICharityService _charityService;
 
-        public CharitiesController(ICharityRepository charityRepository)
+        public CharitiesController(ICharityService charityService)
         {
-            _charityRepository = charityRepository;
+            _charityService = charityService;
         }
 
         [HttpGet]
         [Route("All")]
         [ProducesResponseType(typeof(IEnumerable<Charity>), (int)HttpStatusCode.OK)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var charities = _charityRepository.GetAll();
+            IEnumerable<Charity> charities = await _charityService.GetAllAsync();
 
             return Ok(charities);
         }
@@ -31,14 +32,14 @@ namespace Marathon.API.Controllers
         [Route("About/{id}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(AboutCharity), (int)HttpStatusCode.OK)]
-        public IActionResult AboutCharity(int id)
+        public async Task<IActionResult> AboutCharity(int id)
         {
             if (id <= default(int))
                 return BadRequest();
 
             try
             {
-                var aboutCharity = _charityRepository.GetInfoAboutCharity(id);
+                AboutCharity aboutCharity = await _charityService.AboutCharity(id);
 
                 return Ok(aboutCharity);
             }

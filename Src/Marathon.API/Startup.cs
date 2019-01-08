@@ -1,14 +1,15 @@
 ﻿using System.Text;
+using AutoMapper;
+using Marathon.API.Infrastructure;
 using Marathon.Persistence;
 using Marathon.API.Settings;
+using Marathon.API.Services;
 using Microsoft.AspNetCore.Http;
-using Marathon.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
-using Marathon.API.Repositories.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Marathon.API
@@ -28,7 +29,7 @@ namespace Marathon.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
-            BindRepositories(services);
+            BindCommonServices(services);
 
             // Add proper cookie request to follow GDPR 
             services.Configure<CookiePolicyOptions>(options =>
@@ -68,6 +69,8 @@ namespace Marathon.API
                 });
 
             services.AddMvc();
+
+            services.AddAutoMapper(cfg => cfg.AddProfile(new DefaultAutomapperProfile()));
 
             BuildAppSettingsProvider();
         }
@@ -115,15 +118,22 @@ namespace Marathon.API
         /// <summary>
         /// Configures repository services for data access
         /// </summary>
-        private void BindRepositories(IServiceCollection services)
+        /// <remarks>
+        /// Services that consume EF Core objects (DbContext) should be registered as Scoped
+        /// (see https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
+        /// </remarks>
+        private void BindCommonServices(IServiceCollection services)
         {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IRunnerRepository, RunnerRepository>();
-            services.AddTransient<ICountryRepository, CountryRepository>();
-            services.AddTransient<IGenderRepository, GenderRepository>();
-            services.AddTransient<IMarathonRepository, MarathonRepository>();
-            services.AddTransient<IRaceKitRepository, RaceKitRepository>();
-            services.AddTransient<ICharityRepository, CharityRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRunnerService, RunnerService>();
+
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<IGenderService, GenderService>();
+
+            services.AddScoped<IMarathonService, MarathonService>();
+
+            services.AddScoped<IRaceKitService, RaceKitService>();
+            services.AddScoped<ICharityService, CharityService>();
         }
     }
 }

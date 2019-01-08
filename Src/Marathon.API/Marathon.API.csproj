@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helpers\**" />
     <Compile Remove="wwwroot\**" />
+    <Content Remove="Helpers\**" />
     <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Helpers\**" />
     <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Helpers\**" />
     <None Remove="wwwroot\**" />
   </ItemGroup>
 
@@ -50,16 +54,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Marathon.API.Models\Marathon.API.Models.csproj" />
+    <ProjectReference Include="..\Marathon.API.Services\Marathon.API.Services.csproj" />
     <ProjectReference Include="..\Marathon.Persistence\Marathon.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
