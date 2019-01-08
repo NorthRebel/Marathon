@@ -1,7 +1,7 @@
 ﻿using System;
+using Marathon.API.Models;
 using System.Windows.Input;
 using System.Collections.Generic;
-using Marathon.Core.Models.Other;
 
 namespace Marathon.Core.ViewModel.Models
 {

@@ -1,10 +1,11 @@
-﻿using Marathon.Core.IoC.Interfaces;
+﻿using Ninject;
+using Marathon.API.Services;
 using Marathon.Core.Services;
+using Marathon.Core.ViewModel;
+using Marathon.Core.IoC.Interfaces;
+using Marathon.Core.ViewModel.TitleBar;
 using Marathon.Core.Services.Interfaces;
 using Marathon.Core.Services.RequestProvider;
-using Marathon.Core.ViewModel;
-using Marathon.Core.ViewModel.TitleBar;
-using Ninject;
 
 namespace Marathon.Core.IoC
 {

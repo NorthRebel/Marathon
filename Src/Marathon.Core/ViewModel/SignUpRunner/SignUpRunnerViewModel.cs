@@ -1,17 +1,17 @@
 ﻿using System;
 using Validar;
 using System.IO;
+using Marathon.API.Models;
 using Marathon.Core.Models;
 using System.Windows.Input;
+using Marathon.API.Services;
 using System.Threading.Tasks;
-using Marathon.Core.Models.User;
+using Marathon.API.Models.User;
+using Marathon.API.Models.Runner;
 using System.Collections.Generic;
-using Marathon.Core.Models.Other;
-using Marathon.Core.Models.Runner;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.Dialogs;
-using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.SignUpRunner
@@ -269,7 +269,7 @@ namespace Marathon.Core.ViewModel.SignUpRunner
 
         private Task SaveUserInfoAsync(UserInfo userInfo)
         {
-            return Kernel.ClientDataStore.SaveUserInfoAsync(userInfo);
+            return Kernel.ClientDataStore.SaveUserInfoAsync(Core.Models.User.UserInfo.ConvertFromApiModel(userInfo));
         }
 
         #endregion

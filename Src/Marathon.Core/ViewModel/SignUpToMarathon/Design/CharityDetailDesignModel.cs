@@ -1,4 +1,4 @@
-﻿using Marathon.Core.Models.Charity;
+﻿using Marathon.API.Models.Charity;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
 {

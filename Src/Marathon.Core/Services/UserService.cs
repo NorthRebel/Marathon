@@ -1,6 +1,7 @@
-﻿using Marathon.Core.Helpers;
+﻿using Marathon.API.Services;
+using Marathon.Core.Helpers;
 using System.Threading.Tasks;
-using Marathon.Core.Models.User;
+using Marathon.API.Models.User;
 using Marathon.Core.Services.Interfaces;
 
 namespace Marathon.Core.Services

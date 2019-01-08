@@ -1,5 +1,5 @@
-﻿using Marathon.Core.Models.Marathon;
-using Marathon.Core.Models.RaceKit;
+﻿using Marathon.API.Models.Marathon;
+using Marathon.API.Models.RaceKit;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon.Design
 {

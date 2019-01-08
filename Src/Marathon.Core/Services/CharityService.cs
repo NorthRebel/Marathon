@@ -1,7 +1,8 @@
-﻿using Marathon.Core.Helpers;
+﻿using Marathon.API.Services;
+using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Marathon.Core.Models.Charity;
+using Marathon.API.Models.Charity;
 using Marathon.Core.Services.Interfaces;
 
 namespace Marathon.Core.Services

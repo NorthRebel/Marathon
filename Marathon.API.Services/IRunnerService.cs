@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Marathon.API.Models.Runner;
 
 namespace Marathon.API.Services
 {

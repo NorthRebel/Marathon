@@ -1,12 +1,12 @@
 ﻿using System;
 using Validar;
 using System.Windows.Input;
+using Marathon.API.Services;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Marathon.Core.Models.Charity;
+using Marathon.API.Models.Charity;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
-using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.Dialogs.Design;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon

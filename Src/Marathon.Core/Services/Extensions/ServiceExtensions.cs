@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Marathon.Core.Services.Interfaces;
+using Marathon.API.Services;
 
 namespace Marathon.Core.Services.Extensions
 {

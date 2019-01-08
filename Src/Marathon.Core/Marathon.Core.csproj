@@ -22,4 +22,9 @@
     <PackageReference Include="Validar.Fody" Version="1.7.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Marathon.API.Services\Marathon.API.Services.csproj" />
+    <ProjectReference Include="..\Marathon.API.Models\Marathon.API.Models.csproj" />
+  </ItemGroup>
+
 </Project>

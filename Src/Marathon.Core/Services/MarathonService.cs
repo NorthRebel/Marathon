@@ -1,7 +1,8 @@
-﻿using Marathon.Core.Helpers;
+﻿using Marathon.API.Services;
+using Marathon.Core.Helpers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Marathon.Core.Models.Marathon;
+using Marathon.API.Models.Marathon;
 using Marathon.Core.Services.Extensions;
 using Marathon.Core.Services.Interfaces;
 

@@ -2,14 +2,14 @@
 using Validar;
 using Marathon.Core.Models;
 using System.Windows.Input;
+using Marathon.API.Services;
 using System.Threading.Tasks;
 using Marathon.Core.Models.User;
 using System.Collections.Generic;
-using Marathon.Core.Models.RaceKit;
+using Marathon.API.Models.RaceKit;
+using Marathon.API.Models.Marathon;
 using Marathon.Core.ViewModel.Base;
-using Marathon.Core.Models.Marathon;
 using Marathon.Core.ViewModel.Dialogs;
-using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.SignUpToMarathon

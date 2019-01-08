@@ -1,11 +1,11 @@
 ﻿using System;
 using Validar;
 using System.Windows.Input;
+using Marathon.API.Services;
 using System.Threading.Tasks;
-using Marathon.Core.Models.User;
+using Marathon.API.Models.User;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Dialogs;
-using Marathon.Core.Services.Interfaces;
 using Marathon.Core.ViewModel.PageCaption;
 
 namespace Marathon.Core.ViewModel.SignIn
@@ -94,7 +94,7 @@ namespace Marathon.Core.ViewModel.SignIn
                     // TODO: Create custom exception if login fails
                     throw new Exception();
 
-                await Kernel.Application.HandleSuccessfulLoginAsync(result);
+                await Kernel.Application.HandleSuccessfulLoginAsync(Core.Models.User.UserInfo.ConvertFromApiModel(result));
             }
             catch (Exception)
             {

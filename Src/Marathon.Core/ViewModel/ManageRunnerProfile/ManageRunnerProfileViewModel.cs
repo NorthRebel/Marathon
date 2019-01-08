@@ -1,9 +1,9 @@
 ﻿using System;
+using Marathon.API.Models;
 using Marathon.Core.Models;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Marathon.Core.Models.Other;
 using Marathon.Core.ViewModel.Base;
 using Marathon.Core.ViewModel.Models;
 using Marathon.Core.ViewModel.PageCaption;
