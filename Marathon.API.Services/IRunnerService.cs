@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Marathon.Core.Models.Runner;
 
-namespace Marathon.Core.Services.Interfaces
+namespace Marathon.API.Services
 {
     public interface IRunnerService : IService
     {

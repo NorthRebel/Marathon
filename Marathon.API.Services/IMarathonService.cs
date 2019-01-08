@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
-using Marathon.Core.Models.Marathon;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Marathon.API.Models.Marathon;
 
-namespace Marathon.Core.Services.Interfaces
+namespace Marathon.API.Services
 {
     public interface IMarathonService : IService
     {

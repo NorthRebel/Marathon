@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Marathon.Core.Models.User;
+using Marathon.API.Models.User;
 
-namespace Marathon.Core.Services.Interfaces
+namespace Marathon.API.Services
 {
     public interface IUserService : IService
     {

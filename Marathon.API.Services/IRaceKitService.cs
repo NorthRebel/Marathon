@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Marathon.Core.Models.RaceKit;
+using Marathon.API.Models.RaceKit;
 
-namespace Marathon.Core.Services.Interfaces
+namespace Marathon.API.Services
 {
     public interface IRaceKitService : IService
     {
