@@ -25,13 +25,37 @@ namespace Marathon.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MarathonDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            ConfigureDatabaseContext(services);
 
             BindCommonServices(services);
 
-            // Add proper cookie request to follow GDPR 
+            ConfigureCookiePolicy(services);
+
+            ConfigureAuthentication(services);
+
+            services.AddMvc();
+
+            // Register the Swagger services
+            services.AddSwaggerDocument();
+
+            ConfigureAutomapper(services);
+
+            BuildAppSettingsProvider();
+        }
+
+        #region ConfigureServices
+
+        protected virtual void ConfigureDatabaseContext(IServiceCollection services)
+        {
+            services.AddDbContext<MarathonDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        }
+
+        /// <summary>
+        /// Add proper cookie request to follow GDPR 
+        /// </summary>
+        private void ConfigureCookiePolicy(IServiceCollection services)
+        {
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for 
@@ -39,8 +63,13 @@ namespace Marathon.API
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+        }
 
-            // Add JWT Authentication for Api clients
+        /// <summary>
+        /// Add JWT Authentication for Api clients
+        /// </summary>
+        private void ConfigureAuthentication(IServiceCollection services)
+        {
             services.AddAuthentication().
                 AddJwtBearer(options =>
                 {
@@ -67,19 +96,47 @@ namespace Marathon.API
                             Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])),
                     };
                 });
+        }
 
-            services.AddMvc();
-
-            // Register the Swagger services
-            services.AddSwaggerDocument();
-
-            // Configure automapper
+        private void ConfigureAutomapper(IServiceCollection services)
+        {
             var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new DefaultAutomapperProfile()));
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-
-            BuildAppSettingsProvider();
         }
+
+        /// <summary>
+        /// Pass configuration parameters to <see cref="AppSettingsProvider"/>
+        /// </summary>
+        private void BuildAppSettingsProvider()
+        {
+            AppSettingsProvider.Jwt.SecretKey = Configuration["Jwt:SecretKey"];
+            AppSettingsProvider.Jwt.Issuer = Configuration["Jwt:Issuer"];
+            AppSettingsProvider.Jwt.Audience = Configuration["Jwt:Audience"];
+        }
+
+        /// <summary>
+        /// Configures repository services for data access
+        /// </summary>
+        /// <remarks>
+        /// Services that consume EF Core objects (DbContext) should be registered as Scoped
+        /// (see https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
+        /// </remarks>
+        protected virtual void BindCommonServices(IServiceCollection services)
+        {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRunnerService, RunnerService>();
+
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<IGenderService, GenderService>();
+
+            services.AddScoped<IMarathonService, MarathonService>();
+
+            services.AddScoped<IRaceKitService, RaceKitService>();
+            services.AddScoped<ICharityService, CharityService>();
+        }
+
+        #endregion
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -113,37 +170,6 @@ namespace Marathon.API
             // Setup MVC routes
             app.UseMvcWithDefaultRoute();
 
-        }
-
-        /// <summary>
-        /// Pass configuration parameters to <see cref="AppSettingsProvider"/>
-        /// </summary>
-        private void BuildAppSettingsProvider()
-        {
-            AppSettingsProvider.Jwt.SecretKey = Configuration["Jwt:SecretKey"];
-            AppSettingsProvider.Jwt.Issuer = Configuration["Jwt:Issuer"];
-            AppSettingsProvider.Jwt.Audience = Configuration["Jwt:Audience"];
-        }
-
-        /// <summary>
-        /// Configures repository services for data access
-        /// </summary>
-        /// <remarks>
-        /// Services that consume EF Core objects (DbContext) should be registered as Scoped
-        /// (see https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
-        /// </remarks>
-        private void BindCommonServices(IServiceCollection services)
-        {
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRunnerService, RunnerService>();
-
-            services.AddScoped<ICountryService, CountryService>();
-            services.AddScoped<IGenderService, GenderService>();
-
-            services.AddScoped<IMarathonService, MarathonService>();
-
-            services.AddScoped<IRaceKitService, RaceKitService>();
-            services.AddScoped<ICharityService, CharityService>();
-        }
+        }        
     }
 }
