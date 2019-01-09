@@ -14,18 +14,14 @@ namespace Marathon.Core.ViewModel.BottomBar
     /// </summary>
     public class BottomBarViewModel : BaseViewModel
     {
-        #region Private Members
-
-
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// Shows current date
         /// </summary>
         public TimeSpan? TimeToBegin { get; set; }
+
+        public DateTime? StartupDate { get; set; }
 
         #endregion
 
@@ -47,8 +43,9 @@ namespace Marathon.Core.ViewModel.BottomBar
             try
             {
                 StartupDate startupDate = await genderService.GetStartupDate();
+                StartupDate = startupDate.Value;
 
-                TimeToBegin = startupDate.Value - DateTime.Now;
+                CalculateRemainingTime();
             }
             catch (Exception)
             {
@@ -58,6 +55,12 @@ namespace Marathon.Core.ViewModel.BottomBar
                     Message = "Неудалось получить дату начала марафона!"
                 });
             }
+        }
+
+        public void CalculateRemainingTime()
+        {
+            if (StartupDate != null)
+                TimeToBegin = StartupDate - DateTime.Now;
         }
 
         #endregion

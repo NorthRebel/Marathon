@@ -10,6 +10,9 @@ namespace Marathon.Desktop.ValueConverters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+                return string.Empty;
+
             // Get the time passed in
             var time = (TimeSpan)value;
 

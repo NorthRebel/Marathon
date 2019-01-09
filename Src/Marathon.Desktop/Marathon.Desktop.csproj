@@ -98,6 +98,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Controls\BaseControl.cs" />
     <Compile Include="Window\AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="Controls\Bars\BottomBarControl.xaml.cs">
       <DependentUpon>BottomBarControl.xaml</DependentUpon>
