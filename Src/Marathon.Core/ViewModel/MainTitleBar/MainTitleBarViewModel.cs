@@ -21,5 +21,24 @@ namespace Marathon.Core.ViewModel.MainTitleBar
         public string Location { get; set; }
 
         #endregion
+
+        #region Constructor
+
+        public MainTitleBarViewModel()
+        {
+            GetCurrentDate();
+            Location = "Москва, Россия";
+        }
+
+        #endregion
+
+        #region Helpers
+
+        public void GetCurrentDate()
+        {
+            CurrentDate = DateTimeOffset.UtcNow;
+        }
+
+        #endregion
     }
 }
