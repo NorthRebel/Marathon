@@ -1,17 +1,16 @@
-﻿<local:BasePage x:TypeArguments="menus:MainViewModel"
+﻿<local:BasePage x:TypeArguments="viewModels:MainViewModel"
       x:Class="Marathon.Desktop.Pages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Marathon.Desktop.Pages"
-      xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel;assembly=Marathon.Core"
-      xmlns:menus="clr-namespace:Marathon.Core.ViewModel.Menus;assembly=Marathon.Core"
+      xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.Menus;assembly=Marathon.Core"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800">
 
     <Border>
-        <Grid>
+        <Grid IsSharedSizeScope="True">
             
             <Grid.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
@@ -21,7 +20,7 @@
 
             <Grid.RowDefinitions>
                 <!--I want to become a runner-->
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" x:Name="RowToBind"/>
                 <!--I want to become a runner sponsor-->
                 <RowDefinition Height="*"/>
                 <!--I want to know more about the event-->
@@ -30,27 +29,33 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
             <!--I want to become a runner-->
             <Button Grid.Row="0"
-                    HorizontalAlignment="Center"
+                    Grid.Column="1"
                     Command="{Binding WantToBecomeRunnerCommand}">
                 <TextBlock Text="Я хочу стать бегуном"/>
             </Button>
             <!--I want to become a runner sponsor-->
             <Button Grid.Row="1"
-                    HorizontalAlignment="Center"
+                    Grid.Column="1"
                     Command="{Binding WantToBecomeRunnerSponsorCommand}">
                 <TextBlock Text="Я хочу стать спонсором бегуна"/>
             </Button>
             <!--I want to know more about the event-->
             <Button Grid.Row="2"
-                    HorizontalAlignment="Center"
+                    Grid.Column="1"
                     Command="{Binding WantToKnowMoreAboutTheEventCommand}">
                 <TextBlock Text="Я хочу узнать больше о событии"/>
             </Button>
             <!--Sign In-->
             <Button Grid.Row="3"
-                    HorizontalAlignment="Right"
+                    Grid.Column="2"
                     Command="{Binding SignInCommand}">
                 <TextBlock Text="Sign In"/>
             </Button>

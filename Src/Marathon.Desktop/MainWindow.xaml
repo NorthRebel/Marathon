@@ -94,7 +94,7 @@
                                                    VerticalAlignment="Center"
                                                    Foreground="{StaticResource WhiteBrush}"
                                                    FontSize="{StaticResource FontSizeSmall}"
-                                                   Text="Marathon Skills 2016"/>
+                                                   Text="Marathon Skills 2019"/>
 
                                         <!-- Window Buttons -->
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
