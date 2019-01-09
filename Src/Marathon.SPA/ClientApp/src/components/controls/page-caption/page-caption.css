@@ -1,0 +1,17 @@
+.page-caption {
+    background-color: transparent;
+}
+
+.page-caption p {
+    text-align: center;
+}
+
+.caption {
+    font-size: 24pt;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 20pt;
+    word-wrap: break-word;
+}

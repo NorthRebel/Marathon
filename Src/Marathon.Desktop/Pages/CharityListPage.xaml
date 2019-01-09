@@ -1,0 +1,36 @@
+﻿<local:BasePage x:TypeArguments="viewModels:CharityListViewModel" 
+      x:Class="Marathon.Desktop.Pages.CharityListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Marathon.Desktop.Pages"
+      xmlns:controls="clr-namespace:Marathon.Desktop.Controls"
+      xmlns:charityControls="clr-namespace:Marathon.Desktop.Controls.CharityList"
+      xmlns:viewModels="clr-namespace:Marathon.Core.ViewModel.CharityList;assembly=Marathon.Core"
+      xmlns:designModels="clr-namespace:Marathon.Core.ViewModel.CharityList.Design;assembly=Marathon.Core"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      DataContext="{x:Static designModels:CharityListDesignModel.Instance}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Caption and description-->
+            <RowDefinition Height="Auto"/>
+            <!--Content-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Caption and description-->
+        <controls:PageCaptionControl 
+            Grid.Row="0"
+            DataContext="{Binding PageCaption}"/>
+
+        <!--Content-->
+        <charityControls:CharityListControl
+            Grid.Row="1"
+            Margin="30"/>
+
+    </Grid>
+
+</local:BasePage>
