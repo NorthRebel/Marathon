@@ -123,25 +123,30 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.Desktop", "Src\Mar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{775B3448-49F7-4769-85EC-8E6069C8660A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.API.Tests", "Tests\Marathon.API.Tests\Marathon.API.Tests.csproj", "{224DF034-688B-4AA3-8020-44676CBAA1D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.API.Tests", "Tests\Marathon.API.Tests\Marathon.API.Tests.csproj", "{224DF034-688B-4AA3-8020-44676CBAA1D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{48C5D64F-771C-4D26-8D6F-81E8DA37B7AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{C91004EA-8BE0-48E9-8AB5-57D894500EEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.Persistence.Tests", "Tests\Marathon.Persistence.Tests\Marathon.Persistence.Tests.csproj", "{A7AF1E86-A2EA-4D9B-9325-4730FA21EB8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.Persistence.Tests", "Tests\Marathon.Persistence.Tests\Marathon.Persistence.Tests.csproj", "{A7AF1E86-A2EA-4D9B-9325-4730FA21EB8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.Core.Tests", "Tests\Marathon.Core.Tests\Marathon.Core.Tests.csproj", "{08AA97C5-D94E-4F65-88B1-9B418C673C69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.Core.Tests", "Tests\Marathon.Core.Tests\Marathon.Core.Tests.csproj", "{08AA97C5-D94E-4F65-88B1-9B418C673C69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.MVC.Tests", "Tests\Marathon.MVC.Tests\Marathon.MVC.Tests.csproj", "{15F39408-627C-4CF0-82EE-16A436FB85E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.MVC.Tests", "Tests\Marathon.MVC.Tests\Marathon.MVC.Tests.csproj", "{15F39408-627C-4CF0-82EE-16A436FB85E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.SPA.Tests", "Tests\Marathon.SPA.Tests\Marathon.SPA.Tests.csproj", "{0867FACC-A84A-49BC-B460-27FEDA795F2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.SPA.Tests", "Tests\Marathon.SPA.Tests\Marathon.SPA.Tests.csproj", "{0867FACC-A84A-49BC-B460-27FEDA795F2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{BD7219BF-7644-46F0-A939-370136DEE7AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marathon.API.Models", "Src\Marathon.API.Models\Marathon.API.Models.csproj", "{0E40C8DA-D0D3-4071-B478-8A86C48F9534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.API.Models", "Src\Marathon.API.Models\Marathon.API.Models.csproj", "{0E40C8DA-D0D3-4071-B478-8A86C48F9534}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marathon.API.Services", "Src\Marathon.API.Services\Marathon.API.Services.csproj", "{66FCBBCE-786A-4E4E-AE0D-11D1FC59FE74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A9B1BF9-FA19-4C17-9E91-824372A38543}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
