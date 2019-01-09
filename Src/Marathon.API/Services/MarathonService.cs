@@ -1,9 +1,11 @@
 ﻿using System;
+using AutoMapper;
 using System.Linq;
 using Marathon.Persistence;
 using System.Threading.Tasks;
 using Marathon.Domain.Entities;
 using System.Collections.Generic;
+using Marathon.API.Models.Marathon;
 using Microsoft.EntityFrameworkCore;
 
 namespace Marathon.API.Services
@@ -15,10 +17,12 @@ namespace Marathon.API.Services
     public class MarathonService : IMarathonService
     {
         private readonly MarathonDbContext _context;
+        private readonly IMapper _mapper;
 
-        public MarathonService(MarathonDbContext context)
+        public MarathonService(MarathonDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<EventType>> GetEventTypes()
@@ -68,6 +72,22 @@ namespace Marathon.API.Services
             }
 
             return marathonSignUp.Id;
+        }
+
+        public async Task<StartupDate> GetStartupDate()
+        {
+            Event @event = await _context.Events
+                .OrderByDescending(e => e.StartDate)
+                .FirstOrDefaultAsync(e => e.StartDate.HasValue);
+
+
+            StartupDate result = _mapper.Map<Event, StartupDate>(@event, opt =>
+            {
+                opt.ConfigureMap()
+                    .ForMember(dest => dest.Value, m => m.MapFrom(src => src.StartDate));
+            });
+
+            return result;
         }
 
         private Task RemoveMarathonSignUp(int marathonSignUpId)

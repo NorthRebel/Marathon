@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Marathon.API.Authentication;
 using Marathon.API.Models.Marathon;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Marathon.API.Controllers
 {
@@ -37,12 +38,31 @@ namespace Marathon.API.Controllers
         {
             if (signUpCredentials == null)
                 return BadRequest();
-            
+
             try
             {
                 int marathonSignUpId = await _marathonService.SignUp(signUpCredentials);
 
                 return Ok(marathonSignUpId);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("StartupDate")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(StartupDate), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetStartupDate()
+        {
+            try
+            {
+                StartupDate result = await _marathonService.GetStartupDate();
+
+                return Ok(result);
             }
             catch
             {

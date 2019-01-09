@@ -30,5 +30,12 @@ namespace Marathon.Core.Services
 
             return _requestProvider.PostAsync<MarathonSignUp, int>(uri, signUpCredentials, this.GetToken());
         }
+
+        public Task<StartupDate> GetStartupDate()
+        {
+            var uri = UriHelper.CombineUri(GlobalSettings.Instance.StartupDate);
+
+            return _requestProvider.GetAsync<StartupDate>(uri);
+        }
     }
 }

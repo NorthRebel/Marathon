@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using System.Collections.Generic;
 using Marathon.API.Models.Marathon;
 
 namespace Marathon.API.Services
@@ -9,5 +9,7 @@ namespace Marathon.API.Services
         Task<IEnumerable<EventType>> GetEventTypes();
 
         Task<int> SignUp(MarathonSignUp signUpCredentials);
+
+        Task<StartupDate> GetStartupDate();
     }
 }

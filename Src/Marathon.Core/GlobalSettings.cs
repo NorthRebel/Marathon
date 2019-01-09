@@ -29,6 +29,7 @@
 
         public string SignUpToMarathon { get; private set; }
         public string EventTypes { get; private set; }
+        public string StartupDate { get; private set; }
 
 
         public string AllCharities { get; private set; }
@@ -63,6 +64,7 @@
 
             EventTypes = $"{endpoint}/Marathon/EventTypes";
             SignUpToMarathon = $"{endpoint}/Marathon/SignUp";
+            StartupDate = $"{endpoint}/Marathon/StartupDate";
 
             AllCharities = $"{endpoint}/Charities/All";
             AboutCharity = $"{endpoint}/Charities/About";
